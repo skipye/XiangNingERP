@@ -20,7 +20,6 @@
         <col width="50px" />
         <col width="80px" />
         <col width="80px" />
-        <col width="80px" />
         <col width="90px" />
         <col width="100px" />
         <col width="90px" />
@@ -38,7 +37,6 @@
             <th>数量</th>
             <th>单价</th>
             <th>合同金额</th>
-            <th>定金</th>
             <th>收款</th>
             <th>剩余金额</th>
             <th>送货日期</th>
@@ -60,13 +58,12 @@
                 <td>@item.qty</td>
                 <td>@item.price</td>
                 <td><div class="tw">@item.amount</div></td>
-                <td><div class="tw">@item.prepay</div></td>
                 <td>@item.FR_contract</td>
                 <td><div class="tw">@Surplus</div></td>
                 <td>@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</td>
                 <td><div class="tw">@item.OrderNum</div></td>
                 <td>
-                   @if (Surplus > 0)
+                   @if (Surplus > 0 || string.IsNullOrEmpty(item.OrderNum))
                    { <span class="red b">否</span>}
                    else
                    { <span class="green b">是</span>}
