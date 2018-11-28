@@ -1,0 +1,83 @@
+﻿@model ModelProject.SJ_WorkModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+    @using (Ajax.BeginForm("Add", "SJ_KH", new AjaxOptions() { HttpMethod = "post", OnSuccess = "Add" }, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>k.Id)
+    <div class="mod normal">
+        <div class="item">
+			<label class="label"><em>*</em>产品图片：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.picture,new{@class="inputtext",@style="width:350px"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>图纸：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.paper_path,new{@class="inputtext",@style="width:350px"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>料单：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.BOM_path,new{@class="inputtext",@style="width:350px"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>材积：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.volume,new{@class="inputtext",@style="width:350px"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    $("#picture").bind("click", function () {
+        var TabId = $(this).attr("id");
+        var toUrl = '@Url.Action("Index","FileManage")';
+        var TabTitle = "图片上传";
+        var $dialog = $("#dialog_img");
+        $dialog.html("");
+        $dialog.dialog("option", "title", TabTitle);
+        $dialog.dialog("open");
+        $.get(toUrl, { TabId: TabId }, function (d) { $dialog.html(d); });
+    });
+    $("#paper_path").bind("click", function () {
+        var TabId = $(this).attr("id");
+        var toUrl = '@Url.Action("Index","FileManage")';
+        var TabTitle = "图纸上传";
+        var $dialog = $("#dialog_img");
+        $dialog.html("");
+        $dialog.dialog("option", "title", TabTitle);
+        $dialog.dialog("open");
+        $.get(toUrl, { TabId: TabId }, function (d) { $dialog.html(d); });
+    });
+    $("#BOM_path").bind("click", function () {
+        var TabId = $(this).attr("id");
+        var toUrl = '@Url.Action("Index","FileManage")';
+        var TabTitle = "料单上传";
+        var $dialog = $("#dialog_img");
+        $dialog.html("");
+        $dialog.dialog("option", "title", TabTitle);
+        $dialog.dialog("open");
+        $.get(toUrl, { TabId: TabId }, function (d) { $dialog.html(d); });
+    });
+    function Add(d) {
+        if (d == "True")
+        { alert("操作成功！"); $("#adddialog").dialog("close");  }
+        else { alert("操作失败！"); }
+    }
+
+</script>

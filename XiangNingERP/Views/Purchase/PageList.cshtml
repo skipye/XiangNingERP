@@ -1,0 +1,70 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.PO_ACModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+  }
+
+@if(Model!=null && Model.Any())
+{
+    
+    <table>
+        <col width="70px" />
+        <col width="160px" />
+        <col width="260px" />
+        <col width="80px" />
+        <col width="120px" />
+        <col width="80px" />
+        <col width="80px" />
+        <col width="80px" />
+        <col width="80px" />
+        <col />
+        <col width="120px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>采购编号</th>
+            <th>采购名称</th>
+            <th>申请人</th>
+            <th>申请时间</th>
+            <th>采购数量</th>
+            <th>单价（元）</th>
+            <th>总价（元）</th>
+            <th>操作人</th>
+            <th>备注</th>
+            <th>操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        decimal? TotalPrce = item.price * item.qty;
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td>@item.SN </td>
+            <td style="text-align:left" title="@item.accessory_name"><div class="tw">@item.accessory_name</div></td>
+            <td>@item.apply_name </td>
+            <td>@Convert.ToDateTime(item.require_date).ToString("yyyy-MM-dd")</td>
+            <td>@item.qty (@item.unit)</td>
+            <td>@item.price</td>
+            <td>@((TotalPrce.Value).ToString("0.00"))</td>
+            <td>@item.input_user_name</td>
+            <td style="text-align:left" title="@item.remark"><div class="tw">@item.remark</div></td>
+            <td>@*<a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "PO_AC", new { SN=SModel.SN,StartTime=SModel.StartTime,EndTime=SModel.EndTime,PageIndex=SModel.PageIndex})" ref="@item.id">编辑</a>*@
+                @*<a href="">审核</a>*@<a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("Checked", "Purchase")">审核</a></td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new {  SN=SModel.SN,StartTime=SModel.StartTime,EndTime=SModel.EndTime,PageIndex=SModel.PageIndex,PageSize=SModel.PageSize }, "PageList", "Purchase",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

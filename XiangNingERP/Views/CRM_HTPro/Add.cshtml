@@ -1,0 +1,188 @@
+﻿@using Common;
+@model ModelProject.CRM_HTProModel
+@{
+    Layout = null;
+    
+    List<SelectListItem> ArrWJ = new List<SelectListItem>();
+    ArrWJ.Add(new SelectListItem { Text = "常规", Value = "常规" });
+    ArrWJ.Add(new SelectListItem { Text = "定制", Value = "定制" });
+    ArrWJ.Add(new SelectListItem { Text = "木拉手", Value = "木拉手" });
+    ArrWJ.Add(new SelectListItem { Text = "挖拉手", Value = "挖拉手" });
+    ArrWJ.Add(new SelectListItem { Text = "其他", Value = "其他" });
+    List<SelectListItem> ArrProName = new List<SelectListItem>();
+    ArrProName.Add(new SelectListItem { Text = "请选择产品名称", Value = "" });
+    
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "CRM_HTPro", FormMethod.Post, new { @class = "form mt20" }))
+    { 
+     @Html.HiddenFor(k=>k.header_id)
+    <div class="mod normal">
+		
+		<div class="item mt10">
+			<label class="label"><em>*</em>产品名称：</label>
+			<div class="form-field" style="position:relative ;">
+                @Html.DropDownListFor(k => k.productXL_id, Model.ProXLDroList, new { @class= "sdrotext", @style="width:120px;"})
+                @Html.DropDownListFor(k => k.productArea_id, Model.AreaDroList, new { @class = "sdrotext", @style = "width:120px;" })
+                @Html.DropDownListFor(k => k.productName, ArrProName, new { @class= "sdrotext", @style="width:180px;"})
+                @Html.HiddenFor(k=>k.product_id)
+               
+			</div>
+		</div>
+       <div class="item">
+            <label class="label"><em>*</em>材质+色号：</label>
+            <div class="form-field">
+                @Html.DropDownListFor(k => k.wood_type_id, Model.WoodDroList,new{@class="drotext",@style="width:80px;"})
+
+                @Html.TextBoxFor(k => k.colorName, new { @class="sputtxt",@style="width:100px;"})
+                @Html.DropDownListFor(k => k.color_id, Model.colorDroList,new{@class="sdrotext",@style="width:130px;"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>是否定制：</label>
+			<div class="form-field">
+                @Html.RadioButtonFor(k=>k.custom_flag,"true") 是
+                @Html.RadioButtonFor(k => k.custom_flag, "false", new { @checked="checked"}) 否 
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>长+宽+高：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.length,new{@class="sputtxt",@style="width:120px;",@readonly="readonly"})<span>cm</span>
+                @Html.TextBoxFor(k=>k.width,new{@class="sputtxt",@style="width:120px;",@readonly="readonly"})<span>cm</span>
+                @Html.TextBoxFor(k=>k.height,new{@class="sputtxt",@style="width:120px;",@readonly="readonly"})<span>cm</span>
+			</div>
+		</div>
+       
+        <div class="item">
+			<label class="label"><em>*</em>单价+数量：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.price,new{@class="sputtxt number",@style="width:120px;"}) <span>元</span>
+              -  @Html.TextBoxFor(k=>k.qty,new{@class="sputtxt number",@style="width:100px;"}) <span>件</span>
+			</div>
+		</div>
+       <div class="item">
+			<label class="label"><em>*</em>五金配件：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.hardware_part, ArrWJ, new { @class="drotext",@style="width:100px;"})
+
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>配饰：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.decoration_part,new{@class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">其他要求：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.req_others,new{style="width:430px;height:100px;",@class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+        <input type="hidden" id="autoproductXL_id" />
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    
+    $("#color_id").change(function () {
+        var StrVal = $(this).find("option:selected").text();
+        if (StrVal == "请选择色号")
+        { StrVal = "";}
+        $("#colorName").val(StrVal);
+    });
+    $("#productXL_id").change(function () {
+        var PId = $(this).val();
+        var ProUrl = "@Url.Action("GetProDrolist","SYS_CPMC")";
+        $.post(ProUrl, { PId: PId }, function (data) {
+            $('#productNameNew').empty();
+            $('#productNameNew').append(data);
+        });
+    });
+
+    $("#productXL_id").change(function () {
+        var product_SN_id = $("#productXL_id").val();;
+        var product_area_id = $("#productArea_id").val();
+        var ProUrl = "@Url.Action("GetProNameDrolistBySNAndArea","Labels")";
+        $.post(ProUrl, { ProSN: product_SN_id, ProProArea: product_area_id }, function (data) {
+            $('#productName').empty();
+            $('#productName').append($('<option></option>').val("").text("请选择产品名称").attr("selected", true));
+            $('#productName').append(data);
+        });
+    });
+    $("#productArea_id").change(function () {
+        var product_SN_id = $("#productXL_id").val();;
+        var product_area_id = $("#productArea_id").val();
+        var ProUrl = "@Url.Action("GetProNameDrolistBySNAndArea","Labels")";
+        $.post(ProUrl, { ProSN: product_SN_id, ProProArea: product_area_id }, function (data) {
+            $('#productName').empty();
+            $('#productName').append($('<option></option>').val("").text("请选择产品名称").attr("selected", true));
+            $('#productName').append(data);
+        });
+    });
+
+
+    //$("#productName").autocomplete({
+    //        source: function(request, response) {
+    //            $.ajax({
+    //                url: 'CRM_HTPro/GetProAutoLiat',
+    //                dataType: "json",
+    //                data: {
+    //                    term: $("#productName").val(),//搜索栏里的内容
+    //                    ProAreaId:$('#productXL_id').val() ,//额外参数
+    //                },
+    //                success: function (event, ui) {
+    //                    debugger;
+    //                }
+    //            });
+    //        },
+ 
+    //        focus: function(event, ui) {
+    //            //$("#id").val(ui.item.label);
+    //            //$('#productNameNew').empty();
+    //            //$('#productNameNew').append(ui.item.label);
+    //        },
+    //        select: function (event, ui) {
+    //            debugger;
+    //            $(":hidden[name='product_id'").val(ui.item.Id);
+    //            $(":hidden[name='productName']").val(ui.item.Name);
+    //        }
+    //    });
+
+      
+    $("#productName").change(function () {
+        var _this = $(this);
+        var Id = _this.val();
+        var StrText = $(this).find("option:selected").text();
+        var length = StrText.split('_')[1];
+        var width = StrText.split('_')[2];
+        var height = StrText.split('_')[3];
+        $("#product_id").val(Id);
+        $("#length").val(length);
+        $("#width").val(width);
+        $("#height").val(height);
+    });
+
+    $("#custom_flag").click(function () {
+        var StrVal = $(this).val();
+        if (StrVal == "true")
+        { $("#length").removeAttr("readonly"); $("#width").removeAttr("readonly"); $("#height").removeAttr("readonly"); }
+        else { $("#length").attr("readonly", "readonly"); $("#width").attr("readonly", "readonly"); $("#height").attr("readonly", "readonly"); }
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+</script>

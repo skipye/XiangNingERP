@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="XNDYModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="XNDYModelStoreContainer">
+          <EntitySet Name="DY_CRM_customers" EntityType="XNDYModel.Store.DY_CRM_customers" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="DY_CRM_customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SN" Type="varchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Name_E" Type="nvarchar" MaxLength="200" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ShortName_E" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address_delivery" Type="nvarchar" MaxLength="200" />
+          <Property Name="zipcode" Type="char" MaxLength="6" />
+          <Property Name="linkman" Type="nvarchar" MaxLength="20" />
+          <Property Name="tel" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="remark" Type="text" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="State" Type="bit" />
+          <Property Name="ListUserId" Type="nvarchar" MaxLength="1500" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XNDYModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="XNDYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DY_CRM_customers" EntityType="XNDYModel.DY_CRM_customers" />
+        </EntityContainer>
+        <EntityType Name="DY_CRM_customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SN" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name_E" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ShortName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ShortName_E" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address_delivery" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="zipcode" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="linkman" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tel" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="Boolean" Name="State" />
+          <Property Type="String" Name="ListUserId" MaxLength="1500" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XNDYModelStoreContainer" CdmEntityContainer="XNDYEntities">
+          <EntitySetMapping Name="DY_CRM_customers">
+            <EntityTypeMapping TypeName="XNDYModel.DY_CRM_customers">
+              <MappingFragment StoreEntitySet="DY_CRM_customers">
+                <ScalarProperty Name="ListUserId" ColumnName="ListUserId" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="linkman" ColumnName="linkman" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="Address_delivery" ColumnName="Address_delivery" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ShortName_E" ColumnName="ShortName_E" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name_E" ColumnName="Name_E" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

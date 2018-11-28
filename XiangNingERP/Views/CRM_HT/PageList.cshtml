@@ -1,0 +1,102 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.CRM_HTZModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    var TotalYF = ViewBag.TotalYF;
+    var TotalHT = ViewBag.TotalHT;
+    string[] Arr = { "未付款","已付预付款","已付全款"};
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <p style="position:absolute;top:-36px;left:80px;z-index:99;font-size:16px;font-weight:bold;">
+        <span class="pl10 prcolor">合同总金额：@TotalHT 元</span>
+        <span class="pl10 orange b">合同预付款：@TotalYF 元</span>
+    </p>
+    <table>
+        <col width="70px" />
+        <col width="80px" />
+        <col width="90px" />
+        <col width="80px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="70px" />
+        <col width="70px" />
+        <col width="70px" />
+        <col width="70px" />
+        <col width="70px" />
+        <col width="80px" />
+        <col width="90px" />
+        <col width="140px" />
+        <col />
+        <col width="140px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>订货人</th>
+            <th>合同编号</th>
+            <th>送货日期</th>
+            <th>合同总金额(元)</th>
+            <th>预付款(元)</th>
+            <th>送货通道</th>
+            <th>运费承担方</th>
+            <th>是否需要上门测量</th>
+            <th>是否审核</th>
+            <th>销售人员</th>
+            <th>付款状态</th>
+            <th>合同时间</th>
+            <th>送货地址</th>
+            <th>设计师备注</th>
+            <th>操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td>@item.customer</td>
+            <td class="detailbtn" title="合同详情" url="@Url.Action("Detail","CRM_HT")" ref="@item.id">@item.SN</td>
+            <td>@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</td>
+            <td>@item.amount</td>
+            <td>@item.prepay</td>
+            <td>@item.delivery_channel</td>
+            <td>@item.freight_carrier</td>
+            <td>@Html.Raw(item.measure_flag!=null && item.measure_flag==true?"<span style='color:#5eb95e'>是</span>":"<span style='color:red'>否</span>")</td>
+            <td>@Html.Raw(item.status!=null && item.status==1?"<span style='color:#5eb95e'>是</span>":"<span style='color:red'>否</span>")</td>
+            <td><div class="tw">@item.userName</div></td>
+            <td class="red b"><div class="tw">@Arr[item.FR_flag]</div></td>
+            <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd")</td>
+            <td style="text-align:left;"><div class="tw" title="@item.delivery_address">@item.delivery_address</div></td>
+            <td style="text-align:left;"><div class="tw" title="@item.Remark">@item.Remark</div></td>
+            <td>
+                @if (item.status == null || item.status != 1)
+                {
+                    <a href="javascript:void(0)" class="checked" ref="@item.id" url="@Url.Action("Checked", "CRM_HT")">审核</a>
+                    <a href="javascript:void(0)" class="editbtn" title="添加产品" url="@Url.Action("Add", "CRM_HTPro")" ref="@item.id">添加产品</a>
+                    <a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "CRM_HT")">删除</a>
+                }
+               <a href="javascript:void(0)" class="editbtn" title="查看产品" url="@Url.Action("PageList", "CRM_HTPro")" ref="@item.id">查看产品</a>
+                <a href="javascript:void(0)" class="editbtn" title="打印合同" url="@Url.Action("Print", "CRM_HT")" ref="@item.id">打印合同</a>
+            </td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new {SN=SModel.SN ,UserName=SModel.UserName,StartTime=SModel.StartTime,EndTime=SModel.EndTime}, "PageList", "CRM_HT",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)
+
+              <span class="prcolor">当前页合同总金额：@Model.Sum(k=>k.amount) 元</span> 
+              <span class="orange b">当前页预付款总金额：@Model.Sum(k=>k.prepay) 元</span>
+            </div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

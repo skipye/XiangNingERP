@@ -1,0 +1,67 @@
+﻿@model ModelProject.SearchModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>高级查询</title>
+    <link type="text/css" href="~/css/main.css?v=2" rel="stylesheet" />
+    <link type="text/css" href="~/css/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.ui.datepicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.ui.datepicker-zh-CN.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+           
+            $(":text[ref='datepicker']").datepicker({
+                changeYear: true,
+                changeMonth: true,
+                showButtonPanel: true
+            });
+        });
+    </script>
+</head>
+<body style="background-color: #EAEDF1">
+<!--头部-->
+<header style="text-align: center;font-size: 16px">
+    <i class="iconfont fl" onclick="javascript:history.go(-1);">&#xe607;</i>高级查询
+</header>
+<div class="main">
+   <div class="join">
+       @using (Html.BeginForm("Index", "Search", FormMethod.Post))
+       {
+        <label>所属系列</label>
+        <div>
+            @Html.DropDownListFor(k=>k.product_SN_id,Model.XLDroList)
+        </div>
+        <label>所属区域</label>
+        <div>
+            @Html.DropDownListFor(k=>k.product_area_id,Model.AreaDroList)
+        </div>
+        <label>产品名称</label>
+        <div>
+            @Html.TextBoxFor(k=>k.Pname,new{@placeholder="请输入产品名称"})
+        </div>
+        
+        <label>所属材质</label>
+        <div>
+            @Html.DropDownListFor(k=>k.wood_id,Model.MCDroList)
+        </div>
+        <label>查询时间</label>
+        <div>
+            @Html.TextBoxFor(k=>k.StartTime,new{@placeholder="开始时间",@ref="datepicker" ,@style="width:49%;"})
+            @Html.TextBoxFor(k=>k.EndTime,new{@placeholder="结束时间",@ref="datepicker" ,@style="width:49%;"})
+        </div>
+        
+        <input type="submit" value="提交">
+    }
+
+       @Html.Action("Search", "Search", new { Models=Model})
+</div>
+</div>  
+</body>
+</html>

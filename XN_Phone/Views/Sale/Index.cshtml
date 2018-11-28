@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "特价商品";
+}
+<div class="column">
+    <div class="third-page-header">
+        <div class="third-page-header-left">
+            <a href="Javascript:void(0)" onClick="javascript:history.back(1);"><img src="~/img/icon-back.png"></a>
+        </div>
+        <div class="third-page-header-center"><h1>特价·商城</h1></div>
+    </div>
+</div>
+
+<div class="column">
+    <div class="pro_tablist">
+        <div class="swiper-container pro_nav">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><a class="pro_on" title="全部">全部</a></div>
+                <div class="swiper-slide"><a href="C364EC39-9043-4CBA-943E-29F47715DE07" title="客厅家具">客厅</a></div>
+                <div class="swiper-slide"><a href="26B70CB6-AAF5-44E8-A999-45C60A659D25" title="餐厅家具">餐厅</a></div>
+                <div class="swiper-slide"><a href="E133C956-9618-4883-B68F-3B2FECD24590" title="书房家具">书房</a></div>
+                <div class="swiper-slide"><a href="33F62740-CD05-4126-B34D-CECCB3D208EA" title="卧房家具">卧房</a></div>
+                <div class="swiper-slide"><a href="579268DC-F4FD-4CC8-89D1-266E5E4BAAF8" title="休闲家具">休闲</a></div>
+                <div class="swiper-slide"><a href="E2F84EB4-3D90-4C92-BF7B-760A6F3650E1" title="其它">其它</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pro-liubai"></div>
+<div class="column">
+    <div class="pro_concent">
+        <div class="pro_tit_name">—&nbsp;<span id="proName">全部</span>&nbsp;—</div>
+        <div id="ProList">
+            @Html.Action("List", "Sale")
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".swiper-slide a").click(function (e) {
+                e.preventDefault();
+                $(".pro_intro").hide();
+                $(".swiper-slide a").removeClass("pro_on");
+                var _This = $(this);
+                _This.addClass("pro_on");
+                var PName = _This.attr("title");
+                var TypeId = _This.attr("href");
+                $("#proName").html(PName);
+                $("#ProList").html("");
+                if (TypeId == "about") {
+                    $(".pro_intro").show();
+                } else {
+                    $.post("@Url.Action("List", "Sale")", { TypeId: TypeId }, function (d) { $("#ProList").html(d); });
+                }
+            });
+        });
+    </script>
+
+</div>
+
+

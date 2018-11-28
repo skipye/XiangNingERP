@@ -1,0 +1,105 @@
+﻿@model ModelProject.SCRM_HTZModel
+@{
+    ViewBag.Title = "合同管理";
+    List<SelectListItem> LItem = new List<SelectListItem>();
+    LItem.Add(new SelectListItem { Value = "-1", Text = "全部合同" });
+    LItem.Add(new SelectListItem { Value = "0", Text = "未付款" });
+    LItem.Add(new SelectListItem { Value = "1", Text = "已付预付款" });
+    LItem.Add(new SelectListItem { Value = "2", Text = "已付全款" });
+
+    List<SelectListItem> PSize = new List<SelectListItem>();
+    PSize.Add(new SelectListItem { Text = "每页10", Value = "10" });
+    PSize.Add(new SelectListItem { Text = "每页20", Value = "20" });
+    PSize.Add(new SelectListItem { Text = "每页30", Value = "30" });
+    PSize.Add(new SelectListItem { Text = "每页40", Value = "40" });
+    PSize.Add(new SelectListItem { Text = "每页80", Value = "80" });
+}
+
+<p class="currpoint">
+    <a href="@Url.Action("Index","Home")">首页</a>  ->
+    <a href="@Url.Action("Index","CRM")">销售管理</a>  ->
+    <a href="Javascript:void(0)" class="crrtab">合同管理</a>
+</p>
+
+<div class="search">
+    <ul class="searchtab"><li class="current">条件搜索</li></ul>
+    <div style="clear:both"></div>
+    <div class="searchbox clearfix">
+        @using (Html.BeginForm("Index", "CW_HT", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="form_item">
+                <label class="label">合同编号：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.SN, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">订货人：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.UserName, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">付款状态：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.FR_flag, LItem, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">合同时间：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.StartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
+                    @Html.TextBoxFor(k => k.EndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">送货时间：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.SStartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
+                    @Html.TextBoxFor(k => k.SEndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">每页显示：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.PageSize, PSize, new { @class = "drotext" })
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-item-submit">
+                <input type="submit" value="提交" class="inputsubbtn fr mb20 mr20" style="width:100px;" />
+            </div>
+        }
+    </div>
+</div><!--search end -->
+
+<div class="mod">
+    <div class="hd">
+        <h2>搜索结果</h2>
+        <ul class="filter">
+            <li class="toSaleExcelout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">导出销售明细</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="ResultList" class="xTable">
+    @Html.Action("PageList", "CW_HT", new { SRmodels = Model })
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(".toSaleExcelout").click(function () {
+            var SN = $("#SN").val();
+            var UserName = $("#UserName").val();
+            var FR_flag = $("#FR_flag").val();
+            var SStartTime = $("#SStartTime").val();
+            var SEndTime = $("#SEndTime").val();
+            //var ProState = $("#ProState").val();
+            var StartTime = $("#StartTime").val();
+            var EndTime = $("#EndTime").val();
+            window.location.href = "/CW_HT/ToSaleExcelOut?SN=" + SN + '&UserName=' + UserName + '&FR_flag=' + FR_flag + '&SStartTime=' + SStartTime + '&SEndTime=' + SEndTime + '&StartTime=' + StartTime + '&EndTime=' + EndTime;
+            //$.post(ExcelUrl, {}, function (d) { });
+        });
+    });
+</script>

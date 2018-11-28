@@ -1,0 +1,102 @@
+﻿@using Common;
+@model ModelProject.HRModel
+@{
+    Layout = null;
+    List<SelectListItem> ArrYG = new List<SelectListItem>();
+    ArrYG.Add(new SelectListItem { Text = "请选择用工性质", Value = "" });
+    ArrYG.Add(new SelectListItem { Text = "包工", Value = "0" });
+    ArrYG.Add(new SelectListItem { Text = "点工", Value = "1" });
+    List<SelectListItem> ArrSB = new List<SelectListItem>();
+    ArrSB.Add(new SelectListItem { Text = "请选择社保状态", Value = "" });
+    ArrSB.Add(new SelectListItem { Text = "已办理", Value = "已办理" });
+    ArrSB.Add(new SelectListItem { Text = "未办理", Value = "未办理" });
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "HR_SB", FormMethod.Post, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>k.PageIndex)
+     @Html.HiddenFor(k=>k.id)
+    <div class="mod normal">
+		<div class="hd">
+			<h2>员工工资基本信息</h2>
+		</div>
+		<div class="item">
+			<label class="label"><em>*</em>姓名：</label>
+			<div class="form-field">
+               @Html.TextBoxFor(k => k.user_name, new { @class="sputtxt",@style="width:100px;",@disabled="disabled"})
+                @*@Html.DropDownListFor(k => k.ArrUser, Model.UserList, new { @class="drotext",@style="width:100px;"})
+                <span>没你客户，去<a class="adddialog" url="@Url.Action("Add","CRM_KH")" title="新增" ref="0">新增</a></span>
+                 @Html.HiddenFor(k => k.user_name)
+                @Html.HiddenFor(k => k.user_id)
+                @Html.HiddenFor(k => k.department_id)
+                @Html.HiddenFor(k => k.department)*@
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>用工性质：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k => k.salary_type, ArrYG, new { @class="drotext",@style="width:100px;"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>薪资：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k => k.amount, new { @class="sputtxt",@style="width:120px;"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>是否办理社保：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k => k.socialsecurity,ArrSB, new { @class="drotext",@style="width:100px;"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>缴纳社保：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.society_insure,new{@class="sputtxt",@style="width:120px;"})
+			</div>
+		</div>
+         @* <div class="item">
+			<label class="label">备注：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.remark,new{style="width:430px;height:200px;",@class="inputtext"})
+			</div>
+		</div>*@
+        
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+   
+    $("#ArrUser").change(function () {
+        var StrVal = $(this).val();
+        if (StrVal != null && StrVal != "") {
+            var Arr = StrVal.split('#');
+            $("#user_id").val(Arr[0])
+            $("#user_name").val(Arr[1])
+            $("#department_id").val(Arr[2]);
+            $("#department").val(Arr[3]);
+        }
+        else {
+            $("#user_id").val("")
+            $("#user_name").val("")
+            $("#department_id").val("");
+            $("#department").val("");
+        }
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+</script>

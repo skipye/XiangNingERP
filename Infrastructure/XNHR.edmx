@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EHR821_201711Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EHR821_201711ModelStoreContainer">
+          <EntitySet Name="ehr_day" EntityType="EHR821_201711Model.Store.ehr_day" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ehr_employee" EntityType="EHR821_201711Model.Store.ehr_employee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ehr_post" EntityType="EHR821_201711Model.Store.ehr_post" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="ehr_day">
+          <Key>
+            <PropertyRef Name="employee" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="employee" Type="bigint" Nullable="false" />
+          <Property Name="department" Type="int" Nullable="false" />
+          <Property Name="departmentname" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="shiftname" Type="nvarchar" MaxLength="64" />
+          <Property Name="shiftnumber" Type="nvarchar" MaxLength="16" />
+          <Property Name="should" Type="int" />
+          <Property Name="actual" Type="int" />
+          <Property Name="late" Type="int" />
+          <Property Name="leave" Type="int" />
+          <Property Name="absenteeism" Type="int" />
+          <Property Name="ask_leave" Type="int" />
+          <Property Name="overtime" Type="int" />
+          <Property Name="time1" Type="datetime" />
+          <Property Name="time2" Type="datetime" />
+          <Property Name="time3" Type="datetime" />
+          <Property Name="time4" Type="datetime" />
+          <Property Name="time5" Type="datetime" />
+          <Property Name="time6" Type="datetime" />
+          <Property Name="time7" Type="datetime" />
+          <Property Name="time8" Type="datetime" />
+          <Property Name="time9" Type="datetime" />
+          <Property Name="time10" Type="datetime" />
+          <Property Name="time_mores" Type="smallint" />
+          <Property Name="rest_overtime" Type="int" />
+          <Property Name="holiday_overtime" Type="int" />
+          <Property Name="should_days" Type="real" />
+          <Property Name="attendance_days" Type="real" />
+          <Property Name="leave_days" Type="real" />
+          <Property Name="leave_time" Type="smallint" />
+          <Property Name="late_times" Type="smallint" />
+          <Property Name="leave_early_times" Type="smallint" />
+          <Property Name="absenteeism_times" Type="smallint" />
+          <Property Name="up_card_times" Type="smallint" />
+          <Property Name="mark" Type="nvarchar" MaxLength="512" />
+          <Property Name="times" Type="nvarchar" MaxLength="256" />
+          <Property Name="HaveUpdate" Type="smallint" />
+          <Property Name="NotAbnormal" Type="smallint" />
+          <Property Name="leaverecord" Type="varchar" MaxLength="512" />
+          <Property Name="halong" Type="int" />
+          <Property Name="haabs" Type="varchar" MaxLength="128" />
+          <Property Name="t1" Type="datetime" />
+          <Property Name="t2" Type="datetime" />
+          <Property Name="t3" Type="datetime" />
+          <Property Name="t4" Type="datetime" />
+          <Property Name="t5" Type="datetime" />
+          <Property Name="t6" Type="datetime" />
+          <Property Name="st1" Type="datetime" />
+          <Property Name="st2" Type="datetime" />
+          <Property Name="st3" Type="datetime" />
+          <Property Name="st4" Type="datetime" />
+          <Property Name="st5" Type="datetime" />
+          <Property Name="st6" Type="datetime" />
+          <Property Name="xt1" Type="varchar" MaxLength="512" />
+          <Property Name="xt2" Type="varchar" MaxLength="512" />
+          <Property Name="xt3" Type="varchar" MaxLength="512" />
+          <Property Name="xt4" Type="varchar" MaxLength="512" />
+          <Property Name="xt5" Type="varchar" MaxLength="512" />
+          <Property Name="xt6" Type="varchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="ehr_employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="user" Type="nvarchar" MaxLength="64" />
+          <Property Name="password" Type="nvarchar" MaxLength="64" />
+          <Property Name="lock" Type="smallint" />
+          <Property Name="department" Type="int" Nullable="false" />
+          <Property Name="departmentname" Type="nvarchar" MaxLength="64" />
+          <Property Name="gender" Type="varchar" MaxLength="12" />
+          <Property Name="birthday" Type="datetime" />
+          <Property Name="namecard" Type="nvarchar" MaxLength="64" />
+          <Property Name="nation" Type="nvarchar" MaxLength="16" />
+          <Property Name="birthplace" Type="nvarchar" MaxLength="16" />
+          <Property Name="education" Type="nvarchar" MaxLength="16" />
+          <Property Name="bankaccount" Type="nvarchar" MaxLength="32" />
+          <Property Name="tel" Type="varchar" MaxLength="32" />
+          <Property Name="accountlocation" Type="nvarchar" MaxLength="256" />
+          <Property Name="hometel" Type="nvarchar" MaxLength="32" />
+          <Property Name="homeaddress" Type="nvarchar" MaxLength="256" />
+          <Property Name="status" Type="smallint" Nullable="false" />
+          <Property Name="jobs" Type="nvarchar" MaxLength="50" />
+          <Property Name="jobtime" Type="datetime" />
+          <Property Name="socialsecurity" Type="nvarchar" MaxLength="16" />
+          <Property Name="photo" Type="varchar" MaxLength="128" />
+          <Property Name="mark" Type="nvarchar" MaxLength="1000" />
+          <Property Name="marriage" Type="nvarchar" MaxLength="8" />
+          <Property Name="title" Type="nvarchar" MaxLength="64" />
+          <Property Name="other" Type="nvarchar" MaxLength="512" />
+          <Property Name="groupname" Type="nvarchar" MaxLength="32" />
+          <Property Name="group" Type="int" />
+          <Property Name="branchname" Type="varchar" />
+          <Property Name="branch" Type="varchar" />
+          <Property Name="officialtime" Type="datetime" />
+          <Property Name="quitdate" Type="datetime" />
+          <Property Name="shifts" Type="varchar" MaxLength="128" />
+          <Property Name="lawdate" Type="datetime" />
+          <Property Name="level" Type="int" />
+          <Property Name="leveltext" Type="varchar" MaxLength="256" />
+          <Property Name="roledepartment" Type="varchar" MaxLength="4000" />
+          <Property Name="roledepartmentname" Type="varchar" MaxLength="4000" />
+          <Property Name="amount" Type="decimal" Scale="2" />
+          <Property Name="salary_type" Type="tinyint" />
+          <Property Name="society_insure" Type="decimal" Scale="2" />
+        </EntityType>
+        <EntityType Name="ehr_post">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="employee" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="employee" Type="bigint" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="department" Type="int" Nullable="false" />
+          <Property Name="departmentname" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="hard" Type="nvarchar" MaxLength="32" />
+          <Property Name="hardname" Type="nvarchar" MaxLength="128" />
+          <Property Name="complement" Type="smallint" />
+          <Property Name="complementuser" Type="nvarchar" MaxLength="128" />
+          <Property Name="complementname" Type="nvarchar" MaxLength="128" />
+          <Property Name="complementmark" Type="nvarchar" MaxLength="512" />
+          <Property Name="acttime" Type="datetime" Nullable="false" />
+          <Property Name="way" Type="smallint" />
+          <Property Name="photo" Type="varchar" MaxLength="256" />
+          <Property Name="hardtype" Type="smallint" />
+          <Property Name="inout" Type="smallint" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EHR821_201711Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="XNHREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ehr_day" EntityType="EHR821_201711Model.ehr_day" />
+          <EntitySet Name="ehr_employee" EntityType="EHR821_201711Model.ehr_employee" />
+          <EntitySet Name="ehr_post" EntityType="EHR821_201711Model.ehr_post" />
+        </EntityContainer>
+        <EntityType Name="ehr_day">
+          <Key>
+            <PropertyRef Name="employee" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="employee" Type="Int64" Nullable="false" />
+          <Property Name="department" Type="Int32" Nullable="false" />
+          <Property Name="departmentname" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="shiftname" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="shiftnumber" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="should" Type="Int32" />
+          <Property Name="actual" Type="Int32" />
+          <Property Name="late" Type="Int32" />
+          <Property Name="leave" Type="Int32" />
+          <Property Name="absenteeism" Type="Int32" />
+          <Property Name="ask_leave" Type="Int32" />
+          <Property Name="overtime" Type="Int32" />
+          <Property Name="time1" Type="DateTime" Precision="3" />
+          <Property Name="time2" Type="DateTime" Precision="3" />
+          <Property Name="time3" Type="DateTime" Precision="3" />
+          <Property Name="time4" Type="DateTime" Precision="3" />
+          <Property Name="time5" Type="DateTime" Precision="3" />
+          <Property Name="time6" Type="DateTime" Precision="3" />
+          <Property Name="time7" Type="DateTime" Precision="3" />
+          <Property Name="time8" Type="DateTime" Precision="3" />
+          <Property Name="time9" Type="DateTime" Precision="3" />
+          <Property Name="time10" Type="DateTime" Precision="3" />
+          <Property Name="time_mores" Type="Int16" />
+          <Property Name="rest_overtime" Type="Int32" />
+          <Property Name="holiday_overtime" Type="Int32" />
+          <Property Name="should_days" Type="Single" />
+          <Property Name="attendance_days" Type="Single" />
+          <Property Name="leave_days" Type="Single" />
+          <Property Name="leave_time" Type="Int16" />
+          <Property Name="late_times" Type="Int16" />
+          <Property Name="leave_early_times" Type="Int16" />
+          <Property Name="absenteeism_times" Type="Int16" />
+          <Property Name="up_card_times" Type="Int16" />
+          <Property Name="mark" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="times" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="HaveUpdate" Type="Int16" />
+          <Property Name="NotAbnormal" Type="Int16" />
+          <Property Name="leaverecord" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="halong" Type="Int32" />
+          <Property Name="haabs" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="t1" Type="DateTime" Precision="3" />
+          <Property Name="t2" Type="DateTime" Precision="3" />
+          <Property Name="t3" Type="DateTime" Precision="3" />
+          <Property Name="t4" Type="DateTime" Precision="3" />
+          <Property Name="t5" Type="DateTime" Precision="3" />
+          <Property Name="t6" Type="DateTime" Precision="3" />
+          <Property Name="st1" Type="DateTime" Precision="3" />
+          <Property Name="st2" Type="DateTime" Precision="3" />
+          <Property Name="st3" Type="DateTime" Precision="3" />
+          <Property Name="st4" Type="DateTime" Precision="3" />
+          <Property Name="st5" Type="DateTime" Precision="3" />
+          <Property Name="st6" Type="DateTime" Precision="3" />
+          <Property Name="xt1" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="xt2" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="xt3" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="xt4" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="xt5" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="xt6" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ehr_employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="number" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="name" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="user" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="lock" />
+          <Property Type="Int32" Name="department" Nullable="false" />
+          <Property Type="String" Name="departmentname" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="gender" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="birthday" Precision="3" />
+          <Property Type="String" Name="namecard" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nation" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="birthplace" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="education" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="bankaccount" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tel" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="accountlocation" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hometel" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="homeaddress" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="status" Nullable="false" />
+          <Property Type="String" Name="jobs" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="jobtime" Precision="3" />
+          <Property Type="String" Name="socialsecurity" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="photo" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="mark" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="marriage" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="title" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="other" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="groupname" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="group" />
+          <Property Type="String" Name="branchname" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="branch" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="officialtime" Precision="3" />
+          <Property Type="DateTime" Name="quitdate" Precision="3" />
+          <Property Type="String" Name="shifts" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="lawdate" Precision="3" />
+          <Property Type="Int32" Name="level" />
+          <Property Type="String" Name="leveltext" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="roledepartment" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="roledepartmentname" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="amount" Precision="18" Scale="2" />
+          <Property Type="Byte" Name="salary_type" />
+          <Property Type="Decimal" Name="society_insure" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="ehr_post">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="employee" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="number" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="employee" Nullable="false" />
+          <Property Type="DateTime" Name="time" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="department" Nullable="false" />
+          <Property Type="String" Name="departmentname" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hard" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hardname" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="complement" />
+          <Property Type="String" Name="complementuser" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="complementname" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="complementmark" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="acttime" Nullable="false" Precision="3" />
+          <Property Type="Int16" Name="way" />
+          <Property Type="String" Name="photo" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="hardtype" />
+          <Property Type="Int16" Name="inout" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EHR821_201711ModelStoreContainer" CdmEntityContainer="XNHREntities">
+          <EntitySetMapping Name="ehr_day">
+            <EntityTypeMapping TypeName="EHR821_201711Model.ehr_day">
+              <MappingFragment StoreEntitySet="ehr_day">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="employee" ColumnName="employee" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="shiftname" ColumnName="shiftname" />
+                <ScalarProperty Name="shiftnumber" ColumnName="shiftnumber" />
+                <ScalarProperty Name="should" ColumnName="should" />
+                <ScalarProperty Name="actual" ColumnName="actual" />
+                <ScalarProperty Name="late" ColumnName="late" />
+                <ScalarProperty Name="leave" ColumnName="leave" />
+                <ScalarProperty Name="absenteeism" ColumnName="absenteeism" />
+                <ScalarProperty Name="ask_leave" ColumnName="ask_leave" />
+                <ScalarProperty Name="overtime" ColumnName="overtime" />
+                <ScalarProperty Name="time1" ColumnName="time1" />
+                <ScalarProperty Name="time2" ColumnName="time2" />
+                <ScalarProperty Name="time3" ColumnName="time3" />
+                <ScalarProperty Name="time4" ColumnName="time4" />
+                <ScalarProperty Name="time5" ColumnName="time5" />
+                <ScalarProperty Name="time6" ColumnName="time6" />
+                <ScalarProperty Name="time7" ColumnName="time7" />
+                <ScalarProperty Name="time8" ColumnName="time8" />
+                <ScalarProperty Name="time9" ColumnName="time9" />
+                <ScalarProperty Name="time10" ColumnName="time10" />
+                <ScalarProperty Name="time_mores" ColumnName="time_mores" />
+                <ScalarProperty Name="rest_overtime" ColumnName="rest_overtime" />
+                <ScalarProperty Name="holiday_overtime" ColumnName="holiday_overtime" />
+                <ScalarProperty Name="should_days" ColumnName="should_days" />
+                <ScalarProperty Name="attendance_days" ColumnName="attendance_days" />
+                <ScalarProperty Name="leave_days" ColumnName="leave_days" />
+                <ScalarProperty Name="leave_time" ColumnName="leave_time" />
+                <ScalarProperty Name="late_times" ColumnName="late_times" />
+                <ScalarProperty Name="leave_early_times" ColumnName="leave_early_times" />
+                <ScalarProperty Name="absenteeism_times" ColumnName="absenteeism_times" />
+                <ScalarProperty Name="up_card_times" ColumnName="up_card_times" />
+                <ScalarProperty Name="mark" ColumnName="mark" />
+                <ScalarProperty Name="times" ColumnName="times" />
+                <ScalarProperty Name="HaveUpdate" ColumnName="HaveUpdate" />
+                <ScalarProperty Name="NotAbnormal" ColumnName="NotAbnormal" />
+                <ScalarProperty Name="leaverecord" ColumnName="leaverecord" />
+                <ScalarProperty Name="halong" ColumnName="halong" />
+                <ScalarProperty Name="haabs" ColumnName="haabs" />
+                <ScalarProperty Name="t1" ColumnName="t1" />
+                <ScalarProperty Name="t2" ColumnName="t2" />
+                <ScalarProperty Name="t3" ColumnName="t3" />
+                <ScalarProperty Name="t4" ColumnName="t4" />
+                <ScalarProperty Name="t5" ColumnName="t5" />
+                <ScalarProperty Name="t6" ColumnName="t6" />
+                <ScalarProperty Name="st1" ColumnName="st1" />
+                <ScalarProperty Name="st2" ColumnName="st2" />
+                <ScalarProperty Name="st3" ColumnName="st3" />
+                <ScalarProperty Name="st4" ColumnName="st4" />
+                <ScalarProperty Name="st5" ColumnName="st5" />
+                <ScalarProperty Name="st6" ColumnName="st6" />
+                <ScalarProperty Name="xt1" ColumnName="xt1" />
+                <ScalarProperty Name="xt2" ColumnName="xt2" />
+                <ScalarProperty Name="xt3" ColumnName="xt3" />
+                <ScalarProperty Name="xt4" ColumnName="xt4" />
+                <ScalarProperty Name="xt5" ColumnName="xt5" />
+                <ScalarProperty Name="xt6" ColumnName="xt6" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ehr_employee">
+            <EntityTypeMapping TypeName="EHR821_201711Model.ehr_employee">
+              <MappingFragment StoreEntitySet="ehr_employee">
+                <ScalarProperty Name="society_insure" ColumnName="society_insure" />
+                <ScalarProperty Name="salary_type" ColumnName="salary_type" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="roledepartmentname" ColumnName="roledepartmentname" />
+                <ScalarProperty Name="roledepartment" ColumnName="roledepartment" />
+                <ScalarProperty Name="leveltext" ColumnName="leveltext" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="lawdate" ColumnName="lawdate" />
+                <ScalarProperty Name="shifts" ColumnName="shifts" />
+                <ScalarProperty Name="quitdate" ColumnName="quitdate" />
+                <ScalarProperty Name="officialtime" ColumnName="officialtime" />
+                <ScalarProperty Name="branch" ColumnName="branch" />
+                <ScalarProperty Name="branchname" ColumnName="branchname" />
+                <ScalarProperty Name="group" ColumnName="group" />
+                <ScalarProperty Name="groupname" ColumnName="groupname" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="marriage" ColumnName="marriage" />
+                <ScalarProperty Name="mark" ColumnName="mark" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="socialsecurity" ColumnName="socialsecurity" />
+                <ScalarProperty Name="jobtime" ColumnName="jobtime" />
+                <ScalarProperty Name="jobs" ColumnName="jobs" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="homeaddress" ColumnName="homeaddress" />
+                <ScalarProperty Name="hometel" ColumnName="hometel" />
+                <ScalarProperty Name="accountlocation" ColumnName="accountlocation" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="bankaccount" ColumnName="bankaccount" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="birthplace" ColumnName="birthplace" />
+                <ScalarProperty Name="nation" ColumnName="nation" />
+                <ScalarProperty Name="namecard" ColumnName="namecard" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ehr_post">
+            <EntityTypeMapping TypeName="EHR821_201711Model.ehr_post">
+              <MappingFragment StoreEntitySet="ehr_post">
+                <ScalarProperty Name="inout" ColumnName="inout" />
+                <ScalarProperty Name="hardtype" ColumnName="hardtype" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="way" ColumnName="way" />
+                <ScalarProperty Name="acttime" ColumnName="acttime" />
+                <ScalarProperty Name="complementmark" ColumnName="complementmark" />
+                <ScalarProperty Name="complementname" ColumnName="complementname" />
+                <ScalarProperty Name="complementuser" ColumnName="complementuser" />
+                <ScalarProperty Name="complement" ColumnName="complement" />
+                <ScalarProperty Name="hardname" ColumnName="hardname" />
+                <ScalarProperty Name="hard" ColumnName="hard" />
+                <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="employee" ColumnName="employee" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

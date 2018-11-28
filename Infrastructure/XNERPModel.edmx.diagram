@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64e8dba1f7d343dfb6e4f61ef19d475f" Name="关系图1" ZoomLevel="77">
+        <EntityTypeShape EntityType="XNERPModel.CRM_contract_detail" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.CRM_customers" Width="1.5" PointX="0.5" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.HR_jobs" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_accessory_PO_input" Width="1.5" PointX="5.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_accessory_PO_output" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_accessory_stock" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_accessory_type" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_inventories" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_material_stock" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_materials" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_PO_input" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_PO_output" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_purchase_order" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_single_board" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.INV_wood_type" Width="1.75" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.SYS_colors" Width="1.5" PointX="3.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.SYS_company" Width="1.5" PointX="9.875" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.SYS_notices" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.SYS_product_SN" Width="1.5" PointX="1.5" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.UserLogs" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.WIP_wo_events" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.WIP_wo_wood" Width="1.5" PointX="18.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XNERPModel.WIP_workorder" Width="1.875" PointX="9.625" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_contract_detail_INV_wood_type" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_contract_detail_SYS_colors" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_WIP_workorder_CRM_contract_detail" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_INV_accessory_stock_INV_accessory_type" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_INV_accessory_stock_INV_inventories" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_INV_material_stock_INV_inventories" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_INV_materials_INV_inventories" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_INV_single_board_INV_inventories" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_INV_material_stock_INV_wood_type" ManuallyRouted="false" />
+        <AssociationConnector Association="XNERPModel.FK_INV_materials_INV_wood_type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="XNERPModel.HR_salary_info" Width="1.5" PointX="9.875" PointY="20.75" />
+        <EntityTypeShape EntityType="XNERPModel.INV_accessory" Width="1.5" PointX="5.875" PointY="17.25" />
+        <EntityTypeShape EntityType="XNERPModel.INV_accessory_catalog" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="XNERPModel.SYS_product_area" Width="1.5" PointX="3" PointY="31.625" />
+        <EntityTypeShape EntityType="XNERPModel.INV_inventory_type" Width="1.5" PointX="0.5" PointY="16.625" />
+        <EntityTypeShape EntityType="XNERPModel.XT_RM" Width="1.5" PointX="9.4774454857583361" PointY="26.740424064332817" />
+        <EntityTypeShape EntityType="XNERPModel.SYS_product" Width="1.5" PointX="5.625" PointY="30.875" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_contract_detail_SYS_product" />
+        <EntityTypeShape EntityType="XNERPModel.CRM_contract_header" Width="1.5" PointX="12.125" PointY="19.25" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_contract_detail_CRM_contract_header" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_contract_header_CRM_customers" />
+        <AssociationConnector Association="XNERPModel.FK_SYS_product_SYS_product_area" />
+        <AssociationConnector Association="XNERPModel.FK_SYS_product_SYS_product_SN" />
+        <AssociationConnector Association="XNERPModel.FK_SYS_product_SN_SYS_product_SN" />
+        <EntityTypeShape EntityType="XNERPModel.INV_accessory_purchase_order" Width="1.5" PointX="7.9574018623481519" PointY="16.227755181597431" />
+        <AssociationConnector Association="XNERPModel.FK_INV_accessory_purchase_order_INV_accessory_type" />
+        <EntityTypeShape EntityType="XNERPModel.CRM_suppliers" Width="1.5" PointX="12.25" PointY="13" />
+        <EntityTypeShape EntityType="XNERPModel.INV_semi" Width="1.5" PointX="9.625" PointY="11" />
+        <AssociationConnector Association="XNERPModel.FK_INV_semi_INV_inventories" />
+        <AssociationConnector Association="XNERPModel.FK_INV_semi_INV_wood_type" />
+        <AssociationConnector Association="XNERPModel.FK_INV_semi_SYS_product" />
+        <EntityTypeShape EntityType="XNERPModel.WIP_contract" Width="1.5" PointX="13.125" PointY="4.5" />
+        <AssociationConnector Association="XNERPModel.WIP_contractWIP_workorder" />
+        <AssociationConnector Association="XNERPModel.SYS_productWIP_contract" />
+        <AssociationConnector Association="XNERPModel.INV_wood_typeWIP_contract" />
+        <EntityTypeShape EntityType="XNERPModel.WIP_workflow" Width="1.5" PointX="7.375" PointY="0.5" />
+        <AssociationConnector Association="XNERPModel.WIP_workorderWIP_workflow" />
+        <AssociationConnector Association="XNERPModel.SYS_productWIP_workflow" />
+        <AssociationConnector Association="XNERPModel.FK_WIP_contract_WIP_contract" />
+        <EntityTypeShape EntityType="XNERPModel.WIP_WO_salary" Width="1.5" PointX="0.5" PointY="18.875" />
+        <EntityTypeShape EntityType="XNERPModel.INV_labels" Width="1.5" PointX="10.25" PointY="34.875" />
+        <AssociationConnector Association="XNERPModel.SYS_productINV_labels" />
+        <AssociationConnector Association="XNERPModel.INV_wood_typeINV_labels" />
+        <AssociationConnector Association="XNERPModel.INV_inventoriesINV_labels" />
+        <AssociationConnector Association="XNERPModel.CRM_customersINV_labels" />
+        <EntityTypeShape EntityType="XNERPModel.CRM_delivery_tmp_header" Width="1.5" PointX="6.75" PointY="41.875" />
+        <AssociationConnector Association="XNERPModel.CRM_contract_detailINV_labels" />
+        <AssociationConnector Association="XNERPModel.INV_labelsCRM_delivery_tmp_header" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_header" />
+        <AssociationConnector Association="XNERPModel.INV_accessory_catalogINV_accessory_type" />
+        <AssociationConnector Association="XNERPModel.CRM_suppliersINV_accessory_purchase_order" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_detail" />
+        <AssociationConnector Association="XNERPModel.FK_INV_single_board_INV_wood_type" />
+        <EntityTypeShape EntityType="XNERPModel.WIP_work_CW" Width="1.5" PointX="7.875" PointY="32.25" />
+        <AssociationConnector Association="XNERPModel.FK_WIP_work_CW_SYS_product" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

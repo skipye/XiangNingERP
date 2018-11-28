@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+    int Id = ViewBag.Id;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "SJ_HT", FormMethod.Post, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>Id)
+    <div class="mod normal">
+        <div class="hd">
+			<h2>添加备注</h2>
+		</div>
+        
+        <div class="item mt20">
+			<label class="label">备注：</label>
+			<div class="form-field">
+                @Html.TextArea("Remark",new{style="width:430px;height:100px;",@class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+

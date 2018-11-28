@@ -1,0 +1,68 @@
+﻿@model ModelProject.INV_FLModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "INV_FL", FormMethod.Post, new { @class = "form mt20" }))
+    { 
+     @Html.HiddenFor(k=>k.id)
+    <div class="mod normal">
+		<div class="hd">
+			<h2>辅料基本信息</h2>
+		</div>
+		<div class="item">
+			<label class="label"><em>*</em>所属仓库：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.inventory_id, Model.CKDroList, new { @class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>所属名称：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.accessory_type_id, Model.FLZLDroList, new { @class="drotext"})
+			</div>
+		</div>
+       <div class="item">
+            <label class="label"><em>*</em>入库数量：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.qty,new{@style="width:100px;",@class="inputtext number"})
+                @*@Html.DropDownListFor(k => k.units_id, Model.unitList, new { @class="drotext",@style="float:left;width:100px;"})*@
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>价格：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.price,new{style="width:230px;",@class="inputtext number"})
+                <span class="red">单位：元</span>
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">备注：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.remark,new{style="width:430px;height:200px;",@class="inputtext"})
+				@Html.ValidationMessageFor(k=>k.remark)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    $(".submitbtn").click(function () {
+        $(".form").submit();
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+</script>

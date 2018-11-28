@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+    string ListId=ViewBag.ListId;
+}
+
+
+<div class="addmain">
+    @using (Html.BeginForm("CheckDelivery", "Labels", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.HiddenFor(k => ListId)
+        <div class="mod normal">
+            <div class="item">
+                <label class="label"><em>*</em>送货单号：</label>
+                <div class="form-field">
+                    @Html.TextBox("OrderNum","", new { @class = "drotext" })
+                </div>
+            </div>
+
+
+            <div class="item mb20">
+                <label class="label">&nbsp;</label>
+                <div class="form-field">
+                    <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+</div>
+

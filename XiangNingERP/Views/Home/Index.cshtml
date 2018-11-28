@@ -1,0 +1,73 @@
+﻿@using ServiceProject;
+@{
+    ViewBag.Title = "考勤管理中心";
+    var UserList = new UserService().GetUserList();
+}
+
+<div class="box">
+    @*<div class="view fl mt20" style="width:880px;">
+        <div class="small_box">
+            <h3 class="boxtit"><span>待办提醒</span></h3>
+
+            <table class="xTablelist">
+                 <tr class="fb">
+                     <th width="30%">标题</th>
+                     <th width="40%">内容</th>
+                     <th width="20%">时间</th>
+                     <th width="10%">操作</th>
+                 </tr>
+             <tbody>
+               <tr>  
+                   <td><div class="ell" style="width:200px" title="张三 于 2017-06-09 提出了请假申请">张三 于 2017-06-09 提出了请假申请</div></td> 
+                   <td><div class="ell" style="width:300px" title="由于家里有点事，要急着回去！请假2天。时间：2017-06-09 ，2017-06-09">由于家里有点事，要急着回去！请假2天。时间：2017-06-09 ，2017-06-09</div></td>
+                   <td>2017-07-12 15:58</td> 
+                   <td><a href="#" class="red">审核</a></td>
+               </tr></tbody>
+             </table>
+
+        </div>
+    </div>*@
+
+    <div class="view mt20" style="width:1200px;">
+        <div class="small_box">
+            <h3 class="boxtit"><span>员工信息</span><span>(@UserList.Select(k=>k.Id).Count() 人)</span></h3>
+
+            <table class="xTablelist">
+                <tr>
+                    <td colspan="3">员工信息(排名不分先后)</td>
+                    <td colspan="6">考勤情况(当天考勤情况)</td>
+                </tr>
+                 <tr class="fb">
+                     <th width="10%">姓名</th>
+                     <th width="10%">工号</th>
+                     <th width="20%">联系电话</th>
+                     <th width="10%">上午上班</th>
+                     <th width="10%">上午下班</th>
+                     <th width="10%">下午上班</th>
+                     <th width="10%">下午下班</th>
+                     <th width="10%">晚上上班</th>
+                     <th width="10%">晚上下班</th>
+                 </tr>
+             <tbody>
+                 @*@foreach (var item in UserList)
+                 { 
+                     <tr>  
+                        <td>@item.Name</td> 
+                        <td>@item.Id</td> 
+                        <td>@item.tel</td>
+                        <td>@Html.Raw(item.time1!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time1).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td> 
+                        <td>@Html.Raw(item.time2!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time2).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td> 
+                        <td>@Html.Raw(item.time3!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time3).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td> 
+                        <td>@Html.Raw(item.time4!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time4).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td> 
+                        <td>@Html.Raw(item.time5!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time5).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td> 
+                        <td>@Html.Raw(item.time6!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time6).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td>  
+                     </tr>
+                 }*@
+               </tbody>
+             </table>
+
+        </div>
+    </div>
+
+
+</div>

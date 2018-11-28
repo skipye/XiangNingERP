@@ -1,0 +1,156 @@
+﻿@model List<ModelProject.HRExcelModel>
+@{
+    ViewBag.Title = "管理中心";
+}
+ @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @id = "form0" })){
+
+<div class="box">
+ 
+    <div class="view mt20" style="width:1200px;">
+        <div class="small_box">
+            <h3 class="boxtit"><span>考勤列表</span><span style="font-weight:bold;color:red;">当前时间： @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                <span class="btnexcel" href="@Url.Action("ToExcelOut","Home")"><span style="color:red;cursor:pointer;">导出表格</span>(导出当前月份所有员工考勤数据)</span>
+            </h3>
+            <table class="tabletit">
+                <tr>
+                    <td><div style="margin: 0;padding: 0;">
+
+                            <table class="tleft" >
+                                <tr class="fb">
+                                 <td>部门</td>
+                                 <td>姓名</td>
+                                 <td>工号</td>
+                                 <td>联系电话</td>
+                                 <td>考勤时间</td>
+                                </tr>
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var item in Model)
+                                    { 
+                                 <tr>  
+                                    <td>@item.DepartmentName</td> 
+                                    <td>@item.Name</td> 
+                                    <td>@item.Id</td>
+                                    <td>@item.TelPhone</td>
+                                    <td>@Convert.ToDateTime(item.HRTime).ToString("yyyy-MM-dd")</td>
+                                </tr>
+                                    }
+                                }
+                            </table></div>
+                    </td>
+                    <td style="padding-top:16px;">
+                        <div style="overflow-x: scroll;width:739px;">
+                            <table class="tright">
+                                <tr class="fb">
+                                     <td style="border-left:0px;">1</td>
+                                     <td>2</td>
+                                     <td>3</td>
+                                     <td>4</td>
+                                     <td>5</td>
+                                     <td>6</td>
+                                     <td>7</td>
+                                     <td>8</td>
+                                     <td>9</td>
+                                     <td>10</td>
+                                     <td>11</td>
+                                     <td>12</td>
+                                     <td>13</td>
+                                     <td>14</td>
+                                     <td>15</td>
+                                     <td>16</td>
+                                     <td>17</td>
+                                     <td>18</td>
+                                     <td>19</td>
+                                     <td>20</td>
+                                     <td>21</td>
+                                     <td>22</td>
+                                     <td>23</td>
+                                     <td>24</td>
+                                     <td>25</td>
+                                     <td>26</td>
+                                     <td>27</td>
+                                     <td>28</td>
+                                     <td>29</td>
+                                     <td>30</td>
+                                     <td>31</td>
+                                </tr>
+                                @if(Model!=null && Model.Any()){
+                                 foreach (var item1 in Model)
+                             { 
+                                 <tr>  
+                                    <td style="border-left:0px;">@Html.Raw(item1.d1!=null && item1.d1!=""?"<span style='color:#2dbd0c;'>"+item1.d1+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d2!=null && item1.d2!=""?"<span style='color:#2dbd0c;'>"+item1.d2+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d3!=null && item1.d3!=""?"<span style='color:#2dbd0c;'>"+item1.d3+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d4!=null && item1.d4!=""?"<span style='color:#2dbd0c;'>"+item1.d4+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d5!=null && item1.d5!=""?"<span style='color:#2dbd0c;'>"+item1.d5+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d6!=null && item1.d6!=""?"<span style='color:#2dbd0c;'>"+item1.d6+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d7!=null && item1.d7!=""?"<span style='color:#2dbd0c;'>"+item1.d7+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d8!=null && item1.d8!=""?"<span style='color:#2dbd0c;'>"+item1.d8+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d9!=null && item1.d9!=""?"<span style='color:#2dbd0c;'>"+item1.d9+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d10!=null && item1.d10!=""?"<span style='color:#2dbd0c;'>"+item1.d10+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d11!=null && item1.d11!=""?"<span style='color:#2dbd0c;'>"+item1.d11+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d12!=null && item1.d12!=""?"<span style='color:#2dbd0c;'>"+item1.d12+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d13!=null && item1.d13!=""?"<span style='color:#2dbd0c;'>"+item1.d13+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d14!=null && item1.d14!=""?"<span style='color:#2dbd0c;'>"+item1.d14+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d15!=null && item1.d15!=""?"<span style='color:#2dbd0c;'>"+item1.d15+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d16!=null && item1.d16!=""?"<span style='color:#2dbd0c;'>"+item1.d16+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d17!=null && item1.d17!=""?"<span style='color:#2dbd0c;'>"+item1.d17+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d18!=null && item1.d18!=""?"<span style='color:#2dbd0c;'>"+item1.d18+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d19!=null && item1.d19!=""?"<span style='color:#2dbd0c;'>"+item1.d19+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d20!=null && item1.d20!=""?"<span style='color:#2dbd0c;'>"+item1.d20+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d21!=null && item1.d21!=""?"<span style='color:#2dbd0c;'>"+item1.d21+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d22!=null && item1.d22!=""?"<span style='color:#2dbd0c;'>"+item1.d22+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d23!=null && item1.d23!=""?"<span style='color:#2dbd0c;'>"+item1.d23+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d24!=null && item1.d24!=""?"<span style='color:#2dbd0c;'>"+item1.d24+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d25!=null && item1.d25!=""?"<span style='color:#2dbd0c;'>"+item1.d25+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d26!=null && item1.d26!=""?"<span style='color:#2dbd0c;'>"+item1.d26+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d27!=null && item1.d27!=""?"<span style='color:#2dbd0c;'>"+item1.d27+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d28!=null && item1.d28!=""?"<span style='color:#2dbd0c;'>"+item1.d28+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d29!=null && item1.d29!=""?"<span style='color:#2dbd0c;'>"+item1.d29+"</span>":"<span style='color:red;'>未打卡</span>")</td> 
+                                    <td>@Html.Raw(item1.d30!=null && item1.d30!=""?"<span style='color:#2dbd0c;'>"+item1.d30+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                    <td>@Html.Raw(item1.d31!=null && item1.d31!=""?"<span style='color:#2dbd0c;'>"+item1.d31+"</span>":"<span style='color:red;'>未打卡</span>")</td>
+                                 </tr>
+                             }
+                             }
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+
+
+</div>
+ }
+<script type="text/javascript">
+    $(".btnexcel").click(function (e) {
+        var _this = $(this);
+        e.preventDefault();
+        var url = _this.attr("href");
+        
+        G_Data_To_Excell_Ajax("form0", url);
+    });
+    function G_Data_To_Excell_Ajax(formName, url) {
+        var $from = $("#" + formName);
+        var oldAction = $from.attr("action");
+        var oldeMethod = $from.attr("method");
+        var oldOnclick = $from.attr("data-ajax-update");
+        var oldonsubmit = $from.attr("data-ajax-success");
+        var dataajax = $from.attr("data-ajax");
+        $from.attr("data-ajax-update", "");
+        $from.attr("data-ajax-success", "");
+        $from.attr("data-ajax", "");
+        $from.attr("action", url);
+        $from.attr("method", "post");
+        $from.submit();
+        $from.attr("data-ajax-update", oldOnclick);
+        $from.attr("data-ajax-success", oldonsubmit);
+        $from.attr("data-ajax", dataajax);
+        $from.attr("action", oldAction);
+        $from.attr("method", oldeMethod);
+        return false;
+    }
+</script>

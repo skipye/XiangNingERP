@@ -1,0 +1,49 @@
+﻿@model ModelProject.CRMByUser
+@{
+    Layout = null;
+}
+@Html.HiddenFor(k=>k.ListUserId)
+@Html.HiddenFor(k=>k.KHId)
+
+<div class="form">
+<ul>
+@foreach (var item in Model.SaleUserList)
+{
+    <li style="border:0px;float:left;width:140px;height:40px;line-height:40px;"><span class="probtn" rel="@item.Id"><input type="checkbox" value="@item.Id" ref="0" name="Userlist" />@item.Name</span></li>
+}
+</ul>
+
+<a href="javascript:void(0)" class="submitbtn mt20">提交</a>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        var KHUserList = $("#ListUserId").val();
+        
+        if (KHUserList != null && KHUserList != "") {
+            $("input[name='Userlist']").each(function () {
+                var CVal = "," + $(this).val() + ",";
+                if (KHUserList.indexOf(CVal) != -1) {
+                    $(this).attr("checked", true)
+                }
+            });
+        }
+        $(".submitbtn").click(function () {
+            var postUrl = '@Url.Action("AddKHByUser","CRM_KH")';
+            ListUserId = "";
+            var _this = $(this);
+            var KHId = $("#KHId").val();
+            
+            $("input[name='Userlist']:checkbox").each(function () {
+                if ($(this).attr("checked")) {
+                    ListUserId += "," + $(this).val() + ","
+                }
+            });
+            $.post(postUrl, { ListUserId: ListUserId, KHId: KHId }, function (d) {
+                if (d == "true")
+                { alert("添加成功!"); $("#adddialog").dialog("close"); }
+                else { alert("网络问题!请重新再试！"); }
+            });
+        });
+    });
+</script>

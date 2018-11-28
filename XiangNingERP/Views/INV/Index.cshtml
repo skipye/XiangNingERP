@@ -1,0 +1,77 @@
+﻿@using ServiceProject;
+@{
+    ViewBag.Title = "仓库管理";
+    UserService USer = new UserService();
+    var SonLeve = USer.GetCurrentUserName().SonLeve;
+}
+
+<div class="box">
+
+@if (SonLeve.Contains("INV_FLZL") || SonLeve == "All")
+{
+    <div class="card mt20">
+        <a href="@Url.Action("Index","INV_FLZL")">
+            <div class="card_text">
+                <h4 class="card_title">辅料种类管理</h4>
+                <p class="card_subtitle">建立辅料种类档案，修改、删除、增加辅料种类档案等操作</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Position.png" alt="辅料种类管理" />
+            </div>
+        </a>
+    </div>
+}@if (SonLeve.Contains("INV_MC") || SonLeve == "All")
+{
+    <div class="card mt20 ml20">
+        <a href="@Url.Action("Index","INV_MC")">
+            <div class="card_text">
+                <h4 class="card_title">木材种类管理</h4>
+                <p class="card_subtitle">管理、查看、修改木材种类等信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/images/inv_MC.png" alt="红木木材种类" />
+            </div>
+        </a>
+    </div>
+}@if (SonLeve.Contains("INV_inventories") || SonLeve == "All")
+{
+    <div class="card mt20 ml20">
+        <a href="@Url.Action("INV_inventories","INV")">
+            <div class="card_text">
+                <h4 class="card_title">仓库设置</h4>
+                <p class="card_subtitle">添加、删除、修改仓库名称、种类、位置等信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/images/cksz.png" alt="仓库设置" />
+            </div>
+        </a>
+    </div>
+}@if (SonLeve.Contains("INV_DB") || SonLeve == "All")
+{
+    <div class="card mt20 ml20">
+        <a href="@Url.Action("Index","INV_DB")">
+            <div class="card_text">
+                <h4 class="card_title">独板库管理</h4>
+                <p class="card_subtitle">独板的入库，设置独板的长宽高、入库时间、备注等信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/images/inv_DB.png" alt="独板库" />
+            </div>
+        </a>
+    </div>
+}@if (SonLeve.Contains("INV_ZL") || SonLeve == "All")
+{
+
+    <div class="card mt20">
+        <a href="@Url.Action("Index","INV_ZL")">
+            <div class="card_text">
+                <h4 class="card_title">原材料库管理</h4>
+                <p class="card_subtitle">对原材料进行登记入库，原材料的基础材料录入等操作</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/images/inv_YCL.png" alt="原材料库" />
+            </div>
+        </a>
+    </div>
+}
+</div>

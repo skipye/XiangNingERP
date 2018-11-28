@@ -1,0 +1,350 @@
+﻿@model ModelProject.IndexProductList
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>S一站路</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <link href="@Url.Content("~/Content/public-mob.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/mcomm.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/proDetail.css")" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="@Url.Content("~/js/zepto.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/indexcommon.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/js/goTops.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/TouchSlide-1.1.min.js")"></script>
+
+</head>
+<body>
+    <div id="preloader">
+
+        @*<div id="status">
+                <p style="width:100%;line-height:30px;font-size:14px;">
+                    Loading the content...
+                    <em style="min-width:640px;">Loading depends on your connection speed!</em>
+                </p>
+            </div>*@
+    </div>
+
+    <div class="all-elements">
+        @*<header id="header" class="header ycpurple">
+                <div class="disbox aubgs"></div>
+                <h1 class="bfx02 wh">S一站路</h1>
+                <div class="aubgs icon-search" id="headsosbox"></div>
+            </header>*@
+        <article class="godsconslider" id="godsconslider">
+            @*<div class="indexaubgs icon-indexsearch" id="headsosbox" style="position:absolute;right:10px;top:10px;z-index:999;"></div>*@
+            <div class="bd">
+                <ul id="sliderPic">
+                    <li><img src="/images/640-1.jpg" /></li>
+                    <li><img src="/images/640-2.jpg" /></li>
+                    <li><img src="/images/640-3.jpg" /></li>
+                </ul>
+            </div>
+            <div class="hd"><ul></ul></div>
+        </article>
+        <script type="text/javascript">
+            TouchSlide({
+                slideCell: "#godsconslider",
+                titCell: ".hd ul",
+                mainCell: ".bd ul",
+                effect: "leftLoop",
+                autoPage: true,//自动分页
+                autoPlay: $('#godsconslider .bd li').length > 1 ? true : false  //自动播放
+            });
+        </script>
+        <div class="formalsosbox sosbg por">
+
+            <input name="productSearch" type="text" class="intext f14" id="IndexformalSearchTxt" placeholder="请输入搜索关键字">
+            <span class="formalbtn f16 poa" id="formalbtn">搜索</span><i class="corss" id="corss"></i>
+
+        </div>
+
+        <script type="text/javascript">
+            // 搜所按钮点击事件
+            $('#formalbtn').click(function () {
+                var serString = $("#IndexformalSearchTxt").val();
+                //var tmn = returnTmnNo();
+                if (serString == '') {
+                    UsTips("请输入搜索关键字", 15500);
+                    return false;
+                }
+                //if (!tmn || tmn == '') {
+                //    UsTips("缺少终端机号码");
+                //    return false;
+                //}
+                var sosurl = '/Home/ProdcutsSearch?keyWord=' + serString;
+
+                goUrl(sosurl);
+            });
+        </script>
+        <p class="godbg godge"></p>
+        <div class="indexnavlist listactive ovh">
+            <ul>
+                <li class="na"><a href="javascript:;" onclick="goUrl('@Url.Action("ProductsType", "Home", new { TypeId = 123})')"><p class="icem ic01"></p><p class="texp f14">全球站</p></a></li>
+                <li class="na"><a href="javascript:;" onclick="goUrl('@Url.Action("ProductsType", "Home", new { TypeId = 117 })')"><em class="icem ic02"></em><span class="texp f14">中华站</span></a></li>
+                <li class="na"><a href="javascript:;" onclick="goUrl('@Url.Action("ProductsType", "Home", new { TypeId = 124 })')"><em class="icem ic03"></em><span class="texp f14">依嫁站</span></a></li>
+                <li class="na"><a href="javascript:;" onclick="goUrl('@Url.Action("Index", "PaiMai")')"><em class="icem ic04"></em><span class="texp f14">疯&nbsp;&nbsp;抢</span></a></li>
+                <li class="na"><a href="javascript:;" onclick="goUrl('@Url.Action("TJProducts", "Home")')"><em class="icem ic05"></em><span class="texp f14">热&nbsp;&nbsp;推</span></a></li>
+                <li class="na"><a href="javascript:;" onclick="goUrl('@Url.Action("ZKProducts", "Home")')"><em class="icem ic06"></em><span class="texp f14">特&nbsp;&nbsp;惠</span></a></li>
+            </ul>
+        </div>
+        @*<ul class="indexnavlist">
+                <li><a href="@Url.Action("ProductsType", "Home", new { TypeId = 123})" class="f16">外贸精品</a></li>
+                <li><a href="@Url.Action("ProductsType", "Home", new { TypeId = 117 })" class="f16">内贸优选</a></li>
+                <li><a href="@Url.Action("ProductsType", "Home", new { TypeId = 124 })" class="f16">诚心服务</a></li>
+            </ul>*@
+        <p class="godbg godge"></p>
+        <a href="@Url.Action("LuckDraw", "LuckDraw")"> <img src="/images/luckdrawbg.jpg" class="" style="width:100%;display:block;" /></a>
+        <p class="godbg godge"></p>
+        <article class="godstab">
+            <div class="indextabnav">
+                <ul>
+                    <li class="on">每日推荐<a href="@Url.Action("TJProducts","Home")" class="more">更多&gt;</a></li>
+                </ul>
+            </div>
+            <div class="godstabcent">
+                <div class="parameter3 ovh">
+                    <ul id="lookSee">
+                        @if (Model.TJProductList != null && Model.TJProductList.Any())
+                        {
+                            foreach (var item in Model.TJProductList)
+                            {
+                                string IPicPath = "http://admin.shyclogistics.com/" + item.ConvertImg;
+                                <li>
+                                    <div class="gcont @(item.Stock > 0 ? "" : "soldout")">
+                                        <a href="@Url.Action("ProductsDetail", "Home", new { Id=item.Id})" class="db">
+                                            <p class="gcopic">
+                                                <span style="background-image:url(@IPicPath)"></span>
+                                            </p>
+                                            <p class="f14 mtit">@item.Name</p>
+                                            <p class="f14 mpro">价值：<span class="red">&yen;@Convert.ToDouble(item.SalePrice).ToString("0.00")</span></p>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        @if (Model.JJProductList != null && Model.JJProductList.Any())
+        {
+            <p class="godbg godge"></p>
+            <article class="godstab">
+                <div class="indextabnav f15">
+                    <ul>
+                        <li class="on">每日疯抢<a href="@Url.Action("Index", "PaiMai")" class="more">更多&gt;</a></li>
+                    </ul>
+                </div>
+                <div class="godstabcent">
+                    <div class="parameter1 ovh">
+                        <ul>
+                            @foreach (var item in Model.JJProductList)
+                            {
+                                string IPicPath = "http://admin.shyclogistics.com/" + item.ConvertImg;
+                                <li>
+                                    <div class="gcont">
+                                        <a href="@Url.Action("PaiMaiDetail", "PaiMai", new { Id=item.Id})" class="db">
+                                            <p class="gcopic">
+                                                <span style="background-image:url(@IPicPath)"></span>
+                                            </p>
+                                            <p class="f14 mtit">@item.Name</p>
+                                            <p class="f14 mpro">
+                                                起拍价：<span class="red">&yen;@Convert.ToDouble(item.SalePrice).ToString("0.00")</span>
+                                                保证金：<span class="red">&yen;@Convert.ToDouble(item.AddPrice).ToString("0.00")</span>
+                                            </p>
+                                            <p class="f14 chujia"><span class="f18">@item.hitTime</span>人围观</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        }
+
+        @if (Model.ZKProductList != null && Model.ZKProductList.Any())
+        {
+            <p class="godbg godge"></p>
+            <article class="godstab">
+                <div class="indextabnav f15">
+                    <ul>
+                        <li class="on">每日捡漏<a href="@Url.Action("ZKProducts","Home")" class="more">更多&gt;</a></li>
+                    </ul>
+                </div>
+                <div class="godstabcent">
+                    <div class="parameter ovh" style="display:block;">
+                        <ul>
+
+                            @foreach (var item in Model.ZKProductList)
+                            {
+                                string IPicPath = "http://admin.shyclogistics.com/" + item.ConvertImg;
+                                double Sale = Convert.ToDouble(item.Sale * 0.1);
+                                double DisCountPrice = Convert.ToDouble(item.SalePrice) * Sale;
+                                <li>
+                                    <div class="gcont @(item.Stock > 0 ? "" : "soldout")">
+                                        <a href="@Url.Action("ProductsDetail", "Home", new { Id=item.Id})" class="db">
+                                            <p class="gcopic">
+                                                <span style="background-image:url(@IPicPath)"></span>
+                                            </p>
+                                            <p class="f14 mtit">@item.Name</p>
+                                            <p class="mpro">
+                                                价值：<span class="red f16">&yen;@DisCountPrice.ToString("0.00")</span>
+                                                <span class="sale">&yen;@Convert.ToDouble(item.SalePrice).ToString("0.00")</span>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        }
+
+        <p class="godbg godge"></p>
+        <article class="godstab">
+            <div class="indextabnav f15">
+                <ul>
+                    <li class="on">全球站<a href="@Url.Action("ProductsType", "Home", new { TypeId = 123 })" class="more">更多&gt;</a></li>
+                </ul>
+            </div>
+            <div class="godstabcent">
+                <div class="parameter ovh" style="display:block;">
+                    <ul id="lookSee">
+                        @if (Model.WMProductList != null && Model.WMProductList.Any())
+                        {
+                            foreach (var item in Model.WMProductList)
+                            {
+                                string IPicPath = "http://admin.shyclogistics.com/" + item.ConvertImg;
+                                <li>
+                                    <div class="gcont @(item.Stock > 0 ? "" : "soldout")">
+                                        <a href="@Url.Action("ProductsDetail", "Home", new { Id=item.Id})" class="db">
+                                            <p class="gcopic">
+                                                <span style="background-image:url(@IPicPath)"></span>
+                                            </p>
+                                            <p class="f14 mtit">@item.Name</p>
+                                            <p class="f14 mpro">价值：<span class="red">&yen;@Convert.ToDouble(item.SalePrice).ToString("0.00")</span></p>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <p class="godbg godge"></p>
+        <article class="godstab">
+            <div class="indextabnav f15">
+                <ul>
+                    <li class="on">中华站<a href="@Url.Action("ProductsType", "Home", new { TypeId = 117 })" class="more">更多&gt;</a></li>
+                </ul>
+            </div>
+            <div class="godstabcent">
+                <div class="parameter ovh" style="display:block;">
+                    <ul id="lookSee">
+                        @if (Model.NMProductList != null && Model.NMProductList.Any())
+                        {
+                            foreach (var item in Model.NMProductList)
+                            {
+                                string IPicPath = "http://admin.shyclogistics.com/" + item.ConvertImg;
+                                <li>
+                                    <div class="gcont @(item.Stock > 0 ? "" : "soldout")">
+                                        <a href="@Url.Action("ProductsDetail", "Home", new { Id=item.Id})" class="db">
+                                            <p class="gcopic">
+                                                <span style="background-image:url(@IPicPath)"></span>
+                                            </p>
+                                            <p class="f14 mtit">@item.Name</p>
+                                            <p class="f14 mpro">价值：<span class="red">&yen;@Convert.ToDouble(item.SalePrice).ToString("0.00")</span></p>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <p class="godbg godge"></p>
+        <article class="godstab">
+            <div class="indextabnav f15">
+                <ul>
+                    <li class="on">依嫁站<a href="@Url.Action("ProductsType", "Home", new { TypeId = 124 })" class="more">更多&gt;</a></li>
+                </ul>
+            </div>
+            <div class="godstabcent">
+                <div class="parameter ovh" style="display:block;">
+                    <ul id="lookSee">
+                        @if (Model.FWProductList != null && Model.FWProductList.Any())
+                        {
+                            foreach (var item in Model.FWProductList)
+                            {
+                                string IPicPath = "http://admin.shyclogistics.com/" + item.ConvertImg;
+                                <li>
+                                    <div class="gcont @(item.Stock > 0 ? "" : "soldout")">
+                                        <a href="@Url.Action("ProductsDetail", "Home", new { Id=item.Id})" class="db">
+                                            <p class="gcopic">
+                                                <span style="background-image:url(@IPicPath)"></span>
+                                            </p>
+                                            <p class="f14 mtit">@item.Name</p>
+                                            <p class="f14 mpro">价值：<span class="red">&yen;@Convert.ToDouble(item.SalePrice).ToString("0.00")</span></p>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <footer id="footer" class="footer tc bg-white f12">
+            <p class="bfx01 pt5" onclick="goUrlByTmn('@Url.Action("Index","Home")')"><i class="ftbari fthome"></i><em class="ftbarem">商城</em></p>
+            <p class="bfx01 pt5" onclick="goUrl('@Url.Action("Index","Cart")')"><i class="ftbari ftcart"><ins class="ftnum f10" id="cartNum" style="display: none;"></ins></i><em class="ftbarem">购物车</em></p>
+            <p class="bfx01 pt5" onclick="goUrl('@Url.Action("ContactUs", "Home")')"><i class="ftbari fttel"></i><em class="ftbarem">联系站长</em></p>
+            <p class="bfx01 pt5" onclick="goUrl('@Url.Action("Index","Member")')"><i class="ftbari ftuser"><ins id="notice" class="ftdot" style="display:none;"></ins></i><em class="ftbarem">我的</em></p>
+        </footer>
+        <div style="height:50px;"></div>
+        @*<div id="gotop" class="gotop"></div>*@
+        <script type="text/javascript">
+            $(function () {
+
+                //返回顶部插件引用
+                //$(window).goTops({ toBtnCell: "#gotop", posBottom: 70 });
+            });
+        </script>
+    </div>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+        var WHeight = $(window).height();
+
+        $(function () {
+            $(window).load(function () {
+                //$("#status").fadeOut(); // will first fade out the loading animation
+                $("#preloader").delay(400).fadeOut("medium"); // will fade out the white DIV that covers the website.
+            });
+
+        });
+
+    </script>
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?1180421a6edad71f8bb93985d196ca81";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+</html>

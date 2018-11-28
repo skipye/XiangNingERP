@@ -1,0 +1,28 @@
+﻿@model ModelProject.LabelsModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("TransferMore", "Labels", FormMethod.Post, new { @class = "form" }))
+    { 
+      @Html.HiddenFor(k=>k.ListId)
+    <div class="mod normal">
+        <div class="item">
+			<label class="label"><em>*</em>所属仓库：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.inv_id, Model.CKDroList, new { @class="drotext"})
+			</div>
+		</div>
+        
+        
+        <div class="item mb20">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>

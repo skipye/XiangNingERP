@@ -1,0 +1,54 @@
+﻿@model ModelProject.INV_FLZLModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "INV_FLZL", FormMethod.Post, new { @class = "form mt20" }))
+    { 
+     @Html.HiddenFor(k=>k.id)
+    <div class="mod normal">
+		<div class="hd">
+			<h2>辅料种类基本信息</h2>
+		</div>
+        <div class="item">
+            <label class="label"><em>*</em>所属大类：</label>
+            <div class="form-field">
+                @Html.DropDownListFor(k => k.catalogId, Model.catalogDroList, new { @class = "drotext" })
+            </div>
+        </div>
+		<div class="item">
+			<label class="label"><em>*</em>名称：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.name,new{@style="width:430px;",@class="inputtext"})
+			</div>
+		</div>
+       <div class="item">
+			<label class="label"><em>*</em>单位：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.unit,new{@class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">备注：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.remark,new{style="width:430px;height:150px;",@class="inputtext"})
+				@Html.ValidationMessageFor(k=>k.remark)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    $(".submitbtn").click(function () {
+        $(".form").submit();
+    });
+</script>

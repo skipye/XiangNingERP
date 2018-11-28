@@ -1,0 +1,54 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.XT_RMModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    string[] ArrYG = { "包工","点工"};
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="70px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col />
+        <col width="120px" />
+        <col width="120px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>姓名</th>
+            <th>部门</th>
+            <th>权限</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.Id" /></td>
+            <td>@item.UName</td>
+            <td>@item.Department</td>
+            <td style="text-align:left;"><div class="tw" title="@item.StrLeve">@item.StrLeve</div></td>
+            <td>@Convert.ToDateTime(item.CreateTime).ToString("yyyy-MM-dd")</td>
+            <td><a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "XT_RM")" ref="@item.Id">编辑</a>
+            </td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new {  Name=SModel.Name}, "PageList", "XT_RM",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a XT_RMef=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total fl">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

@@ -1,0 +1,52 @@
+﻿@using ServiceProject;
+@{
+    ViewBag.Title = "基础管理";
+    UserService USer = new UserService();
+    var SonLeve = USer.GetCurrentUserName().SonLeve;
+ }
+
+
+<div class="box">
+
+  @if (SonLeve.Contains("SYS_XL") || SonLeve == "All")
+  {
+    <div class="card mt20 ml20">
+        <a href="@Url.Action("Index", "SYS_XL")">
+            <div class="card_text">
+                <h4 class="card_title">产品系列管理</h4>
+                <p class="card_subtitle">建立产品系列档案，修改、删除、增加产品系列等操作</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Position.png" alt="产品系列管理" />
+            </div>
+        </a>
+    </div>
+  }@if (SonLeve.Contains("SYS_CPMC") || SonLeve == "All")
+  {
+    <div class="card mt20 ml20">
+        <a href="@Url.Action("Index","SYS_CPMC")">
+            <div class="card_text">
+                <h4 class="card_title">产品名称管理</h4>
+                <p class="card_subtitle">添加、删除、修改产品名称等，设置产品规格等信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/images/cksz.png" alt="产品名称管理" />
+            </div>
+        </a>
+    </div>
+  }@if (SonLeve.Contains("SYS_SH") || SonLeve == "All")
+  {
+    <div class="card mt20 ml20">
+        <a href="@Url.Action("Index", "SYS_SH")">
+            <div class="card_text">
+                <h4 class="card_title">色号管理</h4>
+                <p class="card_subtitle">增加、查看、修改色号等信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/sys_SH.png" alt="色号管理" />
+            </div>
+        </a>
+    </div>
+  }
+
+</div>

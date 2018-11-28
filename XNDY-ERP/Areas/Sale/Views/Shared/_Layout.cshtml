@@ -1,0 +1,74 @@
+﻿@using Common;
+@using ServiceProject;
+@{
+    UserService USer = new UserService();
+    var Area = Html.CurrentArea();
+    var Conl = Html.CurrentController();
+    var Action = Html.CurrentAction();
+    var UserName = USer.GetCurrentUserName().UserName;
+    var Leve = USer.GetCurrentUserName().RoleName;
+ }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title -- 香凝东阳管理系统</title>
+    <link type="text/css" href="~/css/base.css" rel="stylesheet" />
+    <link type="text/css" href="~/css/admin.css" rel="stylesheet" />
+    <link type="text/css" href="~/css/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui-1.8.20.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.ui.datepicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.ui.datepicker-zh-CN.js")"></script>
+    
+    <script type="text/javascript" src="~/js/comm.js?v=1"></script>
+</head>
+<body>
+    <div id="adddialog"></div>
+
+    <div id="dialog_img"></div>
+    <div class="admintop">
+        <div class="adminnav">
+            <p class="logotit"><span class="pl10 wh f16">香凝东阳管理系统</span></p>
+
+            <ul class="menu">
+             
+                <li @(Conl=="Home"?"class=selected":"")><a href="@Url.Action("Index","Home")"><span>考勤记录</span></a></li>
+                @if (Leve.Contains("SYS"))
+                {
+                <li @(Conl.Contains("SYS")==true?"class=selected":"")><a href="@Url.Action("Index","SYS")"><span>基础管理</span></a></li>
+                    }@if (Leve.Contains("INV"))
+                {
+                <li @(Conl.Contains("INV")==true?"class=selected":"")><a href="@Url.Action("Index","INV")"><span>仓库管理</span></a></li>
+                        }@if (Leve.Contains("PO"))
+                {
+                <li @(Conl.Contains("PO")==true?"class=selected":"")><a href="@Url.Action("Index","PO")"><span>采购管理</span></a></li>
+                            }@if (Leve.Contains("WIP"))
+                {
+                <li @(Conl.Contains("WIP")==true?"class=selected":"")><a href="@Url.Action("Index","WIP")"><span>生产管理</span></a></li>
+                                }@if (Leve.Contains("CRM"))
+                {
+                <li @(Conl.Contains("CRM")==true?"class=selected":"")><a href="@Url.Action("Index", "Sale", new { Area="Sale"})"><span>销售管理</span></a></li>
+                                    }@if (Leve.Contains("HR"))
+                {
+                <li @(Conl.Contains("HR")==true?"class=selected":"")><a href="@Url.Action("Index","HR")"><span>行政中心</span></a></li>
+                                        }@if (Leve.Contains("XT"))
+                {
+                <li @(Conl.Contains("XT")==true?"class=selected":"")><a href="@Url.Action("Index","XT")"><span>系统管理</span></a></li>
+                                        }
+            </ul>
+
+            <p class="user"><span id="username">@UserName</span><a href="@Url.Action("LogOff","Account")" class="red pl20 f14">退出</a></p>
+        </div><!--adminnav end-->
+    </div><!--admintop end-->
+    
+    <div class="mainbox">
+      @RenderBody()
+    </div>
+
+
+
+</body>
+</html>

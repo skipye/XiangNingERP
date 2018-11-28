@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "销售管理";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box">
+
+    <div class="card_report fl mt20">
+        <a href="#" class="card_report_pic">
+            <img src="~/bg/Report.png" alt="报表" />
+        </a>
+    </div>
+
+    <div class="card fl ml20 mt20">
+        <a href="@Url.Action("Index","CRM_KH")">
+            <div class="card_text">
+                <h4 class="card_title">客户管理</h4>
+                <p class="card_subtitle">管理客户的基本信息，建立客户档案，可以去修改增加、修改、删除客户信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Department.png" alt="客户管理" />
+            </div>
+        </a>
+    </div>
+
+    <div class="card fl ml20 mt20">
+        <a href="@Url.Action("Index","CRM_HT")">
+            <div class="card_text">
+                <h4 class="card_title">合同管理</h4>
+                <p class="card_subtitle">管理合同的基本信息，建立合同，可以去修改增加、修改、删除合同信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Position.png" alt="合同管理" />
+            </div>
+        </a>
+    </div>
+
+    <div class="card fl mt20">
+        <a href="#">
+            <div class="card_text">
+                <h4 class="card_title">预投管理</h4>
+                <p class="card_subtitle">管理、查看、修改员工基本信息、职位信息、学历、工作经验等信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Staff_Master.png" alt="组织架构" />
+            </div>
+        </a>
+    </div>
+
+    <div class="card fl ml20  mt20">
+        <a href="#">
+            <div class="card_text">
+                <h4 class="card_title">删除员工</h4>
+                <p class="card_subtitle">删除错误、离职员工信息，删除后数据信息将不做任何保留</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Employee.png" alt="组织架构" />
+            </div>
+        </a>
+    </div>
+</div>

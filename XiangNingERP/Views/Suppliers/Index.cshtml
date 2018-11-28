@@ -1,0 +1,58 @@
+﻿@model ModelProject.SSuppliersModel
+@{
+    ViewBag.Title = "客户管理";
+    List<SelectListItem> PSize = new List<SelectListItem>();
+    PSize.Add(new SelectListItem { Text = "每页10", Value = "10" });
+    PSize.Add(new SelectListItem { Text = "每页20", Value = "20" });
+    PSize.Add(new SelectListItem { Text = "每页30", Value = "30" });
+    PSize.Add(new SelectListItem { Text = "每页40", Value = "40" });
+    PSize.Add(new SelectListItem { Text = "每页80", Value = "80" });
+}
+
+<p class="currpoint">
+    <a href="@Url.Action("Index","Home")">首页</a>  -> 
+    <a href="@Url.Action("Index","PO")">采购管理</a>  -> 
+    <a href="Javascript:void(0)" class="crrtab">供应商管理</a>
+</p>
+
+<div class="search">
+    <ul class="searchtab"><li class="current">条件搜索</li></ul>
+    <div style="clear:both"></div>
+    <div class="searchbox clearfix">
+        @using (Html.BeginForm("Index", "Suppliers", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="form_item">
+                <label class="label">姓名：</label>
+                <div class="form-field">
+                   @Html.TextBoxFor(k => k.name,  new { @class="inputtext"})
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">每页显示：</label>
+                <div class="form-field">
+                   @Html.DropDownListFor(k => k.PageSize, PSize, new { @class="drotext"})
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-item-submit">
+                <a href="#" class="submitbtn fr mb20 mr20" style="width:100px;">提交</a>
+            </div>
+        }
+    </div>
+</div><!--search end -->
+
+<div class="mod">
+    <div class="hd">
+        <h2>搜索结果</h2>
+        <ul class="filter">
+            <li class="adddialog" url="@Url.Action("Add","Suppliers")" title="新增" ref="0"><a class="btn bg-green" href="javascript:void(0)"><span class="wh">增加</span></a></li>
+            <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
+            <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
+            <li><a class="delSelect btn bg-orange" href="javascript:void(0)" url="@Url.Action("DeleteMore","Suppliers")" ><span class="wh">删除选中</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="ResultList" class="xTable">
+   @Html.Action("PageList", "Suppliers", new { SRmodels=Model})
+</div>

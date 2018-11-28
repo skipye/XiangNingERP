@@ -1,0 +1,42 @@
+﻿@{Layout = null;
+  string TabId = ViewBag.TabId;
+  }
+<script type="text/javascript" src="@Url.Content("~/js/jquery.form.js")"></script>
+
+<form id="fileForm" method="post" action="/FileManage/UploadImg" enctype="multipart/form-data">
+
+    <div style="clear: both;">
+        <div class="editor-label">
+            选择文件：
+        </div>
+        <div class="editor-field">
+            <input type="file" name="upImage" id="upImage">
+        </div>
+    </div>
+
+    <div style="text-align: center; clear:both;">
+        <input type="button" value="保存" class="ui-state-default button_edit" id="FileUpload" style="width:50px;height:30px;" />
+    </div>
+
+</form>
+
+
+<script type="text/javascript">
+
+    $("#FileUpload").click(function () {
+        if ($("#upImage").val() == "") {
+            alert("请选择一个文件，再点击上传。");
+            return;
+        };
+        $("#fileForm").ajaxSubmit({
+            success: function (msg) {
+                var TabId = "@TabId";
+                if (msg != "0") {
+                    alert("上传成功！"); $("#dialog_img").dialog("close"); $("#" + TabId).val(msg);
+                    $("." + TabId).attr("src", msg);
+                }
+                else { alert("上传失败！"); $("#dialog_img").dialog("close"); }
+            }
+        });
+    });
+</script>

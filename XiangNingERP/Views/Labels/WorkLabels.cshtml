@@ -1,0 +1,79 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model List<ModelProject.LabelsModel>
+@{ 
+    Layout = null;
+    int i = 1;
+    int CRM_Id = ViewBag.CRM_Id;
+    int qty = ViewBag.qty;
+  }
+<div class="xTable">
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="60px" />
+        <col width="120px" />
+        <col width="90px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="80px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>产品名称</th>
+            <th>材质</th>
+            <th>色号</th>
+            <th>规格</th>
+            <th>所在仓库</th>
+            <th>入库时间</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr style="height:35px;">
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td title="@(item.ProductXL+"_" +item.ProductName)"><div class="tw">@(item.ProductXL+"_" +item.ProductName)</div></td>
+            <td>@item.woodname </td>
+            <td>@item.color</td>
+            <td>@item.style</td>
+            <td title="@item.invname"><div class="tw">@item.invname</div></td>
+            <td>@Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd")</td>
+        </tr>
+    } 
+    </table>
+   
+}
+else{<p>暂无内容！</p>}
+
+</div>
+<p class="fl red">当前合同数量是：@qty 件</p>
+<input type="button" value="提交" class="inputsubbtn mt10 mb20 fr" style="width:140px;" id="checkpro" />
+
+<script type="text/javascript">
+    $(function () {
+        $("#checkpro").click(function () {
+            var strId = "";
+            var CRM_Id = '@CRM_Id';
+            var qty = parseInt("@qty");
+            var i = 0;
+            var PostUrl = "@Url.Action("CheckLabels","Labels")";
+            $("input[name='listcheck']:checkbox").each(function () {
+                if ($(this).attr("checked")) {
+                    strId += $(this).val() + "$";
+                    i++;
+                }
+            })
+            if (strId != "" && strId != undefined && i<=qty) {
+                $.post(PostUrl, { ListId: strId, CRM_Id: CRM_Id }, function (d) {
+                    if (d == "True") {
+                        alert("操作成功！");
+                        window.location.reload();
+                    }
+                    else { alert("操作失败！"); }
+                });
+            }
+            else { alert("请先去选中！或者选中数量大于合同数量！"); }
+        });
+
+        
+    });
+</script>

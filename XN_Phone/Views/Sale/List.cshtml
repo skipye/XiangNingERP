@@ -1,0 +1,49 @@
+﻿@using Com;
+@model List<Model.SaleModel>
+@{
+    Layout = null;
+    Guid? TypeId = ViewBag.TypeId;
+    int IsMore = ViewBag.IsMore;
+    int PageIndex = ViewBag.PageIndex;
+}
+@if (Model != null && Model.Any())
+{
+    <ul class="newsDrop">
+        @foreach (var item in Model)
+        {
+            var pic = "http://shanghuimedia.com/" + item.ConvertImg;
+            <li>
+                <a href="@Url.Action("Detail", "Sale", new { Id=item.Id})">
+                    <div class="pro_top">
+                        <img src="@pic" alt="@item.Name">
+                        <p class="pro_tag">@item.MucaiaName &nbsp;@item.KeyWord</p>
+                    </div>
+                    <div class="pro_bottom">
+                        <p class="pro_name">@item.Name</p>
+                        <p class="pro_price">&yen;<span class="f16"> @Convert.ToDouble(item.SalePrice).ToString("0.00")</span>&nbsp;&nbsp;<span>件数：@item.Size</span></p>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+    <div class="pro_hr"></div>
+    if (IsMore == 1)
+    {
+        <div class="anymore"> <a href="javascript:void(0)" id="DropMore" ref="0" page="@PageIndex" rel="@TypeId"> <p>更多家具</p></a></div>
+    }
+    <script type="text/javascript">
+        $("#DropMore").live("click",function () {
+            var _This = $(this);
+            var PageIndex = parseInt(_This.attr("page"));
+            var TypeId = _This.attr("rel");
+            var IsSub = _This.attr("ref");
+            if (IsSub == "0") {
+                var PageNum = PageIndex + 1;
+                _This.attr("ref", "1");
+                var DropUrl = "@Url.Action("List","Sale")";
+                $.post(DropUrl, { TypeId: TypeId, IsMore: 2, PageIndex: PageNum }, function (d) { $(".newsDrop:last").after(d); _This.attr("ref", "0"); _This.attr("page", PageNum); });
+        } else { return false; }
+
+        });
+    </script>
+}
