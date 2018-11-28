@@ -184,7 +184,6 @@ namespace DalProject
                     Exceltable.Columns.Add("数量", typeof(string));
                     Exceltable.Columns.Add("单价", typeof(string));
                     Exceltable.Columns.Add("合同总金额", typeof(string));
-                    Exceltable.Columns.Add("定金", typeof(string));
                     Exceltable.Columns.Add("收款", typeof(string));
                     Exceltable.Columns.Add("剩余金额", typeof(string));
                     Exceltable.Columns.Add("送货日期", typeof(string));
@@ -204,12 +203,11 @@ namespace DalProject
                         row["数量"] = item.qty;
                         row["单价"] = item.price;
                         row["合同总金额"] = item.amount;
-                        row["定金"] = item.prepay;
                         row["收款"] = item.FR_contract;
                         row["剩余金额"] = Surplus;
                         row["送货日期"] = Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd");
                         row["运送单号"] = item.OrderNum;
-                        row["是否结清"] = Surplus > 0? "否" : "是";
+                        row["是否结清"] = Surplus > 0 || string.IsNullOrEmpty(item.OrderNum) ? "否" : "是";
                         Exceltable.Rows.Add(row);
                     }
                 }
