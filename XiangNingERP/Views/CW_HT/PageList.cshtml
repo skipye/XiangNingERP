@@ -21,6 +21,7 @@
         <col width="80px" />
         <col width="80px" />
         <col width="90px" />
+        <col width="90px" />
         <col width="100px" />
         <col width="90px" />
         <col width="120px" />
@@ -36,9 +37,10 @@
             <th>单位</th>
             <th>数量</th>
             <th>单价</th>
-            <th>合同金额</th>
-            <th>收款</th>
-            <th>剩余金额</th>
+            <th>产品合同金额</th>
+            <th>应收合同总价</th>
+            <th>预收合同总价</th>
+            <th>剩余合同款</th>
             <th>送货日期</th>
             <th>运送单号</th>
             <th>是否结清</th>
@@ -57,7 +59,8 @@
                 <td>件</td>
                 <td>@item.qty</td>
                 <td>@item.price</td>
-                <td><div class="tw">@item.amount</div></td>
+                <td><div class="tw">@(item.price* item.qty)</div></td>
+                <td>@item.amount</td>
                 <td>@item.FR_contract</td>
                 <td><div class="tw">@Surplus</div></td>
                 <td>@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</td>
@@ -73,7 +76,7 @@
     </table>
     <div class="pagelist">
         <div class="pages">
-            @Html.AjaxPager(Model, new { SN = SModel.SN, UserName = SModel.UserName, StartTime = SModel.StartTime, EndTime = SModel.EndTime }, "PageList", "CW_HT", new PagerOptions
+            @Html.AjaxPager(Model, new { SN = SModel.SN, UserName = SModel.UserName, StartTime = SModel.StartTime, EndTime = SModel.EndTime, status=SModel.status }, "PageList", "CW_HT", new PagerOptions
        {
            PageIndexParameterName = "PageIndex",
            CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",

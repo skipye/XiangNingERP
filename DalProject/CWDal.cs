@@ -44,6 +44,7 @@ namespace DalProject
                             where p.CRM_contract_header.created_time < EndTime
                             where p.CRM_contract_header.delivery_date > SStartTime
                             where p.CRM_contract_header.delivery_date < SEndTime
+                            where SModel.status==1?p.CRM_delivery_tmp_header.FirstOrDefault().OrderNum!=null:true
                             orderby p.created_time descending
                             select new CRM_HTProModel
                             {
@@ -106,7 +107,7 @@ namespace DalProject
             DateTime SEndTime = Convert.ToDateTime("2999-12-31");
             if (!string.IsNullOrEmpty(SModel.StartTime))
             {
-                StartTime = Convert.ToDateTime(SModel.StartTime).AddDays(-1);
+                StartTime = Convert.ToDateTime(SModel.StartTime);
             }
             if (!string.IsNullOrEmpty(SModel.EndTime))
             {
@@ -114,7 +115,7 @@ namespace DalProject
             }
             if (!string.IsNullOrEmpty(SModel.SStartTime))
             {
-                SStartTime = Convert.ToDateTime(SModel.SStartTime).AddDays(-1);
+                SStartTime = Convert.ToDateTime(SModel.SStartTime);
             }
             if (!string.IsNullOrEmpty(SModel.SEndTime))
             {
@@ -122,7 +123,7 @@ namespace DalProject
             }
             using (var db = new XNERPEntities())
             {
-                var List = (from p in db.CRM_contract_detail.Where(k => k.delete_flag == false && k.CRM_contract_header.FR_flag > 0 && k.CRM_contract_header.status == 1 && k.CRM_contract_header.delete_flag == false)
+                var List = (from p in db.CRM_contract_detail.Where(k => k.delete_flag == false && k.CRM_contract_header.status == 1 && k.CRM_contract_header.delete_flag == false)
                             where !string.IsNullOrEmpty(SModel.SN) ? p.CRM_contract_header.SN.Contains(SModel.SN) : true
                             where SModel.CheckState != null && SModel.CheckState == 1 ? p.status == SModel.CheckState : true
                             where !string.IsNullOrEmpty(SModel.UserName) ? p.CRM_contract_header.CRM_customers.name.Contains(SModel.UserName) : true
@@ -131,6 +132,7 @@ namespace DalProject
                             where p.CRM_contract_header.created_time < EndTime
                             where p.CRM_contract_header.delivery_date > SStartTime
                             where p.CRM_contract_header.delivery_date < SEndTime
+                            where SModel.status == 1 ? p.CRM_delivery_tmp_header.FirstOrDefault().OrderNum != null : true
                             orderby p.created_time descending
                             select new CRM_HTProModel
                             {
@@ -183,9 +185,10 @@ namespace DalProject
                     Exceltable.Columns.Add("单位", typeof(string));
                     Exceltable.Columns.Add("数量", typeof(string));
                     Exceltable.Columns.Add("单价", typeof(string));
-                    Exceltable.Columns.Add("合同总金额", typeof(string));
-                    Exceltable.Columns.Add("收款", typeof(string));
-                    Exceltable.Columns.Add("剩余金额", typeof(string));
+                    Exceltable.Columns.Add("产品合同金额", typeof(string));
+                    Exceltable.Columns.Add("应收合同总价", typeof(string));
+                    Exceltable.Columns.Add("产品合同金额", typeof(string));
+                    Exceltable.Columns.Add("剩余合同款", typeof(string));
                     Exceltable.Columns.Add("送货日期", typeof(string));
                     Exceltable.Columns.Add("运送单号", typeof(string));
                     Exceltable.Columns.Add("是否结清", typeof(string));
@@ -202,9 +205,10 @@ namespace DalProject
                         row["单位"] = "件";
                         row["数量"] = item.qty;
                         row["单价"] = item.price;
-                        row["合同总金额"] = item.amount;
-                        row["收款"] = item.FR_contract;
-                        row["剩余金额"] = Surplus;
+                        row["产品合同金额"] = item.price * item.qty;
+                        row["应收合同总价"] = item.amount;
+                        row["预收合同总价"] = item.FR_contract;
+                        row["剩余合同款"] = Surplus;
                         row["送货日期"] = Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd");
                         row["运送单号"] = item.OrderNum;
                         row["是否结清"] = Surplus > 0 || string.IsNullOrEmpty(item.OrderNum) ? "否" : "是";

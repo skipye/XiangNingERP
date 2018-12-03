@@ -88,7 +88,7 @@ namespace DalProject
                     db.CRM_contract_detail.Add(table);
                 }
                 var HeadTable = db.CRM_contract_header.Where(k => k.id == Models.header_id).SingleOrDefault();
-                HeadTable.amount = HeadTable.amount+Models.price??0 * Models.qty;
+                HeadTable.amount = HeadTable.amount + Models.price.Value * Models.qty;
                 db.SaveChanges();
 
             }
@@ -131,7 +131,7 @@ namespace DalProject
 
                 var HeadId = tables.header_id;
                 var HeadTable = db.CRM_contract_header.Where(k => k.id == HeadId).FirstOrDefault();
-                HeadTable.amount = HeadTable.amount - tables.qty * tables.price??0;
+                HeadTable.amount = HeadTable.amount - tables.qty * tables.price.Value;
 
                 db.SaveChanges();
             }

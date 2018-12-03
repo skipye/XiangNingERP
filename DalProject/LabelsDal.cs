@@ -607,6 +607,7 @@ namespace DalProject
                                 product_id = p.product_id,
                                 ProductName = p.SYS_product.name,
                                 ProductXL = p.SYS_product.SYS_product_SN.name,
+                                product_area_id= p.SYS_product.SYS_product_area.id,
                                 ProductareaName = p.SYS_product.SYS_product_area.name,
                                 wood_id = p.wood_id,
                                 woodname = p.INV_wood_type.name,
@@ -646,10 +647,8 @@ namespace DalProject
                     Exceltable.Columns.Add("比重", typeof(string));
                     Exceltable.Columns.Add("木材单价", typeof(string));
                     Exceltable.Columns.Add("人工成本", typeof(string));
-                    Exceltable.Columns.Add("柜类出厂价", typeof(string));
-                    Exceltable.Columns.Add("其它类出厂价", typeof(string));
-                    Exceltable.Columns.Add("柜类标签价", typeof(string));
-                    Exceltable.Columns.Add("其它类标签价", typeof(string));
+                    Exceltable.Columns.Add("出厂价", typeof(string));
+                    Exceltable.Columns.Add("标签价", typeof(string));
                     foreach (var item in List)
                     {
                         var vv = Math.Pow(10, 2);
@@ -670,6 +669,12 @@ namespace DalProject
                         var Q_CCPrice = Math.Round(Q_cost / 100) * 100;
                         var Q_BQPrice = Q_CCPrice * 2.5; ;
 
+                        var ccprice = G_CCPrice;
+                        var BQPrice = G_BQPrice;
+                        if (item.product_area_id == 6)
+                        {
+                            ccprice = Q_CCPrice; BQPrice = Q_BQPrice;
+                        }
                         DataRow row = Exceltable.NewRow();
                         row["标签编码"] = item.SN;
                         row["产品编号"] = item.product_SN_Name;
@@ -687,10 +692,8 @@ namespace DalProject
                         row["比重"] = item.W_BZ;
                         row["木材单价"] = item.W_price;
                         row["人工成本"] = item.PersonPrice;
-                        row["柜类出厂价"] = G_CCPrice;
-                        row["其它类出厂价"] = Q_CCPrice;
-                        row["柜类标签价"] = G_BQPrice;
-                        row["其它类标签价"] = Q_BQPrice;
+                        row["出厂价"] = ccprice;
+                        row["标签价"] = BQPrice;
                         Exceltable.Rows.Add(row);
                     }
                 }

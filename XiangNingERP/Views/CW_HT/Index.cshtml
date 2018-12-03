@@ -13,6 +13,11 @@
     PSize.Add(new SelectListItem { Text = "每页30", Value = "30" });
     PSize.Add(new SelectListItem { Text = "每页40", Value = "40" });
     PSize.Add(new SelectListItem { Text = "每页80", Value = "80" });
+
+    List<SelectListItem> IsItem = new List<SelectListItem>();
+    IsItem.Add(new SelectListItem { Value = "-1", Text = "全部" });
+    IsItem.Add(new SelectListItem { Value = "0", Text = "否" });
+    IsItem.Add(new SelectListItem { Value = "1", Text = "是" });
 }
 
 <p class="currpoint">
@@ -43,6 +48,12 @@
                 <label class="label">付款状态：</label>
                 <div class="form-field">
                     @Html.DropDownListFor(k => k.FR_flag, LItem, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">是否送货：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.status, IsItem, new { @class = "inputtext" })
                 </div>
             </div>
             <div class="form_item">
