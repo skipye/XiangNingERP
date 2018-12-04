@@ -11,7 +11,7 @@ namespace DalProject
 {
     public class CWDal
     {
-        public PagedList<CRM_HTProModel> GetSalePagelist(SCRM_HTZModel SModel)
+        public PagedList<CRM_HTProModel> GetSalePagelist(SCRM_HTZModel SModel, out decimal TotalHT, out decimal? TotalYF)
         {
             DateTime StartTime = Convert.ToDateTime("1999-12-31");
             DateTime EndTime = Convert.ToDateTime("2999-12-31");
@@ -77,15 +77,25 @@ namespace DalProject
                                 OrderNum = p.CRM_delivery_tmp_header.FirstOrDefault().OrderNum
                             }).ToList();
                 List<CRM_HTProModel> ListCHModel = new List<CRM_HTProModel>();
+                decimal VTotalYT = 0;
+                int header_id = 0;
+                int OldId = -1;
                 foreach (var item in List)
                 {
                     CRM_HTProModel Models = new CRM_HTProModel();
                     var FR_contract = GetFR_contract(item.header_id);
                     Models = item;
                     Models.FR_contract = FR_contract;
+                    OldId = item.header_id;
+                    if (OldId != header_id)
+                    { VTotalYT = Models.FR_contract+ VTotalYT;  }
+                    header_id = item.header_id;
                     ListCHModel.Add(Models);
 
                 }
+                TotalHT = List.Sum(k=>k.price* k.qty).Value;
+                //TotalHT = VTotalHT;
+                TotalYF = VTotalYT;
                 return ListCHModel.ToPagedList(SModel.PageIndex.Value, SModel.PageSize.Value);
             }
 
@@ -187,7 +197,7 @@ namespace DalProject
                     Exceltable.Columns.Add("单价", typeof(string));
                     Exceltable.Columns.Add("产品合同金额", typeof(string));
                     Exceltable.Columns.Add("应收合同总价", typeof(string));
-                    Exceltable.Columns.Add("产品合同金额", typeof(string));
+                    Exceltable.Columns.Add("预收合同总价", typeof(string));
                     Exceltable.Columns.Add("剩余合同款", typeof(string));
                     Exceltable.Columns.Add("送货日期", typeof(string));
                     Exceltable.Columns.Add("运送单号", typeof(string));

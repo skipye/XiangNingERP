@@ -31,9 +31,13 @@ namespace XiangNingERP.Controllers
         }
         public ActionResult PageList(SCRM_HTZModel SRmodels)
         {
+            decimal TotalHT = 0;
+            decimal? TotalYF = 0;
             SRmodels.PageIndex=SRmodels.PageIndex ?? 1;
             SRmodels.PageSize = SRmodels.PageSize ?? 10;
-            var PageList = CWSer.GetSalePagelist(SRmodels);
+            var PageList = CWSer.GetSalePagelist(SRmodels, out TotalHT, out TotalYF);
+            ViewBag.TotalHT = TotalHT;
+            ViewBag.TotalYF = TotalYF;
             ViewBag.SModel = SRmodels;
             return View(PageList);
         }

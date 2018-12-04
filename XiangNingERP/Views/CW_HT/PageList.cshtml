@@ -4,10 +4,16 @@
     Layout = null;
     var SModel = ViewBag.SModel;
     string[] Arr = { "未付款", "已付预付款", "已付全款" };
+    var TotalYF = ViewBag.TotalYF;
+    var TotalHT = ViewBag.TotalHT;
 }
 
 @if (Model != null && Model.Any())
-{
+{<p style="position:absolute;top:-36px;left:80px;z-index:99;font-size:16px;font-weight:bold;">
+        <span class="pl10 prcolor">合同总金额：@TotalHT 元</span>
+        <span class="pl10 orange b">预收款：@TotalYF 元</span>
+     <span class="pl10 orange b">余款：@(TotalHT - TotalYF)元</span>
+    </p>
     <table>
         <col width="70px" />
         <col width="80px" />
@@ -38,8 +44,8 @@
             <th>数量</th>
             <th>单价</th>
             <th>产品合同金额</th>
-            <th>应收合同总价</th>
-            <th>预收合同总价</th>
+            <th>应收合同总额</th>
+            <th>预收合同总额</th>
             <th>剩余合同款</th>
             <th>送货日期</th>
             <th>运送单号</th>
@@ -76,7 +82,7 @@
     </table>
     <div class="pagelist">
         <div class="pages">
-            @Html.AjaxPager(Model, new { SN = SModel.SN, UserName = SModel.UserName, StartTime = SModel.StartTime, EndTime = SModel.EndTime, status=SModel.status }, "PageList", "CW_HT", new PagerOptions
+            @Html.AjaxPager(Model, new { SN = SModel.SN, UserName = SModel.UserName, StartTime = SModel.StartTime, EndTime = SModel.EndTime, status=SModel.status,PageSize=SModel.PageSize }, "PageList", "CW_HT", new PagerOptions
        {
            PageIndexParameterName = "PageIndex",
            CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",

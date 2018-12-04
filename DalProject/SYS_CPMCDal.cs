@@ -34,7 +34,8 @@ namespace DalProject
                                 ConvertImg = p.picture,
                                 product_area_id = p.product_area_id,
                                 product_area_name = p.SYS_product_area.name,
-                                volume=p.volume,
+                                volume = p.volume,
+                                PersonPrice = p.reserved1,
                             }).ToList();
                 return List.OrderByDescending(k=>k.created_time).ToPagedList(PageIndex, PageSize);
             }

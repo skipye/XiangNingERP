@@ -22,7 +22,7 @@
 
 <p class="currpoint">
     <a href="@Url.Action("Index","Home")">首页</a>  ->
-    <a href="@Url.Action("Index","CRM")">销售管理</a>  ->
+    <a href="@Url.Action("Index","Finance")">财务管理</a>  ->
     <a href="Javascript:void(0)" class="crrtab">合同管理</a>
 </p>
 
@@ -56,6 +56,12 @@
                     @Html.DropDownListFor(k => k.status, IsItem, new { @class = "inputtext" })
                 </div>
             </div>
+            @*<div class="form_item">
+                <label class="label">是否结清：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.FRstatus, IsItem, new { @class = "inputtext" })
+                </div>
+            </div>*@
             <div class="form_item">
                 <label class="label">合同时间：</label>
                 <div class="form-field">

@@ -96,6 +96,7 @@ namespace ModelProject
         public int? PageIndex { get; set; }
         public int? PageSize { get; set; }
         public int status { get; set; }
+        public int FRstatus { get; set; }
     }
     public class CRM_HTProModel
     {
