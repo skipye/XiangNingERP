@@ -10,14 +10,15 @@
 {
     <table>
         <col width="70px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
         <col />
         <col width="120px" />
         <tr class="fb">
@@ -28,6 +29,7 @@
             <th>用工性质</th>
             <th>社保状态</th>
             <th>社保</th>
+            <th>公积金</th>
             <th>入职时间</th>
             <th>职位</th>
             <th>状态</th>
@@ -43,6 +45,7 @@
             <td style="color:red;font-weight:bold;">@ArrYG[Convert.ToInt32(item.salary_type)]</td>
             <td style="color:red;font-weight:bold;">@item.socialsecurity</td>
             <td>@item.society_insure</td>
+            <td>@item.GJJ</td>
             <td>@Convert.ToDateTime(item.jobtime).ToString("yyyy-MM-dd")</td>
             <td><div class="tw" title="@item.jobs">@item.jobs</div></td>
             <td>@Html.Raw(item.status!=null && item.status==1?"<span style='color:#2dbd0c;'>在职</span>":"<span style='color:red'>离职</span>")</td>

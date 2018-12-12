@@ -12,9 +12,9 @@ namespace ServiceProject
     public class CWService
     {
         private static readonly CWDal CDal = new CWDal();
-        public PagedList<CRM_HTProModel> GetSalePagelist(SCRM_HTZModel SModel)
+        public PagedList<CRM_HTProModel> GetSalePagelist(SCRM_HTZModel SModel, out decimal TotalHT, out decimal? TotalYF)
         {
-            try { return CDal.GetSalePagelist(SModel); }
+            try { return CDal.GetSalePagelist(SModel, out TotalHT, out TotalYF); }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
