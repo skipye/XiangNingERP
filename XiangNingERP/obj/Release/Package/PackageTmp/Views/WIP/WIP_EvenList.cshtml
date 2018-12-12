@@ -1,0 +1,41 @@
+﻿@model List<ModelProject.WIP_Even>
+@{
+    Layout = null;
+    int i = 1;
+}
+<div class="xTable">
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="60px" />
+        <col width="80px" />
+        <col width="70px" />
+        <col width="160px" />
+        <col width="120px" />
+        <col />
+        <tr class="fb">
+            <th>序号</th>
+            <th>工序</th>
+            <th>操作人</th>
+            <th>操作事件</th>
+            <th>操作时间</th>
+            <th>备注说明</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr style="height:35px;">
+            <td>@i</td>
+            <td>@item.name</td>
+            <td>@(item.user_name)</td>
+            <td style="text-align:left" title="@item.event_log"><div class="tw">@item.event_log</div></td>
+            <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd HH:mm")</td>
+            <td style="text-align:left" title="@item.remark"><div class="tw">@item.remark</div></td>
+        </tr>
+        i++;
+    } 
+    </table>
+   
+}
+else{<p>暂无内容！</p>}
+
+</div>

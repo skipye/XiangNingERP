@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="XNDYModelStoreContainer" CdmEntityContainer="XNDYEntities">
+    <EntitySetMapping Name="DY_CRM_customers">
+      <EntityTypeMapping TypeName="XNDYModel.DY_CRM_customers">
+        <MappingFragment StoreEntitySet="DY_CRM_customers">
+          <ScalarProperty Name="ListUserId" ColumnName="ListUserId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="linkman" ColumnName="linkman" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="Address_delivery" ColumnName="Address_delivery" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ShortName_E" ColumnName="ShortName_E" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Name_E" ColumnName="Name_E" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,182 @@
+﻿@model ModelProject.ReckonModel
+@{
+    Layout = null;
+    List<SelectListItem> ArrPro = new List<SelectListItem>();
+    ArrPro.Add(new SelectListItem { Text = "请选择产品名称", Value = "" });
+}
+<div class="addmain form">
+    <div class="mod normal">
+        <div class="item">
+			<label class="label"><em>*</em>所属系列：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.product_SN_id, Model.XLDroList, new { @class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>所属区域：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.product_area_id, Model.AreaDroList, new { @class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+            <label class="label"><em>*</em>产品名称：</label>
+            <div class="form-field">
+                @Html.DropDownListFor(k => k.product_id, ArrPro,new{@class="drotext drobtn"})
+            </div>
+        </div>
+       <div class="item">
+            <label class="label"><em>*</em>净材积：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.volume,new{@class="drotext drobtn"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>所属材质：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.wood_id, Model.MCDroList,new{@class="drotext"})
+			</div>
+		</div>
+       <div class="item">
+			<label class="label">人工费：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.personprice, new{@class="drotext"})
+			</div>
+		</div>
+        @*<div class="item">
+			<label class="label">算法：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.g_ccl, new{@class="drotext",@style="width=100px"})
+                @Html.TextBoxFor(k=>k.g_bz, new{@class="drotext",@style="width=100px"})
+                @Html.TextBoxFor(k=>k.q_ccl, new{@class="drotext",@style="width=100px"})
+                @Html.TextBoxFor(k=>k.q_bz, new{@class="drotext",@style="width=100px"})
+                @Html.TextBoxFor(k=>k.prcie, new{@class="drotext",@style="width=100px"})
+                @Html.TextBoxFor(k=>k.cc_prcie, new{@class="drotext",@style="width=100px"})
+			</div>
+		</div>*@
+        @Html.HiddenFor(k=>k.g_ccl)
+        @Html.HiddenFor(k=>k.g_bz)
+        @Html.HiddenFor(k=>k.q_ccl)
+        @Html.HiddenFor(k=>k.q_bz)
+        @Html.HiddenFor(k=>k.prcie)
+        @Html.HiddenFor(k=>k.cc_prcie)
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+               <a href="javascript:void(0)" class="reckon mt10 mb30" style="width:140px;">计算成本</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+        <div style="margin:30px;">
+            <p class="red f14" style="line-height:30px;">柜类产品：出厂价：<span id="G_ccprice"></span>元<span style="padding-left:20px;">标签价：</span><span id="G_bqprice"></span>元</p>
+            <p class="red f14" style="line-height:30px;">其它类产品：出厂价：<span id="Q_ccprice"></span>元<span style="padding-left:20px;">标签价：</span><span id="Q_bqprice" style="padding-left:10px;"></span>元</p>
+        </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#product_SN_id").change(function () {
+            var CVal = $(this).val();
+            var product_SN_id = $("#product_SN_id").val();
+            var product_area_id = $("#product_area_id").val();
+            //alert(product_SN_id + ";;;" + product_area_id);
+            var ProUrl = "@Url.Action("GetProNameDrolistBySNAndArea","Semi")";
+            $.post(ProUrl, { ProSN: product_SN_id, ProProArea: product_area_id }, function (data) {
+                //alert(data);
+                $('#product_id').empty();
+                $('#product_id').append($('<option></option>').val("").text("请选择产品名称").attr("selected", true));
+                $('#product_id').append(data);
+            });
+        });
+        $("#product_area_id").change(function () {
+                var CVal = $(this).val();
+                var product_SN_id = $("#product_SN_id").val();
+                var product_area_id = $("#product_area_id").val();
+                //alert(product_SN_id + ";;;" + product_area_id);
+                var ProUrl = "@Url.Action("GetProNameDrolistBySNAndArea","Semi")";
+                $.post(ProUrl, { ProSN: product_SN_id, ProProArea: product_area_id }, function (data) {
+                    //alert(data);
+                    $('#product_id').empty();
+                    $('#product_id').append($('<option></option>').val("").text("请选择产品名称").attr("selected", true));
+                    $('#product_id').append(data);
+                });
+            });
+        $("#product_id").change(function () {
+            var CVal = $(this).val();
+            var ProUrl = "@Url.Action("GetProvolume","XT_Wood")";
+            $.post(ProUrl, { product_id: CVal }, function (data) {
+                $("#volume").val(data);
+                });
+        });
+        $("#wood_id").change(function () {
+            var StrVal = $(this).val();
+            var Item = StrVal.split('$');
+            var g_ccl = Item[1];
+            var g_bz = Item[2];
+            var q_ccl = Item[3];
+            var q_bz = Item[4];
+            var prcie = Item[5];
+            var cc_prcie = Item[6];
+            $("#g_ccl").val(g_ccl);
+            $("#g_bz").val(g_bz);
+            $("#q_ccl").val(q_ccl);
+            $("#q_bz").val(q_bz);
+            $("#prcie").val(prcie);
+            $("#cc_prcie").val(cc_prcie);
+        });
+        $(".reckon").click(function () {
+            var volume = 0;
+            if ($("#volume").val() != null && $("#volume").val() != undefined && $("#volume").val() != "") {
+                volume = parseFloat($("#volume").val());
+            }
+            var g_ccl =0;
+            if ($("#g_ccl").val() != null && $("#g_ccl").val() != undefined && $("#g_ccl").val() != "") {
+                g_ccl = parseFloat($("#g_ccl").val());
+            }
+            var g_bz = 0;
+            if ($("#g_bz").val() != null && $("#g_bz").val() != undefined && $("#g_bz").val() != "") {
+                g_bz = parseFloat($("#g_bz").val());
+            }
+            var q_ccl = 0;
+            if ($("#q_ccl").val() != null && $("#q_ccl").val() != undefined && $("#q_ccl").val() != "") {
+                q_ccl = parseFloat($("#q_ccl").val());
+            }
+            var q_bz = 0;
+            if ($("#q_bz").val() != null && $("#q_bz").val() != undefined && $("#q_bz").val() != "") {
+                q_bz = parseFloat($("#q_bz").val());
+            }
+            var prcie = 0;
+            if ($("#prcie").val() != null && $("#prcie").val() != undefined && $("#prcie").val() != "") {
+                prcie = parseFloat($("#prcie").val());
+            }
+            var cc_prcie = 0;
+            if ($("#cc_prcie").val() != null && $("#cc_prcie").val() != undefined && $("#cc_prcie").val() != "") {
+                cc_prcie = parseFloat($("#cc_prcie").val());
+            }
+            var personprice = 0;
+            if ($("#personprice").val() != null && $("#personprice").val() != undefined && $("#personprice").val() != "") {
+                personprice = parseFloat($("#personprice").val());
+            }
+            var vv = Math.pow(10, 2);
+
+            var G_WoodPrcie = Math.round(volume * g_bz * prcie / g_ccl * vv) / vv;
+            var Q_WoodPrcie = Math.round(volume * q_bz * prcie / q_ccl * vv) / vv;
+            var G_cost = (G_WoodPrcie + personprice) * cc_prcie;
+            var Q_cost = (Q_WoodPrcie + personprice) * cc_prcie;
+
+            var G_CCPrice = Math.round(G_cost / 100) * 100;
+            var G_BQPrice = G_CCPrice * 2.5;
+            var Q_CCPrice = Math.round(Q_cost / 100) * 100;
+            var Q_BQPrice = Q_CCPrice * 2.5;;
+            
+            //alert(G_CCPrice + "&&&&" + Q_WoodPrcie + "&&&&" + G_WoodPrcie);
+
+            $("#G_ccprice").html(G_CCPrice);
+            $("#G_bqprice").html(G_BQPrice);
+            $("#Q_ccprice").html(Q_CCPrice);
+            $("#Q_bqprice").html(Q_BQPrice);
+
+        });
+    });
+</script>

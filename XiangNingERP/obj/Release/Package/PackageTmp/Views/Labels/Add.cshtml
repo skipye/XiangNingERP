@@ -1,0 +1,132 @@
+﻿@model ModelProject.LabelsModel
+@{
+    Layout = null;
+    List<SelectListItem> ArrPro = new List<SelectListItem>();
+    ArrPro.Add(new SelectListItem { Text = "请选择产品名称", Value = "" });
+}
+<div class="addmain">
+ @using (Html.BeginForm("Add", "Labels", FormMethod.Post, new { @class = "form" }))
+    { 
+   
+     @Html.HiddenFor(m=>m.color)
+    <div class="mod normal">
+        <div class="item">
+			<label class="label"><em>*</em>所属系列：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.product_SN, Model.XLDroList, new { @class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>所属区域：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.product_area, Model.AreaDroList, new { @class="drotext"})
+			</div>
+		</div>
+       <div class="item">
+            <label class="label"><em>*</em>品名：</label>
+            <div class="form-field">
+                @Html.DropDownListFor(k => k.product_id, ArrPro,new{@class="drotext drobtn"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>所属仓库：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.inv, Model.CKDroList,new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>所属材质：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.wood_id, Model.MCDroList,new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>色号：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.color_id, Model.SHDroList,new{@class="drotext"})
+			</div>
+		</div>
+       <div class="item">
+			<label class="label">长：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.length, new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">宽：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.width, new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">高：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.height, new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">数量：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.qty, new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                @*<input type="submit" value="提交" class="inputsubbtn mt10 mb20" style="width:100px;" />*@
+                <a href="javascript:void(0)" class="submitbtn mt10 mb30" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#product_SN").change(function () {
+            //var CVal = $(this).val();
+            //$("#product_SN").val(CVal);
+            var product_SN_id = $("#product_SN").val();;
+            var product_area_id = $("#product_area").val();
+            //alert(product_SN_id + ";;;" + product_area_id);
+            var ProUrl = "@Url.Action("GetProNameDrolistBySNAndArea","Labels")";
+            $.post(ProUrl, { ProSN: product_SN_id, ProProArea: product_area_id }, function (data) {
+                //alert(data);
+                $('#product_id').empty();
+                $('#product_id').append($('<option></option>').val("").text("请选择产品名称").attr("selected", true));
+                $('#product_id').append(data);
+            });
+        });
+        $("#product_area").change(function () {
+                var CVal = $(this).val();
+                //$("#product_area").val(CVal);
+                var product_SN_id = $("#product_SN").val();
+                var product_area_id = $("#product_area").val();
+                //alert(product_SN_id + ";;;" + product_area_id);
+                var ProUrl = "@Url.Action("GetProNameDrolistBySNAndArea","Labels")";
+                $.post(ProUrl, { ProSN: product_SN_id, ProProArea: product_area_id }, function (data) {
+                    //alert(data);
+                    $('#product_id').empty();
+                    $('#product_id').append($('<option></option>').val("").text("请选择产品名称").attr("selected", true));
+                    $('#product_id').append(data);
+                });
+            });
+
+        $(".drobtn").change(function () {
+            var Vtext = $(".drobtn").find("option:selected").text();
+            var Item = Vtext.split('_');
+            var Vlength = Item[1];
+            var Vwidth = Item[2];
+            var Vheight = Item[3];
+            $("#length").val(Vlength);
+            $("#width").val(Vwidth);
+            $("#height").val(Vheight);
+        });
+        $("#color_id").change(function () {
+            var Vtext = $("#color_id").find("option:selected").text().replace('╋', "");
+            $("#color").val(Vtext);
+        });
+    });
+</script>

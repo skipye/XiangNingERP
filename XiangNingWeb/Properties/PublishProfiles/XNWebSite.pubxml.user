@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bg/11.png">
+      <publishTime>08/13/2018 15:41:39</publishTime>
+    </File>
+    <File Include="bg/22.png">
+      <publishTime>08/13/2018 15:41:39</publishTime>
+    </File>
+    <File Include="bg/33.png">
+      <publishTime>08/13/2018 15:41:39</publishTime>
+    </File>
+    <File Include="bg/44.png">
+      <publishTime>08/13/2018 15:41:39</publishTime>
+    </File>
+    <File Include="bg/dz.png">
+      <publishTime>08/13/2018 16:36:16</publishTime>
+    </File>
+    <File Include="bg/fangkuai_bg.png">
+      <publishTime>08/28/2018 14:43:22</publishTime>
+    </File>
+    <File Include="bg/f_address.png">
+      <publishTime>08/13/2018 14:05:01</publishTime>
+    </File>
+    <File Include="bg/f_email.png">
+      <publishTime>08/13/2018 14:05:01</publishTime>
+    </File>
+    <File Include="bg/f_tel.png">
+      <publishTime>08/13/2018 14:05:01</publishTime>
+    </File>
+    <File Include="bg/jquery-slider-theme.png">
+      <publishTime>08/13/2018 16:05:17</publishTime>
+    </File>
+    <File Include="bg/logo.png">
+      <publishTime>08/13/2018 13:34:09</publishTime>
+    </File>
+    <File Include="bg/prohover_bg.jpg">
+      <publishTime>08/13/2018 16:02:24</publishTime>
+    </File>
+    <File Include="bg/qrCode.png">
+      <publishTime>08/13/2018 14:37:18</publishTime>
+    </File>
+    <File Include="bg/tedian.jpg">
+      <publishTime>08/13/2018 16:57:28</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/Common.dll">
+      <publishTime>07/06/2018 10:58:37</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>06/08/2017 14:21:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>07/10/2012 21:52:12</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>07/10/2012 21:52:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>06/08/2017 14:21:14</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/XiangNingWeb.dll">
+      <publishTime>09/11/2018 18:12:38</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.resources.dll">
+      <publishTime>06/08/2017 14:21:18</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.Formatting.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.resources.dll">
+      <publishTime>07/10/2012 23:31:08</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.WebRequest.resources.dll">
+      <publishTime>07/10/2012 23:31:08</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.WebHost.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Optimization.resources.dll">
+      <publishTime>06/08/2017 14:21:18</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Providers.resources.dll">
+      <publishTime>06/08/2017 14:21:18</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>06/08/2017 14:21:16</publishTime>
+    </File>
+    <File Include="css/about.css">
+      <publishTime>08/31/2018 14:59:54</publishTime>
+    </File>
+    <File Include="css/base.css">
+      <publishTime>09/03/2018 11:04:10</publishTime>
+    </File>
+    <File Include="css/case.css">
+      <publishTime>09/11/2018 17:06:00</publishTime>
+    </File>
+    <File Include="css/home.css">
+      <publishTime>08/13/2018 18:11:14</publishTime>
+    </File>
+    <File Include="css/jquery.slider.css">
+      <publishTime>08/13/2018 14:53:55</publishTime>
+    </File>
+    <File Include="css/ouract.css">
+      <publishTime>09/11/2018 16:54:40</publishTime>
+    </File>
+    <File Include="css/ouradvantages.css">
+      <publishTime>08/28/2018 15:13:46</publishTime>
+    </File>
+    <File Include="css/product.css">
+      <publishTime>09/10/2018 16:17:01</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>08/13/2018 11:28:41</publishTime>
+    </File>
+    <File Include="img/001.jpg">
+      <publishTime>08/13/2018 14:54:59</publishTime>
+    </File>
+    <File Include="img/002.jpg">
+      <publishTime>08/13/2018 14:54:59</publishTime>
+    </File>
+    <File Include="img/003.jpg">
+      <publishTime>08/13/2018 14:54:59</publishTime>
+    </File>
+    <File Include="img/10.jpg">
+      <publishTime>09/10/2018 16:08:16</publishTime>
+    </File>
+    <File Include="img/105.jpg">
+      <publishTime>08/13/2018 17:40:46</publishTime>
+    </File>
+    <File Include="img/109.jpg">
+      <publishTime>08/13/2018 17:44:06</publishTime>
+    </File>
+    <File Include="img/11_b.jpg">
+      <publishTime>08/13/2018 15:41:48</publishTime>
+    </File>
+    <File Include="img/20.jpg">
+      <publishTime>08/13/2018 17:51:08</publishTime>
+    </File>
+    <File Include="img/22_b.jpg">
+      <publishTime>08/13/2018 15:41:48</publishTime>
+    </File>
+    <File Include="img/28.jpg">
+      <publishTime>08/13/2018 17:49:49</publishTime>
+    </File>
+    <File Include="img/29.jpg">
+      <publishTime>08/13/2018 17:49:49</publishTime>
+    </File>
+    <File Include="img/30.jpg">
+      <publishTime>08/13/2018 17:49:49</publishTime>
+    </File>
+    <File Include="img/33_b.jpg">
+      <publishTime>08/13/2018 15:41:48</publishTime>
+    </File>
+    <File Include="img/44_b.jpg">
+      <publishTime>08/13/2018 15:41:56</publishTime>
+    </File>
+    <File Include="img/about.jpg">
+      <publishTime>08/28/2018 16:24:23</publishTime>
+    </File>
+    <File Include="img/about_1.jpg">
+      <publishTime>08/28/2018 17:06:29</publishTime>
+    </File>
+    <File Include="img/b1.jpg">
+      <publishTime>08/13/2018 15:06:53</publishTime>
+    </File>
+    <File Include="img/b2.jpg">
+      <publishTime>08/13/2018 15:09:10</publishTime>
+    </File>
+    <File Include="img/bt1.png">
+      <publishTime>08/13/2018 15:11:22</publishTime>
+    </File>
+    <File Include="img/case_2.jpg">
+      <publishTime>09/04/2018 16:33:07</publishTime>
+    </File>
+    <File Include="img/cubg.jpg">
+      <publishTime>09/11/2018 17:03:30</publishTime>
+    </File>
+    <File Include="img/dz_1.jpg">
+      <publishTime>09/04/2018 14:40:24</publishTime>
+    </File>
+    <File Include="img/logo_1.jpg">
+      <publishTime>09/11/2018 15:31:34</publishTime>
+    </File>
+    <File Include="img/mc_1.jpg">
+      <publishTime>08/28/2018 15:03:55</publishTime>
+    </File>
+    <File Include="img/mc_2.jpg">
+      <publishTime>08/28/2018 15:07:43</publishTime>
+    </File>
+    <File Include="img/mc_3.jpg">
+      <publishTime>08/28/2018 15:17:54</publishTime>
+    </File>
+    <File Include="img/OurAdvantages.jpg">
+      <publishTime>08/28/2018 13:57:56</publishTime>
+    </File>
+    <File Include="img/Our_1.jpg">
+      <publishTime>08/28/2018 14:28:45</publishTime>
+    </File>
+    <File Include="img/Our_2.jpg">
+      <publishTime>08/28/2018 14:31:07</publishTime>
+    </File>
+    <File Include="img/our_3.jpg">
+      <publishTime>09/11/2018 15:48:28</publishTime>
+    </File>
+    <File Include="img/our_4.jpg">
+      <publishTime>09/11/2018 16:08:47</publishTime>
+    </File>
+    <File Include="img/our_6.jpg">
+      <publishTime>09/11/2018 16:13:41</publishTime>
+    </File>
+    <File Include="img/our_7.jpg">
+      <publishTime>09/11/2018 16:13:41</publishTime>
+    </File>
+    <File Include="img/our_8.jpg">
+      <publishTime>09/11/2018 16:46:21</publishTime>
+    </File>
+    <File Include="img/p1.jpg">
+      <publishTime>08/13/2018 18:04:51</publishTime>
+    </File>
+    <File Include="img/p2.jpg">
+      <publishTime>08/13/2018 18:04:51</publishTime>
+    </File>
+    <File Include="img/p3.jpg">
+      <publishTime>08/13/2018 18:04:51</publishTime>
+    </File>
+    <File Include="img/p4.jpg">
+      <publishTime>08/13/2018 18:05:21</publishTime>
+    </File>
+    <File Include="img/p5.jpg">
+      <publishTime>08/13/2018 18:05:34</publishTime>
+    </File>
+    <File Include="img/p6.jpg">
+      <publishTime>08/13/2018 18:04:37</publishTime>
+    </File>
+    <File Include="img/p7.jpg">
+      <publishTime>08/13/2018 18:04:37</publishTime>
+    </File>
+    <File Include="img/p8.jpg">
+      <publishTime>08/13/2018 18:04:37</publishTime>
+    </File>
+    <File Include="img/pro_1.jpg">
+      <publishTime>09/10/2018 14:41:49</publishTime>
+    </File>
+    <File Include="img/red_fk.jpg">
+      <publishTime>09/11/2018 17:09:44</publishTime>
+    </File>
+    <File Include="js/jquery-1.7.1.min.js">
+      <publishTime>08/13/2018 14:53:20</publishTime>
+    </File>
+    <File Include="js/jquery.slider.js">
+      <publishTime>08/13/2018 15:11:42</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>08/13/2018 11:28:48</publishTime>
+    </File>
+    <File Include="Views/About/ContactUs.cshtml">
+      <publishTime>09/03/2018 13:51:53</publishTime>
+    </File>
+    <File Include="Views/About/Idea.cshtml">
+      <publishTime>08/29/2018 16:38:04</publishTime>
+    </File>
+    <File Include="Views/About/Index.cshtml">
+      <publishTime>08/29/2018 14:01:39</publishTime>
+    </File>
+    <File Include="Views/CustomCase/Index.cshtml">
+      <publishTime>09/11/2018 17:08:41</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>08/15/2018 17:23:56</publishTime>
+    </File>
+    <File Include="Views/News/Detail.cshtml">
+      <publishTime>09/11/2018 17:37:48</publishTime>
+    </File>
+    <File Include="Views/OurActivities/Index.cshtml">
+      <publishTime>09/11/2018 17:39:04</publishTime>
+    </File>
+    <File Include="Views/OurAdvantages/Index.cshtml">
+      <publishTime>08/28/2018 15:49:44</publishTime>
+    </File>
+    <File Include="Views/Products/Detail.cshtml">
+      <publishTime>09/11/2018 15:36:20</publishTime>
+    </File>
+    <File Include="Views/Products/Index.cshtml">
+      <publishTime>09/11/2018 14:35:41</publishTime>
+    </File>
+    <File Include="Views/Products/_RecommendPro.cshtml">
+      <publishTime>08/13/2018 18:15:09</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>08/13/2018 11:28:41</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>08/29/2018 16:38:10</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>08/13/2018 11:28:41</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>08/13/2018 11:28:41</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/11/2018 18:12:39</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XNFinanceModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="XNFinanceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FR_accessory_PO" EntityType="XNFinanceModel.FR_accessory_PO" />
+    <EntitySet Name="FR_contract" EntityType="XNFinanceModel.FR_contract" />
+  </EntityContainer>
+  <EntityType Name="FR_accessory_PO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PO_id" Type="Int32" Nullable="false" />
+    <Property Name="SN" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="supplier" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="total" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="pay_date" Type="DateTime" Precision="3" />
+    <Property Name="pay_mode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="amount" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="operator_id" Type="Int32" />
+    <Property Name="operator_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="delete_flag" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FR_contract">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contract_id" Type="Int32" Nullable="false" />
+    <Property Name="SN" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="customer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="total" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="receive_date" Type="DateTime" Precision="3" />
+    <Property Name="pay_mode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="amount" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="operator_id" Type="Int32" />
+    <Property Name="operator_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="delete_flag" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,50 @@
+﻿@using ServiceProject;
+@{
+    ViewBag.Title = "财务管理";
+    UserService USer = new UserService();
+    var SonLeve = USer.GetCurrentUserName().SonLeve;
+}
+
+<div class="box">
+    @if (SonLeve.Contains("CW_HT") || SonLeve == "All")
+    {
+        <div class="card fl mt20">
+            <a href="@Url.Action("Index","CW_HT")">
+                <div class="card_text">
+                    <h4 class="card_title">销售合同统计</h4>
+                    <p class="card_subtitle">管理销售合同统计信息</p>
+                </div>
+                <div class="card_pic">
+                    <img src="~/bg/Department.png" alt="销售合同统计" />
+                </div>
+            </a>
+        </div>
+    }@if (SonLeve.Contains("CW_Delivery") || SonLeve == "All")
+    {
+        <div class="card fl ml20 mt20">
+            <a href="@Url.Action("Index", "CW_Delivery")">
+                <div class="card_text">
+                    <h4 class="card_title">送货审核</h4>
+                    <p class="card_subtitle">对送货进行审核操作</p>
+                </div>
+                <div class="card_pic">
+                    <img src="~/bg/Position.png" alt="送货审核" />
+                </div>
+            </a>
+        </div>
+    }
+    @if (SonLeve.Contains("CW_BJ") || SonLeve == "All")
+    {
+        <div class="card fl ml20 mt20">
+            <a href="@Url.Action("Index", "CW_BJ")">
+                <div class="card_text">
+                    <h4 class="card_title">包工结算标记</h4>
+                    <p class="card_subtitle">对包工结算标记操作</p>
+                </div>
+                <div class="card_pic">
+                    <img src="~/bg/Position.png" alt="包工结算标记" />
+                </div>
+            </a>
+        </div>
+    }
+</div>

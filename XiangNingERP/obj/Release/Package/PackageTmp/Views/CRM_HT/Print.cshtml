@@ -1,0 +1,127 @@
+﻿@model ModelProject.CRM_HTZModel
+@{
+    Layout = null;
+    int i = 1;
+ }
+<link href="~/css/print.css?v=2" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="~/js/jQuery.print.js"></script>
+<script type="text/javascript">
+    function print() {
+        $("#printtext").print({
+            globalStyles: false,//是否包含父文档的样式，默认为true
+            stylesheet: "/css/print.css",
+            mediaPrint: false,//是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+
+            noPrintSelector: ".no-print",//不想打印的元素的jQuery选择器，默认为".no-print"
+
+            iframe: false,//是否使用一个iframe来替代打印表单的弹出窗口，true为在本页面进行打印，false就是说新开一个页面打印，默认为true
+
+            append: null,//将内容添加到打印内容的后面
+
+            prepend: null,//将内容添加到打印内容的前面，可以用来作为要打印内容
+
+            deferred: $.Deferred(),//回调函数
+        });
+    };
+    
+	</script>
+<div id="printtext" class="htprint clearfix">
+    <h2>家具销售合同</h2>
+    <div class="topht clearfix mt20">
+        <span class="fl">订货日期<span>：@Convert.ToDateTime(Model.created_time).ToString("yyyy")</span> 年 <span>@Convert.ToDateTime(Model.created_time).ToString("MM")</span>月<span> @Convert.ToDateTime(Model.created_time).ToString("dd") </span>日</span>
+        <span class="fr">合同编号：No @Model.SN</span>
+    </div>
+    <p class="mt10 pspace">依照《中华人民共和国合同法》及其他有关法律、法规，就相关事宜，公平和诚实信用的原则，经双方友好协商，达成如下约定：</p>
+    <p class="mt10 f14">一、产品名称、规格、数量、金额：</p>
+@if (Model != null && Model.HTPro.Any())
+{
+    <table class="ptable">
+        <col width="50px" />
+        <col width="160px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        
+        <col width="80px" />
+        <tr class="fb">
+            <th>序号</th>
+            <th>产品名称</th>
+            <th>木材</th>
+            <th>规格</th>
+            <th>数量</th>
+            <th>单位</th>
+            <th>单价</th>
+            <th>金额</th>
+            <th>备注</th>
+        </tr>
+    @foreach (var item in Model.HTPro)
+    {
+       
+        <tr style="height:35px;">
+            <td>@(i)</td>
+            <td>@item.productXL _ @item.productName </td>
+            <td>@item.woodName </td>
+            <td>@(Convert.ToDecimal(item.length).ToString("0")+"X"+Convert.ToDecimal(item.width).ToString("0")+"X"+Convert.ToDecimal(item.height).ToString("0"))</td>
+            <td>@item.qty</td>
+            <td>件</td>
+            <td>@item.price</td>
+            <td>@(item.price*item.qty)</td>
+            <td><div class="tw" title="@item.req_others">@item.req_others</div></td>
+        </tr>
+        i++;
+    } 
+    </table>
+   <p class="mt10 pspace">备注：其他未尽事项必须经双方用书面形式签字后才有效，否则，原经济合同仍然有效。</p>
+}
+    <p class="mt10 f14">二、验收期限和方法：</p>
+    <p class="mt10 pspace">1.方法：按双方议定的款式和现有的货物实样为准。</p>
+    <p class="pspace">2.甲方签收人除法人或指定的代理人签收外，其他人员签收无效。</p>
+    <p class="pspace">3.产品交货期为：<u>@Convert.ToDateTime(Model.delivery_date).ToString("yyyy")</u>年<u>@Convert.ToDateTime(Model.delivery_date).ToString("MM")</u>月<u>@Convert.ToDateTime(Model.delivery_date).ToString("dd")</u>日。</p>
+
+    <p class="mt10 f14">三、交货方法：</p>
+    <p class="mt10 pspace">1.方法：由 <u>@Model.freight_carrier</u>方承担运费费用。</p>
+    <p class="pspace">2.验收地点及交货地址：<u>@Model.delivery_address</u>。</p>
+
+    <p class="mt10 f14">四、付款方法：</p>
+    <p class="mt10 pspace">1.本合同经双方签字（盖章）后即预付<u>@(Math.Round(Convert.ToDecimal(Model.prepay * 100 / Model.amount),2,MidpointRounding.AwayFromZero))</u>%的定金（<u>@Model.prepay</u>）元。</p>
+    <p class="pspace">2.乙方生产完成后经甲方验收合格，支付剩余<u>@(Math.Round(Convert.ToDecimal((Model.amount - Model.prepay) * 100 / Model.amount),2,MidpointRounding.AwayFromZero))</u>%（<u>@(Model.amount-Model.prepay)</u>元）后三日内安排发货。</p>
+
+    <p class="mt10 f14">五、违约责任：</p>
+    <p class="mt10 pspace">甲乙双方任何一方违约，应承担违约责任。乙方不能交货的，或甲方中途退货，向对方赔偿不能交货或中途退货部分货款总值的50%。如违约金不足以抵补损失时，还应支付赔偿金以补偿其差额部分。</p>
+
+
+    <p class="mt10 f14">六、质量检验最终机构：</p>
+    <p class="mt10 pspace">甲乙双方所承认的产品质量均由“国家家具质量监督检验中心即北京检测中心”为最终裁定。</p>
+
+    <p class="mt10"><span class="f14">七、</span>本合同一式<u>肆</u>份，甲方执<u>壹</u>份，乙方执<u>叁</u>份。</p>
+    <p class="mt10"><span class="f14">八、</span>签约地点为上海市青浦区，如发生纠纷由签发地法院裁决。</p>
+
+
+    <div class="qzbox clearfix">
+        <div class="fl" style="width:48%">
+            <p>甲方：@Model.customer</p>
+            <p>代表签字（盖章）：</p>
+            <p>电话：@Model.TelPhone</p>
+            <p>地址：@Model.delivery_address</p>
+        </div>
+        <div class="fr" style="width:48%">
+            <p>已方：上海香凝工艺品有限公司</p>
+            <p>代表签字（盖章）：</p>
+            <p>电话：021-59831900</p>
+            <p>地址：上海市青浦区朱家角朱枫公路1355号</p>
+        </div>
+    </div>
+
+
+    <p class="rtit">①销售存档︵白︶②客户存档︵红︶③财务存联︵蓝︶④生产联︵黄︶</p>
+</div>
+
+
+
+<div class="no-print">
+  <input type="button" value="预览并打印" class="inputsubbtn mt10 mb20" style="width:120px;" onclick="print()"/>
+</div>

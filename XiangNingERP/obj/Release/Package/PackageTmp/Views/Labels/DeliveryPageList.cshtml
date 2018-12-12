@@ -1,0 +1,73 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.LabelsModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    string[] ArrWO = { "未确认", "已入库", "已出库" };
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="50px" />
+        <col width="200px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>产品名称</th>
+            <th>合同编号</th>
+            <th>送货单号</th>
+            <th>订货人</th>
+            <th>材质</th>
+            <th>色号</th>
+            <th>尺寸</th>
+            <th>所在仓库</th>
+            <th>厂长是否审核</th>
+            <th>财务是否审核</th>
+            <th>是否已送</th>
+            <th>操作日期</th>
+            <th>操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td style="text-align:left;">@(item.ProductXL+"_" +item.ProductName)</td>
+            <td  class="detailbtn" title="合同详情" url="@Url.Action("Detail", "CRM_HT")" ref="@item.CRM_HTId">@item.CRM_SN</td>
+            <td>@item.OrderNum</td>
+            <td>@item.customersName</td>
+            <td>@item.woodname</td>
+            <td>@item.color</td>
+            <td>@item.style</td>
+            <td><div class="tw">@item.invname</div></td>
+            <td>@(item.CZ_checked==true?"是":"否")</td>
+            <td>@(item.CW_checked == true ? "是" : "否")</td>
+            <td>
+                @(item.delete_flag!=null&& item.delete_flag==true?"已送":"未送")
+                
+            </td>
+            <td>@Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd")</td>
+            <td>
+                @if (item.CZ_checked == true && item.CW_checked == true && item.delete_flag == false)
+                {
+                    <a href="javascript:void(0)" class="editbtn" title="打印送货单" ref="@item.id" url="@Url.Action("Index", "Print")">打印送货单</a>
+                }
+            </td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new { ProSN=SModel.ProSN,SaleName=SModel.SaleName,PageIndex=SModel.PageIndex,PagePSize=SModel.PagePSize,status=SModel.status,StartTime=SModel.StartTime,EndTime=SModel.EndTime }, "DeliveryPageList", "Labels",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

@@ -1,0 +1,62 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.SuppliersModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="70px" />
+        <col width="180px" />
+        <col width="120px" />
+        <col width="220px" />
+        <col width="100px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col />
+        <col width="220px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>客户名称</th>
+            <th>客户简称</th>
+            <th>客户地址</th>
+            <th>联系人</th>
+            <th>联系电话</th>
+            <th>上传时间</th>
+            <th>备注</th>
+            <th>操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td style="text-align:left;" title="@item.name"><div class="tw">@item.name</div></td>
+            <td><div class="tw">@item.shortname</div></td>
+            <td style="text-align:left;"><div class="tw">@item.address</div></td>
+            <td>@item.linkman </td>
+            <td>@item.tel</td>
+            <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd")</td>
+            <td style="text-align:left" title="@item.remark"><div class="tw">@item.remark</div></td>
+            <td><a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "Suppliers")" ref="@item.id">编辑</a>
+                <a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "Suppliers")">删除</a></td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new {  name=SModel.name ,PageSize=SModel.PageSize}, "PageList", "Suppliers",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

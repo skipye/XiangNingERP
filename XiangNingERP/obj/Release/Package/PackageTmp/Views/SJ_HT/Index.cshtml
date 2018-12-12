@@ -1,0 +1,41 @@
+﻿@model ModelProject.SCRM_HTZModel
+@{
+    ViewBag.Title = "查看合同";
+}
+
+<p class="currpoint">
+    <a href="@Url.Action("Index","Home")">首页</a>  -> 
+    <a href="@Url.Action("Index","SJ")">设计管理</a>  -> 
+    <a href="Javascript:void(0)" class="crrtab">合同管理</a>
+</p>
+
+<div class="search">
+    <ul class="searchtab"><li class="current">条件搜索</li></ul>
+    <div style="clear:both"></div>
+    <div class="searchbox clearfix">
+        @using (Html.BeginForm("Index", "SJ_HT", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="form_item">
+                <label class="label">订货人：</label>
+                <div class="form-field">
+                   @Html.TextBoxFor(k => k.UserName,  new { @class="inputtext"})
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-item-submit">
+                <input type="submit" class="inputsubbtn fr mb20 mr20" style="width:100px;" value="提交" />
+               @* <a href="Javscript:void(0)" class="submitbtn fr mb20 mr20" style="width:100px;">提交</a>*@
+            </div>
+        }
+    </div>
+</div><!--search end -->
+
+<div class="mod">
+    <div class="hd">
+        <h2>搜索结果</h2>
+    </div>
+</div>
+
+<div id="ResultList" class="xTable">
+   @Html.Action("PageList", "SJ_HT", new { SRmodels=Model})
+</div>

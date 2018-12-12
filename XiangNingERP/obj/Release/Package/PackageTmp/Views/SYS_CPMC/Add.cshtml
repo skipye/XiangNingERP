@@ -1,0 +1,141 @@
+﻿@model ModelProject.SYS_CPMCModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "SYS_CPMC", FormMethod.Post, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>k.id)
+     @Html.HiddenFor(m=>m.SModel.name)
+     @Html.HiddenFor(m=>m.SModel.product_SN_id)
+     @Html.HiddenFor(m=>m.SModel.product_area_id)
+     @Html.HiddenFor(m=>m.SModel.PageIndex)
+    <div class="mod normal">
+        <div class="item">
+			<label class="label"><em>*</em>所属系列：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.product_SN_id, Model.XLDroList, new { @class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>所属区域：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.product_area_id, Model.AreaDroList, new { @class="drotext"})
+			</div>
+		</div>
+       <div class="item">
+            <label class="label"><em>*</em>品名：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.Pname,new{@class="inputtext"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>长（mm）：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.length,new{@class="inputtext number"})
+			</div>
+		</div>
+         <div class="item">
+			<label class="label"><em>*</em>宽（mm）：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.width,new{@class="inputtext number"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>高（mm）：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.height,new{@class="inputtext number"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>材积：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.volume,new{@class="inputtext"})
+			</div>
+		</div>
+        <div class="item" style="height:130px;">
+			<label class="label"><em>*</em>产品图片：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.ConvertImg,new{@class="inputtext",@style="width:350px"})
+                <a href="@Model.ConvertImg" target="_blank"><img src="@Model.ConvertImg" class="ConvertImg picreload" /></a>
+                
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>图纸：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.paper_path,new{@class="inputtext",@style="width:350px"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>料单：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.BOM_path,new{@class="inputtext",@style="width:350px"})
+			</div>
+		</div>
+        <div class="item">
+            <label class="label"><em>*</em>人工成本：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.PersonPrice, new { @class = "inputtext", @style = "width:350px" })
+            </div>
+        </div>
+        <div class="item">
+			<label class="label">备注：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.remark,new{style="width:430px;height:100px;",@class="inputtext"})
+				@Html.ValidationMessageFor(k=>k.remark)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    //图片上传功能
+    $("#ConvertImg").bind("click", function () {
+        var TabId = $(this).attr("id");
+        var toUrl = '@Url.Action("Index","FileManage")';
+        var TabTitle = "图片上传";
+        var $dialog = $("#dialog_img");
+        $dialog.html("");
+        $dialog.dialog("option", "title", TabTitle);
+        $dialog.dialog("open");
+        $.get(toUrl, { TabId: TabId }, function (d) { $dialog.html(d); });
+    });
+    $("#paper_path").bind("click", function () {
+        var TabId = $(this).attr("id");
+        var toUrl = '@Url.Action("Index","FileManage")';
+        var TabTitle = "图纸上传";
+        var $dialog = $("#dialog_img");
+        $dialog.html("");
+        $dialog.dialog("option", "title", TabTitle);
+        $dialog.dialog("open");
+        $.get(toUrl, { TabId: TabId }, function (d) { $dialog.html(d); });
+    });
+    $("#BOM_path").bind("click", function () {
+        var TabId = $(this).attr("id");
+        var toUrl = '@Url.Action("Index","FileManage")';
+        var TabTitle = "料单上传";
+        var $dialog = $("#dialog_img");
+        $dialog.html("");
+        $dialog.dialog("option", "title", TabTitle);
+        $dialog.dialog("open");
+        $.get(toUrl, { TabId: TabId }, function (d) { $dialog.html(d); });
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+
+
+</script>

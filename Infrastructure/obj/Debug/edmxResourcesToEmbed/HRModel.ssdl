@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EHR821Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="EHR821ModelStoreContainer">
+    <EntitySet Name="ehr_employee" EntityType="EHR821Model.Store.ehr_employee" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="ehr_employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" />
+    <Property Name="user" Type="nvarchar" MaxLength="64" />
+    <Property Name="password" Type="nvarchar" MaxLength="64" />
+    <Property Name="lock" Type="smallint" />
+    <Property Name="department" Type="int" Nullable="false" />
+    <Property Name="departmentname" Type="nvarchar" MaxLength="64" />
+    <Property Name="gender" Type="varchar" MaxLength="12" />
+    <Property Name="birthday" Type="datetime" />
+    <Property Name="namecard" Type="nvarchar" MaxLength="64" />
+    <Property Name="nation" Type="nvarchar" MaxLength="16" />
+    <Property Name="birthplace" Type="nvarchar" MaxLength="16" />
+    <Property Name="education" Type="nvarchar" MaxLength="16" />
+    <Property Name="bankaccount" Type="nvarchar" MaxLength="32" />
+    <Property Name="tel" Type="varchar" MaxLength="32" />
+    <Property Name="accountlocation" Type="nvarchar" MaxLength="256" />
+    <Property Name="hometel" Type="nvarchar" MaxLength="32" />
+    <Property Name="homeaddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="status" Type="smallint" Nullable="false" />
+    <Property Name="jobs" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobtime" Type="datetime" />
+    <Property Name="socialsecurity" Type="nvarchar" MaxLength="16" />
+    <Property Name="photo" Type="varchar" MaxLength="128" />
+    <Property Name="mark" Type="nvarchar" MaxLength="1000" />
+    <Property Name="marriage" Type="nvarchar" MaxLength="8" />
+    <Property Name="title" Type="nvarchar" MaxLength="64" />
+    <Property Name="other" Type="nvarchar" MaxLength="512" />
+    <Property Name="groupname" Type="nvarchar" MaxLength="32" />
+    <Property Name="group" Type="int" />
+    <Property Name="branchname" Type="varchar" />
+    <Property Name="branch" Type="varchar" />
+    <Property Name="officialtime" Type="datetime" />
+    <Property Name="quitdate" Type="datetime" />
+    <Property Name="shifts" Type="varchar" MaxLength="128" />
+    <Property Name="lawdate" Type="datetime" />
+    <Property Name="level" Type="int" />
+    <Property Name="leveltext" Type="varchar" MaxLength="256" />
+    <Property Name="roledepartment" Type="varchar" MaxLength="4000" />
+    <Property Name="roledepartmentname" Type="varchar" MaxLength="4000" />
+    <Property Name="ZWY" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+</Schema>

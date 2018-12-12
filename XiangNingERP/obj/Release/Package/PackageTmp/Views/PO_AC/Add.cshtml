@@ -1,0 +1,122 @@
+﻿@model ModelProject.PO_ACModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "PO_AC", FormMethod.Post, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>k.id)
+     @Html.HiddenFor(m=>m.SModel.PageIndex)
+    <div class="mod normal">
+        <div class="hd">
+			<h2>采购基本信息</h2>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>采购申请人：</label>
+			<div class="form-field">
+               @Html.DropDownListFor(k => k.ArrUser, Model.UserDroList, new { @class="drotext"})
+                @Html.HiddenFor(k => k.apply_id)
+                @Html.HiddenFor(k => k.apply_name)
+                @Html.HiddenFor(k => k.apply_department)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>采购名称：</label>
+			<div class="form-field">
+               @Html.TextBoxFor(k => k.accessoryname, new {@class="inputtext" })
+                @Html.HiddenFor(k=>k.accessory_id)
+                @Html.HiddenFor(k => k.unit)
+			</div>
+		</div>
+      
+       <div class="item">
+            <label class="label"><em>*</em>采购数量：</label>
+            <div class="form-field">
+               @Html.TextBoxFor(k => k.qty, new { @class="sputtxt",@style="width:100px;"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>采购单价：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.price,new{@class="inputtext"})
+			</div>
+		</div>
+         <div class="item">
+			<label class="label"><em>*</em>供应商：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.supplier_id,Model.GYSDroList,new{@class="inputtext"})
+                @Html.HiddenFor(k => k.supplier_name)
+			</div>
+		</div>
+        <div class="item">
+			    <label class="label">采购时间：</label>
+			    <div class="form-field">
+                    @Html.TextBoxFor(k => k.require_date, new { @class="sputtxt",@style="width:120px;",@ref="datepicker",@placeholder="采购时间"}) 
+			    </div>
+		 </div>
+        <div class="item">
+			<label class="label">备注：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.remark,new{style="width:430px;height:100px;",@class="inputtext"})
+				@Html.ValidationMessageFor(k=>k.remark)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    $("#accessoryname").autocomplete({
+        source: '@Url.Action("GetCKAutoLiat","PO_KC")',
+        minLength: 1,
+        select: function (event, ui) {
+            $(":hidden[name='accessory_id']").val(ui.item.Id);
+            $(":hidden[name='unit']").val(ui.item.unit);
+        }
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+
+    $("#ArrUser").change(function () {
+        var StrVal = $(this).val();
+
+        if (StrVal != null && StrVal != "") {
+            var Arr = StrVal.split('#');
+            $("#apply_id").val(Arr[0]);
+            $("#apply_name").val(Arr[1]);
+            $("#apply_department").val(Arr[3]);
+        }
+        else {
+            $("#apply_id").val("");
+            $("#apply_name").val("");
+            $("#apply_department").val("");
+        }
+    });
+    $(":text[ref='datepicker']").datepicker({
+        changeYear: true,
+        changeMonth: true,
+        showButtonPanel: true
+    });
+    //$("#accessory_id").change(function () {
+    //    var StrVal = $("#accessory_id").find("option:selected").text();
+    //    if (StrVal != null && StrVal != "") {
+    //        var Arr = StrVal.split('&');
+    //        $("#unit").val(Arr[1]);
+    //    }
+    //    else {
+    //        $("#unit").val("");
+    //    }
+    //});
+</script>

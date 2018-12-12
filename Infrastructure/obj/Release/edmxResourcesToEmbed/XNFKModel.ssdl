@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XNFinanceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="XNFinanceModelStoreContainer">
+    <EntitySet Name="FR_accessory_PO" EntityType="XNFinanceModel.Store.FR_accessory_PO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FR_contract" EntityType="XNFinanceModel.Store.FR_contract" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="FR_accessory_PO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PO_id" Type="int" Nullable="false" />
+    <Property Name="SN" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="supplier" Type="nvarchar" MaxLength="200" />
+    <Property Name="total" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="pay_date" Type="datetime" />
+    <Property Name="pay_mode" Type="varchar" MaxLength="50" />
+    <Property Name="amount" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="operator_id" Type="int" />
+    <Property Name="operator_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_time" Type="datetime" Nullable="false" />
+    <Property Name="delete_flag" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FR_contract">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="contract_id" Type="int" Nullable="false" />
+    <Property Name="SN" Type="varchar" MaxLength="20" />
+    <Property Name="customer" Type="nvarchar" MaxLength="50" />
+    <Property Name="total" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="receive_date" Type="datetime" />
+    <Property Name="pay_mode" Type="varchar" MaxLength="50" />
+    <Property Name="amount" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="operator_id" Type="int" />
+    <Property Name="operator_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_time" Type="smalldatetime" Nullable="false" />
+    <Property Name="delete_flag" Type="bit" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,118 @@
+﻿@using Common;
+@model ModelProject.WIP_WOXQModel
+@{
+    Layout = null;
+    List<SelectListItem> ArrGX=new List<SelectListItem>();
+    ArrGX.Add(new SelectListItem { Text = "请选择工序", Value = "" });
+    ArrGX.Add(new SelectListItem { Text = "开料", Value = "开料" });
+    ArrGX.Add(new SelectListItem { Text = "木工前段", Value = "木工" });
+    ArrGX.Add(new SelectListItem { Text = "木工后段", Value = "木工" });
+    ArrGX.Add(new SelectListItem { Text = "雕花", Value = "雕花" });
+    ArrGX.Add(new SelectListItem { Text = "刮磨", Value = "刮磨" });
+    ArrGX.Add(new SelectListItem { Text = "油漆", Value = "油漆" });
+    ArrGX.Add(new SelectListItem { Text = "配件安装", Value = "配件安装" });
+    
+    List<SelectListItem> ArrUser = new List<SelectListItem>();
+    ArrUser.Add(new SelectListItem { Text = "请选择接单人", Value = "" });
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Work", "Semi", FormMethod.Post, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>k.wo_id)
+    <div class="mod normal clearfix">
+        <div class="item">
+			<label class="label"><em>*</em>选择工序：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.GongXu,ArrGX,new{ @class="drotext",@style="width:100px;"})
+                @Html.HiddenFor(k => k.Job)
+			</div>
+		</div>
+		<div class="item">
+			<label class="label"><em>*</em>接单人：</label>
+			<div class="form-field">
+              @* @Html.TextBoxFor(k => k.customer, new { @class="sputtxt",@style="width:100px;"})*@
+                @Html.DropDownListFor(k => k.ArrUser, ArrUser, new { @class="drotext",@style="width:100px;"})
+                @*<span>没你客户，去<a class="adddialog" url="@Url.Action("Add","CRM_KH")" title="新增" ref="0">新增</a></span>*@
+                @Html.HiddenFor(k => k.user_name)
+                @Html.HiddenFor(k => k.user_id)
+                @Html.HiddenFor(k => k.department_id)
+                @Html.HiddenFor(k => k.department)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>工作开始时间：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k => k.exp_begin_date, new { @class="sputtxt",@style="width:120px;",@ref="datepicker"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>工作结束时间：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k => k.exp_end_date, new { @class="sputtxt",@style="width:120px;",@ref="datepicker"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>生产价格：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.cost,new{@class="sputtxt",@style="width:100px;"})
+			</div>
+		</div>
+         <div class="item">
+			<label class="label">备注：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.remark,new{style="width:430px;height:200px;",@class="inputtext"})
+			</div>
+		</div>
+        
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    $("#GongXu").change(function () {
+        var PId = $(this).val();
+        var JobName = $("#GongXu").find("option:selected").text();
+        $("#Job").val(JobName);
+        var ProUrl = "@Url.Action("UserDroListByJob","WIP_WO")";
+        $.post(ProUrl, { Job: PId }, function (data) {
+            //alert(data);
+            $('#ArrUser').empty();
+            $('#ArrUser').append($('<option></option>').val("").text("请选择接单人").attr("selected", true));
+            $('#ArrUser').append(data);
+        });
+     });
+    $("#ArrUser").change(function () {
+        var StrVal = $(this).val();
+        if (StrVal != null && StrVal != "") {
+            var Arr = StrVal.split('#');
+            $("#user_id").val(Arr[0])
+            $("#user_name").val(Arr[1])
+            $("#department_id").val(Arr[2]);
+            $("#department").val(Arr[3]);
+        }
+        else {
+            $("#user_id").val("")
+            $("#user_name").val("")
+            $("#department_id").val("");
+            $("#department").val("");
+        }
+    });
+    $(":text[ref='datepicker']").datepicker({
+        changeYear: true,
+        changeMonth: true,
+        showButtonPanel: true
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+</script>

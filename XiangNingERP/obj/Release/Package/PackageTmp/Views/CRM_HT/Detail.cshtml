@@ -1,0 +1,87 @@
+﻿@model ModelProject.CRM_HTZModel
+@{
+    Layout = null;
+    List<SelectListItem> ArrBY = new List<SelectListItem>();
+    ArrBY.Add(new SelectListItem { Text = "请选择送货通道", Value = "" });
+    ArrBY.Add(new SelectListItem { Text = "电梯", Value = "电梯" });
+    ArrBY.Add(new SelectListItem { Text = "楼梯", Value = "楼梯" });
+    int i = 1;
+}
+
+<div class="mod normal">
+	<div class="hd">
+		<h2>基本信息</h2>
+	</div>
+    <p class="ditem">合同编号：@Model.SN</p>
+	<p class="ditem">客户姓名：@Model.customer</p>
+	<p class="ditem">业务员：@Model.userName</p>
+	<p class="ditem">送货日期：@Convert.ToDateTime(Model.delivery_date).ToString("yyyy-MM-dd")</p>
+	<p class="ditem">是否上门测量：@(Model.measure_flag!=null && Model.measure_flag==true?"是":"否")</p>
+    <div class="clear"></div>
+    @if (!string.IsNullOrEmpty(Model.Remark)){
+    <p class="txtitem">设计师要求：@Model.Remark</p>}
+    
+    <div style="width:690px;overflow:auto;margin:10px auto;">
+
+    <div class="xTable">
+
+@if (Model.HTPro != null && Model.HTPro.Any())
+{
+    <table>
+        <col width="50px" />
+        <col width="120px" />
+        <col width="80px" />
+        <col width="100px" />
+        <col width="80px" />
+        <col width="80px" />
+        <col width="80px" />
+        <col width="80px" />
+        <col width="50px" />
+        <col width="80px" />
+        <col width="100px" />
+        <col width="160px" />
+        <col width="160px" />
+        <tr class="fb">
+            <th>序号</th>
+            <th>产品名称</th>
+            <th>木材</th>
+            <th>色号</th>
+            <th>是否定制</th>
+            <th>长(mm)</th>
+            <th>宽(mm)</th>
+            <th>高(mm)</th>
+            <th>数量</th>
+            <th>五金配件</th>
+            <th>配饰</th>
+            <th>雕花要求</th>
+            <th>其他要求</th>
+        </tr>
+    @foreach (var item in Model.HTPro)
+    {
+        <tr style="height:35px;">
+            <td>@(i)</td>
+            <td>@item.productXL _ @item.productName </td>
+            <td>@item.woodName </td>
+            <td>@item.colorName</td>
+            <td>@(item.custom_flag!=null && item.custom_flag==true?"是":"否")</td>
+            <td>@Convert.ToInt32(item.length).ToString("0") </td>
+            <td>@Convert.ToInt32(item.width).ToString("0") </td>
+            <td>@Convert.ToInt32(item.height).ToString("0") </td>
+            <td>@item.qty</td>
+            <td>@item.hardware_part</td>
+            <td><div class="tw" title="@item.decoration_part">@item.decoration_part</div></td>
+            <td><div class="tw" title="@item.req_carve">@item.req_carve</div></td>
+            <td><div class="tw" title="@item.req_others">@item.req_others</div></td>
+             @* <td>
+              <a href="">审核</a><a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "CRM_HTPro")">删除</a></td>*@
+        </tr>
+        i++;
+    } 
+    </table>
+   
+}
+else{<p>暂无内容！</p>}
+
+</div>
+</div>
+ </div>

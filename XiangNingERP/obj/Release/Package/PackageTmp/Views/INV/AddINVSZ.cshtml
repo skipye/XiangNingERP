@@ -1,0 +1,63 @@
+﻿@model ModelProject.INVCKModel
+@{
+    Layout = null;
+    List<SelectListItem> ArrType = new List<SelectListItem>();
+    ArrType.Add(new SelectListItem { Text = "请选择仓库类型", Value = "0" });
+    ArrType.Add(new SelectListItem { Text = "原材料库", Value = "1" });
+    ArrType.Add(new SelectListItem { Text = "辅料库", Value = "2" });
+    ArrType.Add(new SelectListItem { Text = "半成品库", Value = "3" });
+    ArrType.Add(new SelectListItem { Text = "成品库", Value = "4" });
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("AddINVSZ", "INV", FormMethod.Post, new { @class = "form mt20" }))
+    { 
+     @Html.HiddenFor(k=>k.id)
+    <div class="mod normal">
+		<div class="hd">
+			<h2>仓库设置</h2>
+		</div>
+		<div class="item">
+			<label class="label"><em>*</em>仓库名称：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.name,new{@style="width:430px;",@class="inputtext"})
+				@Html.ValidationMessageFor(k=>k.name)
+			</div>
+		</div>
+       <div class="item">
+            <label class="label">仓库类型：</label>
+            <div class="form-field">
+                @Html.DropDownListFor(k => k.typeId, ArrType, new { @class="drotext"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>仓库位置：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.address,new{style="width:430px;",@class="inputtext"})
+				@Html.ValidationMessageFor(k=>k.address)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">功能说明：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.remark,new{style="width:430px;height:100px;",@class="inputtext"})
+				@Html.ValidationMessageFor(k=>k.remark)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+
+</div>
+
+<script type="text/javascript">
+    $(".submitbtn").click(function () {
+        $(".form").submit();
+    });
+</script>

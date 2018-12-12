@@ -1,0 +1,91 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.LabelsModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    string[] ArrWO = { "未确认", "已入库", "已出库" };
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="50px" />
+        <col width="130px" />
+        <col width="140px" />
+        <col width="180px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="130px" />
+        <col width="120px" />
+        <col width="100px" />
+        <col width="70px" />
+        <col width="130px" />
+        <col />
+        <tr class="fb">
+            <th>选择</th>
+            <th>标签编码</th>
+            <th>产品编号</th>
+            <th>产品名称</th>
+            <th>材质</th>
+            <th>色号</th>
+            <th>尺寸</th>
+            <th>所入仓库</th>
+            <th>进库日期</th>
+            <th>状态</th>
+            <th>所属方式</th>
+            <th>操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@if (item.status == 1)
+            {<input type="checkbox" name="listcheck" class="listcheck" value="@item.id" />}</td>
+            <td>@item.SN</td>
+            <td style="text-align:left;"><div class="tw" title="@item.product_SN_Name">@item.product_SN_Name</div></td>
+            <td style="text-align:left;"><div class="tw" title="@(item.ProductXL+"_" +item.ProductName)">@(item.ProductXL+"_" +item.ProductName)</div></td>
+            <td>@item.woodname</td>
+            <td>@item.color</td>
+            <td>@item.style</td>
+            <td><div class="tw">@item.invname</div></td>
+            <td>@Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd")</td>
+            <td style="color:#6ab51c;font-weight:bold;">@(item.status==0?"未确认":item.status==1?"已入库":item.status==2?"已出库":"已使用，预订发货")</td>
+            <td style="color:red;font-weight:bold;">@(item.flag!=null && item.flag==0?"销售产品":item.flag!=null && item.flag==1?"预投产品":"盘点产品")
+                @if (!string.IsNullOrEmpty(item.customersName))
+                { <span>(@item.customersName)</span> }
+
+            </td>
+            <td>
+                @if (item.status<1){
+                   <a href="javascript:void(0)" class="editbtn" title="确认" url="@Url.Action("Checked", "Labels")" ref="@item.id">确认</a>
+                   <a href="javascript:void(0)" class="editbtn" title="返修" url="@Url.Action("Rework", "Labels")" ref="@item.id">返修</a> 
+                }
+                else if (item.status==1){
+                    <a href="javascript:void(0)" class="editbtn" title="移库" ref="@item.id" url="@Url.Action("Transfer", "Labels")">移库</a>
+                    <a href="javascript:void(0)" class="editbtn" title="打印标签" ref="@item.id" url="@Url.Action("Index", "Print")">打印标签</a>@*
+                    <a href="javascript:void(0)" class="editbtn" ref="@item.id" url="@Url.Action("Work", "Labels")" title="维修送货">维修送货</a>*@
+                }
+                @*@if (item.CRM_id <= 0 && item.WIP_id <= 0)
+                { 
+                    <a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "Labels")" ref="@item.id">编辑</a>
+                }*@
+                <a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("EditStyle", "Labels", new { PageIndex=SModel.PageIndex,PagePSize=SModel.PagePSize})" ref="@item.id">编辑</a>
+            </td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new { wood_id=SModel.wood_id,productName=SModel.productName,product_SN_id=SModel.product_SN_id,inv_id=SModel.inv_id,product_area_id=SModel.product_area_id,PageIndex=SModel.PageIndex,PagePSize=SModel.PagePSize,status=SModel.status,StartTime=SModel.StartTime,EndTime=SModel.EndTime, SaleName=SModel.SaleName }, "PageList", "Labels",new PagerOptions
+       {
+           PageIndexParameterName = "PageIndex",
+           CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+           NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+           MorePagerItemWrapperFormatString = "<li>{0}</li>",
+           NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+           ShowFirstLast = true,
+       }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

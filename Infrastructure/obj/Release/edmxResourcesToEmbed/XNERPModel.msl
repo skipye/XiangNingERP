@@ -1,0 +1,758 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="XNERPModelStoreContainer" CdmEntityContainer="XNERPEntities">
+    <EntitySetMapping Name="CRM_contract_detail">
+      <EntityTypeMapping TypeName="XNERPModel.CRM_contract_detail">
+        <MappingFragment StoreEntitySet="CRM_contract_detail">
+          <ScalarProperty Name="SemiCount" ColumnName="SemiCount" />
+          <ScalarProperty Name="LabelsCount" ColumnName="LabelsCount" />
+          <ScalarProperty Name="price_recommend" ColumnName="price_recommend" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="header_id" ColumnName="header_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="wood_type_id" ColumnName="wood_type_id" />
+          <ScalarProperty Name="color_id" ColumnName="color_id" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="custom_flag" ColumnName="custom_flag" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="hardware_part" ColumnName="hardware_part" />
+          <ScalarProperty Name="decoration_part" ColumnName="decoration_part" />
+          <ScalarProperty Name="req_others" ColumnName="req_others" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CRM_customers">
+      <EntityTypeMapping TypeName="XNERPModel.CRM_customers">
+        <MappingFragment StoreEntitySet="CRM_customers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="name_E" ColumnName="name_E" />
+          <ScalarProperty Name="shortname" ColumnName="shortname" />
+          <ScalarProperty Name="shortname_E" ColumnName="shortname_E" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="address_E" ColumnName="address_E" />
+          <ScalarProperty Name="address_delivery" ColumnName="address_delivery" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="corporation" ColumnName="corporation" />
+          <ScalarProperty Name="linkman" ColumnName="linkman" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="ListUserId" ColumnName="ListUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HR_jobs">
+      <EntityTypeMapping TypeName="XNERPModel.HR_jobs">
+        <MappingFragment StoreEntitySet="HR_jobs">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="jobs" ColumnName="jobs" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="useranme" ColumnName="useranme" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_accessory_PO_input">
+      <EntityTypeMapping TypeName="XNERPModel.INV_accessory_PO_input">
+        <MappingFragment StoreEntitySet="INV_accessory_PO_input">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PO_id" ColumnName="PO_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="input_date" ColumnName="input_date" />
+          <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_accessory_PO_output">
+      <EntityTypeMapping TypeName="XNERPModel.INV_accessory_PO_output">
+        <MappingFragment StoreEntitySet="INV_accessory_PO_output">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="AccessoryId" ColumnName="AccessoryId" />
+          <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="output_date" ColumnName="output_date" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_accessory_stock">
+      <EntityTypeMapping TypeName="XNERPModel.INV_accessory_stock">
+        <MappingFragment StoreEntitySet="INV_accessory_stock">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="accessory_type_id" ColumnName="accessory_type_id" />
+          <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
+          <ScalarProperty Name="C_count" ColumnName="C_count" />
+          <ScalarProperty Name="W_count" ColumnName="W_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_accessory_type">
+      <EntityTypeMapping TypeName="XNERPModel.INV_accessory_type">
+        <MappingFragment StoreEntitySet="INV_accessory_type">
+          <ScalarProperty Name="catalog_id" ColumnName="catalog_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_inventories">
+      <EntityTypeMapping TypeName="XNERPModel.INV_inventories">
+        <MappingFragment StoreEntitySet="INV_inventories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_material_stock">
+      <EntityTypeMapping TypeName="XNERPModel.INV_material_stock">
+        <MappingFragment StoreEntitySet="INV_material_stock">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="WoodId" ColumnName="WoodId" />
+          <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
+          <ScalarProperty Name="C_count" ColumnName="C_count" />
+          <ScalarProperty Name="W_count" ColumnName="W_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_materials">
+      <EntityTypeMapping TypeName="XNERPModel.INV_materials">
+        <MappingFragment StoreEntitySet="INV_materials">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="WoodId" ColumnName="WoodId" />
+          <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_PO_input">
+      <EntityTypeMapping TypeName="XNERPModel.INV_PO_input">
+        <MappingFragment StoreEntitySet="INV_PO_input">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PO_id" ColumnName="PO_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="input_date" ColumnName="input_date" />
+          <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_PO_output">
+      <EntityTypeMapping TypeName="XNERPModel.INV_PO_output">
+        <MappingFragment StoreEntitySet="INV_PO_output">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="WoodId" ColumnName="WoodId" />
+          <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="output_date" ColumnName="output_date" />
+          <ScalarProperty Name="wo_id" ColumnName="wo_id" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_purchase_order">
+      <EntityTypeMapping TypeName="XNERPModel.INV_purchase_order">
+        <MappingFragment StoreEntitySet="INV_purchase_order">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="apply_user_id" ColumnName="apply_user_id" />
+          <ScalarProperty Name="apply_user_name" ColumnName="apply_user_name" />
+          <ScalarProperty Name="apply_user_department" ColumnName="apply_user_department" />
+          <ScalarProperty Name="require_date" ColumnName="require_date" />
+          <ScalarProperty Name="material_id" ColumnName="material_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="check_user_id" ColumnName="check_user_id" />
+          <ScalarProperty Name="check_user_name" ColumnName="check_user_name" />
+          <ScalarProperty Name="checked_date" ColumnName="checked_date" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="purchase_qty" ColumnName="purchase_qty" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_single_board">
+      <EntityTypeMapping TypeName="XNERPModel.INV_single_board">
+        <MappingFragment StoreEntitySet="INV_single_board">
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="Wood_typeId" ColumnName="Wood_typeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="inventory_id" ColumnName="inventory_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_wood_type">
+      <EntityTypeMapping TypeName="XNERPModel.INV_wood_type">
+        <MappingFragment StoreEntitySet="INV_wood_type">
+          <ScalarProperty Name="PersonPrice" ColumnName="PersonPrice" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="cc_prcie" ColumnName="cc_prcie" />
+          <ScalarProperty Name="prcie" ColumnName="prcie" />
+          <ScalarProperty Name="q_bz" ColumnName="q_bz" />
+          <ScalarProperty Name="q_ccl" ColumnName="q_ccl" />
+          <ScalarProperty Name="g_bz" ColumnName="g_bz" />
+          <ScalarProperty Name="g_ccl" ColumnName="g_ccl" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="place" ColumnName="place" />
+          <ScalarProperty Name="safe_stock_max" ColumnName="safe_stock_max" />
+          <ScalarProperty Name="safe_stock_min" ColumnName="safe_stock_min" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_colors">
+      <EntityTypeMapping TypeName="XNERPModel.SYS_colors">
+        <MappingFragment StoreEntitySet="SYS_colors">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="RGB" ColumnName="RGB" />
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_company">
+      <EntityTypeMapping TypeName="XNERPModel.SYS_company">
+        <MappingFragment StoreEntitySet="SYS_company">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="corporation" ColumnName="corporation" />
+          <ScalarProperty Name="linkman" ColumnName="linkman" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_notices">
+      <EntityTypeMapping TypeName="XNERPModel.SYS_notices">
+        <MappingFragment StoreEntitySet="SYS_notices">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="Tname" ColumnName="Tname" />
+          <ScalarProperty Name="TID" ColumnName="TID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+          <ScalarProperty Name="post_name" ColumnName="post_name" />
+          <ScalarProperty Name="checker_id" ColumnName="checker_id" />
+          <ScalarProperty Name="checker_name" ColumnName="checker_name" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="reserved1" ColumnName="reserved1" />
+          <ScalarProperty Name="reserved2" ColumnName="reserved2" />
+          <ScalarProperty Name="reserved3" ColumnName="reserved3" />
+          <ScalarProperty Name="reserved4" ColumnName="reserved4" />
+          <ScalarProperty Name="reserved5" ColumnName="reserved5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_product_SN">
+      <EntityTypeMapping TypeName="XNERPModel.SYS_product_SN">
+        <MappingFragment StoreEntitySet="SYS_product_SN">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogs">
+      <EntityTypeMapping TypeName="XNERPModel.UserLogs">
+        <MappingFragment StoreEntitySet="UserLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserCard" ColumnName="UserCard" />
+          <ScalarProperty Name="Telphone" ColumnName="Telphone" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Evenlog" ColumnName="Evenlog" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_wo_events">
+      <EntityTypeMapping TypeName="XNERPModel.WIP_wo_events">
+        <MappingFragment StoreEntitySet="WIP_wo_events">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="wo_id" ColumnName="wo_id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="event_log" ColumnName="event_log" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_wo_wood">
+      <EntityTypeMapping TypeName="XNERPModel.WIP_wo_wood">
+        <MappingFragment StoreEntitySet="WIP_wo_wood">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="wo_id" ColumnName="wo_id" />
+          <ScalarProperty Name="material_id" ColumnName="material_id" />
+          <ScalarProperty Name="net_qty" ColumnName="net_qty" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_workorder">
+      <EntityTypeMapping TypeName="XNERPModel.WIP_workorder">
+        <MappingFragment StoreEntitySet="WIP_workorder">
+          <ScalarProperty Name="reserved5" ColumnName="reserved5" />
+          <ScalarProperty Name="reserved4" ColumnName="reserved4" />
+          <ScalarProperty Name="reserved3" ColumnName="reserved3" />
+          <ScalarProperty Name="reserved2" ColumnName="reserved2" />
+          <ScalarProperty Name="reserved1" ColumnName="reserved1" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="workorder" ColumnName="workorder" />
+          <ScalarProperty Name="CRM_contract_detail_id" ColumnName="CRM_contract_detail_id" />
+          <ScalarProperty Name="WIP_contract_id" ColumnName="WIP_contract_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="BOM_ready_date" ColumnName="BOM_ready_date" />
+          <ScalarProperty Name="paper_path" ColumnName="paper_path" />
+          <ScalarProperty Name="BOM_path" ColumnName="BOM_path" />
+          <ScalarProperty Name="BOM_over_date" ColumnName="BOM_over_date" />
+          <ScalarProperty Name="timetable_ready_date" ColumnName="timetable_ready_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="closed_flag" ColumnName="closed_flag" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HR_salary_info">
+      <EntityTypeMapping TypeName="XNERPModel.HR_salary_info">
+        <MappingFragment StoreEntitySet="HR_salary_info">
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="society_insure" ColumnName="society_insure" />
+          <ScalarProperty Name="society_insure_flag" ColumnName="society_insure_flag" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="salary_type" ColumnName="salary_type" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_accessory">
+      <EntityTypeMapping TypeName="XNERPModel.INV_accessory">
+        <MappingFragment StoreEntitySet="INV_accessory">
+          <ScalarProperty Name="event_user_id" ColumnName="event_user_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="PO_id" ColumnName="PO_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="event_date" ColumnName="event_date" />
+          <ScalarProperty Name="in_out" ColumnName="in_out" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+          <ScalarProperty Name="wood_id" ColumnName="wood_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_accessory_catalog">
+      <EntityTypeMapping TypeName="XNERPModel.INV_accessory_catalog">
+        <MappingFragment StoreEntitySet="INV_accessory_catalog">
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_product_area">
+      <EntityTypeMapping TypeName="XNERPModel.SYS_product_area">
+        <MappingFragment StoreEntitySet="SYS_product_area">
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_inventory_type">
+      <EntityTypeMapping TypeName="XNERPModel.INV_inventory_type">
+        <MappingFragment StoreEntitySet="INV_inventory_type">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XT_RM">
+      <EntityTypeMapping TypeName="XNERPModel.XT_RM">
+        <MappingFragment StoreEntitySet="XT_RM">
+          <ScalarProperty Name="SSonLeve" ColumnName="SSonLeve" />
+          <ScalarProperty Name="SonLeve" ColumnName="SonLeve" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="StrLeve" ColumnName="StrLeve" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_product">
+      <EntityTypeMapping TypeName="XNERPModel.SYS_product">
+        <MappingFragment StoreEntitySet="SYS_product">
+          <ScalarProperty Name="reserved5" ColumnName="reserved5" />
+          <ScalarProperty Name="reserved4" ColumnName="reserved4" />
+          <ScalarProperty Name="reserved3" ColumnName="reserved3" />
+          <ScalarProperty Name="reserved2" ColumnName="reserved2" />
+          <ScalarProperty Name="reserved1" ColumnName="reserved1" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="volume" ColumnName="volume" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="BOM_path" ColumnName="BOM_path" />
+          <ScalarProperty Name="paper_path" ColumnName="paper_path" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="product_area_id" ColumnName="product_area_id" />
+          <ScalarProperty Name="product_SN_id" ColumnName="product_SN_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CRM_contract_header">
+      <EntityTypeMapping TypeName="XNERPModel.CRM_contract_header">
+        <MappingFragment StoreEntitySet="CRM_contract_header">
+          <ScalarProperty Name="reserved3" ColumnName="reserved3" />
+          <ScalarProperty Name="reserved2" ColumnName="reserved2" />
+          <ScalarProperty Name="reserved1" ColumnName="reserved1" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="FR_flag" ColumnName="FR_flag" />
+          <ScalarProperty Name="HTDate" ColumnName="HTDate" />
+          <ScalarProperty Name="SaleName" ColumnName="SaleName" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="checked_date" ColumnName="checked_date" />
+          <ScalarProperty Name="check_user_name" ColumnName="check_user_name" />
+          <ScalarProperty Name="check_user_id" ColumnName="check_user_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="signed_department_id" ColumnName="signed_department_id" />
+          <ScalarProperty Name="signed_user_id" ColumnName="signed_user_id" />
+          <ScalarProperty Name="delivery_address" ColumnName="delivery_address" />
+          <ScalarProperty Name="measure_flag" ColumnName="measure_flag" />
+          <ScalarProperty Name="prepay" ColumnName="prepay" />
+          <ScalarProperty Name="freight_carrier" ColumnName="freight_carrier" />
+          <ScalarProperty Name="amount_recommend" ColumnName="amount_recommend" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="delivery_channel" ColumnName="delivery_channel" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_accessory_purchase_order">
+      <EntityTypeMapping TypeName="XNERPModel.INV_accessory_purchase_order">
+        <MappingFragment StoreEntitySet="INV_accessory_purchase_order">
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="FR_flag" ColumnName="FR_flag" />
+          <ScalarProperty Name="input_user_name" ColumnName="input_user_name" />
+          <ScalarProperty Name="input_user_id" ColumnName="input_user_id" />
+          <ScalarProperty Name="checked_date" ColumnName="checked_date" />
+          <ScalarProperty Name="check_user_name" ColumnName="check_user_name" />
+          <ScalarProperty Name="check_user_id" ColumnName="check_user_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="purchase_qty" ColumnName="purchase_qty" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="paper_img" ColumnName="paper_img" />
+          <ScalarProperty Name="paper_number" ColumnName="paper_number" />
+          <ScalarProperty Name="require_remark" ColumnName="require_remark" />
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="accessory_id" ColumnName="accessory_id" />
+          <ScalarProperty Name="require_date" ColumnName="require_date" />
+          <ScalarProperty Name="apply_user_department" ColumnName="apply_user_department" />
+          <ScalarProperty Name="apply_user_name" ColumnName="apply_user_name" />
+          <ScalarProperty Name="apply_user_id" ColumnName="apply_user_id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CRM_suppliers">
+      <EntityTypeMapping TypeName="XNERPModel.CRM_suppliers">
+        <MappingFragment StoreEntitySet="CRM_suppliers">
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="linkman" ColumnName="linkman" />
+          <ScalarProperty Name="corporation" ColumnName="corporation" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="shortname" ColumnName="shortname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_semi">
+      <EntityTypeMapping TypeName="XNERPModel.INV_semi">
+        <MappingFragment StoreEntitySet="INV_semi">
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="Work_id" ColumnName="Work_id" />
+          <ScalarProperty Name="WIP_id" ColumnName="WIP_id" />
+          <ScalarProperty Name="CRM_id" ColumnName="CRM_id" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="output_user_name" ColumnName="output_user_name" />
+          <ScalarProperty Name="output_user_id" ColumnName="output_user_id" />
+          <ScalarProperty Name="output_date" ColumnName="output_date" />
+          <ScalarProperty Name="input_user_name" ColumnName="input_user_name" />
+          <ScalarProperty Name="input_user_id" ColumnName="input_user_id" />
+          <ScalarProperty Name="input_date" ColumnName="input_date" />
+          <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="wood_id" ColumnName="wood_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_contract">
+      <EntityTypeMapping TypeName="XNERPModel.WIP_contract">
+        <MappingFragment StoreEntitySet="WIP_contract">
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="custom_flag" ColumnName="custom_flag" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="wood_id" ColumnName="wood_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_workflow">
+      <EntityTypeMapping TypeName="XNERPModel.WIP_workflow">
+        <MappingFragment StoreEntitySet="WIP_workflow">
+          <ScalarProperty Name="Wood_Id" ColumnName="Wood_Id" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="reserved3" ColumnName="reserved3" />
+          <ScalarProperty Name="reserved2" ColumnName="reserved2" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="checked_reason" ColumnName="checked_reason" />
+          <ScalarProperty Name="checked_date" ColumnName="checked_date" />
+          <ScalarProperty Name="checked_user_name" ColumnName="checked_user_name" />
+          <ScalarProperty Name="checked_user_id" ColumnName="checked_user_id" />
+          <ScalarProperty Name="check_level" ColumnName="check_level" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="act_end_date" ColumnName="act_end_date" />
+          <ScalarProperty Name="act_begin_date" ColumnName="act_begin_date" />
+          <ScalarProperty Name="exp_end_date" ColumnName="exp_end_date" />
+          <ScalarProperty Name="exp_begin_date" ColumnName="exp_begin_date" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="wo_id" ColumnName="wo_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_WO_salary">
+      <EntityTypeMapping TypeName="XNERPModel.WIP_WO_salary">
+        <MappingFragment StoreEntitySet="WIP_WO_salary">
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="check_user_name" ColumnName="check_user_name" />
+          <ScalarProperty Name="check_user_id" ColumnName="check_user_id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="wo_id" ColumnName="wo_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INV_labels">
+      <EntityTypeMapping TypeName="XNERPModel.INV_labels">
+        <MappingFragment StoreEntitySet="INV_labels">
+          <ScalarProperty Name="WIP_contract_id" ColumnName="WIP_contract_id" />
+          <ScalarProperty Name="WorkId" ColumnName="WorkId" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="flag" ColumnName="flag" />
+          <ScalarProperty Name="CRM_contract_detail_id" ColumnName="CRM_contract_detail_id" />
+          <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="check_date" ColumnName="check_date" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="wood_id" ColumnName="wood_id" />
+          <ScalarProperty Name="style" ColumnName="style" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_SN" ColumnName="product_SN" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CRM_delivery_tmp_header">
+      <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_tmp_header">
+        <MappingFragment StoreEntitySet="CRM_delivery_tmp_header">
+          <ScalarProperty Name="CZ_checked" ColumnName="CZ_checked" />
+          <ScalarProperty Name="CW_checked" ColumnName="CW_checked" />
+          <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
+          <ScalarProperty Name="label_id" ColumnName="label_id" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="contract_detail_id" ColumnName="contract_detail_id" />
+          <ScalarProperty Name="contract_header_id" ColumnName="contract_header_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_work_CW">
+      <EntityTypeMapping TypeName="XNERPModel.WIP_work_CW">
+        <MappingFragment StoreEntitySet="WIP_work_CW">
+          <ScalarProperty Name="YQqty" ColumnName="YQqty" />
+          <ScalarProperty Name="GMqty" ColumnName="GMqty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="WoodName" ColumnName="WoodName" />
+          <ScalarProperty Name="stye" ColumnName="stye" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="WIP_contract_id" ColumnName="WIP_contract_id" />
+          <ScalarProperty Name="CRM_contract_detail_id" ColumnName="CRM_contract_detail_id" />
+          <ScalarProperty Name="workorder" ColumnName="workorder" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

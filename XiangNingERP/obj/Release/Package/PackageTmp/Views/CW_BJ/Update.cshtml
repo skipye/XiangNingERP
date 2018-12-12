@@ -1,0 +1,37 @@
+﻿@model ModelProject.WIP_CWModel
+@{
+    Layout = null;
+}
+
+
+<div class="addmain">
+    @using (Html.BeginForm("Update", "CW_BJ", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.HiddenFor(k =>k.Id)
+        @Html.HiddenFor(k => k.PageSize)
+        @Html.HiddenFor(k => k.PageIndex)
+        <div class="mod normal">
+            <div class="item">
+                <label class="label"><em>*</em>已结刮磨数量：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k=>k.GMqty, new { @class = "drotext" })
+                </div>
+            </div>
+            <div class="item">
+                <label class="label"><em>*</em>已结油漆数量：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.YQqty, new { @class = "drotext" })
+                </div>
+            </div>
+
+            <div class="item mb20">
+                <label class="label">&nbsp;</label>
+                <div class="form-field">
+                    <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+</div>
+

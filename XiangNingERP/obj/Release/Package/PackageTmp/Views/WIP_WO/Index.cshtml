@@ -1,0 +1,59 @@
+﻿@model ModelProject.SWIP_WOXQModel
+@{
+    ViewBag.Title = Model.NavName+"生产任务管理";
+    List<SelectListItem> LItem = new List<SelectListItem>();
+    LItem.Add(new SelectListItem { Value = "", Text = "全部状态" });
+    LItem.Add(new SelectListItem { Value = "0", Text = "生产中" });
+    LItem.Add(new SelectListItem { Value = "1", Text = "生产完成，待审核" });
+    LItem.Add(new SelectListItem { Value = "2", Text = "审核通过" });
+    LItem.Add(new SelectListItem { Value = "-1", Text = "被驳回" });
+}
+
+<p class="currpoint">
+    <a href="@Url.Action("Index","Home")">首页</a>  -> 
+    <a href="@Url.Action("Index","WIP")">生产管理</a>  -> 
+    <a href="Javascript:void(0)" class="crrtab">@(Model.NavName)管理</a>
+</p>
+
+<div class="search">
+    <ul class="searchtab"><li class="current">条件搜索</li></ul>
+    <div style="clear:both"></div>
+    <div class="searchbox clearfix">
+        @using (Html.BeginForm("Index", "WIP_WO", FormMethod.Post, new { @class = "form" }))
+        {
+            @Html.HiddenFor(k=>k.NavName)
+            @*<div class="form_item">
+                <label class="label">合同编号：</label>
+                <div class="form-field">
+                   @Html.TextBoxFor(k => k.HTSN,  new { @class="inputtext"})
+                </div>
+            </div>*@
+            <div class="form_item">
+                <label class="label">生产状态：</label>
+                <div class="form-field">
+                  @Html.DropDownListFor(k => k.status, LItem, new { @class="inputtext"})
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-item-submit">
+                <input type="submit" value="提交" class="inputsubbtn fr mb20 mr20" style="width:100px;" />
+            </div>
+        }
+    </div>
+</div><!--search end -->
+
+<div class="mod">
+    <div class="hd">
+        <h2>搜索结果</h2>
+        @*<ul class="filter">
+            <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
+            <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
+            <li><a class="delSelect btn bg-blue" href="javascript:void(0)" url="@Url.Action("DeleteMore","Semi")" ><span class="wh">选中提交</span></a></li>
+            <li><a class="delSelect btn bg-qblue" href="javascript:void(0)" url="@Url.Action("Work","Semi")" ><span class="wh">选中审核</span></a></li>
+        </ul>*@
+    </div>
+</div>
+
+<div id="ResultList" class="xTable">
+   @Html.Action("PageList", "WIP_WO", new { SRmodels=Model})
+</div>

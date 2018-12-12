@@ -1,0 +1,84 @@
+﻿@using MvcPager.WebControls.Mvc;
+@using ServiceProject;
+@model PagedList<ModelProject.CRM_HTProModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    CRM_HTService CHSer = new CRM_HTService();
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="50px" />
+        <col width="60px" />
+        <col width="160px" />
+        <col width="90px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col width="90px" />
+        <col width="90px" />
+        <col width="140px" />
+        <col width="140px" />
+        <col width="140px" />
+        <col />
+        <tr class="fb">
+            <th>选择</th>
+            <th>订货人</th>
+            <th>产品名称</th>
+            <th>合同编号</th>
+            <th>送货日期</th>
+            <th>审核日期</th>
+            <th>规格</th>
+            <th>材质</th>
+            <th>色号</th>
+            <th>合同数量</th>
+            <th>合同总金额(元)</th>
+            <th>合同预付款(元)</th>
+            <th>已收款(元)</th>
+            <th>操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td style="text-align:left;"><div class="tw" title="@item.customer">@item.customer</div></td>
+            <td><div class="tw" title="@(item.productXL+"_"+item.productName)">@(item.productXL+"_"+item.productName)</div></td>
+            <td class="detailbtn" title="合同详情" url="@Url.Action("Detail","CRM_HT")" ref="@item.header_id">@item.SN</td>
+            <td style="color:orange;font-weight:bold;">@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</td>
+            <td style="color:#15e30b;font-weight:bold;">@Convert.ToDateTime(item.checked_date).ToString("yyyy-MM-dd")</td>
+            <td>@(Convert.ToDecimal(item.length).ToString("0")+"X"+Convert.ToDecimal(item.width).ToString("0")+"X"+Convert.ToDecimal(item.height).ToString("0"))</td>
+            <td>@item.woodName</td>
+            <td>@item.colorName</td>
+            <td style="color:red;font-weight:bold;">@item.qty</td>
+            <td style="color:blue;font-weight:bold;">@item.amount</td>
+            <td style="color:orange;font-weight:bold;">@item.prepay</td>
+            <td style="color:blue;font-weight:bold;">@item.FR_contract </td>
+            <td>
+                
+               <a href="javascript:void(0)" class="delone" url="@Url.Action("SaleWorkOrder", "WIP")" ref="@item.id">特批</a>
+            </td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new {SN=SModel.SN ,UserName=SModel.UserName,PageSize=SModel.PageSize,StartTime=SModel.StartTime,EndTime=SModel.EndTime}, "WOTPPageList", "XT_RM",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)
+
+            </div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

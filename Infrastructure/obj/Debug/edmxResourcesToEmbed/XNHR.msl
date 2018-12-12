@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EHR821_201711ModelStoreContainer" CdmEntityContainer="XNHREntities">
+    <EntitySetMapping Name="ehr_day">
+      <EntityTypeMapping TypeName="EHR821_201711Model.ehr_day">
+        <MappingFragment StoreEntitySet="ehr_day">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="employee" ColumnName="employee" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="shiftname" ColumnName="shiftname" />
+          <ScalarProperty Name="shiftnumber" ColumnName="shiftnumber" />
+          <ScalarProperty Name="should" ColumnName="should" />
+          <ScalarProperty Name="actual" ColumnName="actual" />
+          <ScalarProperty Name="late" ColumnName="late" />
+          <ScalarProperty Name="leave" ColumnName="leave" />
+          <ScalarProperty Name="absenteeism" ColumnName="absenteeism" />
+          <ScalarProperty Name="ask_leave" ColumnName="ask_leave" />
+          <ScalarProperty Name="overtime" ColumnName="overtime" />
+          <ScalarProperty Name="time1" ColumnName="time1" />
+          <ScalarProperty Name="time2" ColumnName="time2" />
+          <ScalarProperty Name="time3" ColumnName="time3" />
+          <ScalarProperty Name="time4" ColumnName="time4" />
+          <ScalarProperty Name="time5" ColumnName="time5" />
+          <ScalarProperty Name="time6" ColumnName="time6" />
+          <ScalarProperty Name="time7" ColumnName="time7" />
+          <ScalarProperty Name="time8" ColumnName="time8" />
+          <ScalarProperty Name="time9" ColumnName="time9" />
+          <ScalarProperty Name="time10" ColumnName="time10" />
+          <ScalarProperty Name="time_mores" ColumnName="time_mores" />
+          <ScalarProperty Name="rest_overtime" ColumnName="rest_overtime" />
+          <ScalarProperty Name="holiday_overtime" ColumnName="holiday_overtime" />
+          <ScalarProperty Name="should_days" ColumnName="should_days" />
+          <ScalarProperty Name="attendance_days" ColumnName="attendance_days" />
+          <ScalarProperty Name="leave_days" ColumnName="leave_days" />
+          <ScalarProperty Name="leave_time" ColumnName="leave_time" />
+          <ScalarProperty Name="late_times" ColumnName="late_times" />
+          <ScalarProperty Name="leave_early_times" ColumnName="leave_early_times" />
+          <ScalarProperty Name="absenteeism_times" ColumnName="absenteeism_times" />
+          <ScalarProperty Name="up_card_times" ColumnName="up_card_times" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+          <ScalarProperty Name="times" ColumnName="times" />
+          <ScalarProperty Name="HaveUpdate" ColumnName="HaveUpdate" />
+          <ScalarProperty Name="NotAbnormal" ColumnName="NotAbnormal" />
+          <ScalarProperty Name="leaverecord" ColumnName="leaverecord" />
+          <ScalarProperty Name="halong" ColumnName="halong" />
+          <ScalarProperty Name="haabs" ColumnName="haabs" />
+          <ScalarProperty Name="t1" ColumnName="t1" />
+          <ScalarProperty Name="t2" ColumnName="t2" />
+          <ScalarProperty Name="t3" ColumnName="t3" />
+          <ScalarProperty Name="t4" ColumnName="t4" />
+          <ScalarProperty Name="t5" ColumnName="t5" />
+          <ScalarProperty Name="t6" ColumnName="t6" />
+          <ScalarProperty Name="st1" ColumnName="st1" />
+          <ScalarProperty Name="st2" ColumnName="st2" />
+          <ScalarProperty Name="st3" ColumnName="st3" />
+          <ScalarProperty Name="st4" ColumnName="st4" />
+          <ScalarProperty Name="st5" ColumnName="st5" />
+          <ScalarProperty Name="st6" ColumnName="st6" />
+          <ScalarProperty Name="xt1" ColumnName="xt1" />
+          <ScalarProperty Name="xt2" ColumnName="xt2" />
+          <ScalarProperty Name="xt3" ColumnName="xt3" />
+          <ScalarProperty Name="xt4" ColumnName="xt4" />
+          <ScalarProperty Name="xt5" ColumnName="xt5" />
+          <ScalarProperty Name="xt6" ColumnName="xt6" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ehr_employee">
+      <EntityTypeMapping TypeName="EHR821_201711Model.ehr_employee">
+        <MappingFragment StoreEntitySet="ehr_employee">
+          <ScalarProperty Name="GJJ" ColumnName="GJJ" />
+          <ScalarProperty Name="society_insure" ColumnName="society_insure" />
+          <ScalarProperty Name="salary_type" ColumnName="salary_type" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="roledepartmentname" ColumnName="roledepartmentname" />
+          <ScalarProperty Name="roledepartment" ColumnName="roledepartment" />
+          <ScalarProperty Name="leveltext" ColumnName="leveltext" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="lawdate" ColumnName="lawdate" />
+          <ScalarProperty Name="shifts" ColumnName="shifts" />
+          <ScalarProperty Name="quitdate" ColumnName="quitdate" />
+          <ScalarProperty Name="officialtime" ColumnName="officialtime" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="branchname" ColumnName="branchname" />
+          <ScalarProperty Name="group" ColumnName="group" />
+          <ScalarProperty Name="groupname" ColumnName="groupname" />
+          <ScalarProperty Name="other" ColumnName="other" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="marriage" ColumnName="marriage" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="socialsecurity" ColumnName="socialsecurity" />
+          <ScalarProperty Name="jobtime" ColumnName="jobtime" />
+          <ScalarProperty Name="jobs" ColumnName="jobs" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="homeaddress" ColumnName="homeaddress" />
+          <ScalarProperty Name="hometel" ColumnName="hometel" />
+          <ScalarProperty Name="accountlocation" ColumnName="accountlocation" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="bankaccount" ColumnName="bankaccount" />
+          <ScalarProperty Name="education" ColumnName="education" />
+          <ScalarProperty Name="birthplace" ColumnName="birthplace" />
+          <ScalarProperty Name="nation" ColumnName="nation" />
+          <ScalarProperty Name="namecard" ColumnName="namecard" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="lock" ColumnName="lock" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ehr_post">
+      <EntityTypeMapping TypeName="EHR821_201711Model.ehr_post">
+        <MappingFragment StoreEntitySet="ehr_post">
+          <ScalarProperty Name="inout" ColumnName="inout" />
+          <ScalarProperty Name="hardtype" ColumnName="hardtype" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="way" ColumnName="way" />
+          <ScalarProperty Name="acttime" ColumnName="acttime" />
+          <ScalarProperty Name="complementmark" ColumnName="complementmark" />
+          <ScalarProperty Name="complementname" ColumnName="complementname" />
+          <ScalarProperty Name="complementuser" ColumnName="complementuser" />
+          <ScalarProperty Name="complement" ColumnName="complement" />
+          <ScalarProperty Name="hardname" ColumnName="hardname" />
+          <ScalarProperty Name="hard" ColumnName="hard" />
+          <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="employee" ColumnName="employee" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

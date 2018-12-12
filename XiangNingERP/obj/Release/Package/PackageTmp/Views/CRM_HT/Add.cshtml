@@ -1,0 +1,137 @@
+﻿@using Common;
+@model ModelProject.CRM_HTZModel
+@{
+    Layout = null;
+    
+    List<SelectListItem> ArrBY = new List<SelectListItem>();
+    ArrBY.Add(new SelectListItem { Text = "请选择送货通道", Value = "" });
+    ArrBY.Add(new SelectListItem { Text = "电梯", Value = "电梯" });
+    ArrBY.Add(new SelectListItem { Text = "楼梯", Value = "楼梯" });
+    List<SelectListItem> ArrYF = new List<SelectListItem>();
+    ArrYF.Add(new SelectListItem { Text = "请选择运费承担方", Value = "" });
+    ArrYF.Add(new SelectListItem { Text = "甲方", Value = "甲方" });
+    ArrYF.Add(new SelectListItem { Text = "乙方", Value = "乙方" });
+    
+    
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "CRM_HT", FormMethod.Post, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>k.id)
+    
+    <div class="mod normal">
+		@*<div class="hd">
+			<h2>合同基本信息</h2>
+		</div>*@
+		<div class="item">
+			<label class="label"><em>*</em>客户姓名：</label>
+			<div class="form-field">
+              @* @Html.TextBoxFor(k => k.customer, new { @class="sputtxt",@style="width:100px;"})*@
+                @Html.DropDownListFor(k => k.customer, Model.KHByDroList, new { @class="drotext",@style="width:100px;"})
+                @*<span>没你客户，去<a class="adddialog" url="@Url.Action("Add","CRM_KH")" title="新增" ref="0">新增</a></span>*@
+               @Html.HiddenFor(k => k.customer_id)
+			</div>
+		</div>
+       <div class="item">
+            <label class="label"><em>*</em>合同编号：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.SN,new{@class="sputtxt",@readonly="readonly"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>合同日期：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k => k.HTDate, new { @class="sputtxt",@style="width:120px;",@ref="datepicker"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>业务员：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.userName,new{@class="sputtxt",@style="width:120px;",@readonly="readonly"})
+                @Html.HiddenFor(m=>m.signed_user_id)
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>送货地址：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.delivery_address,new{@class="inputtext",@style="width:400px;"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>送货通道：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.delivery_channel,ArrBY,new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>送货日期：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.delivery_date,new{@class="sputtxt",@style="width:120px;",@ref="datepicker"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>是否上门测量：</label>
+			<div class="form-field">
+                @Html.RadioButtonFor(k=>k.measure_flag,"true") 是
+                @Html.RadioButtonFor(k => k.measure_flag, "false", new { @checked="checked"}) 否
+			</div>
+		</div>
+        
+        <div class="item">
+			<label class="label"><em>*</em>运费承担方：</label>
+			<div class="form-field">
+                @Html.DropDownListFor(k=>k.freight_carrier,ArrYF,new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>合同总金额：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.amount,new{@class="sputtxt number",@style="width:100px;"}) <span>元</span>
+			</div>
+		</div>
+       <div class="item">
+			<label class="label"><em>*</em>预付款金额：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.prepay,new{@class="sputtxt",@style="width:100px;"}) <span>元</span>
+
+			</div>
+		</div>
+        
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+
+    $("#customer").change(function () {
+        var StrVal = $(this).val();
+        if (StrVal != null && StrVal != "") {
+            var Arr = StrVal.split('|');
+            $("#customer_id").val(Arr[0])
+            $("#delivery_address").val(Arr[1]);
+        }
+        else {
+            $("#customer_id").val("")
+            $("#delivery_address").val("");
+        }
+    });
+    $(":text[ref='datepicker']").datepicker({
+        changeYear: true,
+        changeMonth: true,
+        showButtonPanel: true
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+</script>

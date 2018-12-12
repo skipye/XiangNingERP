@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EHR821Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="HREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ehr_employee" EntityType="EHR821Model.ehr_employee" />
+  </EntityContainer>
+  <EntityType Name="ehr_employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="user" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="lock" Type="Int16" />
+    <Property Name="department" Type="Int32" Nullable="false" />
+    <Property Name="departmentname" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="gender" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="birthday" Type="DateTime" Precision="3" />
+    <Property Name="namecard" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="nation" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="birthplace" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="education" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="bankaccount" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="tel" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="accountlocation" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="hometel" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="homeaddress" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="jobs" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="jobtime" Type="DateTime" Precision="3" />
+    <Property Name="socialsecurity" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="photo" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+    <Property Name="mark" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="marriage" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="title" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="other" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
+    <Property Name="groupname" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="group" Type="Int32" />
+    <Property Name="branchname" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="branch" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="officialtime" Type="DateTime" Precision="3" />
+    <Property Name="quitdate" Type="DateTime" Precision="3" />
+    <Property Name="shifts" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+    <Property Name="lawdate" Type="DateTime" Precision="3" />
+    <Property Name="level" Type="Int32" />
+    <Property Name="leveltext" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="roledepartment" Type="String" MaxLength="4000" Unicode="false" FixedLength="false" />
+    <Property Name="roledepartmentname" Type="String" MaxLength="4000" Unicode="false" FixedLength="false" />
+    <Property Name="ZWY" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

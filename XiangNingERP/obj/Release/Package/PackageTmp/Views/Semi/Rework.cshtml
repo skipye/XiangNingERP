@@ -1,0 +1,38 @@
+﻿@model ModelProject.SemiModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+    @using (Ajax.BeginForm("Rework", "Semi", new AjaxOptions() { Confirm = "确定要返修吗?", HttpMethod = "post", OnSuccess = "AddRework" }, new { @class = "form" }))
+        {
+ 
+      @Html.HiddenFor(k=>k.id)
+    <div class="mod normal">
+        <div class="item mt20">
+			<label class="label"><em>*</em>返修原因：</label>
+			<div class="form-field">
+                @Html.TextAreaFor(k=>k.Remark,new{style="width:430px;height:100px;",@class="inputtext"})
+			</div>
+		</div>
+        
+        
+        <div class="item mb20">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10 mb30" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+    function AddRework(d)
+    {
+        if (d == "True")
+        { alert("返修成功！"); $("#adddialog").dialog("close"); window.location.reload(); }
+        else { alert("请输入返修原因！");}
+    }
+</script>

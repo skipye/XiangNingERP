@@ -1,0 +1,99 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.CRM_HTProModel>
+@{
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    string[] Arr = { "未付款", "已付预付款", "已付全款" };
+    var TotalYF = ViewBag.TotalYF;
+    var TotalHT = ViewBag.TotalHT;
+}
+
+@if (Model != null && Model.Any())
+{<p style="position:absolute;top:-36px;left:80px;z-index:99;font-size:16px;font-weight:bold;">
+        <span class="pl10 prcolor">合同总金额：@TotalHT 元</span>
+        <span class="pl10 orange b">预收款：@TotalYF 元</span>
+     <span class="pl10 orange b">余款：@(TotalHT - TotalYF)元</span>
+    </p>
+    <table>
+        <col width="70px" />
+        <col width="80px" />
+        <col width="90px" />
+        <col width="80px" />
+        <col />
+        <col width="130px" />
+        <col width="80px" />
+        <col width="50px" />
+        <col width="50px" />
+        <col width="80px" />
+        <col width="80px" />
+        <col width="90px" />
+        <col width="90px" />
+        <col width="100px" />
+        <col width="90px" />
+        <col width="120px" />
+        <col width="80px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>签订日期</th>
+            <th>合同编号</th>
+            <th>客户</th>
+            <th>产品名称</th>
+            <th>规格</th>
+            <th>材质</th>
+            <th>单位</th>
+            <th>数量</th>
+            <th>单价</th>
+            <th>产品合同金额</th>
+            <th>应收合同总额</th>
+            <th>预收合同总额</th>
+            <th>剩余合同款</th>
+            <th>送货日期</th>
+            <th>运送单号</th>
+            <th>是否结清</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            decimal Surplus = item.amount - item.FR_contract;
+            <tr>
+                <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+                <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd")</td>
+                <td class="detailbtn" title="合同详情" url="@Url.Action("Detail","CRM_HT")" ref="@item.header_id">@item.SN</td>
+                <td>@item.customer</td>
+                <td style="text-align:left;">@(item.productXL+ "_" +item.productName)</td>
+                <td>@(Convert.ToDecimal(item.length).ToString("0") + "X" + Convert.ToDecimal(item.width).ToString("0") + "X" + Convert.ToDecimal(item.height).ToString("0"))</td>
+                <td>@item.woodName</td>
+                <td>件</td>
+                <td>@item.qty</td>
+                <td>@item.price</td>
+                <td><div class="tw">@(item.price* item.qty)</div></td>
+                <td>@item.amount</td>
+                <td>@item.FR_contract</td>
+                <td><div class="tw">@Surplus</div></td>
+                <td>@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</td>
+                <td><div class="tw">@item.OrderNum</div></td>
+                <td>
+                   @if (Surplus > 0 || string.IsNullOrEmpty(item.OrderNum))
+                   { <span class="red b">否</span>}
+                   else
+                   { <span class="green b">是</span>}
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new { SN = SModel.SN, UserName = SModel.UserName, StartTime = SModel.StartTime, EndTime = SModel.EndTime, status=SModel.status,PageSize=SModel.PageSize }, "PageList", "CW_HT", new PagerOptions
+       {
+           PageIndexParameterName = "PageIndex",
+           CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+           NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+           MorePagerItemWrapperFormatString = "<li>{0}</li>",
+           NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+           ShowFirstLast = true,
+       }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else
+{<p>暂无内容！</p>}

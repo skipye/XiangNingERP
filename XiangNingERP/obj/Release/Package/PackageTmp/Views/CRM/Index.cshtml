@@ -1,0 +1,36 @@
+﻿@using ServiceProject;
+@{
+    ViewBag.Title = "客户管理";
+    UserService USer = new UserService();
+    var SonLeve = USer.GetCurrentUserName().SonLeve;
+}
+
+<div class="box">
+@if (SonLeve.Contains("CRM_KH") || SonLeve == "All")
+{
+    <div class="card fl mt20">
+        <a href="@Url.Action("Index","CRM_KH")">
+            <div class="card_text">
+                <h4 class="card_title">客户管理</h4>
+                <p class="card_subtitle">管理客户的基本信息，建立客户档案，可以去修改增加、修改、删除客户信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Department.png" alt="客户管理" />
+            </div>
+        </a>
+    </div>
+}@if (SonLeve.Contains("CRM_HT") || SonLeve == "All")
+{
+    <div class="card fl ml20 mt20">
+        <a href="@Url.Action("Index", "CRM_HT")">
+            <div class="card_text">
+                <h4 class="card_title">合同管理</h4>
+                <p class="card_subtitle">管理合同的基本信息，建立合同，可以去修改增加、修改、删除合同信息</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Position.png" alt="合同管理" />
+            </div>
+        </a>
+    </div>
+}
+</div>

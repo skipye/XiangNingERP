@@ -1,0 +1,46 @@
+﻿@model ModelProject.SemiModel
+@{
+    Layout = null;
+}
+<div class="addmain">
+ @using (Html.BeginForm("EditStyle", "Semi", FormMethod.Post, new { @class = "form" }))
+    { 
+      @Html.HiddenFor(m=>m.id)
+      @Html.HiddenFor(m=>m.PageIndex)
+      @Html.HiddenFor(m=>m.PageSize)
+      @Html.HiddenFor(m=>m.productName)
+      @Html.HiddenFor(m=>m.product_SN_id)
+      @Html.HiddenFor(m=>m.product_area_id)
+      @Html.HiddenFor(m=>m.inv_id)
+    <div class="mod normal">
+        
+       <div class="item">
+			<label class="label">长：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.length, new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">宽：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.width, new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">高：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.height, new{@class="drotext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                @*  <input type="submit" value="提交" class="inputsubbtn mt10 mb30" style="width:140px;" />*@
+              <a href="javascript:void(0)" class="submitbtn mt10 mb30" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+

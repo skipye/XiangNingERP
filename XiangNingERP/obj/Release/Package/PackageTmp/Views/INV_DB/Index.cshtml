@@ -1,0 +1,87 @@
+﻿@model ModelProject.INVDBSModel
+@{
+    ViewBag.Title = "独板库";
+    List<SelectListItem> PSize = new List<SelectListItem>();
+    PSize.Add(new SelectListItem { Text = "每页10", Value = "10" });
+    PSize.Add(new SelectListItem { Text = "每页20", Value = "20" });
+    PSize.Add(new SelectListItem { Text = "每页30", Value = "30" });
+    PSize.Add(new SelectListItem { Text = "每页40", Value = "40" });
+    PSize.Add(new SelectListItem { Text = "每页80", Value = "80" });
+}
+
+<p class="currpoint">
+    <a href="@Url.Action("Index","Home")">首页</a>  -> 
+    <a href="@Url.Action("Index","INV")">仓库管理</a>  -> 
+    <a href="Javascript:void(0)" class="crrtab">独板库</a>
+</p>
+
+<div class="search">
+    <ul class="searchtab"><li class="current">条件搜索</li></ul>
+    <div style="clear:both"></div>
+    <div class="searchbox clearfix">
+        @using (Html.BeginForm("Index", "INV_DB", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="form_item">
+                <label class="label">所属仓库：</label>
+                <div class="form-field">
+                   @Html.DropDownListFor(k=>k.inventory_id,Model.CKDroList,new{@class="drotext"})
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">独板长：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k=>k.length,new{@class="inputtext",@placeholder="请输入查询独板的长"})
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">独板宽：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.width,new{@class="inputtext",@placeholder="请输入查询独板的宽"})
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">独板高：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.height,new{@class="inputtext",@placeholder="请输入查询独板的高"})
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">每页显示：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.PageSize, PSize, new { @class = "drotext" })
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-item-submit">
+                  <a href="#" class="submitbtn fr mb20 mr20" style="width:100px;">提交</a>
+            </div>
+        }
+    </div>
+</div><!--search end -->
+
+<div class="mod">
+    <div class="hd">
+        <h2>搜索结果</h2>
+        <ul class="filter">
+            <li class="toExcelout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">导出表格</span></a></li>
+            <li class="adddialog" url="@Url.Action("Add","INV_DB")" title="新增" ref="0"><a class="btn bg-green" href="javascript:void(0)"><span class="wh">增加</span></a></li>
+            <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
+            <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
+            <li><a class="delSelect btn bg-orange" href="javascript:void(0)" url="@Url.Action("DeleteMore","INV_DB")" ><span class="wh">删除选中</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="ResultList" class="xTable">
+   @Html.Action("PageList", "INV_DB", new { SRmodels=Model})
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".toExcelout").click(function () {
+            var inventory_id = $("#inventory_id").val();
+            var ExcelUrl = '@Url.Action("ToExcelOut","Labels")';
+            window.location.href = "/INV_DB/ToExcelOut?inventory_id=" + inventory_id;
+            //$.post(ExcelUrl, {}, function (d) { });
+        });
+    });
+</script>

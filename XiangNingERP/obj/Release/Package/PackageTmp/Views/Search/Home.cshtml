@@ -1,0 +1,93 @@
+﻿@model ModelProject.AdminModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>香凝红木</title>
+    <link type="text/css" href="~/css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <header style="text-align: center;font-size: 16px">
+                香凝红木（此页面绝密）
+    </header>
+
+     <ul class="admin pt20">
+         <li class="f">
+            <a href="javascript:void(0)">
+            <h3>考勤情况</h3>
+                <p>工人（<span class="red">@Model.TotalWorker</span>人）</p>
+                <p>今天实到（<span class="red">@Model.TodayWorker</span>人）</p>
+                <p>缺勤（<span class="red">@(Model.TotalWorker-Model.TodayWorker)</span>人）</p>
+            </a>
+         </li>
+
+         <li class="h">
+             <a href="javascript:void(0)">
+             <h3>生产活动</h3>
+                 <p>当前：<span class="red">@Model.TotalWorkProduct</span>件家具在生产</p>
+                 <p>预投：<span class="red">@Model.YTWorkProduct</span>件</p>
+                 <p>销售：<span class="red">@Model.HTWorkProduct</span>件</p>
+             </a>
+         </li>
+         <li class="a">
+             <a href="javascript:void(0)">
+             <h3>半成品库</h3>
+                 <p>总共：<span class="red">@Model.TotalSemi</span>件</p>
+                 <p>已确认：<span class="red">@Model.confirmSemi</span>件</p>
+                 <p>未确认：<span class="red">@Model.NoSemi</span>件</p>
+             </a>
+         </li>
+
+         <li class="p">
+             <a href="javascript:void(0)">
+                 <h3>成品库</h3>
+                 <p>总共：<span class="red">@Model.TotalLabel</span>件</p>
+                 <p>已确认：<span class="red">@Model.confirmLabel</span>件</p>
+                 <p>未确认：<span class="red">@Model.NoLabel</span>件</p>
+             </a>
+         </li>
+
+
+         <li class="t">
+             <a href="javascript:void(0)">
+             <h3>我的销售</h3>
+                 <p>总共：<span class="red">@Model.TotalSale</span>元</p>
+                 <p>当月：<span class="red">@Model.MonthSale</span>元</p>
+                 <p>当年：<span class="red">@Model.YearSale</span>元</p>
+             </a>
+         </li>
+
+         
+
+         <li class="m">
+             <a href="javascript:void(0)">
+             <h3>采购情况</h3>
+                 <p>总共：<span class="red">@Convert.ToDecimal(Model.TotalCG).ToString("0.00")</span>元</p>
+                 <p>当月：<span class="red">@Convert.ToDecimal(Model.MonthCG).ToString("0.00")</span>元</p>
+                 <p>当年：<span class="red">@Convert.ToDecimal(Model.YearCG).ToString("0.00")</span>元</p>
+             </a>
+         </li>
+
+        <li class="search">
+            <a href="@Url.Action("Index","Search")">
+            <h3>数据决策（点击进入）</h3>
+             <p>根据产品类别、产品名称、不同材质、一定时间段等搜索条件查询生产了多少产品，销售了多少件产品，库存多少件产品，根据查询结果做出生产决策！</p>
+            </a>
+         </li>
+
+     </ul>
+
+    <p style="font-weight:bold;color:red;padding:20px 10px;">备注：此页面涉及到敏感数据，请不要随便告知他人，以此造成的损失当事人负责！当年是指今年的一月一号开始到今天，当月是指这个月的一号到今天。</p>
+    <footer>
+        <p>© 上海香凝工艺家具有限公司</p>
+    </footer>
+
+  
+
+</body>
+</html>

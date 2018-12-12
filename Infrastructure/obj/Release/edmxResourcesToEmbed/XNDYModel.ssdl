@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XNDYModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="XNDYModelStoreContainer">
+    <EntitySet Name="DY_CRM_customers" EntityType="XNDYModel.Store.DY_CRM_customers" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="DY_CRM_customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SN" Type="varchar" MaxLength="10" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Name_E" Type="nvarchar" MaxLength="200" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="200" />
+    <Property Name="ShortName_E" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address_delivery" Type="nvarchar" MaxLength="200" />
+    <Property Name="zipcode" Type="char" MaxLength="6" />
+    <Property Name="linkman" Type="nvarchar" MaxLength="20" />
+    <Property Name="tel" Type="varchar" MaxLength="30" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="remark" Type="text" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="State" Type="bit" />
+    <Property Name="ListUserId" Type="nvarchar" MaxLength="1500" />
+  </EntityType>
+</Schema>

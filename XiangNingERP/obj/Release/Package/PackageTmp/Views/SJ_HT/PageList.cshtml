@@ -1,0 +1,69 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.CRM_HTZModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col />
+        <col width="220px" />
+        <tr class="fb">
+            <th>订货人</th>
+            <th>联系电话</th>
+            <th>合同编号</th>
+            <th>送货日期</th>
+            <th>送货通道</th>
+            <th>运费承担方</th>
+            <th>是否需要上门测量</th>
+            <th>销售人员</th>
+            <th>送货地址</th>
+            <th>设计师备注</th>
+            <th>查看产品</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.customer </td>
+            <td>@item.TelPhone </td>
+            <td>@item.SN </td>
+            <td>@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</td>
+            <td>@item.delivery_channel</td>
+            <td>@item.freight_carrier</td>
+            <td>@Html.Raw(item.measure_flag!=null && item.measure_flag==true?"<span style='color:#5eb95e'>是</span>":"<span style='color:red'>否</span>")</td>
+            <td><div class="tw">@item.userName</div></td>
+            <td style="text-align:left;"><div class="tw" title="@item.delivery_address">@item.delivery_address</div></td>
+            <td style="text-align:left;"><div class="tw" title="@item.Remark">@item.Remark</div></td>
+            <td>
+               <a href="javascript:void(0)" class="editbtn" title="查看产品" url="@Url.Action("PageList", "CRM_HTPro")" ref="@item.id">查看产品</a>
+               <a href="javascript:void(0)" class="editbtn" title="添加备注" url="@Url.Action("Add", "SJ_HT")" ref="@item.id">添加备注</a>
+            </td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new {  UserName=SModel.UserName }, "PageList", "SJ_HT",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EHR821_201711Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="EHR821_201711ModelStoreContainer">
+    <EntitySet Name="ehr_day" EntityType="EHR821_201711Model.Store.ehr_day" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ehr_employee" EntityType="EHR821_201711Model.Store.ehr_employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ehr_post" EntityType="EHR821_201711Model.Store.ehr_post" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="ehr_day">
+    <Key>
+      <PropertyRef Name="employee" />
+      <PropertyRef Name="date" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="employee" Type="bigint" Nullable="false" />
+    <Property Name="department" Type="int" Nullable="false" />
+    <Property Name="departmentname" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="shiftname" Type="nvarchar" MaxLength="64" />
+    <Property Name="shiftnumber" Type="nvarchar" MaxLength="16" />
+    <Property Name="should" Type="int" />
+    <Property Name="actual" Type="int" />
+    <Property Name="late" Type="int" />
+    <Property Name="leave" Type="int" />
+    <Property Name="absenteeism" Type="int" />
+    <Property Name="ask_leave" Type="int" />
+    <Property Name="overtime" Type="int" />
+    <Property Name="time1" Type="datetime" />
+    <Property Name="time2" Type="datetime" />
+    <Property Name="time3" Type="datetime" />
+    <Property Name="time4" Type="datetime" />
+    <Property Name="time5" Type="datetime" />
+    <Property Name="time6" Type="datetime" />
+    <Property Name="time7" Type="datetime" />
+    <Property Name="time8" Type="datetime" />
+    <Property Name="time9" Type="datetime" />
+    <Property Name="time10" Type="datetime" />
+    <Property Name="time_mores" Type="smallint" />
+    <Property Name="rest_overtime" Type="int" />
+    <Property Name="holiday_overtime" Type="int" />
+    <Property Name="should_days" Type="real" />
+    <Property Name="attendance_days" Type="real" />
+    <Property Name="leave_days" Type="real" />
+    <Property Name="leave_time" Type="smallint" />
+    <Property Name="late_times" Type="smallint" />
+    <Property Name="leave_early_times" Type="smallint" />
+    <Property Name="absenteeism_times" Type="smallint" />
+    <Property Name="up_card_times" Type="smallint" />
+    <Property Name="mark" Type="nvarchar" MaxLength="512" />
+    <Property Name="times" Type="nvarchar" MaxLength="256" />
+    <Property Name="HaveUpdate" Type="smallint" />
+    <Property Name="NotAbnormal" Type="smallint" />
+    <Property Name="leaverecord" Type="varchar" MaxLength="512" />
+    <Property Name="halong" Type="int" />
+    <Property Name="haabs" Type="varchar" MaxLength="128" />
+    <Property Name="t1" Type="datetime" />
+    <Property Name="t2" Type="datetime" />
+    <Property Name="t3" Type="datetime" />
+    <Property Name="t4" Type="datetime" />
+    <Property Name="t5" Type="datetime" />
+    <Property Name="t6" Type="datetime" />
+    <Property Name="st1" Type="datetime" />
+    <Property Name="st2" Type="datetime" />
+    <Property Name="st3" Type="datetime" />
+    <Property Name="st4" Type="datetime" />
+    <Property Name="st5" Type="datetime" />
+    <Property Name="st6" Type="datetime" />
+    <Property Name="xt1" Type="varchar" MaxLength="512" />
+    <Property Name="xt2" Type="varchar" MaxLength="512" />
+    <Property Name="xt3" Type="varchar" MaxLength="512" />
+    <Property Name="xt4" Type="varchar" MaxLength="512" />
+    <Property Name="xt5" Type="varchar" MaxLength="512" />
+    <Property Name="xt6" Type="varchar" MaxLength="512" />
+  </EntityType>
+  <EntityType Name="ehr_employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" />
+    <Property Name="user" Type="nvarchar" MaxLength="64" />
+    <Property Name="password" Type="nvarchar" MaxLength="64" />
+    <Property Name="lock" Type="smallint" />
+    <Property Name="department" Type="int" Nullable="false" />
+    <Property Name="departmentname" Type="nvarchar" MaxLength="64" />
+    <Property Name="gender" Type="varchar" MaxLength="12" />
+    <Property Name="birthday" Type="datetime" />
+    <Property Name="namecard" Type="nvarchar" MaxLength="64" />
+    <Property Name="nation" Type="nvarchar" MaxLength="16" />
+    <Property Name="birthplace" Type="nvarchar" MaxLength="16" />
+    <Property Name="education" Type="nvarchar" MaxLength="16" />
+    <Property Name="bankaccount" Type="nvarchar" MaxLength="32" />
+    <Property Name="tel" Type="varchar" MaxLength="32" />
+    <Property Name="accountlocation" Type="nvarchar" MaxLength="256" />
+    <Property Name="hometel" Type="nvarchar" MaxLength="32" />
+    <Property Name="homeaddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="status" Type="smallint" Nullable="false" />
+    <Property Name="jobs" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobtime" Type="datetime" />
+    <Property Name="socialsecurity" Type="nvarchar" MaxLength="16" />
+    <Property Name="photo" Type="varchar" MaxLength="128" />
+    <Property Name="mark" Type="nvarchar" MaxLength="1000" />
+    <Property Name="marriage" Type="nvarchar" MaxLength="8" />
+    <Property Name="title" Type="nvarchar" MaxLength="64" />
+    <Property Name="other" Type="nvarchar" MaxLength="512" />
+    <Property Name="groupname" Type="nvarchar" MaxLength="32" />
+    <Property Name="group" Type="int" />
+    <Property Name="branchname" Type="varchar" />
+    <Property Name="branch" Type="varchar" />
+    <Property Name="officialtime" Type="datetime" />
+    <Property Name="quitdate" Type="datetime" />
+    <Property Name="shifts" Type="varchar" MaxLength="128" />
+    <Property Name="lawdate" Type="datetime" />
+    <Property Name="level" Type="int" />
+    <Property Name="leveltext" Type="varchar" MaxLength="256" />
+    <Property Name="roledepartment" Type="varchar" MaxLength="4000" />
+    <Property Name="roledepartmentname" Type="varchar" MaxLength="4000" />
+    <Property Name="amount" Type="decimal" Scale="2" />
+    <Property Name="salary_type" Type="tinyint" />
+    <Property Name="society_insure" Type="decimal" Scale="2" />
+    <Property Name="GJJ" Type="decimal" Scale="2" />
+  </EntityType>
+  <EntityType Name="ehr_post">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="number" />
+      <PropertyRef Name="employee" />
+      <PropertyRef Name="time" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="employee" Type="bigint" Nullable="false" />
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="department" Type="int" Nullable="false" />
+    <Property Name="departmentname" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="hard" Type="nvarchar" MaxLength="32" />
+    <Property Name="hardname" Type="nvarchar" MaxLength="128" />
+    <Property Name="complement" Type="smallint" />
+    <Property Name="complementuser" Type="nvarchar" MaxLength="128" />
+    <Property Name="complementname" Type="nvarchar" MaxLength="128" />
+    <Property Name="complementmark" Type="nvarchar" MaxLength="512" />
+    <Property Name="acttime" Type="datetime" Nullable="false" />
+    <Property Name="way" Type="smallint" />
+    <Property Name="photo" Type="varchar" MaxLength="256" />
+    <Property Name="hardtype" Type="smallint" />
+    <Property Name="inout" Type="smallint" />
+  </EntityType>
+</Schema>

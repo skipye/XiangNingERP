@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="XNFinanceModelStoreContainer" CdmEntityContainer="XNFinanceEntities">
+    <EntitySetMapping Name="FR_accessory_PO">
+      <EntityTypeMapping TypeName="XNFinanceModel.FR_accessory_PO">
+        <MappingFragment StoreEntitySet="FR_accessory_PO">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PO_id" ColumnName="PO_id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="supplier" ColumnName="supplier" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="pay_date" ColumnName="pay_date" />
+          <ScalarProperty Name="pay_mode" ColumnName="pay_mode" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="operator_id" ColumnName="operator_id" />
+          <ScalarProperty Name="operator_name" ColumnName="operator_name" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FR_contract">
+      <EntityTypeMapping TypeName="XNFinanceModel.FR_contract">
+        <MappingFragment StoreEntitySet="FR_contract">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="customer" ColumnName="customer" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="receive_date" ColumnName="receive_date" />
+          <ScalarProperty Name="pay_mode" ColumnName="pay_mode" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="operator_id" ColumnName="operator_id" />
+          <ScalarProperty Name="operator_name" ColumnName="operator_name" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

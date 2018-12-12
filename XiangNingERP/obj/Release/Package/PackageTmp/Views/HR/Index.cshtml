@@ -1,0 +1,36 @@
+﻿@using ServiceProject;
+@{
+    ViewBag.Title = "行政中心";
+    UserService USer = new UserService();
+    var SonLeve = USer.GetCurrentUserName().SonLeve;
+}
+
+<div class="box">
+@if (SonLeve.Contains("HR_SB") || SonLeve == "All")
+{
+    <div class="card fl mt20">
+        <a href="@Url.Action("Index","HR_SB")">
+            <div class="card_text">
+                <h4 class="card_title">薪资社保管理</h4>
+                <p class="card_subtitle">管理用户的薪资社保管理，可以去修改增加、修改、删除薪资社保管理</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Department.png" alt="薪资社保管理" />
+            </div>
+        </a>
+    </div>
+}@if (SonLeve.Contains("Workflow") || SonLeve == "All")
+{
+    <div class="card fl ml20 mt20">
+        <a href="@Url.Action("Workflow", "HR")">
+            <div class="card_text">
+                <h4 class="card_title">包工薪资管理</h4>
+                <p class="card_subtitle">管理、查看、修改包工工资基本信息，导出表格</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Staff_Master.png" alt="包工薪资管理" />
+            </div>
+        </a>
+    </div>
+}
+</div>

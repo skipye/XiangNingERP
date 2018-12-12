@@ -1,0 +1,62 @@
+﻿@model ModelProject.INV_MCModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "XT_Wood", FormMethod.Post, new { @class = "form mt20" }))
+    { 
+     @Html.HiddenFor(k=>k.id)
+    <div class="mod normal">
+		<div class="hd">
+			<h2>成本核算基本信息</h2>
+		</div>
+		<div class="item">
+			<label class="label"><em>*</em>柜类出材率：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.g_ccl,new{@style="width:430px;",@class="inputtext"})
+			</div>
+		</div>
+       <div class="item">
+            <label class="label"><em>*</em>柜类比重：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.g_bz,new{@style="width:430px;",@class="inputtext"})
+            </div>
+        </div>
+        <div class="item">
+			<label class="label"><em>*</em>其它类出材率：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.q_ccl,new{style="width:230px;",@class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>其它类比重：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.q_bz,new{style="width:230px;",@class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>单价(元)：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.prcie,new{style="width:230px;",@class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label"><em>*</em>出厂单价系数：</label>
+			<div class="form-field">
+                @Html.TextBoxFor(k=>k.cc_prcie,new{style="width:230px;",@class="inputtext"})
+			</div>
+		</div>
+        
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+

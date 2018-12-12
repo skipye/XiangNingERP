@@ -1,0 +1,49 @@
+﻿@model ModelProject.SINV_FLModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("PostCheckOut", "PO_KC", FormMethod.Post, new { @class = "form" }))
+    { 
+      @Html.HiddenFor(k=>k.Id)
+     @Html.HiddenFor(k=>k.PageIndex)
+     @Html.HiddenFor(k=>k.PageSize)
+    <div class="mod normal">
+        <div class="item">
+			<label class="label"><em>*</em>出库数量：</label>
+			<div class="form-field">
+               @Html.TextBoxFor(k => k.qty,  new { @class="inputtext"})
+			</div>
+		</div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+               <span class="red">当前库存：@Model.Oldqty</span>
+			</div>
+		</div>
+        <div class="item mb20">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="inputsubbtn mt10" style="width:140px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+<script type="text/javascript">
+    $(".inputsubbtn").click(function () {
+        var Oldqty = parseFloat('@Model.Oldqty');
+        var qty = $("#qty").val();
+        if (qty == "" || qty == undefined || qty == "") {
+            alert("出库数量有问题！");
+            return false;
+        }
+        
+        if (parseFloat(qty) > Oldqty) {
+            alert("出库数量有问题！");
+            return false;
+        } else { $(".form").submit(); }
+    });
+</script>

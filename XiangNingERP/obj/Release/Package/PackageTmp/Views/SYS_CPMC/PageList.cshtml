@@ -1,0 +1,74 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.SYS_CPMCModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+  }
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="70px" />
+        <col width="120px" />
+        <col width="120px" />
+        <col width="180px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col />
+        <col width="120px" class="workcol" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>所属系列</th>
+            <th>所属区域</th>
+            <th>品名</th>
+            <th>长（mm）</th>
+            <th>宽（mm）</th>
+            <th>高（mm）</th>
+            <th>材积</th>
+            <th>人工成本</th>
+            <th>上传时间</th>
+            <th>备注</th>
+            <th class="workth">操作</th>
+        </tr>
+    @foreach(var item in Model)
+    {
+        string picPath = "/bg/nopic.png";
+        if (!string.IsNullOrEmpty(item.ConvertImg))
+        { picPath = "http://erp.xiangninghm.com/"+item.ConvertImg; }
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td>@item.product_SN_name </td>
+            <td>@item.product_area_name </td>
+            <td><a href="@picPath" target="_blank"><img src="@picPath" style="height:30px;width:60px;display:inline-block;" alt="@item.Pname" />@item.Pname </a></td>
+            <td>@item.length</td>
+            <td>@item.width</td>
+            <td>@item.height</td>
+            <td>@item.volume</td>
+            <td>@item.PersonPrice</td>
+            <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd")</td>
+            <td style="text-align:left" title="@item.remark"><div class="tw">@item.remark</div></td>
+            <td class="worktd"><a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "SYS_CPMC", new { name=SModel.name,product_SN_id=SModel.product_SN_id,product_area_id=SModel.product_area_id,PageIndex=SModel.PageIndex})" ref="@item.id">编辑</a>
+                @*<a href="">审核</a>*@<a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "SYS_CPMC")">删除</a></td>
+        </tr>
+    } 
+    </table>
+    <div class="pagelist">
+        <div class="pages">
+            @Html.AjaxPager(Model, new {  name=SModel.name,product_SN_id=SModel.product_SN_id,product_area_id=SModel.product_area_id,PageIndex=SModel.PageIndex }, "PageList", "SYS_CPMC",new PagerOptions
+            {
+                PageIndexParameterName = "PageIndex",
+                CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",
+                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                MorePagerItemWrapperFormatString = "<li>{0}</li>",
+                NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                ShowFirstLast = true,
+            }, new AjaxOptions { UpdateTargetId = "ResultList" })
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录，每页@(Model.PageSize)，当前@(Model.CurrentPageIndex) / @(Model.TotalPageCount)</div>
+        </div>
+    </div>
+}
+else{<p>暂无内容！</p>}

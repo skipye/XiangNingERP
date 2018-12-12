@@ -1,0 +1,433 @@
+﻿@using Common;
+@model ModelProject.XT_RMModel
+@{
+    Layout = null;
+    List<string> ArrYG = new List<string>();
+    ArrYG.Add("");
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("Add", "XT_RM", FormMethod.Post, new { @class = "form" }))
+    { 
+     @Html.HiddenFor(k=>k.Id)
+    <div class="mod normal">
+		<div class="item">
+			<label class="label"><em>*</em>姓名：</label>
+			<div class="form-field">
+              @* @Html.TextBoxFor(k => k.customer, new { @class="sputtxt",@style="width:100px;"})*@
+                @Html.DropDownListFor(k => k.ArrUser, Model.UserList, new { @class="drotext",@style="width:100px;"})
+                @Html.HiddenFor(k => k.UId)
+                @Html.HiddenFor(k => k.UName)
+                @Html.HiddenFor(k => k.DepartmentId)
+                @Html.HiddenFor(k => k.Department)
+			</div>
+		</div>
+        @*<div class="item">
+			<label class="label"><em>*</em>选择权限：</label>
+			<div class="form-field">
+                <span class="pr20"><input type="checkbox" value="Home" name="qxitem" class="qxbtn" />考勤记录</span>
+                <span class="pr20"><input type="checkbox" value="SYS" name="qxitem" class="qxbtn" />基础管理</span>
+                <span class="pr20"><input type="checkbox" value="INV" name="qxitem" class="qxbtn" />仓库管理</span>
+                <span class="pr20"><input type="checkbox" value="PO" name="qxitem" class="qxbtn" />采购管理</span><br />
+                <span class="pr20"><input type="checkbox" value="SJ" name="qxitem" class="qxbtn" />设计管理</span>
+                <span class="pr20"><input type="checkbox" value="WIP" name="qxitem" class="qxbtn" />生产管理</span>
+                <span class="pr20"><input type="checkbox" value="CRM" name="qxitem" class="qxbtn" />销售管理</span>
+                <span class="pr20"><input type="checkbox" value="HR" name="qxitem" class="qxbtn" />行政中心</span>
+                <span class="pr20"><input type="checkbox" value="XT" name="qxitem" class="qxbtn" />系统管理</span>
+			</div>
+		</div>*@
+        <div class="item">
+            <label class="label"><em>*</em>选择权限：</label>
+            <div class="form-field">
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="SYS" name="SYS" rel="parent">基础管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="SYS_XL" rel="son">产品系列管理</label></dt>
+                            <dd><label><input type="checkbox" value="SYS_XL_0" rel="sson">操作</label>                                
+                                <label><input type="checkbox" value="SYS_XL_1" rel="sson">查看</label></dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="SYS_CPMC" rel="son">产品名称管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="SYS_CPMC_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="SYS_CPMC_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="SYS_SH" rel="son">色号管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="SYS_SH_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="SYS_SH_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="INV" rel="parent">仓库管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="INV_FLZL" rel="son">辅料种类管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="INV_FLZL_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="INV_FLZL_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="INV_MC" rel="son">木材种类管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="INV_MC_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="INV_MC_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="INV_inventories" rel="son">仓库设置</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="INV_inventories_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="INV_inventories_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="INV_DB" rel="son">独板库管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="INV_DB_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="INV_DB_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="INV_ZL" rel="son">原材料库管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="INV_ZL_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="INV_ZL_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="PO" rel="parent">采购管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="PO_AC" rel="son">采购申请管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="PO_AC_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="PO_AC_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="PO_KC" rel="son">辅料库存管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="PO_KC_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="PO_KC_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="Suppliers" rel="son">供应商管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="Suppliers_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="Suppliers_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="WIP" rel="parent">生产管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="WO" rel="son">开工单</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="WO_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="WO_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="WIP_WorkOrder" rel="son">销售生产管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="WIP_WorkOrder_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="WIP_WorkOrder_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="Precast" rel="son">预投生产管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="Precast_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="Precast_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="Purchase" rel="son">采购审核</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="Purchase_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="Purchase_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="Semi" rel="son">半成品库管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="Semi_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="Semi_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="Labels" rel="son">成品库管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="Labels_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="Labels_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="WIP_WO" rel="son">工序管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="WIP_WO_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="WIP_WO_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="Delivery" rel="son">送货维修管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="Delivery_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="Delivery_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="SJ" rel="parent">设计管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="SJ_KH" rel="son">销售工单管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="SJ_KH_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="SJ_KH_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="YTIndex" rel="son">预投工单管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="YTIndex_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="YTIndex_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="SJ_HT" rel="son">查看合同</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="SJ_HT_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="SJ_HT_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="CRM" rel="parent">销售管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="CRM_KH" rel="son">客户管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="CRM_KH_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="CRM_KH_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="CRM_HT" rel="son">合同管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="CRM_HT_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="CRM_HT_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="HR" rel="parent">行政中心</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="HR_SB" rel="son">薪资社保管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="HR_SB_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="HR_SB_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="Workflow" rel="son">包工薪资管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="Workflow_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="Workflow_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="Finance" rel="parent">财务管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="CW_HT" rel="son">销售合同统计</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="CW_HT_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="CW_HT_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="CW_Delivery" rel="son">送货审核</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="CW_Delivery_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="CW_Delivery_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="CW_BJ" rel="son">包工结算管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="CW_BJ_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="CW_BJ_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="permission-list">
+                    <dt><label><input type="checkbox" value="XT" rel="parent">系统管理</label></dt>
+                    <dd>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="XT_Wood" rel="son">成本核算管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="XT_Wood_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="XT_Wood_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="XT_RM" rel="son">权限管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="XT_RM_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="XT_RM_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                        <dl class="permission-list2">
+                            <dt><label><input type="checkbox" value="XT_RM0" rel="son">特批生产管理</label></dt>
+                            <dd>
+                                <label><input type="checkbox" value="XT_RM0_0" rel="sson">操作</label>
+                                <label><input type="checkbox" value="XT_RM0_1" rel="sson">查看</label>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                @Html.HiddenFor(k => k.StrLeve, new { @class="sputtxt",@style="width:430px;"})
+                @Html.HiddenFor(k => k.SonLeve, new { @class = "sputtxt", @style = "width:430px;" })
+                @Html.HiddenFor(k => k.SSonLeve, new { @class = "sputtxt", @style = "width:430px;" })
+			</div>
+		</div>
+        
+        <div class="item">
+			<label class="label">&nbsp;</label>
+			<div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;margin-bottom:40px;">提交</a>
+			</div>
+		</div>
+        <div class="clear"></div>
+	</div>
+ }
+</div>
+
+<script type="text/javascript">
+
+    var StrLeve = "@Model.StrLeve";
+    var SonLeve = "@Model.SonLeve";
+    var SSonLeve = "@Model.SSonLeve";
+    $.each($('input[rel=parent]'), function () {
+        var _this = $(this);
+        var CrrVal = _this.val();
+        if (StrLeve.indexOf(CrrVal) > -1)
+        {
+            _this.attr("checked",true);
+        }
+    });
+    $.each($('input[rel=son]'), function () {
+        var _this = $(this);
+        var CrrVal = _this.val();
+        if (SonLeve.indexOf(CrrVal) > -1) {
+            _this.attr("checked", true);
+        }
+    });
+    $.each($('input[rel=sson]'), function () {
+        var _this = $(this);
+        var CrrVal = _this.val();
+        if (SSonLeve.indexOf(CrrVal) > -1) {
+            _this.attr("checked", true);
+        }
+    });
+   
+    $("#ArrUser").change(function () {
+        var StrVal = $(this).val();
+
+        if (StrVal != null && StrVal != "") {
+            var Arr = StrVal.split('#');
+            $("#UId").val(Arr[0]);
+            $("#UName").val(Arr[1]);
+            $("#DepartmentId").val(Arr[2]);
+            $("#Department").val(Arr[3]);
+        }
+        else {
+            $("#UId").val("");
+            $("#Name").val("");
+            $("#DepartmentId").val("");
+            $("#Department").val("");
+        }
+    });
+    $(function () {
+
+        $(".permission-list dt input:checkbox").click(function () {
+            var SonLeve = "";
+            var PLeve = "";
+            var SSonLeve = "";
+          $(this).closest("dl").find("dd input:checkbox").prop("checked", $(this).prop("checked"));
+          $.each($("dd dd input[type='checkbox']:checked"), function () {
+              if ($(this).val() == "1") {
+                  SSonLeve += $(this).val() + "&";
+              } else { SSonLeve += $(this).val() + ","; }
+          });
+          $.each($("dd input[rel='son']:checked"), function () {
+
+              SonLeve += $(this).val() + ",";
+          });
+          $.each($("dt input[rel='parent']:checked"), function () {
+              PLeve += $(this).val() + ",";
+          });
+          $("#SonLeve").val(SonLeve);
+          $("#StrLeve").val(PLeve);
+          $("#SSonLeve").val(SSonLeve);
+      });
+        $(".permission-list2 dd input:checkbox").click(function () {
+            var SonLeve = "";
+            var PLeve = "";
+            var SSonLeve = "";
+          var l =$(this).parent().parent().find("input:checked").length;
+          var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
+          if($(this).prop("checked")){
+              $(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+              $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
+          }
+          else{
+              if(l==0){
+                  $(this).closest("dl").find("dt input:checkbox").prop("checked",false);
+              }
+              if(l2==0){
+                  $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
+              }
+          }
+          $.each($("dd dd input[type='checkbox']:checked"), function () {
+              if ($(this).val() == "1") {
+                  SSonLeve += $(this).val() + "&";
+              } else { SSonLeve += $(this).val() + ","; }
+          });
+          $.each($("dd input[rel='son']:checked"), function () {
+              SonLeve += $(this).val() + ",";
+          });
+          $.each($("dt input[rel='parent']:checked"), function () {
+              PLeve += $(this).val() + ",";
+          });
+          $("#SonLeve").val(SonLeve);
+          $("#StrLeve").val(PLeve);
+          $("#SSonLeve").val(SSonLeve);
+      });
+  });
+</script>
