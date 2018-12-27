@@ -723,6 +723,7 @@
     <EntitySetMapping Name="CRM_delivery_tmp_header">
       <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_tmp_header">
         <MappingFragment StoreEntitySet="CRM_delivery_tmp_header">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="CZ_checked" ColumnName="CZ_checked" />
           <ScalarProperty Name="CW_checked" ColumnName="CW_checked" />
           <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />

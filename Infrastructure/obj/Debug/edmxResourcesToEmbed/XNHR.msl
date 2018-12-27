@@ -69,10 +69,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ehr_post">
+      <EntityTypeMapping TypeName="EHR821_201711Model.ehr_post">
+        <MappingFragment StoreEntitySet="ehr_post">
+          <ScalarProperty Name="inout" ColumnName="inout" />
+          <ScalarProperty Name="hardtype" ColumnName="hardtype" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="way" ColumnName="way" />
+          <ScalarProperty Name="acttime" ColumnName="acttime" />
+          <ScalarProperty Name="complementmark" ColumnName="complementmark" />
+          <ScalarProperty Name="complementname" ColumnName="complementname" />
+          <ScalarProperty Name="complementuser" ColumnName="complementuser" />
+          <ScalarProperty Name="complement" ColumnName="complement" />
+          <ScalarProperty Name="hardname" ColumnName="hardname" />
+          <ScalarProperty Name="hard" ColumnName="hard" />
+          <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="employee" ColumnName="employee" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ehr_employee">
       <EntityTypeMapping TypeName="EHR821_201711Model.ehr_employee">
         <MappingFragment StoreEntitySet="ehr_employee">
-          <ScalarProperty Name="GJJ" ColumnName="GJJ" />
           <ScalarProperty Name="society_insure" ColumnName="society_insure" />
           <ScalarProperty Name="salary_type" ColumnName="salary_type" />
           <ScalarProperty Name="amount" ColumnName="amount" />
@@ -113,30 +136,6 @@
           <ScalarProperty Name="lock" ColumnName="lock" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="user" ColumnName="user" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="number" ColumnName="number" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ehr_post">
-      <EntityTypeMapping TypeName="EHR821_201711Model.ehr_post">
-        <MappingFragment StoreEntitySet="ehr_post">
-          <ScalarProperty Name="inout" ColumnName="inout" />
-          <ScalarProperty Name="hardtype" ColumnName="hardtype" />
-          <ScalarProperty Name="photo" ColumnName="photo" />
-          <ScalarProperty Name="way" ColumnName="way" />
-          <ScalarProperty Name="acttime" ColumnName="acttime" />
-          <ScalarProperty Name="complementmark" ColumnName="complementmark" />
-          <ScalarProperty Name="complementname" ColumnName="complementname" />
-          <ScalarProperty Name="complementuser" ColumnName="complementuser" />
-          <ScalarProperty Name="complement" ColumnName="complement" />
-          <ScalarProperty Name="hardname" ColumnName="hardname" />
-          <ScalarProperty Name="hard" ColumnName="hard" />
-          <ScalarProperty Name="departmentname" ColumnName="departmentname" />
-          <ScalarProperty Name="department" ColumnName="department" />
-          <ScalarProperty Name="time" ColumnName="time" />
-          <ScalarProperty Name="employee" ColumnName="employee" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="number" ColumnName="number" />
           <ScalarProperty Name="id" ColumnName="id" />

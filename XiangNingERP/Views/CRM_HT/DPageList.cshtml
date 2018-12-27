@@ -1,0 +1,77 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.LabelsModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    string[] ArrWO = { "未确认", "已入库", "已出库" };
+  }
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <col width="50px" />
+        <col width="150px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>产品名称</th>
+            <th>合同编号</th>
+            <th>订货人</th>
+            <th>材质</th>
+            <th>色号</th>
+
+            <th>尺寸</th>
+            <th>所在仓库</th>
+        </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+            <td style="text-align:left;"><div class="tw">@(item.ProductXL + "_" + item.ProductName)</div></td>
+            <td><div class="tw">@item.CRM_SN</div></td>
+            <td><div class="tw">@item.customersName</div></td>
+            <td><div class="tw">@item.woodname</div></td>
+            <td><div class="tw">@item.color</div></td>
+            <td><div class="tw">@item.style</div></td>
+            <td><div class="tw">@item.invname</div></td>
+           
+        </tr>
+    } 
+    </table>@*
+    <div class="pagelist">
+        <div class="pages">
+           
+            <div class="total ZL">共@(Model.TotalItemCount) 条记录</div>
+        </div>
+    </div>*@
+}
+else
+{<p>暂无内容！</p>}
+<input type="button" value="提交" class="inputsubbtn mt10 mb20 fr" style="width:140px;" id="checkpro" />
+
+<script type="text/javascript">
+    $(function () {
+        $("#checkpro").click(function () {
+            var strId = "";
+            var i = 0;
+            var PostUrl = "@Url.Action("DeliveryMore", "Labels")";
+            $("input[name='listcheck']:checkbox").each(function () {
+                if ($(this).attr("checked")) {
+                    strId += $(this).val() + "$";
+                    i++;
+                }
+            });
+            if (strId != "" && strId != undefined && i<=qty) {
+                $.post(PostUrl, { ListId: strId }, function (d) {
+                    if (d == "True") {
+                        alert("操作成功！");
+                        window.location.reload();
+                    }
+                    else { alert("操作失败！"); }
+                });
+            }
+            else { alert("请先去选中！"); }
+        });
+
+        
+    });
+</script>

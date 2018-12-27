@@ -24,6 +24,7 @@ namespace Infrastructure
         public string OrderNum { get; set; }
         public Nullable<bool> CW_checked { get; set; }
         public Nullable<bool> CZ_checked { get; set; }
+        public Nullable<bool> status { get; set; }
     
         public virtual INV_labels INV_labels { get; set; }
         public virtual CRM_contract_header CRM_contract_header { get; set; }

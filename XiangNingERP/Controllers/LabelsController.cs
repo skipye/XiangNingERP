@@ -252,5 +252,11 @@ namespace XiangNingERP.Controllers
             }
             else return Content("False");
         }
+        //打印出库单
+        public ActionResult PrintDlivery(string ListId)
+        {
+            var models = SSer.PrintDelivery(ListId);
+            return View(models);
+        }
     }
 }

@@ -28,4 +28,6 @@ E:\MyProject\XiangNingERP\ModelProject\bin\Debug\ModelProject.dll
 E:\MyProject\XiangNingERP\ModelProject\bin\Debug\ModelProject.pdb
 E:\MyProject\XiangNingERP\ModelProject\obj\Debug\ModelProject.dll
 E:\MyProject\XiangNingERP\ModelProject\obj\Debug\ModelProject.pdb
-E:\MyProject\XiangNingERP\ModelProject\obj\Debug\ModelProject.csprojResolveAssemblyReference.cache
+E:\MyProject\XiangNingERP\ModelProject\bin\Debug\System.Web.Mvc.dll
+E:\MyProject\XiangNingERP\ModelProject\bin\Debug\System.Web.Mvc.xml
+E:\MyProject\XiangNingERP\ModelProject\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll

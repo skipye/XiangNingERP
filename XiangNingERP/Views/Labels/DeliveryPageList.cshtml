@@ -31,14 +31,14 @@
     {
         <tr>
             <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
-            <td style="text-align:left;">@(item.ProductXL+"_" +item.ProductName)</td>
-            <td  class="detailbtn" title="合同详情" url="@Url.Action("Detail", "CRM_HT")" ref="@item.CRM_HTId">@item.CRM_SN</td>
-            <td>@item.OrderNum</td>
-            <td>@item.customersName</td>
-            <td>@item.woodname</td>
-            <td>@item.color</td>
-            <td>@item.style</td>
-            <td><div class="tw">@item.invname</div></td>
+            <td style="text-align:left;"><div class="tw">@(item.ProductXL+"_" +item.ProductName)</div></td>
+            <td  class="detailbtn" title="合同详情" url="@Url.Action("Detail", "CRM_HT")" ref="@item.CRM_HTId"><div class="tw">@item.CRM_SN</div></td>
+            <td><div class="tw" title="@item.OrderNum">@item.OrderNum</div></td>
+            <td><div class="tw" title="@item.customersName">@item.customersName</div></td>
+            <td><div class="tw" title="@item.woodname">@item.woodname</div></td>
+            <td><div class="tw" title="@item.color">@item.color</div></td>
+            <td><div class="tw" title="@item.style">@item.style</div></td>
+            <td><div class="tw" title="@item.invname">@item.invname</div></td>
             <td>@(item.CZ_checked==true?"是":"否")</td>
             <td>@(item.CW_checked == true ? "是" : "否")</td>
             <td>

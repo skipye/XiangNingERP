@@ -15,6 +15,7 @@ namespace XiangNingERP.Controllers
         private static readonly CRM_KHService KSer = new CRM_KHService();
         private static readonly UserService USer = new UserService();
         private static readonly ToExcel ESer = new ToExcel();
+        private static readonly LabelsService LSer = new LabelsService();
         public ActionResult Index(SCRM_HTZModel Smodels)
         {
             DateTime datetime= DateTime.Now;
@@ -129,6 +130,16 @@ namespace XiangNingERP.Controllers
             Models = ISer.GetDetailById(Id);
             Models.HTPro = IPSer.GetPageList(Id, 1, 20);
             return View(Models);
+        }
+        public ActionResult Delivery(SLabelsModel SModel)
+        {
+            return View(SModel);
+        }
+        public ActionResult DPageList(SLabelsModel SModel)
+        {
+            var List = LSer.GetPageList(SModel,1,100);
+            ViewBag.SModel = SModel;
+            return View(List);
         }
     }
 }

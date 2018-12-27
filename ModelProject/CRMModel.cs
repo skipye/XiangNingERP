@@ -80,8 +80,9 @@ namespace ModelProject
         public int FR_flag { get; set; }
         public int CRMHTCount { get; set; }
         public List<SelectListItem> KHByDroList { get; set; }
-
+        public string OrderMun { get; set; }
         public List<CRM_HTProModel> HTPro { get; set; }
+        public List<DeliveryModel> DePro { get; set; }//送货Model
     }
     public class SCRM_HTZModel
     {
@@ -146,5 +147,16 @@ namespace ModelProject
     public class FR_contract
     {
         public decimal Totailamount { get; set; }
+    }
+    public class DeliveryModel
+    {
+        public int id { get; set; }
+        public string productXL { get; set; }
+        public string productName { get; set; }
+        public string woodName { get; set; }
+        public decimal? length { get; set; }//送货通道：楼梯/电梯
+        public decimal? width { get; set; }//预付款比例
+        public decimal? height { get; set; }//预付款金额
+        public int? qty { get; set; }
     }
 }

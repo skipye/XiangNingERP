@@ -125,7 +125,6 @@
           <Property Name="amount" Type="decimal" Scale="2" />
           <Property Name="salary_type" Type="tinyint" />
           <Property Name="society_insure" Type="decimal" Scale="2" />
-          <Property Name="GJJ" Type="decimal" Scale="2" />
         </EntityType>
         <EntityType Name="ehr_post">
           <Key>
@@ -159,8 +158,8 @@
       <Schema Namespace="EHR821_201711Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="XNHREntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ehr_day" EntityType="EHR821_201711Model.ehr_day" />
-          <EntitySet Name="ehr_employee" EntityType="EHR821_201711Model.ehr_employee" />
           <EntitySet Name="ehr_post" EntityType="EHR821_201711Model.ehr_post" />
+          <EntitySet Name="ehr_employee" EntityType="EHR821_201711Model.ehr_employee" />
         </EntityContainer>
         <EntityType Name="ehr_day">
           <Key>
@@ -230,6 +229,32 @@
           <Property Name="xt5" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
           <Property Name="xt6" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
         </EntityType>
+        <EntityType Name="ehr_post">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="employee" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="number" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="employee" Nullable="false" />
+          <Property Type="DateTime" Name="time" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="department" Nullable="false" />
+          <Property Type="String" Name="departmentname" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hard" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hardname" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="complement" />
+          <Property Type="String" Name="complementuser" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="complementname" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="complementmark" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="acttime" Nullable="false" Precision="3" />
+          <Property Type="Int16" Name="way" />
+          <Property Type="String" Name="photo" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="hardtype" />
+          <Property Type="Int16" Name="inout" />
+        </EntityType>
         <EntityType Name="ehr_employee">
           <Key>
             <PropertyRef Name="id" />
@@ -277,33 +302,6 @@
           <Property Type="Decimal" Name="amount" Precision="18" Scale="2" />
           <Property Type="Byte" Name="salary_type" />
           <Property Type="Decimal" Name="society_insure" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="GJJ" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="ehr_post">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="number" />
-            <PropertyRef Name="employee" />
-            <PropertyRef Name="time" />
-          </Key>
-          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="number" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="employee" Nullable="false" />
-          <Property Type="DateTime" Name="time" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="department" Nullable="false" />
-          <Property Type="String" Name="departmentname" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="hard" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="hardname" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="complement" />
-          <Property Type="String" Name="complementuser" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="complementname" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="complementmark" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="acttime" Nullable="false" Precision="3" />
-          <Property Type="Int16" Name="way" />
-          <Property Type="String" Name="photo" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Type="Int16" Name="hardtype" />
-          <Property Type="Int16" Name="inout" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -379,10 +377,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ehr_post">
+            <EntityTypeMapping TypeName="EHR821_201711Model.ehr_post">
+              <MappingFragment StoreEntitySet="ehr_post">
+                <ScalarProperty Name="inout" ColumnName="inout" />
+                <ScalarProperty Name="hardtype" ColumnName="hardtype" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="way" ColumnName="way" />
+                <ScalarProperty Name="acttime" ColumnName="acttime" />
+                <ScalarProperty Name="complementmark" ColumnName="complementmark" />
+                <ScalarProperty Name="complementname" ColumnName="complementname" />
+                <ScalarProperty Name="complementuser" ColumnName="complementuser" />
+                <ScalarProperty Name="complement" ColumnName="complement" />
+                <ScalarProperty Name="hardname" ColumnName="hardname" />
+                <ScalarProperty Name="hard" ColumnName="hard" />
+                <ScalarProperty Name="departmentname" ColumnName="departmentname" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="employee" ColumnName="employee" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ehr_employee">
             <EntityTypeMapping TypeName="EHR821_201711Model.ehr_employee">
               <MappingFragment StoreEntitySet="ehr_employee">
-                <ScalarProperty Name="GJJ" ColumnName="GJJ" />
                 <ScalarProperty Name="society_insure" ColumnName="society_insure" />
                 <ScalarProperty Name="salary_type" ColumnName="salary_type" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
@@ -423,30 +444,6 @@
                 <ScalarProperty Name="lock" ColumnName="lock" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="user" ColumnName="user" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="number" ColumnName="number" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ehr_post">
-            <EntityTypeMapping TypeName="EHR821_201711Model.ehr_post">
-              <MappingFragment StoreEntitySet="ehr_post">
-                <ScalarProperty Name="inout" ColumnName="inout" />
-                <ScalarProperty Name="hardtype" ColumnName="hardtype" />
-                <ScalarProperty Name="photo" ColumnName="photo" />
-                <ScalarProperty Name="way" ColumnName="way" />
-                <ScalarProperty Name="acttime" ColumnName="acttime" />
-                <ScalarProperty Name="complementmark" ColumnName="complementmark" />
-                <ScalarProperty Name="complementname" ColumnName="complementname" />
-                <ScalarProperty Name="complementuser" ColumnName="complementuser" />
-                <ScalarProperty Name="complement" ColumnName="complement" />
-                <ScalarProperty Name="hardname" ColumnName="hardname" />
-                <ScalarProperty Name="hard" ColumnName="hard" />
-                <ScalarProperty Name="departmentname" ColumnName="departmentname" />
-                <ScalarProperty Name="department" ColumnName="department" />
-                <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="employee" ColumnName="employee" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="id" ColumnName="id" />

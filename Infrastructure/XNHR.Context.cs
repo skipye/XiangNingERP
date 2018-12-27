@@ -26,7 +26,7 @@ namespace Infrastructure
         }
     
         public DbSet<ehr_day> ehr_day { get; set; }
-        public DbSet<ehr_employee> ehr_employee { get; set; }
         public DbSet<ehr_post> ehr_post { get; set; }
+        public DbSet<ehr_employee> ehr_employee { get; set; }
     }
 }

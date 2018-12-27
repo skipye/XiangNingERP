@@ -57,6 +57,5 @@ namespace Infrastructure
         public Nullable<decimal> amount { get; set; }
         public Nullable<byte> salary_type { get; set; }
         public Nullable<decimal> society_insure { get; set; }
-        public Nullable<decimal> GJJ { get; set; }
     }
 }

@@ -58,6 +58,7 @@ namespace DalProject
                                 flag = p.flag,
                                 style = p.style,
                                 customersName = p.CRM_customers.name,
+                                CRM_SN=p.CRM_contract_detail.CRM_contract_header.SN,
                             }).ToList();
                 return List.ToPagedList(PageIndex, PageSize);
             }
@@ -108,7 +109,7 @@ namespace DalProject
             }
             using (var db = new XNERPEntities())
             {
-                var List = (from p in db.CRM_delivery_tmp_header
+                var List = (from p in db.CRM_delivery_tmp_header.Where(k=>k.status==false)
                             where !string.IsNullOrEmpty(SModel.SaleName) ? p.INV_labels.CRM_customers.name.Contains(SModel.SaleName) : true
                             where !string.IsNullOrEmpty(SModel.ProSN) ? p.CRM_contract_header.SN.Contains(SModel.ProSN) : true
                             where p.created_time>StartTime
@@ -266,6 +267,7 @@ namespace DalProject
         //送货维修操作
         public void DeliveryMore(string ListId)
         {
+            Random r = new Random();
             using (var db = new XNERPEntities())
             {
                 string[] ArrId = ListId.Split('$');
@@ -288,6 +290,7 @@ namespace DalProject
                             HTables.label_id = Id;
                             HTables.CW_checked = false;
                             HTables.CZ_checked = false;
+                            HTables.OrderNum = "XN" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100, 1000); ;
                             db.CRM_delivery_tmp_header.Add(HTables);
 
                             tables.delete_flag = true;
@@ -331,6 +334,29 @@ namespace DalProject
                         tables.OrderNum = OrderNum;
                         tables.delete_flag = true;
                         tables.created_time = DateTime.Now;
+                    }
+                }
+                db.SaveChanges();
+            }
+        }
+        public void DeleteDelivery(string ListId)
+        {
+            using (var db = new XNERPEntities())
+            {
+                string[] ArrId = ListId.Split('$');
+                foreach (var item in ArrId)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        int Id = Convert.ToInt32(item);
+                        var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
+                        tables.status = true;
+                        //下面还原库存产品
+                        var LabelsId=tables.label_id;
+                        var LabelsTable = db.INV_labels.Where(k => k.id == LabelsId).FirstOrDefault();
+                        LabelsTable.status = 8;
+                        LabelsTable.delete_flag = false;
+
                     }
                 }
                 db.SaveChanges();
@@ -646,6 +672,7 @@ namespace DalProject
                     Exceltable.Columns.Add("材积", typeof(string));
                     Exceltable.Columns.Add("比重", typeof(string));
                     Exceltable.Columns.Add("木材单价", typeof(string));
+                    Exceltable.Columns.Add("材料成本", typeof(string));
                     Exceltable.Columns.Add("人工成本", typeof(string));
                     Exceltable.Columns.Add("出厂价", typeof(string));
                     Exceltable.Columns.Add("标签价", typeof(string));
@@ -675,6 +702,16 @@ namespace DalProject
                         {
                             ccprice = Q_CCPrice; BQPrice = Q_BQPrice;
                         }
+                        double CCL = 0.42;
+                        double Woodunit = 0;//吨，材积/出材率*比重*数量
+                        double WoodCB = 0;//材料单价*吨数
+                        double FLCB = 0;//辅料成本，辅料成本=材料成本*0.15
+                        double CB = 0;//成本=材料成本+辅料成本+人工费
+                        double ML = 0;//毛利=销售总额-成本
+                        if (item.product_area_id == 6)
+                        { CCL = 0.45; }
+                        Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
+                        WoodCB = Woodunit * Convert.ToDouble(item.W_price);
                         DataRow row = Exceltable.NewRow();
                         row["标签编码"] = item.SN;
                         row["产品编号"] = item.product_SN_Name;
@@ -691,6 +728,7 @@ namespace DalProject
                         row["材积"] = item.volume;
                         row["比重"] = item.W_BZ;
                         row["木材单价"] = item.W_price;
+                        row["材料成本"] = WoodCB.ToString("0.00");
                         row["人工成本"] = item.PersonPrice;
                         row["出厂价"] = ccprice;
                         row["标签价"] = BQPrice;
@@ -859,6 +897,46 @@ namespace DalProject
                 return false;
                 //Console.WriteLine(ex.Message, "发送邮件出错");
             }
+        }
+        //打印送货单
+        public CRM_HTZModel PrintDelivery(string ListId)
+        {
+            CRM_HTZModel Models = new CRM_HTZModel();
+            using (var db = new XNERPEntities())
+            {
+                List<DeliveryModel> ListD = new List<DeliveryModel>();
+                var OSN = 0;
+                string[] ArrId = ListId.Split('$');
+                foreach (var item in ArrId)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        int Id = Convert.ToInt32(item);
+                        var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
+                        Models.customer = tables.CRM_contract_header.CRM_customers.name;
+                        Models.delivery_address = tables.CRM_contract_header.delivery_address;
+                        Models.SN = tables.CRM_contract_header.SN;
+                        Models.TelPhone = tables.CRM_contract_header.CRM_customers.tel;
+                        Models.OrderMun = tables.OrderNum;
+                        Models.signed_user_id=tables.contract_detail_id;
+                        if (OSN != Models.signed_user_id)
+                        {
+                            OSN = Models.signed_user_id.Value;
+                            DeliveryModel DeModel = new DeliveryModel();
+                            DeModel.productName = tables.CRM_contract_detail.SYS_product.name;
+                            DeModel.productXL = tables.CRM_contract_detail.SYS_product.SYS_product_SN.name;
+                            DeModel.woodName = tables.CRM_contract_detail.INV_wood_type.name;
+                            DeModel.length = tables.CRM_contract_detail.length;
+                            DeModel.width = tables.CRM_contract_detail.width;
+                            DeModel.height = tables.CRM_contract_detail.height;
+                            DeModel.qty = tables.CRM_contract_detail.qty;
+                            ListD.Add(DeModel);
+                        }
+                    }
+                }
+                Models.DePro = ListD;
+            }
+            return Models;
         }
     }
 }

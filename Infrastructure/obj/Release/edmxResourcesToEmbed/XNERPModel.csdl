@@ -1326,6 +1326,7 @@
     <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_detail" FromRole="CRM_delivery_tmp_header" ToRole="CRM_contract_detail" />
     <Property Name="CW_checked" Type="Boolean" />
     <Property Name="CZ_checked" Type="Boolean" />
+    <Property Type="Boolean" Name="status" />
   </EntityType>
   <Association Name="CRM_contract_detailINV_labels">
     <End Type="XNERPModel.CRM_contract_detail" Role="CRM_contract_detail" Multiplicity="0..1" />

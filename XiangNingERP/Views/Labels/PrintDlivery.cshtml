@@ -1,0 +1,99 @@
+﻿@model ModelProject.CRM_HTZModel
+@{
+    Layout = null;
+    int i = 1;
+ }
+<link type="text/css" href="~/css/print.css?v=3" rel="stylesheet" />
+<script type="text/javascript" src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="~/js/jQuery.print.js"></script>
+<script type="text/javascript">
+    function print() {
+        $("#printtext").print({
+            globalStyles: false,//是否包含父文档的样式，默认为true
+            stylesheet: "/css/print.css?v=3",
+            mediaPrint: false,//是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+
+            noPrintSelector: ".no-print",//不想打印的元素的jQuery选择器，默认为".no-print"
+
+            iframe: false,//是否使用一个iframe来替代打印表单的弹出窗口，true为在本页面进行打印，false就是说新开一个页面打印，默认为true
+
+            append: null,//将内容添加到打印内容的后面
+
+            prepend: null,//将内容添加到打印内容的前面，可以用来作为要打印内容
+
+            deferred: $.Deferred(),//回调函数
+        });
+    };
+    
+	</script>
+<div id="printtext" class="shprint clearfix">
+    <h2>上海香凝工艺家具有限公司</h2>
+    <h3 class="mt5">送货单</h3>
+    <div class="topht clearfix mt10">
+        <p class="clearfix f-12"><span class="fl">客户名称：@Model.customer</span><span class="fr">合同编号：@Model.SN</span></p>
+        <p class="clearfix f-12"><span class="fl">联系电话：@Model.TelPhone</span><span class="fr">送货单号：@Model.OrderMun</span></p>
+        <p class="clearfix f-12"><span class="fl">送货地址：@Model.delivery_address</span><span class="fr">送货日期：@DateTime.Now.ToString("yyyy-MM-dd")</span></p>
+    </div>
+    
+@if (Model != null && Model.DePro.Any())
+{
+    <table class="ptable">
+        <col width="50px" />
+        <col />
+        <col width="80px" />
+        <col width="120px" />
+        <col width="60px" />
+        <col width="60px" />
+        <col width="120px" />
+        <tr class="fb">
+            <th>序号</th>
+            <th>产品名称</th>
+            <th>木材</th>
+            <th>规格</th>
+            <th>数量</th>
+            <th>单位</th>
+            <th>备注</th>
+        </tr>
+    @foreach (var item in Model.DePro)
+    {
+       
+        <tr style="height:26px;font-size:12px">
+            <td>@(i)</td>
+            <td>@item.productXL _ @item.productName </td>
+            <td>@item.woodName </td>
+            <td>@(Convert.ToDecimal(item.length).ToString("0")+"X"+Convert.ToDecimal(item.width).ToString("0")+"X"+Convert.ToDecimal(item.height).ToString("0"))</td>
+            <td>@item.qty</td>
+            <td>件</td>
+            <td><div class="tw" title=""></div></td>
+        </tr>
+        i++;
+    }@if (Model.DePro.Count < 10)
+    {
+        for (int j = 1; j <= 10 - Model.DePro.Count; j++)
+        {
+            <tr style="height:26px;">
+                <td>@(i)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            i++;
+        }
+    }
+    </table>
+   
+}
+    <p class="mt10 qm"><span>经办人：</span><span>生产：</span><span>财务：</span><span>仓库：</span><span class="fr">收货人：</span></p>
+    <p class="mt5 f-12">尊敬的客户：请您核对以上送货单与所送的货物确认无误之后，请签名盖章，谢谢合作！</p>
+
+    <p class="rtit">①存根︵白︶②仓库︵红︶③财务︵蓝︶④业务︵绿︶⑤客户︵黄︶</p>
+</div>
+
+@*①②③④⑤⑥⑦⑧⑨⑩*@
+
+<div class="no-print">
+  <input type="button" value="预览并打印" class="inputsubbtn mt10 mb20" style="width:120px;" onclick="print()"/>
+</div>

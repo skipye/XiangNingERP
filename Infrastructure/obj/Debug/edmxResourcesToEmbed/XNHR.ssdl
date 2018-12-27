@@ -120,7 +120,6 @@
     <Property Name="amount" Type="decimal" Scale="2" />
     <Property Name="salary_type" Type="tinyint" />
     <Property Name="society_insure" Type="decimal" Scale="2" />
-    <Property Name="GJJ" Type="decimal" Scale="2" />
   </EntityType>
   <EntityType Name="ehr_post">
     <Key>

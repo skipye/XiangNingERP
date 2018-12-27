@@ -174,3 +174,4 @@ E:\MyProject\XiangNingERP\XiangNingERP\bin\zh-Hans\System.Web.WebPages.Razor.res
 E:\MyProject\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.csprojResolveAssemblyReference.cache
 E:\MyProject\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.dll
 E:\MyProject\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.pdb
+E:\MyProject\XiangNingERP\XiangNingERP\bin\XiangNingERP.dll.config

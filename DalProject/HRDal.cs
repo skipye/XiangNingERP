@@ -33,7 +33,7 @@ namespace DalProject
                                 society_insure = p.society_insure,
                                 jobtime = p.jobtime,
                                 jobs = p.jobs,
-                                GJJ=p.GJJ,
+                                GJJ = p.other,
                                 status=p.status
                             }).ToList();
                 return List.ToPagedList(PageIndex, PageSize);
@@ -50,7 +50,7 @@ namespace DalProject
                     table.salary_type = Models.salary_type;
                     table.society_insure = Models.society_insure;
                     table.socialsecurity = Models.socialsecurity;
-                    table.GJJ = Models.GJJ;
+                    table.other = Models.GJJ;
                 }
                 
                 db.SaveChanges();
@@ -74,7 +74,7 @@ namespace DalProject
                                   amount = p.amount,
                                   society_insure = p.society_insure,
                                   socialsecurity = p.socialsecurity,
-                                  GJJ=p.GJJ,
+                                  GJJ = p.other,
                               }).SingleOrDefault();
                 return tables;
             }

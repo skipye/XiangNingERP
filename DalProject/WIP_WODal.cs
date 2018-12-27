@@ -501,6 +501,7 @@ namespace DalProject
                         WCTable.YQqty = 0;
                         WCTable.WoodName = tabls.INV_wood_type.name;
                         WCTable.unit = "件";
+                        db.WIP_work_CW.Add(WCTable);
                     }
                 }
                 db.SaveChanges();
@@ -560,8 +561,9 @@ namespace DalProject
                 WCTable.YQqty = 0;
                 WCTable.WoodName = Models.woodName;
                 WCTable.unit = "件";
-                db.SaveChanges();
+                db.WIP_work_CW.Add(WCTable);
 
+                db.SaveChanges();
             }
         }
 

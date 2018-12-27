@@ -63,3 +63,7 @@ E:\MyProject\XiangNingERP\ServiceProject\bin\Debug\zh-Hans\EntityFramework.resou
 E:\MyProject\XiangNingERP\ServiceProject\obj\Debug\ServiceProject.csprojResolveAssemblyReference.cache
 E:\MyProject\XiangNingERP\ServiceProject\obj\Debug\ServiceProject.dll
 E:\MyProject\XiangNingERP\ServiceProject\obj\Debug\ServiceProject.pdb
+E:\MyProject\XiangNingERP\ServiceProject\bin\Debug\System.Web.Mvc.dll
+E:\MyProject\XiangNingERP\ServiceProject\bin\Debug\System.Web.WebPages.dll
+E:\MyProject\XiangNingERP\ServiceProject\bin\Debug\System.Web.Mvc.xml
+E:\MyProject\XiangNingERP\ServiceProject\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll

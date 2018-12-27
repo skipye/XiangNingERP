@@ -23,7 +23,7 @@ namespace ModelProject
         public List<SelectListItem> UserList { get; set; }
         public int? status { get; set; }
         public int? PageIndex { get; set; }
-        public decimal? GJJ { get; set; }
+        public string GJJ { get; set; }
     }
     public class SHRModel
     {

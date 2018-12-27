@@ -47,6 +47,9 @@ namespace DalProject
         {
             using (var db = new XNERPEntities())
             {
+                decimal price = 0;
+                if (Models.price > 0)
+                { price = Models.price.Value; }
                 if (Models.id != null && Models.id >0)
                 {
                     var table = db.CRM_contract_detail.Where(k => k.id == Models.id).SingleOrDefault();
@@ -59,7 +62,7 @@ namespace DalProject
                     table.length = Models.length;
                     table.width = Models.width;
                     table.height = Models.height;
-                    table.price = Models.price;
+                    table.price = price;
                     table.qty = Models.qty;
                     table.hardware_part = Models.hardware_part;
                     table.decoration_part = Models.decoration_part;
@@ -77,7 +80,7 @@ namespace DalProject
                     table.length = Models.length;
                     table.width = Models.width;
                     table.height = Models.height;
-                    table.price = Models.price;
+                    table.price = price;
                     table.qty = Models.qty;
                     table.hardware_part = Models.hardware_part;
                     table.decoration_part = Models.decoration_part;
@@ -88,7 +91,7 @@ namespace DalProject
                     db.CRM_contract_detail.Add(table);
                 }
                 var HeadTable = db.CRM_contract_header.Where(k => k.id == Models.header_id).SingleOrDefault();
-                HeadTable.amount = HeadTable.amount + Models.price.Value * Models.qty;
+                HeadTable.amount = HeadTable.amount + price * Models.qty;
                 db.SaveChanges();
 
             }

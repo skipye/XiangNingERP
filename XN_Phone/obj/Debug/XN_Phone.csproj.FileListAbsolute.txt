@@ -78,6 +78,6 @@ E:\MyProject\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.Razor.resources.dll
 E:\MyProject\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.WebPages.resources.dll
 E:\MyProject\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 E:\MyProject\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-E:\MyProject\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csprojResolveAssemblyReference.cache
 E:\MyProject\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.dll
 E:\MyProject\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.pdb
+E:\MyProject\XiangNingERP\XN_Phone\bin\XN_Phone.dll.config

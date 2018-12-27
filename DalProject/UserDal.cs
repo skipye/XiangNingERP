@@ -25,11 +25,11 @@ namespace DalProject
                 LoginModel ReturnModel = new LoginModel();
                 if (Tables != null)
                 {
-                    //UserLogsModel ULModels = new UserLogsModel();
-                    //ULModels.UserId = Tables.id;
-                    //ULModels.UserCard = Tables.number;
-                    //ULModels.Evenlog = "会员登录";
-                    //ULDal.AddUserLogs(ULModels);
+                    UserLogsModel ULModels = new UserLogsModel();
+                    ULModels.UserId = Tables.id;
+                    ULModels.UserCard = Tables.number;
+                    ULModels.Evenlog = "会员登录";
+                    ULDal.AddUserLogs(ULModels);
 
                     
                     ReturnModel.UserName = Tables.name;

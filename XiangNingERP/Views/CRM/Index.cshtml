@@ -33,4 +33,18 @@
         </a>
     </div>
 }
+    @if (SonLeve.Contains("CRM_Delivery") || SonLeve == "All")
+{
+    <div class="card fl ml20 mt20">
+        <a href="@Url.Action("Index", "CRM_Delivery")">
+            <div class="card_text">
+                <h4 class="card_title">送货管理</h4>
+                <p class="card_subtitle">管理送货的基本信息，建立送货单。</p>
+            </div>
+            <div class="card_pic">
+                <img src="~/bg/Position.png" alt="送货管理" />
+            </div>
+        </a>
+    </div>
+}
 </div>

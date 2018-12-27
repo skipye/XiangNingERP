@@ -135,6 +135,17 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public bool DeleteDeliveryMore(string ListId)
+        {
+            try
+            {
+                SDal.DeleteDelivery(ListId); return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public string GetProNameDrolistBySNAndArea(int? ProSN, int? ProProArea)
         {
             try
@@ -196,6 +207,18 @@ namespace ServiceProject
             try
             {
                 return SDal.ToDeliveryExcelOut(SModel);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        //打印送货单
+        public CRM_HTZModel PrintDelivery(string ListId)
+        {
+            try
+            {
+                return SDal.PrintDelivery(ListId);
             }
             catch (Exception ex)
             {

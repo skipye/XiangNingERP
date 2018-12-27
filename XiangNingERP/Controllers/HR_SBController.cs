@@ -16,6 +16,10 @@ namespace XiangNingERP.Controllers
         {
             if (Smodels.PageIndex == null)
             { Smodels.PageIndex = 1; }
+            if (Smodels.status == null)
+            {
+                Smodels.status = 1;
+            }
             return View(Smodels);
         }
         public ActionResult PageList(SHRModel SRmodels)
