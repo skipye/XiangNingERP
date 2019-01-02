@@ -113,3 +113,4 @@ E:\MyProject\XiangNingERP\XNDY-ERP\bin\zh-Hans\System.Web.WebPages.Razor.resourc
 E:\MyProject\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.csprojResolveAssemblyReference.cache
 E:\MyProject\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.dll
 E:\MyProject\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.pdb
+D:\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.csprojResolveAssemblyReference.cache

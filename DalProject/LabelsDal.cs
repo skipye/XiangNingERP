@@ -290,7 +290,8 @@ namespace DalProject
                             HTables.label_id = Id;
                             HTables.CW_checked = false;
                             HTables.CZ_checked = false;
-                            HTables.OrderNum = "XN" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100, 1000); ;
+                            HTables.OrderNum = "XN" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100, 1000);
+                            HTables.status = false;
                             db.CRM_delivery_tmp_header.Add(HTables);
 
                             tables.delete_flag = true;

@@ -31,3 +31,11 @@ E:\MyProject\XiangNingERP\Common\obj\Debug\Common.pdb
 E:\MyProject\XiangNingERP\Common\bin\Debug\System.Web.Mvc.dll
 E:\MyProject\XiangNingERP\Common\bin\Debug\System.Web.Mvc.xml
 E:\MyProject\XiangNingERP\Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+E:\MyProject\XiangNingERP\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\XiangNingERP\Common\bin\Debug\Common.dll
+D:\XiangNingERP\Common\bin\Debug\Common.pdb
+D:\XiangNingERP\Common\bin\Debug\System.Web.Mvc.dll
+D:\XiangNingERP\Common\bin\Debug\System.Web.Mvc.xml
+D:\XiangNingERP\Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\XiangNingERP\Common\obj\Debug\Common.dll
+D:\XiangNingERP\Common\obj\Debug\Common.pdb

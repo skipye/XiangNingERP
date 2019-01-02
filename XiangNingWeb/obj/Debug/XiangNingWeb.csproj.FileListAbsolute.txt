@@ -97,3 +97,4 @@ E:\MyProject\XiangNingERP\XiangNingWeb\bin\zh-Hans\System.Web.WebPages.Razor.res
 E:\MyProject\XiangNingERP\XiangNingWeb\obj\Debug\XiangNingWeb.csprojResolveAssemblyReference.cache
 E:\MyProject\XiangNingERP\XiangNingWeb\obj\Debug\XiangNingWeb.dll
 E:\MyProject\XiangNingERP\XiangNingWeb\obj\Debug\XiangNingWeb.pdb
+D:\XiangNingERP\XiangNingWeb\obj\Debug\XiangNingWeb.csprojResolveAssemblyReference.cache

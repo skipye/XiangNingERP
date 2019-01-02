@@ -31,3 +31,10 @@ E:\MyProject\XiangNingERP\ModelProject\obj\Debug\ModelProject.pdb
 E:\MyProject\XiangNingERP\ModelProject\bin\Debug\System.Web.Mvc.dll
 E:\MyProject\XiangNingERP\ModelProject\bin\Debug\System.Web.Mvc.xml
 E:\MyProject\XiangNingERP\ModelProject\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\XiangNingERP\ModelProject\bin\Debug\ModelProject.dll
+D:\XiangNingERP\ModelProject\bin\Debug\ModelProject.pdb
+D:\XiangNingERP\ModelProject\bin\Debug\System.Web.Mvc.dll
+D:\XiangNingERP\ModelProject\bin\Debug\System.Web.Mvc.xml
+D:\XiangNingERP\ModelProject\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\XiangNingERP\ModelProject\obj\Debug\ModelProject.dll
+D:\XiangNingERP\ModelProject\obj\Debug\ModelProject.pdb
