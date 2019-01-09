@@ -60,7 +60,7 @@ else
                     i++;
                 }
             });
-            if (strId != "" && strId != undefined && i<=qty) {
+            if (strId != "" && strId != undefined) {
                 $.post(PostUrl, { ListId: strId }, function (d) {
                     if (d == "True") {
                         alert("操作成功！");

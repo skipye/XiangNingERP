@@ -69,6 +69,8 @@ namespace ModelProject
         public decimal? prepay { get; set; }//预付款金额
         public bool? measure_flag { get; set; }//是否需要上门测量
         public string delivery_address { get; set; }//送货地址
+        public string Linktel { get; set; }
+        public string Linkman { get; set; }
         public int? signed_user_id { get; set; }//销售人员ID
         public string userName { get; set; }
         public int? signed_department_id { get; set; }//部门ID

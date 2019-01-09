@@ -473,6 +473,7 @@
     <Content Include="Views\CRM_Delivery\PageList.cshtml" />
     <Content Include="Views\CRM_HT\DPageList.cshtml" />
     <Content Include="Views\Labels\PrintDlivery.cshtml" />
+    <Content Include="Views\CRM_HT\UpdateDelivery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

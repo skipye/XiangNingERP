@@ -4,162 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="XNERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="XNERPModelStoreContainer">
-          <EntitySet Name="CRM_contract_detail" EntityType="XNERPModel.Store.CRM_contract_detail" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CRM_contract_header" EntityType="XNERPModel.Store.CRM_contract_header" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CRM_customers" EntityType="XNERPModel.Store.CRM_customers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CRM_delivery_tmp_header" EntityType="XNERPModel.Store.CRM_delivery_tmp_header" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CRM_suppliers" EntityType="XNERPModel.Store.CRM_suppliers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="HR_jobs" EntityType="XNERPModel.Store.HR_jobs" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="HR_salary_info" EntityType="XNERPModel.Store.HR_salary_info" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_accessory" EntityType="XNERPModel.Store.INV_accessory" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_accessory_catalog" EntityType="XNERPModel.Store.INV_accessory_catalog" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_accessory_PO_input" EntityType="XNERPModel.Store.INV_accessory_PO_input" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_accessory_PO_output" EntityType="XNERPModel.Store.INV_accessory_PO_output" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_accessory_purchase_order" EntityType="XNERPModel.Store.INV_accessory_purchase_order" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_accessory_stock" EntityType="XNERPModel.Store.INV_accessory_stock" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_accessory_type" EntityType="XNERPModel.Store.INV_accessory_type" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_inventories" EntityType="XNERPModel.Store.INV_inventories" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_inventory_type" EntityType="XNERPModel.Store.INV_inventory_type" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_labels" EntityType="XNERPModel.Store.INV_labels" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_material_stock" EntityType="XNERPModel.Store.INV_material_stock" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_materials" EntityType="XNERPModel.Store.INV_materials" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_PO_input" EntityType="XNERPModel.Store.INV_PO_input" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_PO_output" EntityType="XNERPModel.Store.INV_PO_output" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_purchase_order" EntityType="XNERPModel.Store.INV_purchase_order" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_semi" EntityType="XNERPModel.Store.INV_semi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_single_board" EntityType="XNERPModel.Store.INV_single_board" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INV_wood_type" EntityType="XNERPModel.Store.INV_wood_type" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SYS_colors" EntityType="XNERPModel.Store.SYS_colors" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SYS_company" EntityType="XNERPModel.Store.SYS_company" store:Type="Tables" store:Schema="dbo" store:Name="SYS_company">
-            <DefiningQuery>SELECT 
-      [SYS_company].[title] AS [title], 
-      [SYS_company].[address] AS [address], 
-      [SYS_company].[corporation] AS [corporation], 
-      [SYS_company].[linkman] AS [linkman], 
-      [SYS_company].[tel] AS [tel], 
-      [SYS_company].[account] AS [account], 
-      [SYS_company].[remark] AS [remark], 
-      [SYS_company].[created_time] AS [created_time], 
-      [SYS_company].[delete_flag] AS [delete_flag]
-      FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="SYS_notices" EntityType="XNERPModel.Store.SYS_notices" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SYS_product" EntityType="XNERPModel.Store.SYS_product" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SYS_product_area" EntityType="XNERPModel.Store.SYS_product_area" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SYS_product_SN" EntityType="XNERPModel.Store.SYS_product_SN" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UserLogs" EntityType="XNERPModel.Store.UserLogs" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WIP_contract" EntityType="XNERPModel.Store.WIP_contract" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WIP_wo_events" EntityType="XNERPModel.Store.WIP_wo_events" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WIP_WO_salary" EntityType="XNERPModel.Store.WIP_WO_salary" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WIP_wo_wood" EntityType="XNERPModel.Store.WIP_wo_wood" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WIP_work_CW" EntityType="XNERPModel.Store.WIP_work_CW" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WIP_workflow" EntityType="XNERPModel.Store.WIP_workflow" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WIP_workorder" EntityType="XNERPModel.Store.WIP_workorder" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="XT_RM" EntityType="XNERPModel.Store.XT_RM" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_CRM_contract_detail_CRM_contract_header" Association="XNERPModel.Store.FK_CRM_contract_detail_CRM_contract_header">
-            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
-            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CRM_contract_detail_INV_wood_type" Association="XNERPModel.Store.FK_CRM_contract_detail_INV_wood_type">
-            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
-            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CRM_contract_detail_SYS_colors" Association="XNERPModel.Store.FK_CRM_contract_detail_SYS_colors">
-            <End Role="SYS_colors" EntitySet="SYS_colors" />
-            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CRM_contract_detail_SYS_product" Association="XNERPModel.Store.FK_CRM_contract_detail_SYS_product">
-            <End Role="SYS_product" EntitySet="SYS_product" />
-            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CRM_contract_header_CRM_customers" Association="XNERPModel.Store.FK_CRM_contract_header_CRM_customers">
-            <End Role="CRM_customers" EntitySet="CRM_customers" />
-            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CRM_delivery_tmp_header_CRM_contract_detail" Association="XNERPModel.Store.FK_CRM_delivery_tmp_header_CRM_contract_detail">
-            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
-            <End Role="CRM_delivery_tmp_header" EntitySet="CRM_delivery_tmp_header" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CRM_delivery_tmp_header_CRM_contract_header" Association="XNERPModel.Store.FK_CRM_delivery_tmp_header_CRM_contract_header">
-            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
-            <End Role="CRM_delivery_tmp_header" EntitySet="CRM_delivery_tmp_header" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_accessory_purchase_order_INV_accessory_type" Association="XNERPModel.Store.FK_INV_accessory_purchase_order_INV_accessory_type">
-            <End Role="INV_accessory_type" EntitySet="INV_accessory_type" />
-            <End Role="INV_accessory_purchase_order" EntitySet="INV_accessory_purchase_order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_accessory_stock_INV_accessory_type" Association="XNERPModel.Store.FK_INV_accessory_stock_INV_accessory_type">
-            <End Role="INV_accessory_type" EntitySet="INV_accessory_type" />
-            <End Role="INV_accessory_stock" EntitySet="INV_accessory_stock" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_accessory_stock_INV_inventories" Association="XNERPModel.Store.FK_INV_accessory_stock_INV_inventories">
-            <End Role="INV_inventories" EntitySet="INV_inventories" />
-            <End Role="INV_accessory_stock" EntitySet="INV_accessory_stock" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_material_stock_INV_inventories" Association="XNERPModel.Store.FK_INV_material_stock_INV_inventories">
-            <End Role="INV_inventories" EntitySet="INV_inventories" />
-            <End Role="INV_material_stock" EntitySet="INV_material_stock" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_material_stock_INV_wood_type" Association="XNERPModel.Store.FK_INV_material_stock_INV_wood_type">
-            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
-            <End Role="INV_material_stock" EntitySet="INV_material_stock" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_materials_INV_inventories" Association="XNERPModel.Store.FK_INV_materials_INV_inventories">
-            <End Role="INV_inventories" EntitySet="INV_inventories" />
-            <End Role="INV_materials" EntitySet="INV_materials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_materials_INV_wood_type" Association="XNERPModel.Store.FK_INV_materials_INV_wood_type">
-            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
-            <End Role="INV_materials" EntitySet="INV_materials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_semi_INV_inventories" Association="XNERPModel.Store.FK_INV_semi_INV_inventories">
-            <End Role="INV_inventories" EntitySet="INV_inventories" />
-            <End Role="INV_semi" EntitySet="INV_semi" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_semi_INV_wood_type" Association="XNERPModel.Store.FK_INV_semi_INV_wood_type">
-            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
-            <End Role="INV_semi" EntitySet="INV_semi" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_semi_SYS_product" Association="XNERPModel.Store.FK_INV_semi_SYS_product">
-            <End Role="SYS_product" EntitySet="SYS_product" />
-            <End Role="INV_semi" EntitySet="INV_semi" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_single_board_INV_inventories" Association="XNERPModel.Store.FK_INV_single_board_INV_inventories">
-            <End Role="INV_inventories" EntitySet="INV_inventories" />
-            <End Role="INV_single_board" EntitySet="INV_single_board" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INV_single_board_INV_wood_type" Association="XNERPModel.Store.FK_INV_single_board_INV_wood_type">
-            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
-            <End Role="INV_single_board" EntitySet="INV_single_board" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SYS_product_SN_SYS_product_SN" Association="XNERPModel.Store.FK_SYS_product_SN_SYS_product_SN">
-            <End Role="SYS_product_SN" EntitySet="SYS_product_SN" />
-            <End Role="SYS_product_SN1" EntitySet="SYS_product_SN" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SYS_product_SYS_product_area" Association="XNERPModel.Store.FK_SYS_product_SYS_product_area">
-            <End Role="SYS_product_area" EntitySet="SYS_product_area" />
-            <End Role="SYS_product" EntitySet="SYS_product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SYS_product_SYS_product_SN" Association="XNERPModel.Store.FK_SYS_product_SYS_product_SN">
-            <End Role="SYS_product_SN" EntitySet="SYS_product_SN" />
-            <End Role="SYS_product" EntitySet="SYS_product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WIP_contract_WIP_contract" Association="XNERPModel.Store.FK_WIP_contract_WIP_contract">
-            <End Role="WIP_contract" EntitySet="WIP_contract" />
-            <End Role="WIP_contract1" EntitySet="WIP_contract" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WIP_work_CW_SYS_product" Association="XNERPModel.Store.FK_WIP_work_CW_SYS_product">
-            <End Role="SYS_product" EntitySet="SYS_product" />
-            <End Role="WIP_work_CW" EntitySet="WIP_work_CW" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="XNERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="CRM_contract_detail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="header_id" Type="int" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="wood_type_id" Type="int" Nullable="false" />
@@ -186,12 +36,12 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SN" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="delivery_date" Type="datetime" />
           <Property Name="delivery_channel" Type="nvarchar" MaxLength="50" />
-          <Property Name="amount" Type="decimal" Nullable="false" Precision="16" Scale="2" />
+          <Property Name="amount" Type="decimal" Precision="16" Scale="2" Nullable="false" />
           <Property Name="amount_recommend" Type="decimal" Precision="16" Scale="2" />
           <Property Name="freight_carrier" Type="nvarchar" MaxLength="10" />
           <Property Name="prepay" Type="decimal" Precision="16" Scale="2" />
@@ -212,14 +62,16 @@
           <Property Name="reserved1" Type="int" />
           <Property Name="reserved2" Type="int" />
           <Property Name="reserved3" Type="nvarchar" MaxLength="200" />
+          <Property Name="Linkman" Type="nvarchar" MaxLength="50" />
+          <Property Name="Linktel" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CRM_customers">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SN" Type="varchar" MaxLength="10" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="name_E" Type="varchar" MaxLength="100" />
           <Property Name="shortname" Type="nvarchar" MaxLength="50" />
           <Property Name="shortname_E" Type="varchar" MaxLength="30" />
@@ -243,7 +95,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="contract_header_id" Type="int" Nullable="false" />
           <Property Name="contract_detail_id" Type="int" Nullable="false" />
           <Property Name="created_by" Type="int" Nullable="false" />
@@ -254,14 +106,15 @@
           <Property Name="CW_checked" Type="bit" />
           <Property Name="CZ_checked" Type="bit" />
           <Property Name="status" Type="bit" />
+          <Property Name="DeliverTime" Type="datetime" />
         </EntityType>
         <EntityType Name="CRM_suppliers">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SN" Type="varchar" MaxLength="10" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="shortname" Type="nvarchar" MaxLength="50" />
           <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="zipcode" Type="char" MaxLength="6" />
@@ -280,8 +133,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="position" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="type" Type="int" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
@@ -313,12 +166,12 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="wood_id" Type="int" Nullable="false" />
           <Property Name="inv_id" Type="int" Nullable="false" />
           <Property Name="type" Type="int" />
           <Property Name="PO_id" Type="int" />
-          <Property Name="qty" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="qty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="price" Type="decimal" Precision="8" Scale="2" />
           <Property Name="in_out" Type="int" Nullable="false" />
           <Property Name="event_user_id" Type="int" />
@@ -333,9 +186,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SN" Type="varchar" MaxLength="50" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="created_time" Type="datetime" Nullable="false" />
           <Property Name="delete_flag" Type="bit" Nullable="false" />
         </EntityType>
@@ -343,7 +196,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PO_id" Type="int" />
           <Property Name="qty" Type="int" />
           <Property Name="price" Type="decimal" Precision="8" Scale="2" />
@@ -357,7 +210,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccessoryId" Type="int" Nullable="false" />
           <Property Name="inv_id" Type="int" Nullable="false" />
           <Property Name="qty" Type="int" Nullable="false" />
@@ -374,8 +227,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SN" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="apply_user_id" Type="int" Nullable="false" />
           <Property Name="apply_user_name" Type="varchar" MaxLength="50" />
           <Property Name="apply_user_department" Type="varchar" MaxLength="50" />
@@ -415,7 +268,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="catalog_id" Type="int" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="unit" Type="varchar" MaxLength="30" />
@@ -427,8 +280,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="type" Type="tinyint" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="remark" Type="text" />
@@ -439,17 +292,17 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="remark" Type="text" />
         </EntityType>
         <EntityType Name="INV_labels">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SN" Type="varchar" Nullable="false" MaxLength="30" />
-          <Property Name="product_SN" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="product_SN" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="style" Type="varchar" MaxLength="50" />
           <Property Name="wood_id" Type="int" />
@@ -482,7 +335,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WoodId" Type="int" />
           <Property Name="inventory_id" Type="int" />
           <Property Name="price" Type="decimal" Precision="8" Scale="2" />
@@ -495,7 +348,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PO_id" Type="int" />
           <Property Name="qty" Type="int" />
           <Property Name="price" Type="decimal" Precision="8" Scale="2" />
@@ -509,7 +362,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WoodId" Type="int" Nullable="false" />
           <Property Name="inv_id" Type="int" Nullable="false" />
           <Property Name="qty" Type="int" Nullable="false" />
@@ -526,8 +379,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SN" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="apply_user_id" Type="int" Nullable="false" />
           <Property Name="apply_user_name" Type="nvarchar" MaxLength="50" />
           <Property Name="apply_user_department" Type="nvarchar" MaxLength="50" />
@@ -549,7 +402,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="wood_id" Type="int" Nullable="false" />
           <Property Name="color" Type="varchar" MaxLength="50" />
@@ -574,7 +427,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="length" Type="int" />
           <Property Name="width" Type="int" />
           <Property Name="height" Type="int" />
@@ -592,8 +445,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="nickname" Type="nvarchar" MaxLength="100" />
           <Property Name="place" Type="nvarchar" MaxLength="100" />
           <Property Name="safe_stock_max" Type="int" Nullable="false" />
@@ -601,22 +454,22 @@
           <Property Name="remark" Type="text" />
           <Property Name="created_time" Type="datetime" Nullable="false" />
           <Property Name="delete_flag" Type="bit" Nullable="false" />
-          <Property Name="g_ccl" Type="decimal" Scale="2" />
-          <Property Name="g_bz" Type="decimal" Scale="2" />
-          <Property Name="q_ccl" Type="decimal" Scale="2" />
-          <Property Name="q_bz" Type="decimal" Scale="2" />
-          <Property Name="prcie" Type="decimal" Scale="2" />
-          <Property Name="cc_prcie" Type="decimal" Scale="2" />
+          <Property Name="g_ccl" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="g_bz" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="q_ccl" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="q_bz" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="prcie" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cc_prcie" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Sort" Type="int" />
-          <Property Name="PersonPrice" Type="decimal" Scale="2" />
+          <Property Name="PersonPrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="SYS_colors">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SN" Type="varchar" MaxLength="10" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RGB" Type="varchar" MaxLength="7" />
           <Property Name="img" Type="varchar" MaxLength="50" />
           <Property Name="remark" Type="text" />
@@ -624,15 +477,14 @@
           <Property Name="delete_flag" Type="bit" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-      警告 6002: 表/视图“XNERP.dbo.SYS_company”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
-      -->
+警告 6002: 表/视图“XNERP.dbo.SYS_company”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="SYS_company">
           <Key>
             <PropertyRef Name="title" />
             <PropertyRef Name="created_time" />
             <PropertyRef Name="delete_flag" />
           </Key>
-          <Property Name="title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="corporation" Type="nvarchar" MaxLength="20" />
           <Property Name="linkman" Type="nvarchar" MaxLength="20" />
@@ -646,7 +498,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="type" Type="int" />
           <Property Name="Tname" Type="varchar" MaxLength="50" />
@@ -670,10 +522,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_SN_id" Type="int" Nullable="false" />
           <Property Name="product_area_id" Type="int" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="length" Type="int" />
           <Property Name="width" Type="int" />
           <Property Name="height" Type="int" />
@@ -695,9 +547,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SN" Type="varchar" MaxLength="50" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="remark" Type="text" />
           <Property Name="created_time" Type="datetime" Nullable="false" />
           <Property Name="delete_flag" Type="bit" Nullable="false" />
@@ -706,9 +558,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SN" Type="varchar" MaxLength="50" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="remark" Type="text" />
           <Property Name="created_time" Type="datetime" Nullable="false" />
           <Property Name="delete_flag" Type="bit" Nullable="false" />
@@ -729,10 +581,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="wood_id" Type="int" Nullable="false" />
-          <Property Name="color" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="color" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="custom_flag" Type="bit" />
           <Property Name="length" Type="int" />
           <Property Name="width" Type="int" />
@@ -760,12 +612,12 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="user_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="price" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="qty" Type="int" Nullable="false" />
-          <Property Name="amount" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="amount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="wo_id" Type="int" Nullable="false" />
           <Property Name="SN" Type="nvarchar" MaxLength="50" />
           <Property Name="check_user_id" Type="int" />
@@ -778,11 +630,11 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="wo_id" Type="int" Nullable="false" />
           <Property Name="material_id" Type="int" Nullable="false" />
-          <Property Name="net_qty" Type="decimal" Nullable="false" Precision="8" Scale="2" />
-          <Property Name="qty" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="net_qty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="qty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="remark" Type="text" />
           <Property Name="created_time" Type="smalldatetime" Nullable="false" />
@@ -792,7 +644,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="workorder" Type="varchar" MaxLength="20" />
           <Property Name="CRM_contract_detail_id" Type="int" />
           <Property Name="WIP_contract_id" Type="int" />
@@ -809,10 +661,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="wo_id" Type="int" Nullable="false" />
           <Property Name="Wood_Id" Type="int" />
-          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="status" Type="int" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="user_name" Type="nvarchar" MaxLength="50" />
@@ -822,7 +674,7 @@
           <Property Name="exp_end_date" Type="datetime" />
           <Property Name="act_begin_date" Type="datetime" />
           <Property Name="act_end_date" Type="datetime" />
-          <Property Name="cost" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="cost" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="check_level" Type="int" />
           <Property Name="checked_user_id" Type="int" />
           <Property Name="checked_user_name" Type="nvarchar" MaxLength="50" />
@@ -838,8 +690,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="workorder" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="workorder" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CRM_contract_detail_id" Type="int" />
           <Property Name="WIP_contract_id" Type="int" />
           <Property Name="qty" Type="int" Nullable="false" />
@@ -875,8 +727,8 @@
           <Property Name="SSonLeve" Type="nvarchar" MaxLength="1500" />
         </EntityType>
         <Association Name="FK_CRM_contract_detail_CRM_contract_header">
-          <End Role="CRM_contract_header" Type="XNERPModel.Store.CRM_contract_header" Multiplicity="1" />
-          <End Role="CRM_contract_detail" Type="XNERPModel.Store.CRM_contract_detail" Multiplicity="*" />
+          <End Role="CRM_contract_header" Type="Self.CRM_contract_header" Multiplicity="1" />
+          <End Role="CRM_contract_detail" Type="Self.CRM_contract_detail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CRM_contract_header">
               <PropertyRef Name="id" />
@@ -887,8 +739,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CRM_contract_detail_INV_wood_type">
-          <End Role="INV_wood_type" Type="XNERPModel.Store.INV_wood_type" Multiplicity="1" />
-          <End Role="CRM_contract_detail" Type="XNERPModel.Store.CRM_contract_detail" Multiplicity="*" />
+          <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="1" />
+          <End Role="CRM_contract_detail" Type="Self.CRM_contract_detail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_wood_type">
               <PropertyRef Name="id" />
@@ -899,8 +751,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CRM_contract_detail_SYS_colors">
-          <End Role="SYS_colors" Type="XNERPModel.Store.SYS_colors" Multiplicity="1" />
-          <End Role="CRM_contract_detail" Type="XNERPModel.Store.CRM_contract_detail" Multiplicity="*" />
+          <End Role="SYS_colors" Type="Self.SYS_colors" Multiplicity="1" />
+          <End Role="CRM_contract_detail" Type="Self.CRM_contract_detail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SYS_colors">
               <PropertyRef Name="id" />
@@ -911,8 +763,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CRM_contract_detail_SYS_product">
-          <End Role="SYS_product" Type="XNERPModel.Store.SYS_product" Multiplicity="1" />
-          <End Role="CRM_contract_detail" Type="XNERPModel.Store.CRM_contract_detail" Multiplicity="*" />
+          <End Role="SYS_product" Type="Self.SYS_product" Multiplicity="1" />
+          <End Role="CRM_contract_detail" Type="Self.CRM_contract_detail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SYS_product">
               <PropertyRef Name="id" />
@@ -923,8 +775,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CRM_contract_header_CRM_customers">
-          <End Role="CRM_customers" Type="XNERPModel.Store.CRM_customers" Multiplicity="1" />
-          <End Role="CRM_contract_header" Type="XNERPModel.Store.CRM_contract_header" Multiplicity="*" />
+          <End Role="CRM_customers" Type="Self.CRM_customers" Multiplicity="1" />
+          <End Role="CRM_contract_header" Type="Self.CRM_contract_header" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CRM_customers">
               <PropertyRef Name="id" />
@@ -935,8 +787,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CRM_delivery_tmp_header_CRM_contract_detail">
-          <End Role="CRM_contract_detail" Type="XNERPModel.Store.CRM_contract_detail" Multiplicity="1" />
-          <End Role="CRM_delivery_tmp_header" Type="XNERPModel.Store.CRM_delivery_tmp_header" Multiplicity="*" />
+          <End Role="CRM_contract_detail" Type="Self.CRM_contract_detail" Multiplicity="1" />
+          <End Role="CRM_delivery_tmp_header" Type="Self.CRM_delivery_tmp_header" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CRM_contract_detail">
               <PropertyRef Name="id" />
@@ -947,8 +799,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CRM_delivery_tmp_header_CRM_contract_header">
-          <End Role="CRM_contract_header" Type="XNERPModel.Store.CRM_contract_header" Multiplicity="1" />
-          <End Role="CRM_delivery_tmp_header" Type="XNERPModel.Store.CRM_delivery_tmp_header" Multiplicity="*" />
+          <End Role="CRM_contract_header" Type="Self.CRM_contract_header" Multiplicity="1" />
+          <End Role="CRM_delivery_tmp_header" Type="Self.CRM_delivery_tmp_header" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CRM_contract_header">
               <PropertyRef Name="id" />
@@ -959,8 +811,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_accessory_purchase_order_INV_accessory_type">
-          <End Role="INV_accessory_type" Type="XNERPModel.Store.INV_accessory_type" Multiplicity="1" />
-          <End Role="INV_accessory_purchase_order" Type="XNERPModel.Store.INV_accessory_purchase_order" Multiplicity="*" />
+          <End Role="INV_accessory_type" Type="Self.INV_accessory_type" Multiplicity="1" />
+          <End Role="INV_accessory_purchase_order" Type="Self.INV_accessory_purchase_order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_accessory_type">
               <PropertyRef Name="Id" />
@@ -971,8 +823,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_accessory_stock_INV_accessory_type">
-          <End Role="INV_accessory_type" Type="XNERPModel.Store.INV_accessory_type" Multiplicity="0..1" />
-          <End Role="INV_accessory_stock" Type="XNERPModel.Store.INV_accessory_stock" Multiplicity="*" />
+          <End Role="INV_accessory_type" Type="Self.INV_accessory_type" Multiplicity="0..1" />
+          <End Role="INV_accessory_stock" Type="Self.INV_accessory_stock" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_accessory_type">
               <PropertyRef Name="Id" />
@@ -983,8 +835,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_accessory_stock_INV_inventories">
-          <End Role="INV_inventories" Type="XNERPModel.Store.INV_inventories" Multiplicity="0..1" />
-          <End Role="INV_accessory_stock" Type="XNERPModel.Store.INV_accessory_stock" Multiplicity="*" />
+          <End Role="INV_inventories" Type="Self.INV_inventories" Multiplicity="0..1" />
+          <End Role="INV_accessory_stock" Type="Self.INV_accessory_stock" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_inventories">
               <PropertyRef Name="id" />
@@ -995,8 +847,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_material_stock_INV_inventories">
-          <End Role="INV_inventories" Type="XNERPModel.Store.INV_inventories" Multiplicity="0..1" />
-          <End Role="INV_material_stock" Type="XNERPModel.Store.INV_material_stock" Multiplicity="*" />
+          <End Role="INV_inventories" Type="Self.INV_inventories" Multiplicity="0..1" />
+          <End Role="INV_material_stock" Type="Self.INV_material_stock" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_inventories">
               <PropertyRef Name="id" />
@@ -1007,8 +859,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_material_stock_INV_wood_type">
-          <End Role="INV_wood_type" Type="XNERPModel.Store.INV_wood_type" Multiplicity="0..1" />
-          <End Role="INV_material_stock" Type="XNERPModel.Store.INV_material_stock" Multiplicity="*" />
+          <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="0..1" />
+          <End Role="INV_material_stock" Type="Self.INV_material_stock" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_wood_type">
               <PropertyRef Name="id" />
@@ -1019,8 +871,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_materials_INV_inventories">
-          <End Role="INV_inventories" Type="XNERPModel.Store.INV_inventories" Multiplicity="0..1" />
-          <End Role="INV_materials" Type="XNERPModel.Store.INV_materials" Multiplicity="*" />
+          <End Role="INV_inventories" Type="Self.INV_inventories" Multiplicity="0..1" />
+          <End Role="INV_materials" Type="Self.INV_materials" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_inventories">
               <PropertyRef Name="id" />
@@ -1031,8 +883,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_materials_INV_wood_type">
-          <End Role="INV_wood_type" Type="XNERPModel.Store.INV_wood_type" Multiplicity="0..1" />
-          <End Role="INV_materials" Type="XNERPModel.Store.INV_materials" Multiplicity="*" />
+          <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="0..1" />
+          <End Role="INV_materials" Type="Self.INV_materials" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_wood_type">
               <PropertyRef Name="id" />
@@ -1043,8 +895,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_semi_INV_inventories">
-          <End Role="INV_inventories" Type="XNERPModel.Store.INV_inventories" Multiplicity="0..1" />
-          <End Role="INV_semi" Type="XNERPModel.Store.INV_semi" Multiplicity="*" />
+          <End Role="INV_inventories" Type="Self.INV_inventories" Multiplicity="0..1" />
+          <End Role="INV_semi" Type="Self.INV_semi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_inventories">
               <PropertyRef Name="id" />
@@ -1055,8 +907,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_semi_INV_wood_type">
-          <End Role="INV_wood_type" Type="XNERPModel.Store.INV_wood_type" Multiplicity="1" />
-          <End Role="INV_semi" Type="XNERPModel.Store.INV_semi" Multiplicity="*" />
+          <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="1" />
+          <End Role="INV_semi" Type="Self.INV_semi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_wood_type">
               <PropertyRef Name="id" />
@@ -1067,8 +919,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_semi_SYS_product">
-          <End Role="SYS_product" Type="XNERPModel.Store.SYS_product" Multiplicity="1" />
-          <End Role="INV_semi" Type="XNERPModel.Store.INV_semi" Multiplicity="*" />
+          <End Role="SYS_product" Type="Self.SYS_product" Multiplicity="1" />
+          <End Role="INV_semi" Type="Self.INV_semi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SYS_product">
               <PropertyRef Name="id" />
@@ -1079,8 +931,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_single_board_INV_inventories">
-          <End Role="INV_inventories" Type="XNERPModel.Store.INV_inventories" Multiplicity="0..1" />
-          <End Role="INV_single_board" Type="XNERPModel.Store.INV_single_board" Multiplicity="*" />
+          <End Role="INV_inventories" Type="Self.INV_inventories" Multiplicity="0..1" />
+          <End Role="INV_single_board" Type="Self.INV_single_board" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_inventories">
               <PropertyRef Name="id" />
@@ -1091,8 +943,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_INV_single_board_INV_wood_type">
-          <End Role="INV_wood_type" Type="XNERPModel.Store.INV_wood_type" Multiplicity="0..1" />
-          <End Role="INV_single_board" Type="XNERPModel.Store.INV_single_board" Multiplicity="*" />
+          <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="0..1" />
+          <End Role="INV_single_board" Type="Self.INV_single_board" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INV_wood_type">
               <PropertyRef Name="id" />
@@ -1103,8 +955,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SYS_product_SN_SYS_product_SN">
-          <End Role="SYS_product_SN" Type="XNERPModel.Store.SYS_product_SN" Multiplicity="1" />
-          <End Role="SYS_product_SN1" Type="XNERPModel.Store.SYS_product_SN" Multiplicity="0..1" />
+          <End Role="SYS_product_SN" Type="Self.SYS_product_SN" Multiplicity="1" />
+          <End Role="SYS_product_SN1" Type="Self.SYS_product_SN" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="SYS_product_SN">
               <PropertyRef Name="id" />
@@ -1115,8 +967,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SYS_product_SYS_product_area">
-          <End Role="SYS_product_area" Type="XNERPModel.Store.SYS_product_area" Multiplicity="0..1" />
-          <End Role="SYS_product" Type="XNERPModel.Store.SYS_product" Multiplicity="*" />
+          <End Role="SYS_product_area" Type="Self.SYS_product_area" Multiplicity="0..1" />
+          <End Role="SYS_product" Type="Self.SYS_product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SYS_product_area">
               <PropertyRef Name="id" />
@@ -1127,8 +979,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SYS_product_SYS_product_SN">
-          <End Role="SYS_product_SN" Type="XNERPModel.Store.SYS_product_SN" Multiplicity="1" />
-          <End Role="SYS_product" Type="XNERPModel.Store.SYS_product" Multiplicity="*" />
+          <End Role="SYS_product_SN" Type="Self.SYS_product_SN" Multiplicity="1" />
+          <End Role="SYS_product" Type="Self.SYS_product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SYS_product_SN">
               <PropertyRef Name="id" />
@@ -1139,8 +991,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WIP_contract_WIP_contract">
-          <End Role="WIP_contract" Type="XNERPModel.Store.WIP_contract" Multiplicity="1" />
-          <End Role="WIP_contract1" Type="XNERPModel.Store.WIP_contract" Multiplicity="0..1" />
+          <End Role="WIP_contract" Type="Self.WIP_contract" Multiplicity="1" />
+          <End Role="WIP_contract1" Type="Self.WIP_contract" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="WIP_contract">
               <PropertyRef Name="id" />
@@ -1151,8 +1003,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WIP_work_CW_SYS_product">
-          <End Role="SYS_product" Type="XNERPModel.Store.SYS_product" Multiplicity="0..1" />
-          <End Role="WIP_work_CW" Type="XNERPModel.Store.WIP_work_CW" Multiplicity="*" />
+          <End Role="SYS_product" Type="Self.SYS_product" Multiplicity="0..1" />
+          <End Role="WIP_work_CW" Type="Self.WIP_work_CW" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SYS_product">
               <PropertyRef Name="id" />
@@ -1162,6 +1014,156 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="XNERPModelStoreContainer">
+          <EntitySet Name="CRM_contract_detail" EntityType="Self.CRM_contract_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CRM_contract_header" EntityType="Self.CRM_contract_header" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CRM_customers" EntityType="Self.CRM_customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CRM_delivery_tmp_header" EntityType="Self.CRM_delivery_tmp_header" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CRM_suppliers" EntityType="Self.CRM_suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HR_jobs" EntityType="Self.HR_jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HR_salary_info" EntityType="Self.HR_salary_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_accessory" EntityType="Self.INV_accessory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_accessory_catalog" EntityType="Self.INV_accessory_catalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_accessory_PO_input" EntityType="Self.INV_accessory_PO_input" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_accessory_PO_output" EntityType="Self.INV_accessory_PO_output" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_accessory_purchase_order" EntityType="Self.INV_accessory_purchase_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_accessory_stock" EntityType="Self.INV_accessory_stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_accessory_type" EntityType="Self.INV_accessory_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_inventories" EntityType="Self.INV_inventories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_inventory_type" EntityType="Self.INV_inventory_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_labels" EntityType="Self.INV_labels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_material_stock" EntityType="Self.INV_material_stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_materials" EntityType="Self.INV_materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_PO_input" EntityType="Self.INV_PO_input" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_PO_output" EntityType="Self.INV_PO_output" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_purchase_order" EntityType="Self.INV_purchase_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_semi" EntityType="Self.INV_semi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_single_board" EntityType="Self.INV_single_board" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV_wood_type" EntityType="Self.INV_wood_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_colors" EntityType="Self.SYS_colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_notices" EntityType="Self.SYS_notices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_product" EntityType="Self.SYS_product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_product_area" EntityType="Self.SYS_product_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_product_SN" EntityType="Self.SYS_product_SN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLogs" EntityType="Self.UserLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WIP_contract" EntityType="Self.WIP_contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WIP_wo_events" EntityType="Self.WIP_wo_events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WIP_WO_salary" EntityType="Self.WIP_WO_salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WIP_wo_wood" EntityType="Self.WIP_wo_wood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WIP_work_CW" EntityType="Self.WIP_work_CW" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WIP_workflow" EntityType="Self.WIP_workflow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WIP_workorder" EntityType="Self.WIP_workorder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XT_RM" EntityType="Self.XT_RM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_company" EntityType="Self.SYS_company" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SYS_company].[title] AS [title], 
+[SYS_company].[address] AS [address], 
+[SYS_company].[corporation] AS [corporation], 
+[SYS_company].[linkman] AS [linkman], 
+[SYS_company].[tel] AS [tel], 
+[SYS_company].[account] AS [account], 
+[SYS_company].[remark] AS [remark], 
+[SYS_company].[created_time] AS [created_time], 
+[SYS_company].[delete_flag] AS [delete_flag]
+FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CRM_contract_detail_CRM_contract_header" Association="Self.FK_CRM_contract_detail_CRM_contract_header">
+            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
+            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_contract_detail_INV_wood_type" Association="Self.FK_CRM_contract_detail_INV_wood_type">
+            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_contract_detail_SYS_colors" Association="Self.FK_CRM_contract_detail_SYS_colors">
+            <End Role="SYS_colors" EntitySet="SYS_colors" />
+            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_contract_detail_SYS_product" Association="Self.FK_CRM_contract_detail_SYS_product">
+            <End Role="SYS_product" EntitySet="SYS_product" />
+            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_contract_header_CRM_customers" Association="Self.FK_CRM_contract_header_CRM_customers">
+            <End Role="CRM_customers" EntitySet="CRM_customers" />
+            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_delivery_tmp_header_CRM_contract_detail" Association="Self.FK_CRM_delivery_tmp_header_CRM_contract_detail">
+            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+            <End Role="CRM_delivery_tmp_header" EntitySet="CRM_delivery_tmp_header" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_delivery_tmp_header_CRM_contract_header" Association="Self.FK_CRM_delivery_tmp_header_CRM_contract_header">
+            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
+            <End Role="CRM_delivery_tmp_header" EntitySet="CRM_delivery_tmp_header" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_accessory_purchase_order_INV_accessory_type" Association="Self.FK_INV_accessory_purchase_order_INV_accessory_type">
+            <End Role="INV_accessory_type" EntitySet="INV_accessory_type" />
+            <End Role="INV_accessory_purchase_order" EntitySet="INV_accessory_purchase_order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_accessory_stock_INV_accessory_type" Association="Self.FK_INV_accessory_stock_INV_accessory_type">
+            <End Role="INV_accessory_type" EntitySet="INV_accessory_type" />
+            <End Role="INV_accessory_stock" EntitySet="INV_accessory_stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_accessory_stock_INV_inventories" Association="Self.FK_INV_accessory_stock_INV_inventories">
+            <End Role="INV_inventories" EntitySet="INV_inventories" />
+            <End Role="INV_accessory_stock" EntitySet="INV_accessory_stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_material_stock_INV_inventories" Association="Self.FK_INV_material_stock_INV_inventories">
+            <End Role="INV_inventories" EntitySet="INV_inventories" />
+            <End Role="INV_material_stock" EntitySet="INV_material_stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_material_stock_INV_wood_type" Association="Self.FK_INV_material_stock_INV_wood_type">
+            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+            <End Role="INV_material_stock" EntitySet="INV_material_stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_materials_INV_inventories" Association="Self.FK_INV_materials_INV_inventories">
+            <End Role="INV_inventories" EntitySet="INV_inventories" />
+            <End Role="INV_materials" EntitySet="INV_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_materials_INV_wood_type" Association="Self.FK_INV_materials_INV_wood_type">
+            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+            <End Role="INV_materials" EntitySet="INV_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_semi_INV_inventories" Association="Self.FK_INV_semi_INV_inventories">
+            <End Role="INV_inventories" EntitySet="INV_inventories" />
+            <End Role="INV_semi" EntitySet="INV_semi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_semi_INV_wood_type" Association="Self.FK_INV_semi_INV_wood_type">
+            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+            <End Role="INV_semi" EntitySet="INV_semi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_semi_SYS_product" Association="Self.FK_INV_semi_SYS_product">
+            <End Role="SYS_product" EntitySet="SYS_product" />
+            <End Role="INV_semi" EntitySet="INV_semi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_single_board_INV_inventories" Association="Self.FK_INV_single_board_INV_inventories">
+            <End Role="INV_inventories" EntitySet="INV_inventories" />
+            <End Role="INV_single_board" EntitySet="INV_single_board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INV_single_board_INV_wood_type" Association="Self.FK_INV_single_board_INV_wood_type">
+            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+            <End Role="INV_single_board" EntitySet="INV_single_board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_product_SN_SYS_product_SN" Association="Self.FK_SYS_product_SN_SYS_product_SN">
+            <End Role="SYS_product_SN" EntitySet="SYS_product_SN" />
+            <End Role="SYS_product_SN1" EntitySet="SYS_product_SN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_product_SYS_product_area" Association="Self.FK_SYS_product_SYS_product_area">
+            <End Role="SYS_product_area" EntitySet="SYS_product_area" />
+            <End Role="SYS_product" EntitySet="SYS_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_product_SYS_product_SN" Association="Self.FK_SYS_product_SYS_product_SN">
+            <End Role="SYS_product_SN" EntitySet="SYS_product_SN" />
+            <End Role="SYS_product" EntitySet="SYS_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WIP_contract_WIP_contract" Association="Self.FK_WIP_contract_WIP_contract">
+            <End Role="WIP_contract" EntitySet="WIP_contract" />
+            <End Role="WIP_contract1" EntitySet="WIP_contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WIP_work_CW_SYS_product" Association="Self.FK_WIP_work_CW_SYS_product">
+            <End Role="SYS_product" EntitySet="SYS_product" />
+            <End Role="WIP_work_CW" EntitySet="WIP_work_CW" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -2062,6 +2064,8 @@
           <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.FK_CRM_contract_detail_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_contract_detail" />
           <NavigationProperty Name="CRM_customers" Relationship="XNERPModel.FK_CRM_contract_header_CRM_customers" FromRole="CRM_contract_header" ToRole="CRM_customers" />
           <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_tmp_header" />
+          <Property Name="Linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Linktel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_CRM_contract_detail_CRM_contract_header">
           <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
@@ -2493,6 +2497,7 @@
           <Property Name="CW_checked" Type="Boolean" />
           <Property Name="CZ_checked" Type="Boolean" />
           <Property Type="Boolean" Name="status" />
+          <Property Name="DeliverTime" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="CRM_contract_detailINV_labels">
           <End Type="XNERPModel.CRM_contract_detail" Role="CRM_contract_detail" Multiplicity="0..1" />
@@ -3132,6 +3137,8 @@
           <EntitySetMapping Name="CRM_contract_header">
             <EntityTypeMapping TypeName="XNERPModel.CRM_contract_header">
               <MappingFragment StoreEntitySet="CRM_contract_header">
+                <ScalarProperty Name="Linktel" ColumnName="Linktel" />
+                <ScalarProperty Name="Linkman" ColumnName="Linkman" />
                 <ScalarProperty Name="reserved3" ColumnName="reserved3" />
                 <ScalarProperty Name="reserved2" ColumnName="reserved2" />
                 <ScalarProperty Name="reserved1" ColumnName="reserved1" />
@@ -3336,6 +3343,7 @@
           <EntitySetMapping Name="CRM_delivery_tmp_header">
             <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_tmp_header">
               <MappingFragment StoreEntitySet="CRM_delivery_tmp_header">
+                <ScalarProperty Name="DeliverTime" ColumnName="DeliverTime" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="CZ_checked" ColumnName="CZ_checked" />
                 <ScalarProperty Name="CW_checked" ColumnName="CW_checked" />

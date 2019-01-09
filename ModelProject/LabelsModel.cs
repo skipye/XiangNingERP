@@ -63,6 +63,7 @@ namespace ModelProject
         public decimal? cc_prcie { get; set; }
         public bool? CW_checked { get; set; }
         public bool? CZ_checked { get; set; }
+        public DateTime? DeliverTime { get; set; }
     }
     public class SLabelsModel
     {

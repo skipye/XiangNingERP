@@ -1,0 +1,42 @@
+﻿
+@model ModelProject.CRM_HTZModel
+@{
+    Layout = null;
+}
+
+<div class="addmain">
+    @using (Html.BeginForm("UpdateDelivery", "CRM_HT", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.HiddenFor(k => k.id)
+
+        <div class="mod normal">
+           
+            <div class="item">
+                <label class="label">送货地址：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.delivery_address, new { @class = "inputtext", @style = "width:400px;" })
+                </div>
+            </div>
+            <div class="item">
+                <label class="label">送货联系人：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.Linkman, new { @class = "inputtext", @style = "width:400px;" })
+                </div>
+            </div>
+            <div class="item">
+                <label class="label">送货联系电话：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.Linktel, new { @class = "inputtext", @style = "width:400px;" })
+                </div>
+            </div>
+            
+            <div class="item">
+                <label class="label">&nbsp;</label>
+                <div class="form-field">
+                    <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+</div>

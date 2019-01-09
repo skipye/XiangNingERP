@@ -245,6 +245,8 @@ namespace DalProject
                     table.prepay = Models.prepay;
                     table.measure_flag = Models.measure_flag;
                     table.delivery_address = Models.delivery_address;
+                    table.Linkman = Models.Linkman;
+                    table.Linktel = Models.Linktel;
                     table.signed_user_id = Models.signed_user_id;
                     table.signed_department_id = Models.signed_department_id;
                 }
@@ -261,6 +263,8 @@ namespace DalProject
                     table.prepay = Models.prepay;
                     table.measure_flag = Models.measure_flag;
                     table.delivery_address = Models.delivery_address;
+                    table.Linkman = Models.Linkman;
+                    table.Linktel = Models.Linktel;
                     table.signed_user_id = Models.signed_user_id;
                     table.signed_department_id = Models.signed_department_id;
                     table.department = Models.department;
@@ -274,7 +278,21 @@ namespace DalProject
 
             }
         }
-        
+        public void UpdateDelivery(CRM_HTZModel Models)
+        {
+            using (var db = new XNERPEntities())
+            {
+                
+                var table = db.CRM_contract_header.Where(k => k.id == Models.id).SingleOrDefault();
+                
+                table.delivery_address = Models.delivery_address;
+                table.Linkman = Models.Linkman;
+                table.Linktel = Models.Linktel;
+              
+                db.SaveChanges();
+
+            }
+        }
         public CRM_HTZModel GetDetailById(int Id)
         {
             using (var db = new XNERPEntities())

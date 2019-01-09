@@ -63,6 +63,24 @@ namespace XiangNingERP.Controllers
             }
             return View(Models);
         }
+        public ActionResult UpdateDelivery(int Id)
+        {
+            CRM_HTZModel Models = new CRM_HTZModel();
+            
+            Models = ISer.GetDetailById(Id);
+           
+            return View(Models);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateDelivery(CRM_HTZModel Models)
+        {
+            if (ISer.UpdateDelivery(Models) == true)
+            {
+                return RedirectToAction("Index", "CRM_HT");
+            }
+            else { return View(Models); }
+        }
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Add(CRM_HTZModel Models)

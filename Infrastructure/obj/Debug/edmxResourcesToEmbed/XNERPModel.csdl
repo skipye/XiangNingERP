@@ -896,6 +896,8 @@
     <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.FK_CRM_contract_detail_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_contract_detail" />
     <NavigationProperty Name="CRM_customers" Relationship="XNERPModel.FK_CRM_contract_header_CRM_customers" FromRole="CRM_contract_header" ToRole="CRM_customers" />
     <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_tmp_header" />
+    <Property Name="Linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Linktel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_CRM_contract_detail_CRM_contract_header">
     <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
@@ -1327,6 +1329,7 @@
     <Property Name="CW_checked" Type="Boolean" />
     <Property Name="CZ_checked" Type="Boolean" />
     <Property Type="Boolean" Name="status" />
+    <Property Name="DeliverTime" Type="DateTime" Precision="3" />
   </EntityType>
   <Association Name="CRM_contract_detailINV_labels">
     <End Type="XNERPModel.CRM_contract_detail" Role="CRM_contract_detail" Multiplicity="0..1" />

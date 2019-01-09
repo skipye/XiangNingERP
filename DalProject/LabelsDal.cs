@@ -133,7 +133,8 @@ namespace DalProject
                                 delete_flag=p.delete_flag,
                                 OrderNum=p.OrderNum,
                                 CW_checked=p.CW_checked,
-                                CZ_checked=p.CZ_checked
+                                CZ_checked=p.CZ_checked,
+                                DeliverTime=p.DeliverTime
                             }).ToList();
                 return List.ToPagedList(SModel.PageIndex??1, SModel.PagePSize??10); 
             }
@@ -290,7 +291,7 @@ namespace DalProject
                             HTables.label_id = Id;
                             HTables.CW_checked = false;
                             HTables.CZ_checked = false;
-                            HTables.OrderNum = "XN" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100, 1000);
+                            HTables.OrderNum = "XN" + DateTime.Now.ToString("yyMMdd") + r.Next(100, 1000);
                             HTables.status = false;
                             db.CRM_delivery_tmp_header.Add(HTables);
 
@@ -335,6 +336,7 @@ namespace DalProject
                         tables.OrderNum = OrderNum;
                         tables.delete_flag = true;
                         tables.created_time = DateTime.Now;
+                        tables.DeliverTime = DateTime.Now;
                     }
                 }
                 db.SaveChanges();
@@ -914,10 +916,10 @@ namespace DalProject
                     {
                         int Id = Convert.ToInt32(item);
                         var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
-                        Models.customer = tables.CRM_contract_header.CRM_customers.name;
+                        Models.customer = tables.CRM_contract_header.Linkman;
                         Models.delivery_address = tables.CRM_contract_header.delivery_address;
                         Models.SN = tables.CRM_contract_header.SN;
-                        Models.TelPhone = tables.CRM_contract_header.CRM_customers.tel;
+                        Models.TelPhone = tables.CRM_contract_header.Linktel;
                         Models.OrderMun = tables.OrderNum;
                         Models.signed_user_id=tables.contract_detail_id;
                         if (OSN != Models.signed_user_id)

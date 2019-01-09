@@ -49,6 +49,14 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public bool UpdateDelivery(CRM_HTZModel Models)
+        {
+            try {  IDal.UpdateDelivery(Models); return true; }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public CRM_HTZModel GetDetailById(int Id)
         {
             try { return IDal.GetDetailById(Id); }

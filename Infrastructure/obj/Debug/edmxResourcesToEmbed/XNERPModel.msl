@@ -519,6 +519,8 @@
     <EntitySetMapping Name="CRM_contract_header">
       <EntityTypeMapping TypeName="XNERPModel.CRM_contract_header">
         <MappingFragment StoreEntitySet="CRM_contract_header">
+          <ScalarProperty Name="Linktel" ColumnName="Linktel" />
+          <ScalarProperty Name="Linkman" ColumnName="Linkman" />
           <ScalarProperty Name="reserved3" ColumnName="reserved3" />
           <ScalarProperty Name="reserved2" ColumnName="reserved2" />
           <ScalarProperty Name="reserved1" ColumnName="reserved1" />
@@ -723,6 +725,7 @@
     <EntitySetMapping Name="CRM_delivery_tmp_header">
       <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_tmp_header">
         <MappingFragment StoreEntitySet="CRM_delivery_tmp_header">
+          <ScalarProperty Name="DeliverTime" ColumnName="DeliverTime" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="CZ_checked" ColumnName="CZ_checked" />
           <ScalarProperty Name="CW_checked" ColumnName="CW_checked" />
