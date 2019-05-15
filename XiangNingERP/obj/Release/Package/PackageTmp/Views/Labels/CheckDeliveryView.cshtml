@@ -3,6 +3,8 @@
     string ListId=ViewBag.ListId;
 }
 
+ <script type="text/javascript" src="@Url.Content("~/js/jquery.ui.datepicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.ui.datepicker-zh-CN.js")"></script>
 
 <div class="addmain">
     @using (Html.BeginForm("CheckDelivery", "Labels", FormMethod.Post, new { @class = "form" }))
@@ -15,7 +17,12 @@
                     @Html.TextBox("OrderNum","", new { @class = "drotext" })
                 </div>
             </div>
-
+            <div class="item">
+                <label class="label"><em>*</em>送货时间：</label>
+                <div class="form-field">
+                    @Html.TextBox("DeliverTime","", new { @class="sputtxt",@style="width:120px;",@ref="datepicker",@placeholder="送货时间" })
+                </div>
+            </div>
 
             <div class="item mb20">
                 <label class="label">&nbsp;</label>
@@ -28,3 +35,10 @@
     }
 </div>
 
+<script type="text/javascript">
+    $(":text[ref='datepicker']").datepicker({
+        changeYear: true,
+        changeMonth: true,
+        showButtonPanel: true
+    });
+</script>

@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+    int Id = ViewBag.Id;
+}
+
+
+<div class="addmain">
+    @using (Html.BeginForm("UpdatePricePost", "CRM_HTPro", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.HiddenFor(k => Id)
+        <div class="mod normal">
+            <div class="item">
+                <label class="label"><em>*</em>产品单价：</label>
+                <div class="form-field">
+                    @Html.TextBox("Price", "", new { @class = "drotext" })
+                </div>
+            </div>
+
+
+            <div class="item mb20">
+                <label class="label">&nbsp;</label>
+                <div class="form-field">
+                    <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+</div>
+

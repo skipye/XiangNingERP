@@ -197,9 +197,9 @@ namespace XiangNingERP.Controllers
             var models = SSer.ToDeliveryExcelOut(SModel);
             ESer.CreateExcel(models, "出库明细表" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
         }
-        public ActionResult DeliveryMore(string ListId)
+        public ActionResult DeliveryMore(string ListId,string DeliveryTime)
         {
-            if (SSer.DeliveryMore(ListId) == true)
+            if (SSer.DeliveryMore(ListId, DeliveryTime) == true)
             {
                 return Content("True");
             }
@@ -216,6 +216,7 @@ namespace XiangNingERP.Controllers
             {
                 SModel.EndTime = datetime.AddDays(1 - datetime.Day).AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
             }
+            SModel.CKDroList = INVSer.GetCKDrolist(SModel.inv_id, 4);
             return View(SModel);
         }
         public ActionResult DeliveryPageList(SLabelsModel SRmodels)
@@ -229,13 +230,13 @@ namespace XiangNingERP.Controllers
             ViewBag.ListId = ListId;
             return View();
         }
-        public ActionResult CheckDelivery(string ListId,string OrderNum)
+        public ActionResult CheckDelivery(string ListId, string OrderNum, string DeliverTime)
         {
-            if (SSer.CheckDelivery(ListId, OrderNum) == true)
+            if (SSer.CheckDelivery(ListId, OrderNum, DeliverTime) == true)
             {
-                return Content("True");
+                return Content("<script>alert('操作成功！');history.back();window.location.reload();</script>");
             }
-            else return Content("False");
+            else return Content("<script>alert('操作失败！');history.back();window.location.reload();</script>");
         }
         public ActionResult WorkLabels(SLabelsModel SRmodels)
         {

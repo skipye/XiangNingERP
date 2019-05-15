@@ -61,6 +61,7 @@
             <td>
             @if (item.status == 0) { 
              <a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "CRM_HTPro")">删除</a>
+            <a href="javascript:void(0)" class="editbtn" ref="@item.id" title="修改价格" url="@Url.Action("UpdatePrice", "CRM_HTPro")">修改价格</a>
             }</td>
         </tr>
         i++;

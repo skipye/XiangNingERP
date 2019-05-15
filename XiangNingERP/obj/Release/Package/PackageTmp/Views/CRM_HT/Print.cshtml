@@ -45,12 +45,13 @@
         <col width="100px" />
         <col width="100px" />
         <col width="100px" />
-        
+        <col width="100px" />
         <col width="80px" />
         <tr class="fb">
             <th>序号</th>
             <th>产品名称</th>
             <th>木材</th>
+            <th>色号</th>
             <th>规格</th>
             <th>数量</th>
             <th>单位</th>
@@ -61,10 +62,11 @@
     @foreach (var item in Model.HTPro)
     {
        
-        <tr style="height:35px;">
+        <tr style="height:35px;font-size:12px;">
             <td>@(i)</td>
             <td>@item.productXL _ @item.productName </td>
             <td>@item.woodName </td>
+            <td>@item.colorName </td>
             <td>@(Convert.ToDecimal(item.length).ToString("0")+"X"+Convert.ToDecimal(item.width).ToString("0")+"X"+Convert.ToDecimal(item.height).ToString("0"))</td>
             <td>@item.qty</td>
             <td>件</td>
@@ -81,14 +83,15 @@
     <p class="mt10 pspace">1.方法：按双方议定的款式和现有的货物实样为准。</p>
     <p class="pspace">2.甲方签收人除法人或指定的代理人签收外，其他人员签收无效。</p>
     <p class="pspace">3.产品交货期为：<u>@Convert.ToDateTime(Model.delivery_date).ToString("yyyy")</u>年<u>@Convert.ToDateTime(Model.delivery_date).ToString("MM")</u>月<u>@Convert.ToDateTime(Model.delivery_date).ToString("dd")</u>日。</p>
+    <p class="pspace">4.执行标准编号为Q31/0118000962C001-2018《红木艺术家具》。</p>
 
     <p class="mt10 f14">三、交货方法：</p>
     <p class="mt10 pspace">1.方法：由 <u>@Model.freight_carrier</u>方承担运费费用。</p>
     <p class="pspace">2.验收地点及交货地址：<u>@Model.delivery_address</u>。</p>
 
     <p class="mt10 f14">四、付款方法：</p>
-    <p class="mt10 pspace">1.本合同经双方签字（盖章）后即预付<u>@(Math.Round(Convert.ToDecimal(Model.prepay * 100 / Model.amount),2,MidpointRounding.AwayFromZero))</u>%的定金（<u>@Model.prepay</u>）元。</p>
-    <p class="pspace">2.乙方生产完成后经甲方验收合格，支付剩余<u>@(Math.Round(Convert.ToDecimal((Model.amount - Model.prepay) * 100 / Model.amount),2,MidpointRounding.AwayFromZero))</u>%（<u>@(Model.amount-Model.prepay)</u>元）后三日内安排发货。</p>
+    <p class="mt10 pspace">1.本合同经双方签字（盖章）后即预付<u> @(Model.prepay !=0? Math.Round(Convert.ToDecimal(Model.prepay * 100 / Model.amount),2,MidpointRounding.AwayFromZero):0)</u>%的定金（<u>@Model.prepay</u>）元。</p>
+    <p class="pspace">2.乙方生产完成后经甲方验收合格，支付剩余<u>@(Model.prepay != 0 ? Math.Round(Convert.ToDecimal((Model.amount - Model.prepay) * 100 / Model.amount),2,MidpointRounding.AwayFromZero):0)</u>%（<u>@(Model.amount-Model.prepay)</u>元）后三日内安排发货。</p>
 
     <p class="mt10 f14">五、违约责任：</p>
     <p class="mt10 pspace">甲乙双方任何一方违约，应承担违约责任。乙方不能交货的，或甲方中途退货，向对方赔偿不能交货或中途退货部分货款总值的50%。如违约金不足以抵补损失时，还应支付赔偿金以补偿其差额部分。</p>

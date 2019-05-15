@@ -146,7 +146,7 @@ namespace XiangNingERP.Controllers
         {
             CRM_HTZModel Models = new CRM_HTZModel();
             Models = ISer.GetDetailById(Id);
-            Models.HTPro = IPSer.GetPageList(Id, 1, 20);
+            Models.HTPro = IPSer.GetPageList(Id, 1, 40);
             return View(Models);
         }
         public ActionResult Delivery(SLabelsModel SModel)

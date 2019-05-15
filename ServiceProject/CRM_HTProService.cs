@@ -61,6 +61,13 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
-
+        public bool UpdatePrice(int Id, string Price)
+        {
+            try { IDal.UpdatePrice(Id, Price); return true; }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

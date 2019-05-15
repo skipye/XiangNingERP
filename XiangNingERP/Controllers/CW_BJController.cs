@@ -34,14 +34,14 @@ namespace XiangNingERP.Controllers
             ViewBag.SModel = SRmodels;
             return View(PageList);
         }
-        public ActionResult Update(int Id,int PageIndex,int PageSize)
+        public ActionResult Update(int Id,int? PageIndex,int? PageSize)
         {
             var Models = WWSer.GetCWWIPById(Id);
             Models.PageIndex = PageIndex;
             Models.PageSize = PageSize;
             return View(Models);
         }
-        public ActionResult Update(WIP_CWModel models)
+        public ActionResult UpdatePost(WIP_CWModel models)
         {
             if (WWSer.UpdateWorkOrder(models) == true)
             {

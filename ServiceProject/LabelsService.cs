@@ -91,22 +91,22 @@ namespace ServiceProject
             }
         }
         //送货维修操作
-        public bool DeliveryMore(string ListId)
+        public bool DeliveryMore(string ListId,string DeliverTime)
         {
             try
             {
-                SDal.DeliveryMore(ListId); return true;
+                SDal.DeliveryMore(ListId, DeliverTime); return true;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        public bool CheckDelivery(string ListId, string OrderNum)
+        public bool CheckDelivery(string ListId, string OrderNum, string DeliverTime)
         {
             try
             {
-                SDal.CheckDelivery(ListId,OrderNum); return true;
+                SDal.CheckDelivery(ListId, OrderNum, DeliverTime); return true;
             }
             catch (Exception ex)
             {

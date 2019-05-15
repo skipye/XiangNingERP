@@ -28,5 +28,6 @@ namespace Infrastructure
         public Nullable<int> YQqty { get; set; }
     
         public virtual SYS_product SYS_product { get; set; }
+        public virtual CRM_contract_detail CRM_contract_detail { get; set; }
     }
 }

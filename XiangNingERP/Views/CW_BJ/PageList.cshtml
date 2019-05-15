@@ -9,13 +9,13 @@
 {
     <table>
         <col width="50px" />
-        <col width="100px" />
-        <col width="80px" />
+        <col width="120px" />
+        <col width="120px" />
         <col width="180px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
-        <col width="120px" />
+        <col width="160px" />
+        <col width="60px" />
+        <col width="60px" />
+        <col width="80px" />
         <col width="120px" />
         <col width="120px" />
         <col />
@@ -39,7 +39,7 @@
             <tr>
                 <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.Id" /></td>
                 <td>@item.workorder</td>
-                <td><div class="tw">@(item.CRM_contract_detail_id>0?"销售产品":"预投产品")</div></td>
+                <td><div class="tw">@(item.CRM_contract_detail_id>0?"销售产品":"预投产品") (@item.customer)</div></td>
                 <td style="text-align:left;"><div class="tw">@(item.ProductXL + "_" + item.ProductName)</div></td>
                 <td>@item.style</td>
                 <td>件</td>
@@ -49,7 +49,7 @@
                 <td>@item.YQqty</td>
                 <td>@Convert.ToDateTime(item.CreateTime).ToString("yyyy-MM-dd")</td>
                 <td>
-                     <a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("update", "CW_BJ", new { PageSize=SModel.PageSize,PageIndex=SModel.PageIndex})" ref="@item.Id">安排生产</a>
+                     <a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("update", "CW_BJ", new { PageSize=SModel.PageSize,PageIndex=SModel.PageIndex})" ref="@item.Id">标记</a>
                     
                 </td>
             </tr>

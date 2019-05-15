@@ -112,8 +112,9 @@ namespace DalProject
                 var List = (from p in db.CRM_delivery_tmp_header.Where(k=>k.status==false)
                             where !string.IsNullOrEmpty(SModel.SaleName) ? p.INV_labels.CRM_customers.name.Contains(SModel.SaleName) : true
                             where !string.IsNullOrEmpty(SModel.ProSN) ? p.CRM_contract_header.SN.Contains(SModel.ProSN) : true
-                            where p.created_time>StartTime
-                            where p.created_time<EndTime
+                            where SModel.inv_id != null && SModel.inv_id > 0 ? SModel.inv_id == p.INV_labels.inv_id: true
+                            where p.DeliverTime>StartTime
+                            where p.DeliverTime < EndTime
                             orderby p.created_time descending
                             select new LabelsModel
                             {
@@ -259,15 +260,18 @@ namespace DalProject
                         int Id = Convert.ToInt32(item);
                         var tables = db.INV_labels.Where(k => k.id == Id).SingleOrDefault();
                         tables.inv_id = inv_id;
-                        tables.check_date = DateTime.Now;
+                        tables.created_time = DateTime.Now;
                     }
                 }
                 db.SaveChanges();
             }
         }
         //送货维修操作
-        public void DeliveryMore(string ListId)
+        public void DeliveryMore(string ListId,string DeliverTime)
         {
+            DateTime DeliveTime = DateTime.Now;
+            if (!string.IsNullOrEmpty(DeliverTime))
+            { DeliveTime = Convert.ToDateTime(DeliverTime); }
             Random r = new Random();
             using (var db = new XNERPEntities())
             {
@@ -293,6 +297,7 @@ namespace DalProject
                             HTables.CZ_checked = false;
                             HTables.OrderNum = "XN" + DateTime.Now.ToString("yyMMdd") + r.Next(100, 1000);
                             HTables.status = false;
+                            HTables.DeliverTime = DeliveTime;
                             db.CRM_delivery_tmp_header.Add(HTables);
 
                             tables.delete_flag = true;
@@ -322,7 +327,7 @@ namespace DalProject
                 db.SaveChanges();
             }
         }
-        public void CheckDelivery(string ListId,string OrderNum)
+        public void CheckDelivery(string ListId, string OrderNum, string DeliverTime)
         {
             using (var db = new XNERPEntities())
             {
@@ -333,10 +338,13 @@ namespace DalProject
                     {
                         int Id = Convert.ToInt32(item);
                         var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
-                        tables.OrderNum = OrderNum;
+                        if (!string.IsNullOrEmpty(OrderNum))
+                        { tables.OrderNum = OrderNum; }
+                        if (!string.IsNullOrEmpty(DeliverTime))
+                        { tables.DeliverTime = Convert.ToDateTime(DeliverTime); }
                         tables.delete_flag = true;
                         tables.created_time = DateTime.Now;
-                        tables.DeliverTime = DateTime.Now;
+                        
                     }
                 }
                 db.SaveChanges();

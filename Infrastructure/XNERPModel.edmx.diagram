@@ -66,7 +66,6 @@
         <EntityTypeShape EntityType="XNERPModel.WIP_workflow" Width="1.5" PointX="7.375" PointY="0.5" />
         <AssociationConnector Association="XNERPModel.WIP_workorderWIP_workflow" />
         <AssociationConnector Association="XNERPModel.SYS_productWIP_workflow" />
-        <AssociationConnector Association="XNERPModel.FK_WIP_contract_WIP_contract" />
         <EntityTypeShape EntityType="XNERPModel.WIP_WO_salary" Width="1.5" PointX="0.5" PointY="18.875" />
         <EntityTypeShape EntityType="XNERPModel.INV_labels" Width="1.5" PointX="10.25" PointY="34.875" />
         <AssociationConnector Association="XNERPModel.SYS_productINV_labels" />
@@ -83,6 +82,7 @@
         <AssociationConnector Association="XNERPModel.FK_INV_single_board_INV_wood_type" />
         <EntityTypeShape EntityType="XNERPModel.WIP_work_CW" Width="1.5" PointX="7.875" PointY="32.25" />
         <AssociationConnector Association="XNERPModel.FK_WIP_work_CW_SYS_product" />
+        <AssociationConnector Association="XNERPModel.WIP_work_CWCRM_contract_detail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

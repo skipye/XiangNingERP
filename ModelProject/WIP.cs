@@ -101,6 +101,7 @@ namespace ModelProject
         public string ProductName { get; set; }
         public string ProductXL { get; set; }
         public string workorder { get; set; }
+        public string customer { get; set; }
         public int? qty { get; set; }
         public DateTime? CreateTime { get; set; }
         public string WoodName { get; set; }
@@ -108,7 +109,7 @@ namespace ModelProject
         public int? YQqty { get; set; }
         public int? CRM_contract_detail_id { get; set; }
         public int? WIP_contract_id { get; set; }
-        public int PageSize { get; set; }
-        public int PageIndex { get; set; }
+        public int? PageSize { get; set; }
+        public int? PageIndex { get; set; }
     }
 }

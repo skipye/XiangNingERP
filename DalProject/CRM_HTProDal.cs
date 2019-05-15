@@ -27,7 +27,7 @@ namespace DalProject
                                 wood_type_id = p.wood_type_id,
                                 woodName = p.INV_wood_type.name,
                                 color_id = p.color_id,
-                                colorName = p.SYS_colors.name,
+                                colorName = p.color,
                                 custom_flag=p.custom_flag,
                                 length = p.length,
                                 width = p.width,
@@ -175,6 +175,27 @@ namespace DalProject
                             }).Take(10).ToList();
                 return list;
 
+            }
+        }
+        public void UpdatePrice(int Id, string Price)
+        {
+            using (var db = new XNERPEntities())
+            {
+                var tables = db.CRM_contract_detail.Where(k => k.id == Id).SingleOrDefault();
+                decimal NewPrice = tables.price??0;
+                if (!string.IsNullOrEmpty(Price))
+                {
+                    NewPrice = Convert.ToDecimal(Price);
+                }
+                tables.price = NewPrice;
+                var HeadId = tables.header_id;
+
+                var OldPrice = db.CRM_contract_detail.Where(k => k.header_id == HeadId && k.delete_flag == false && k.id != Id).Sum(k => k.price * k.qty)??0;
+
+                var HeadTable = db.CRM_contract_header.Where(k => k.id == HeadId).FirstOrDefault();
+                HeadTable.amount = OldPrice + tables.qty * NewPrice;
+
+                db.SaveChanges();
             }
         }
     }

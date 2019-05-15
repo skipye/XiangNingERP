@@ -24,7 +24,7 @@
             <th>厂长是否审核</th>
             <th>财务是否审核</th>
             <th>是否已送</th>
-            <th>操作日期</th>
+            <th>送货日期</th>
             <th>操作</th>
         </tr>
     @foreach(var item in Model)
@@ -45,7 +45,7 @@
                 @(item.delete_flag!=null&& item.delete_flag==true?"已送":"未送")
                 
             </td>
-            <td>@Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd")</td>
+            <td>@Convert.ToDateTime(item.DeliverTime).ToString("yyyy-MM-dd")</td>
             <td>
                 @if (item.CZ_checked == true && item.CW_checked == true && item.delete_flag == false)
                 {

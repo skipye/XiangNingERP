@@ -175,7 +175,6 @@ E:\MyProject\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.csprojResolveAss
 E:\MyProject\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.dll
 E:\MyProject\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.pdb
 E:\MyProject\XiangNingERP\XiangNingERP\bin\XiangNingERP.dll.config
-D:\XiangNingERP\XiangNingERP\bin\XiangNingERP.dll.config
 D:\XiangNingERP\XiangNingERP\bin\XiangNingERP.dll
 D:\XiangNingERP\XiangNingERP\bin\XiangNingERP.pdb
 D:\XiangNingERP\XiangNingERP\bin\Antlr3.Runtime.dll

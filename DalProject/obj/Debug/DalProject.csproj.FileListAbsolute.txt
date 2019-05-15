@@ -67,15 +67,11 @@ D:\XiangNingERP\DalProject\bin\Debug\Common.dll
 D:\XiangNingERP\DalProject\bin\Debug\EntityFramework.dll
 D:\XiangNingERP\DalProject\bin\Debug\Infrastructure.dll
 D:\XiangNingERP\DalProject\bin\Debug\ModelProject.dll
-D:\XiangNingERP\DalProject\bin\Debug\System.Web.Mvc.dll
-D:\XiangNingERP\DalProject\bin\Debug\System.Web.WebPages.dll
 D:\XiangNingERP\DalProject\bin\Debug\Common.pdb
 D:\XiangNingERP\DalProject\bin\Debug\Infrastructure.pdb
 D:\XiangNingERP\DalProject\bin\Debug\ModelProject.pdb
 D:\XiangNingERP\DalProject\bin\Debug\EntityFramework.xml
-D:\XiangNingERP\DalProject\bin\Debug\System.Web.Mvc.xml
 D:\XiangNingERP\DalProject\bin\Debug\zh-Hans\EntityFramework.resources.dll
-D:\XiangNingERP\DalProject\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 D:\XiangNingERP\DalProject\obj\Debug\DalProject.csprojResolveAssemblyReference.cache
 D:\XiangNingERP\DalProject\obj\Debug\DalProject.dll
 D:\XiangNingERP\DalProject\obj\Debug\DalProject.pdb

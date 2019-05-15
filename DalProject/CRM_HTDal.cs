@@ -573,7 +573,7 @@ namespace DalProject
         { 
              using (var db = new XNERPEntities())
             {
-                var List = db.CRM_contract_header.Where(k => k.created_time > CreateTime).Count();
+                var List = db.CRM_contract_header.Where(k => k.created_time > CreateTime && k.signed_user_id!=0).Count();
                 return List;
              }
         }

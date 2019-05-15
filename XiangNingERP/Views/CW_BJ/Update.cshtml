@@ -5,7 +5,7 @@
 
 
 <div class="addmain">
-    @using (Html.BeginForm("Update", "CW_BJ", FormMethod.Post, new { @class = "form" }))
+    @using (Html.BeginForm("UpdatePost", "CW_BJ", FormMethod.Post, new { @class = "form" }))
     {
         @Html.HiddenFor(k =>k.Id)
         @Html.HiddenFor(k => k.PageSize)

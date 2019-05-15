@@ -25,3 +25,12 @@ E:\MyProject\XiangNingERP\Infrastructure\bin\Release\zh-Hans\EntityFramework.res
 E:\MyProject\XiangNingERP\Infrastructure\obj\Release\Infrastructure.csprojResolveAssemblyReference.cache
 E:\MyProject\XiangNingERP\Infrastructure\obj\Release\Infrastructure.dll
 E:\MyProject\XiangNingERP\Infrastructure\obj\Release\Infrastructure.pdb
+D:\XiangNingERP\Infrastructure\bin\Release\Infrastructure.dll.config
+D:\XiangNingERP\Infrastructure\bin\Release\Infrastructure.dll
+D:\XiangNingERP\Infrastructure\bin\Release\Infrastructure.pdb
+D:\XiangNingERP\Infrastructure\bin\Release\EntityFramework.dll
+D:\XiangNingERP\Infrastructure\bin\Release\EntityFramework.xml
+D:\XiangNingERP\Infrastructure\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\XiangNingERP\Infrastructure\obj\Release\Infrastructure.csprojResolveAssemblyReference.cache
+D:\XiangNingERP\Infrastructure\obj\Release\Infrastructure.dll
+D:\XiangNingERP\Infrastructure\obj\Release\Infrastructure.pdb

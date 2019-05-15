@@ -76,5 +76,21 @@ namespace XiangNingERP.Controllers
             var StrJson = ListToJsonSer.Obj2Json(list);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        //修改价格
+        public ActionResult UpdatePrice(int Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
+        public ActionResult UpdatePricePost(int Id, string Price)
+        {
+            if (ISer.UpdatePrice(Id, Price) == true)
+            {
+                return RedirectToAction("Index", "CRM_HT");
+            }
+            else { return Content("<script>alert('提交错误！');window.location.href='/CRM_HT/Index';</script>"); }
+
+
+        }
     }
 }

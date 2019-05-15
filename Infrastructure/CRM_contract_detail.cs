@@ -19,6 +19,7 @@ namespace Infrastructure
             this.WIP_workorder = new HashSet<WIP_workorder>();
             this.INV_labels = new HashSet<INV_labels>();
             this.CRM_delivery_tmp_header = new HashSet<CRM_delivery_tmp_header>();
+            this.WIP_work_CW = new HashSet<WIP_work_CW>();
         }
     
         public int id { get; set; }
@@ -51,5 +52,6 @@ namespace Infrastructure
         public virtual CRM_contract_header CRM_contract_header { get; set; }
         public virtual ICollection<INV_labels> INV_labels { get; set; }
         public virtual ICollection<CRM_delivery_tmp_header> CRM_delivery_tmp_header { get; set; }
+        public virtual ICollection<WIP_work_CW> WIP_work_CW { get; set; }
     }
 }

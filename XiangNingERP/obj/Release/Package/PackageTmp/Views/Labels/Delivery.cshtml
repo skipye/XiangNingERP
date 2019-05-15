@@ -41,6 +41,12 @@
 			    </div>
 		    </div>
             <div class="form_item">
+                <label class="label">所属仓库：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.inv_id, Model.CKDroList, new { @class = "drotext" })
+                </div>
+            </div>
+            <div class="form_item">
 			    <label class="label">每页显示：</label>
 			    <div class="form-field">
                    @Html.DropDownListFor(k => k.PagePSize, PSize, new { @class="drotext"})
@@ -85,7 +91,7 @@
             //$.post(ExcelUrl, {}, function (d) { });
         });
         $(".toWorkExcelout").click(function () {
-           
+            
             window.location.href = "/WIP_WO/ToWorkExcelOut";
             //$.post(ExcelUrl, {}, function (d) { });
         });

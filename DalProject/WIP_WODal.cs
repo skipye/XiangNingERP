@@ -16,7 +16,7 @@ namespace DalProject
         {
             using (var db = new XNERPEntities())
             {
-                var List = (from p in db.WIP_workorder.Where(k => k.delete_flag == false && k.closed_flag == false && k.status >= 0 && k.status < 9 && k.CRM_contract_detail_id > 0)
+                var List = (from p in db.WIP_workorder.Where(k => k.delete_flag == false && k.closed_flag == false && k.status >= 0 && k.status < 9 && k.CRM_contract_detail_id > 0 && k.CRM_contract_detail.delete_flag==false)
                             where !string.IsNullOrEmpty(SModel.HTSN) ? p.CRM_contract_detail.CRM_contract_header.SN==SModel.HTSN : true
                             where SModel.status != null && SModel.status>0? p.status == SModel.status : true
                             where !string.IsNullOrEmpty(SModel.SaleName) ? p.CRM_contract_detail.CRM_contract_header.CRM_customers.name.Contains(SModel.SaleName) : true
@@ -718,6 +718,7 @@ namespace DalProject
                                 Id = p.Id,
                                 CRM_contract_detail_id=p.CRM_contract_detail_id,
                                 WIP_contract_id=p.WIP_contract_id,
+                                customer = p.CRM_contract_detail.CRM_contract_header.CRM_customers.name,
                                 workorder = p.workorder,
                                 ProductName = p.SYS_product.name,
                                 ProductXL = p.SYS_product.SYS_product_SN.name,
