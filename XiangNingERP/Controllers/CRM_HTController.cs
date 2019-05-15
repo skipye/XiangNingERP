@@ -137,6 +137,7 @@ namespace XiangNingERP.Controllers
             var models = ISer.ToExcel(SModel);
             ESer.CreateExcel(models, "合同" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
         }
+
         public void ToSaleExcelOut(SCRM_HTZModel SModel)
         {
             var models = ISer.ToSaleExcel(SModel);
