@@ -203,6 +203,73 @@ namespace DalProject
                 db.SaveChanges();
             }
         }
+        public void WorkOrderMore(WIP_WOXQModel Models,string ListId)
+        {
+            using (var db = new XNERPEntities())
+            {
+                string[] ArrId = ListId.Split('$');
+                foreach (var item in ArrId)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        int Id = Convert.ToInt32(item);
+                        
+                            var WTable = db.WIP_workorder.Where(k => k.id == Id).SingleOrDefault();
+                            string TabName = "销售产品";
+                            int ProId = 0;
+                            int WoodId = 0;
+                            string Color = "";
+                            if (WTable.CRM_contract_detail != null && WTable.CRM_contract_detail.product_id > 0)
+                            {
+                                ProId = WTable.CRM_contract_detail.product_id;
+                                WoodId = WTable.CRM_contract_detail.wood_type_id;
+                                Color = WTable.CRM_contract_detail.color;
+                            }
+                            else
+                            {
+                                ProId = WTable.WIP_contract.product_id;
+                                WoodId = WTable.WIP_contract.wood_id;
+                                Color = WTable.WIP_contract.color;
+                                TabName = "预投产品";
+                            }
+
+                            WIP_workflow table = new WIP_workflow();
+                            table.wo_id = Models.wo_id;
+                            table.Wood_Id = WoodId;
+                            table.name = Models.Job;
+                            table.exp_begin_date = Models.exp_begin_date;
+                            table.exp_end_date = Models.exp_end_date;
+                            table.act_begin_date = Models.exp_begin_date;
+                            table.cost = Models.cost;
+                            table.user_id = Models.user_id;
+                            table.user_name = Models.user_name;
+                            table.department_id = Models.department_id;
+                            table.department = Models.department;
+                            table.status = 0;
+                            table.created_time = DateTime.Now;
+                            table.delete_flag = false;
+                            table.checked_reason = Models.remark;
+                            table.Product_Id = ProId;
+                            table.reserved2 = TabName;
+                            table.reserved3 = Color;
+                            db.WIP_workflow.Add(table);
+
+                            WIP_Even Emodels = new WIP_Even();
+                            Emodels.name = Models.Job;
+                            Emodels.user_id = new UserDal().GetCurrentUserName().UserId;
+                            Emodels.user_name = new UserDal().GetCurrentUserName().UserName;
+                            Emodels.wo_id = Models.wo_id;
+                            Emodels.event_log = Emodels.user_name + ",安排" + Models.user_name + "," + Models.Job + "任务";
+                            Emodels.remark = Models.remark;
+
+                            AddWorkOrderEven(Emodels, db);
+
+                          
+                    }
+                }
+                db.SaveChanges();
+            }
+        }
         public WIP_WOXQModel GetDetailById(int Id)
         {
             using (var db = new XNERPEntities())

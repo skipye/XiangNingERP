@@ -52,6 +52,14 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public bool WorkOrderMore(WIP_WOXQModel Models, string ListId)
+        {
+            try { WWDal.WorkOrderMore(Models, ListId); return true; }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public WIP_WOXQModel GetDetailById(int Id)
         {
             try { return WWDal.GetDetailById(Id);}

@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -477,6 +478,7 @@
     <Content Include="Views\Labels\PrintDlivery.cshtml" />
     <Content Include="Views\CRM_HT\UpdateDelivery.cshtml" />
     <Content Include="Views\CRM_HTPro\UpdatePrice.cshtml" />
+    <Content Include="Views\WIP\WorkOrderMore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

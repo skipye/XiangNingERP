@@ -71,6 +71,7 @@ namespace ModelProject
         public string SaleName { get; set; }
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
+        public string ListId { get; set; }
     }
     public class SWIP_WOXQModel
     {

@@ -33,6 +33,22 @@ namespace XiangNingERP.Controllers
             Smodels.XLDroList = XLSer.GetXLDrolist(null);
             return View(Smodels);
         }
+        public ActionResult WorkOrderMore(string ListId)
+        {
+            WIP_WOXQModel models = new WIP_WOXQModel();
+            models.ListId = ListId;
+            return View(models);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult WorkOrderMore(WIP_WOXQModel Models,string ListId)
+        {
+            if (WWSer.WorkOrderMore(Models, ListId) == true)
+            {
+                return RedirectToAction("WIP_WorkOrder", "WIP");
+            }
+            else { return View(); }
+        }
         public ActionResult Add(int Id, string HTSN, int? status,string SaleName,int? PageSize,int? PageIndex)
         {
             WIP_WOXQModel models = new WIP_WOXQModel();
