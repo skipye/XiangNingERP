@@ -99,28 +99,46 @@
       <publishTime>07/05/2018 15:01:16</publishTime>
     </File>
     <File Include="bin/Common.dll">
-      <publishTime>03/11/2019 13:34:11</publishTime>
+      <publishTime>05/17/2019 17:42:38</publishTime>
+    </File>
+    <File Include="bin/Common.pdb">
+      <publishTime>05/17/2019 17:42:38</publishTime>
     </File>
     <File Include="bin/DalProject.dll">
-      <publishTime>05/14/2019 09:27:08</publishTime>
+      <publishTime>05/17/2019 17:42:39</publishTime>
+    </File>
+    <File Include="bin/DalProject.pdb">
+      <publishTime>05/17/2019 17:42:39</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/08/2017 14:21:06</publishTime>
     </File>
     <File Include="bin/Infrastructure.dll">
-      <publishTime>03/11/2019 13:34:11</publishTime>
+      <publishTime>05/17/2019 17:42:38</publishTime>
+    </File>
+    <File Include="bin/Infrastructure.dll.config">
+      <publishTime>07/10/2018 10:11:06</publishTime>
+    </File>
+    <File Include="bin/Infrastructure.pdb">
+      <publishTime>05/17/2019 17:42:38</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>06/08/2017 14:21:14</publishTime>
     </File>
     <File Include="bin/ModelProject.dll">
-      <publishTime>03/11/2019 13:34:11</publishTime>
+      <publishTime>05/17/2019 17:42:38</publishTime>
+    </File>
+    <File Include="bin/ModelProject.pdb">
+      <publishTime>05/17/2019 17:42:38</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>06/08/2017 14:21:14</publishTime>
     </File>
     <File Include="bin/ServiceProject.dll">
-      <publishTime>05/14/2019 09:27:09</publishTime>
+      <publishTime>05/17/2019 17:42:39</publishTime>
+    </File>
+    <File Include="bin/ServiceProject.pdb">
+      <publishTime>05/17/2019 17:42:39</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
       <publishTime>06/08/2017 14:21:14</publishTime>
@@ -165,7 +183,10 @@
       <publishTime>06/08/2017 14:21:16</publishTime>
     </File>
     <File Include="bin/XiangNingERP.dll">
-      <publishTime>05/14/2019 09:27:09</publishTime>
+      <publishTime>05/17/2019 17:42:39</publishTime>
+    </File>
+    <File Include="bin/XiangNingERP.pdb">
+      <publishTime>05/17/2019 17:42:39</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>06/08/2017 14:21:18</publishTime>
@@ -909,13 +930,13 @@
       <publishTime>11/28/2018 13:35:58</publishTime>
     </File>
     <File Include="Views/WIP/Precast.cshtml">
-      <publishTime>08/08/2018 10:11:24</publishTime>
+      <publishTime>05/17/2019 17:41:40</publishTime>
     </File>
     <File Include="Views/WIP/WIP_EvenList.cshtml">
       <publishTime>05/04/2018 13:56:12</publishTime>
     </File>
     <File Include="Views/WIP/WIP_WorkOrder.cshtml">
-      <publishTime>07/26/2018 17:15:34</publishTime>
+      <publishTime>05/17/2019 17:29:06</publishTime>
     </File>
     <File Include="Views/WIP/WO.cshtml">
       <publishTime>08/08/2018 09:52:32</publishTime>
@@ -925,6 +946,9 @@
     </File>
     <File Include="Views/WIP/WorkOrder.cshtml">
       <publishTime>07/02/2018 14:43:16</publishTime>
+    </File>
+    <File Include="Views/WIP/WorkOrderMore.cshtml">
+      <publishTime>05/17/2019 17:26:58</publishTime>
     </File>
     <File Include="Views/WIP/YTPageList.cshtml">
       <publishTime>08/08/2018 10:12:44</publishTime>
@@ -978,7 +1002,7 @@
       <publishTime>06/08/2017 14:20:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/14/2019 09:27:11</publishTime>
+      <publishTime>05/17/2019 17:42:40</publishTime>
     </File>
   </ItemGroup>
 </Project>

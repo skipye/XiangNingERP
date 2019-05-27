@@ -71,7 +71,7 @@
         <ul class="filter">
             <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
             <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
-
+            <li><a class="WorkOrderMore btn bg-qblue" href="javascript:void(0)" url="@Url.Action("WorkOrderMore","WIP")"><span class="wh">选中生产</span></a></li>
         </ul>
     </div>
 </div>
@@ -79,3 +79,26 @@
 <div id="ResultList" class="xTable">
    @Html.Action("PageList", "WIP", new { SRmodels=Model})
 </div>
+
+<script type="text/javascript">
+    $(".WorkOrderMore").live("click", function () {
+            var strId = "";
+            var toUrl = $(this).attr("url");
+            $("input[name='listcheck']:checkbox").each(function () {
+                if ($(this).attr("checked")) {
+                    strId += $(this).val() + "$"
+                }
+            })
+            if (strId != "" && strId != undefined) {
+                var TabTitle = "选中生产";
+                var $dialog = $("#adddialog");
+
+                $dialog.html("");
+                $dialog.dialog("option", "title", TabTitle);
+                $dialog.dialog("open");
+                $.get(toUrl, { ListId: strId }, function (d) { $dialog.html(d); });
+
+            }
+            else { alert("请先去选中！"); }
+        });
+</script>

@@ -52,9 +52,9 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
-        public bool WorkOrderMore(WIP_WOXQModel Models, string ListId)
+        public bool WorkOrderMore(WIP_WOXQModel Models, string ListId,out int NavNum)
         {
-            try { WWDal.WorkOrderMore(Models, ListId); return true; }
+            try { WWDal.WorkOrderMore(Models, ListId,out NavNum); return true; }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);

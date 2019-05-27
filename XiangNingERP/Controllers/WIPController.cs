@@ -43,9 +43,14 @@ namespace XiangNingERP.Controllers
         [ValidateInput(false)]
         public ActionResult WorkOrderMore(WIP_WOXQModel Models,string ListId)
         {
-            if (WWSer.WorkOrderMore(Models, ListId) == true)
+            int NavNum = 1;
+            if (WWSer.WorkOrderMore(Models, ListId,out NavNum) == true)
             {
-                return RedirectToAction("WIP_WorkOrder", "WIP");
+                if (NavNum == 1)
+                {
+                    return RedirectToAction("WIP_WorkOrder", "WIP");
+                }
+                else { return RedirectToAction("Precast", "WIP"); }
             }
             else { return View(); }
         }

@@ -203,8 +203,9 @@ namespace DalProject
                 db.SaveChanges();
             }
         }
-        public void WorkOrderMore(WIP_WOXQModel Models,string ListId)
+        public void WorkOrderMore(WIP_WOXQModel Models,string ListId, out int NavNum)
         {
+            int Navtab = 1;
             using (var db = new XNERPEntities())
             {
                 string[] ArrId = ListId.Split('$');
@@ -224,17 +225,19 @@ namespace DalProject
                                 ProId = WTable.CRM_contract_detail.product_id;
                                 WoodId = WTable.CRM_contract_detail.wood_type_id;
                                 Color = WTable.CRM_contract_detail.color;
-                            }
+                            Navtab = 1;
+                        }
                             else
                             {
                                 ProId = WTable.WIP_contract.product_id;
                                 WoodId = WTable.WIP_contract.wood_id;
                                 Color = WTable.WIP_contract.color;
                                 TabName = "预投产品";
-                            }
+                            Navtab = 0;
+                        }
 
                             WIP_workflow table = new WIP_workflow();
-                            table.wo_id = Models.wo_id;
+                            table.wo_id = Id;
                             table.Wood_Id = WoodId;
                             table.name = Models.Job;
                             table.exp_begin_date = Models.exp_begin_date;
@@ -258,7 +261,7 @@ namespace DalProject
                             Emodels.name = Models.Job;
                             Emodels.user_id = new UserDal().GetCurrentUserName().UserId;
                             Emodels.user_name = new UserDal().GetCurrentUserName().UserName;
-                            Emodels.wo_id = Models.wo_id;
+                            Emodels.wo_id = Id;
                             Emodels.event_log = Emodels.user_name + ",安排" + Models.user_name + "," + Models.Job + "任务";
                             Emodels.remark = Models.remark;
 
@@ -267,6 +270,7 @@ namespace DalProject
                           
                     }
                 }
+                NavNum = Navtab;
                 db.SaveChanges();
             }
         }
