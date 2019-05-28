@@ -120,6 +120,8 @@ D:\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.Razor.resources.dll
 D:\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.WebPages.resources.dll
 D:\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\XiangNingERP\XN_Phone\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csprojResolveAssemblyReference.cache
 D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.dll
 D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.pdb
+D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csproj.CoreCompileInputs.cache
+D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csproj.CopyComplete
+D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csprojAssemblyReference.cache

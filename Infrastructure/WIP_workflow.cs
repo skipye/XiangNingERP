@@ -41,5 +41,6 @@ namespace Infrastructure
     
         public virtual WIP_workorder WIP_workorder { get; set; }
         public virtual SYS_product SYS_product { get; set; }
+        public virtual INV_wood_type INV_wood_type { get; set; }
     }
 }

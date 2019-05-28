@@ -34,5 +34,7 @@ namespace Infrastructure
         public virtual ICollection<WIP_workorder> WIP_workorder { get; set; }
         public virtual SYS_product SYS_product { get; set; }
         public virtual INV_wood_type INV_wood_type { get; set; }
+        public virtual WIP_contract WIP_contract1 { get; set; }
+        public virtual WIP_contract WIP_contract2 { get; set; }
     }
 }

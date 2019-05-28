@@ -72,6 +72,7 @@ namespace ModelProject
         public int? PageSize { get; set; }
         public int? PageIndex { get; set; }
         public string ListId { get; set; }
+        public string WoodName { get; set; }
     }
     public class SWIP_WOXQModel
     {

@@ -233,8 +233,4 @@ D:\XiangNingERP\XiangNingERP\bin\zh-Hans\System.Web.WebPages.Deployment.resource
 D:\XiangNingERP\XiangNingERP\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 D:\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.dll
 D:\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.pdb
-D:\XiangNingERP\XiangNingERP\bin\XiangNingERP.dll.config
-D:\XiangNingERP\XiangNingERP\bin\Infrastructure.dll.config
-D:\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.csprojAssemblyReference.cache
-D:\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.csproj.CoreCompileInputs.cache
-D:\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.csproj.CopyComplete
+D:\XiangNingERP\XiangNingERP\obj\Release\XiangNingERP.csprojResolveAssemblyReference.cache

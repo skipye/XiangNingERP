@@ -53,5 +53,6 @@ D:\XiangNingERP\Common\bin\Debug\zh-Hans\System.Web.WebPages.resources.dll
 D:\XiangNingERP\Common\bin\Debug\zh-Hans\System.Web.Razor.resources.dll
 D:\XiangNingERP\Common\bin\Debug\zh-Hans\System.Web.WebPages.Razor.resources.dll
 D:\XiangNingERP\Common\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+D:\XiangNingERP\Common\obj\Debug\Common.csprojAssemblyReference.cache
 D:\XiangNingERP\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 D:\XiangNingERP\Common\obj\Debug\Common.csproj.CopyComplete

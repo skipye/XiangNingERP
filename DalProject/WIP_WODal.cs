@@ -234,6 +234,9 @@ namespace DalProject
                                 Color = WTable.WIP_contract.color;
                                 TabName = "预投产品";
                             Navtab = 0;
+                        }if (string.IsNullOrEmpty(WTable.reserved3))
+                        {
+                            TabName = WTable.reserved3;
                         }
 
                             WIP_workflow table = new WIP_workflow();
@@ -676,11 +679,13 @@ namespace DalProject
                                 checked_user_name = p.checked_user_name,
                                 cost = p.cost,
                                 remark = p.checked_reason,
+                                WoodName=p.INV_wood_type.name,
                                 source = p.reserved2
                             }).ToList();
                 if (List != null && List.Any())
                 {
                     Exceltable.Columns.Add("产品名称", typeof(string));
+                    Exceltable.Columns.Add("材质", typeof(string));
                     Exceltable.Columns.Add("生产价格", typeof(string));
                     Exceltable.Columns.Add("生产状态", typeof(string));
                     Exceltable.Columns.Add("生产开始时间", typeof(string));
@@ -693,6 +698,7 @@ namespace DalProject
                     {
                         DataRow row = Exceltable.NewRow();
                         row["产品名称"] = item.ProductXL + "_" + item.ProductName;
+                        row["材质"] = item.WoodName;
                         row["生产价格"] = item.cost;
                         row["生产状态"] = item.status!=null && item.status==0?"生产中":item.status==1?"生产完成，待审核":item.status==2?"审核通过":"被驳回";
                         row["生产开始时间"] = Convert.ToDateTime(item.act_begin_date).ToString("yyyy-MM-dd");

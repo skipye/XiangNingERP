@@ -23,6 +23,7 @@ namespace Infrastructure
             this.WIP_contract = new HashSet<WIP_contract>();
             this.INV_labels = new HashSet<INV_labels>();
             this.INV_single_board = new HashSet<INV_single_board>();
+            this.WIP_workflow = new HashSet<WIP_workflow>();
         }
     
         public int id { get; set; }
@@ -50,5 +51,6 @@ namespace Infrastructure
         public virtual ICollection<WIP_contract> WIP_contract { get; set; }
         public virtual ICollection<INV_labels> INV_labels { get; set; }
         public virtual ICollection<INV_single_board> INV_single_board { get; set; }
+        public virtual ICollection<WIP_workflow> WIP_workflow { get; set; }
     }
 }

@@ -31,5 +31,6 @@ D:\XiangNingERP\Infrastructure\bin\Debug\EntityFramework.xml
 D:\XiangNingERP\Infrastructure\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.dll
 D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.pdb
+D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.csprojAssemblyReference.cache
 D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
 D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete

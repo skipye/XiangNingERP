@@ -113,7 +113,6 @@ E:\MyProject\XiangNingERP\XNDY-ERP\bin\zh-Hans\System.Web.WebPages.Razor.resourc
 E:\MyProject\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.csprojResolveAssemblyReference.cache
 E:\MyProject\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.dll
 E:\MyProject\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.pdb
-D:\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.csprojResolveAssemblyReference.cache
 D:\XiangNingERP\XNDY-ERP\bin\XNDY-ERP.dll.config
 D:\XiangNingERP\XNDY-ERP\bin\XNDY-ERP.dll
 D:\XiangNingERP\XNDY-ERP\bin\XNDY-ERP.pdb
@@ -171,3 +170,7 @@ D:\XiangNingERP\XNDY-ERP\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dl
 D:\XiangNingERP\XNDY-ERP\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 D:\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.dll
 D:\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.pdb
+D:\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.csprojAssemblyReference.cache
+D:\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.csproj.CoreCompileInputs.cache
+D:\XiangNingERP\XNDY-ERP\bin\Infrastructure.dll.config
+D:\XiangNingERP\XNDY-ERP\obj\Debug\XNDY-ERP.csproj.CopyComplete

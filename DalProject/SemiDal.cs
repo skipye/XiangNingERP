@@ -254,6 +254,7 @@ namespace DalProject
                         string paper_path = "";
                         string BOM_path = "";
                         string workorder = "WO" + DateTime.Now.ToString("yyyyMMddfff");
+                        string CStattus = "";
                         STables.delete_flag = true;
                         
                         if (WIP_id <= 0 && CRM_id <= 0)//如果是库存产品，继续生产算是预投产品
@@ -271,6 +272,8 @@ namespace DalProject
                             db.WIP_contract.Add(WCTable);
                             db.SaveChanges();
                             WIP_id = WCTable.id;//把刚插入到预投产品的ID赋值
+
+                            CStattus = "预投产品（半成品）";
                         }
                         if (WIP_id > 0)//判断是否是预投产品
                         { workorder = "WP" + DateTime.Now.ToString("yyyyMMddfff"); }
@@ -296,6 +299,10 @@ namespace DalProject
                         WWTable.closed_flag = false;
                         WWTable.created_time = DateTime.Now;
                         WWTable.delete_flag = false;
+                        if (string.IsNullOrEmpty(CStattus))
+                        {
+                            WWTable.reserved3 = CStattus;
+                        }
                         db.WIP_workorder.Add(WWTable);
                     }
                 }

@@ -193,6 +193,14 @@
       <End Role="WIP_work_CW" EntitySet="WIP_work_CW" />
       <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
     </AssociationSet>
+    <AssociationSet Name="FK_WIP_workflow_INV_wood_type" Association="XNERPModel.FK_WIP_workflow_INV_wood_type">
+      <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+      <End Role="WIP_workflow" EntitySet="WIP_workflow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WIP_contract_WIP_contract" Association="XNERPModel.FK_WIP_contract_WIP_contract">
+      <End Role="WIP_contract" EntitySet="WIP_contract" />
+      <End Role="WIP_contract1" EntitySet="WIP_contract" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CRM_contract_detail">
     <Key>
@@ -478,6 +486,7 @@
     <Property Type="Int32" Name="Sort" />
     <NavigationProperty Name="INV_single_board" Relationship="XNERPModel.FK_INV_single_board_INV_wood_type" FromRole="INV_wood_type" ToRole="INV_single_board" />
     <Property Name="PersonPrice" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="WIP_workflow" Relationship="XNERPModel.FK_WIP_workflow_INV_wood_type" FromRole="INV_wood_type" ToRole="WIP_workflow" />
   </EntityType>
   <EntityType Name="SYS_colors">
     <Key>
@@ -1109,6 +1118,8 @@
     <NavigationProperty Name="SYS_product" Relationship="XNERPModel.SYS_productWIP_contract" FromRole="WIP_contract" ToRole="SYS_product" />
     <NavigationProperty Name="INV_wood_type" Relationship="XNERPModel.INV_wood_typeWIP_contract" FromRole="WIP_contract" ToRole="INV_wood_type" />
     <Property Name="qty" Type="Int32" />
+    <NavigationProperty Name="WIP_contract1" Relationship="XNERPModel.FK_WIP_contract_WIP_contract" FromRole="WIP_contract" ToRole="WIP_contract1" />
+    <NavigationProperty Name="WIP_contract2" Relationship="XNERPModel.FK_WIP_contract_WIP_contract" FromRole="WIP_contract1" ToRole="WIP_contract" />
   </EntityType>
   <Association Name="WIP_contractWIP_workorder">
     <End Type="XNERPModel.WIP_contract" Role="WIP_contract" Multiplicity="0..1" />
@@ -1176,6 +1187,7 @@
     <NavigationProperty Name="WIP_workorder" Relationship="XNERPModel.WIP_workorderWIP_workflow" FromRole="WIP_workflow" ToRole="WIP_workorder" />
     <NavigationProperty Name="SYS_product" Relationship="XNERPModel.SYS_productWIP_workflow" FromRole="WIP_workflow" ToRole="SYS_product" />
     <Property Type="Int32" Name="Wood_Id" />
+    <NavigationProperty Name="INV_wood_type" Relationship="XNERPModel.FK_WIP_workflow_INV_wood_type" FromRole="WIP_workflow" ToRole="INV_wood_type" />
   </EntityType>
   <Association Name="WIP_workorderWIP_workflow">
     <End Type="XNERPModel.WIP_workorder" Role="WIP_workorder" Multiplicity="1" />
@@ -1442,6 +1454,30 @@
       </Principal>
       <Dependent Role="WIP_work_CW">
         <PropertyRef Name="CRM_contract_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WIP_workflow_INV_wood_type">
+    <End Type="XNERPModel.INV_wood_type" Role="INV_wood_type" Multiplicity="0..1" />
+    <End Type="XNERPModel.WIP_workflow" Role="WIP_workflow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INV_wood_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="WIP_workflow">
+        <PropertyRef Name="Wood_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WIP_contract_WIP_contract">
+    <End Type="XNERPModel.WIP_contract" Role="WIP_contract" Multiplicity="1" />
+    <End Type="XNERPModel.WIP_contract" Role="WIP_contract1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="WIP_contract">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="WIP_contract1">
+        <PropertyRef Name="id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
