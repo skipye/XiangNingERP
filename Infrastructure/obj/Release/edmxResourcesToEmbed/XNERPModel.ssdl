@@ -1009,6 +1009,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_WIP_workflow_INV_wood_type">
+    <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="0..1" />
+    <End Role="WIP_workflow" Type="Self.WIP_workflow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INV_wood_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="WIP_workflow">
+        <PropertyRef Name="Wood_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="XNERPModelStoreContainer">
     <EntitySet Name="CRM_contract_detail" EntityType="Self.CRM_contract_detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CRM_contract_header" EntityType="Self.CRM_contract_header" Schema="dbo" store:Type="Tables" />
@@ -1157,6 +1169,10 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
     <AssociationSet Name="FK_WIP_work_CW_SYS_product" Association="Self.FK_WIP_work_CW_SYS_product">
       <End Role="SYS_product" EntitySet="SYS_product" />
       <End Role="WIP_work_CW" EntitySet="WIP_work_CW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WIP_workflow_INV_wood_type" Association="Self.FK_WIP_workflow_INV_wood_type">
+      <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+      <End Role="WIP_workflow" EntitySet="WIP_workflow" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
