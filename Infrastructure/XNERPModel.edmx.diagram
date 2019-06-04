@@ -85,6 +85,10 @@
         <AssociationConnector Association="XNERPModel.WIP_work_CWCRM_contract_detail" />
         <AssociationConnector Association="XNERPModel.FK_WIP_workflow_INV_wood_type" />
         <AssociationConnector Association="XNERPModel.FK_WIP_contract_WIP_contract" />
+        <EntityTypeShape EntityType="XNERPModel.CRM_delivery_header" Width="1.5" PointX="17.375" PointY="13.75" />
+        <EntityTypeShape EntityType="XNERPModel.CRM_delivery_detail" Width="1.5" PointX="8.375" PointY="7.75" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" />
+        <AssociationConnector Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -86,7 +86,7 @@ namespace DalProject
             using (var db = new XNERPEntities())
             {
                 var List = (from p in db.CRM_contract_detail.Where(k => k.delete_flag == false && k.CRM_contract_header.FR_flag > 0 && k.CRM_contract_header.status == 1 && k.CRM_contract_header.delete_flag == false)
-                            where SModel.status!=null ?p.status==SModel.status:true
+                            where SModel.status>1 ?p.status<2:true
                             where !string.IsNullOrEmpty(SModel.SN) ? p.CRM_contract_header.SN.Contains(SModel.SN) : true
                             where !string.IsNullOrEmpty(SModel.UserName) ? p.CRM_contract_header.CRM_customers.name.Contains(SModel.UserName) : true
                             where p.created_time > StartTime
@@ -576,6 +576,78 @@ namespace DalProject
                 var List = db.CRM_contract_header.Where(k => k.created_time > CreateTime && k.signed_user_id!=0).Count();
                 return List;
              }
+        }
+        public void CRM_HT_DeliveryMore(string ListId, string DeliverTime)
+        {
+            DateTime DeliveTime = DateTime.Now;
+            if (!string.IsNullOrEmpty(DeliverTime))
+            { DeliveTime = Convert.ToDateTime(DeliverTime); }
+            Random r = new Random();
+            using (var db = new XNERPEntities())
+            {
+                string[] ArrId = ListId.Split('$');
+                foreach (var item in ArrId)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        int Id = Convert.ToInt32(item);
+                        var tables = db.CRM_contract_detail.Where(k => k.id == Id).SingleOrDefault();
+                        
+                        CRM_delivery_detail HTables = new CRM_delivery_detail();
+                        HTables.header_id = tables.header_id;
+                        HTables.contract_detail_id = tables.id;
+                        HTables.qty = 1;
+                        HTables.remark = "";
+                        HTables.delete_flag = false;
+                        HTables.attach_label_id = 0;
+                        HTables.CreateTime = DateTime.Now;
+                        HTables.status = 0;
+                        HTables.DeliverTime = DeliveTime;
+                        db.CRM_delivery_detail.Add(HTables);
+                        
+                    }
+                }
+                db.SaveChanges();
+            }
+        }
+        public PagedList<CRM_HTProModel> GetCRM_HTDeliveryList(SCRM_HTZModel SModel)
+        {
+            DateTime StartTime = Convert.ToDateTime("1999-12-31");
+            DateTime EndTime = Convert.ToDateTime("2999-12-31");
+            if (!string.IsNullOrEmpty(SModel.StartTime))
+            {
+                StartTime = Convert.ToDateTime(SModel.StartTime);
+            }
+            if (!string.IsNullOrEmpty(SModel.EndTime))
+            {
+                EndTime = Convert.ToDateTime(SModel.EndTime).AddDays(1);
+            }
+            using (var db = new XNERPEntities())
+            {
+                var List = (from p in db.CRM_delivery_detail.Where(k => k.delete_flag == false)
+                            where !string.IsNullOrEmpty(SModel.UserName) ? p.CRM_contract_header.CRM_customers.name.Contains(SModel.UserName) : true
+                            where !string.IsNullOrEmpty(SModel.SN) ? p.CRM_contract_header.SN.Contains(SModel.SN) : true
+                            where p.DeliverTime > StartTime
+                            where p.DeliverTime < EndTime
+                            orderby p.DeliverTime descending
+                            select new CRM_HTProModel
+                            {
+                                id = p.id,
+                                SN = p.CRM_contract_header.SN,
+                                header_id = p.header_id,
+                                productName = p.CRM_contract_detail.SYS_product.name,
+                                productXL = p.CRM_contract_detail.SYS_product.SYS_product_SN.name,
+                                woodName = p.CRM_contract_detail.INV_wood_type.name,
+                                colorName = p.CRM_contract_detail.color,
+                                height = p.CRM_contract_detail.height,
+                                width = p.CRM_contract_detail.width,
+                                length = p.CRM_contract_detail.length,
+                                customer = p.CRM_contract_header.CRM_customers.name,
+                                delivery_date = p.DeliverTime,
+                                created_time = p.CreateTime,
+                            }).ToList();
+                return List.ToPagedList(SModel.PageIndex ?? 1, SModel.PageSize ?? 10);
+            }
         }
     }
 }

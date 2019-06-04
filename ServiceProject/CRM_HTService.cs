@@ -14,7 +14,7 @@ namespace ServiceProject
     {
         private static readonly CRM_HTDal IDal = new CRM_HTDal();
         private static readonly UserService UDal = new UserService();
-        public PagedList<CRM_HTZModel> GetPageList(SCRM_HTZModel SModel, int PageIndex, int PageSize,out decimal TotalHT,out decimal? TotalYF)
+        public PagedList<CRM_HTZModel> GetPageList(SCRM_HTZModel SModel, int PageIndex, int PageSize, out decimal TotalHT, out decimal? TotalYF)
         {
             try { return IDal.GetPageList(SModel, PageIndex, PageSize, out TotalHT, out TotalYF); }
             catch (Exception ex)
@@ -40,10 +40,12 @@ namespace ServiceProject
         }
         public bool AddOrUpdate(CRM_HTZModel Models)
         {
-            try {
+            try
+            {
                 Models.signed_department_id = UDal.GetCurrentUserName().DepartmentId;
                 Models.department = UDal.GetCurrentUserName().Department;
-                IDal.AddOrUpdate(Models); return true; }
+                IDal.AddOrUpdate(Models); return true;
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -51,7 +53,7 @@ namespace ServiceProject
         }
         public bool UpdateDelivery(CRM_HTZModel Models)
         {
-            try {  IDal.UpdateDelivery(Models); return true; }
+            try { IDal.UpdateDelivery(Models); return true; }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -135,6 +137,25 @@ namespace ServiceProject
             try
             {
                 return IDal.GetCRMHTCount(CreateTime);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool CRM_HT_DeliveryMore(string ListId, string DeliverTime)
+        {
+            try { IDal.CRM_HT_DeliveryMore(ListId, DeliverTime); return true; }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public PagedList<CRM_HTProModel> GetCRM_HTDeliveryList(SCRM_HTZModel SModel)
+        {
+            try
+            {
+                return IDal.GetCRM_HTDeliveryList(SModel);
             }
             catch (Exception ex)
             {

@@ -18,6 +18,7 @@ namespace Infrastructure
         {
             this.CRM_contract_detail = new HashSet<CRM_contract_detail>();
             this.CRM_delivery_tmp_header = new HashSet<CRM_delivery_tmp_header>();
+            this.CRM_delivery_detail = new HashSet<CRM_delivery_detail>();
         }
     
         public int id { get; set; }
@@ -52,5 +53,6 @@ namespace Infrastructure
         public virtual ICollection<CRM_contract_detail> CRM_contract_detail { get; set; }
         public virtual CRM_customers CRM_customers { get; set; }
         public virtual ICollection<CRM_delivery_tmp_header> CRM_delivery_tmp_header { get; set; }
+        public virtual ICollection<CRM_delivery_detail> CRM_delivery_detail { get; set; }
     }
 }

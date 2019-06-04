@@ -150,15 +150,48 @@ namespace XiangNingERP.Controllers
             Models.HTPro = IPSer.GetPageList(Id, 1, 40);
             return View(Models);
         }
-        public ActionResult Delivery(SLabelsModel SModel)
+        public ActionResult Delivery(SCRM_HTZModel SModel)
         {
             return View(SModel);
         }
         public ActionResult DPageList(SLabelsModel SModel)
         {
-            var List = LSer.GetPageList(SModel,1,100);
             ViewBag.SModel = SModel;
+            var List = LSer.GetPageList(SModel,1,100);
             return View(List);
+        }
+        public ActionResult WOPageList(SCRM_HTZModel SRmodels)
+        {
+            var PageList = ISer.GetWOPageList(SRmodels, SRmodels.PageIndex ?? 1, SRmodels.PageSize ?? 100);
+            ViewBag.SModel = SRmodels;
+            return View(PageList);
+        }
+        public ActionResult CRM_HT_DeliveryMore(string ListId, string DeliveryTime)
+        {
+            if (ISer.CRM_HT_DeliveryMore(ListId, DeliveryTime) == true)
+            {
+                return Content("True");
+            }
+            else { return Content("False"); }
+        }
+        public ActionResult CRM_HT_Delivery(SCRM_HTZModel SModel)
+        {
+            DateTime datetime = DateTime.Now;
+            if (string.IsNullOrEmpty(SModel.StartTime))
+            {
+                SModel.StartTime = datetime.AddDays(1 - datetime.Day).ToString("yyyy-MM-dd");
+            }
+            if (string.IsNullOrEmpty(SModel.EndTime))
+            {
+                SModel.EndTime = datetime.AddDays(1 - datetime.Day).AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
+            }
+            return View(SModel);
+        }
+        public ActionResult CRM_HTDeliveryList(SCRM_HTZModel SModel)
+        {
+            ViewBag.SModel = SModel;
+            var PageList = ISer.GetCRM_HTDeliveryList(SModel);
+            return View(PageList);
         }
     }
 }

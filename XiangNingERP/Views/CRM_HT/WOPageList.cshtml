@@ -1,0 +1,96 @@
+﻿@using MvcPager.WebControls.Mvc;
+@model PagedList<ModelProject.CRM_HTProModel>
+@{ 
+    Layout = null;
+    var SModel = ViewBag.SModel;
+    string[] ArrWO = { "未确认", "已入库", "已出库" };
+  }
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <col width="50px" />
+        <col width="150px" />
+        <tr class="fb">
+            <th>选择</th>
+            <th>产品名称</th>
+            <th>合同编号</th>
+            <th>订货人</th>
+            <th>材质</th>
+            <th>色号</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            if (item.qty > 1)
+            {
+                for (int i = 0; i < item.qty; i++)
+                {
+                    <tr>
+                        <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+                        <td style="text-align:left;"><div class="tw">@(item.productXL + "_" + item.productName)</div></td>
+                        <td><div class="tw">@item.SN</div></td>
+                        <td><div class="tw">@item.customer</div></td>
+                        <td><div class="tw">@item.woodName</div></td>
+                        <td><div class="tw">@item.colorName</div></td>
+                    </tr>
+                }
+            }
+            else { 
+                <tr>
+                    <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+                    <td style="text-align:left;"><div class="tw">@(item.productXL + "_" + item.productName)</div></td>
+                    <td><div class="tw">@item.SN</div></td>
+                    <td><div class="tw">@item.customer</div></td>
+                    <td><div class="tw">@item.woodName</div></td>
+                    <td><div class="tw">@item.colorName</div></td>
+                </tr>
+            }
+        }
+    </table>
+    <div class="form_item">
+        <label class="label">送货时间：</label>
+        <div class="form-field">
+            <input type="text" id="DeliveryTime" class="sputtxt" style = "width:120px;" ref = "datepicker" placeholder = "送货时间" />
+            @*@Html.TextBox("DeliveryTime", new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "送货时间" })*@
+        </div>
+    </div>
+
+    <input type="button" value="提交" class="inputsubbtn mt10 mb20 fr" style="width:140px;" id="checkpro" />
+}
+else
+{<p>暂无内容！</p>}
+
+<script type="text/javascript">
+    $(":text[ref='datepicker']").datepicker({
+        changeYear: true,
+        changeMonth: true,
+        showButtonPanel: true
+    });
+    $(function () {
+        $("#checkpro").click(function () {
+            var DeliveryTime = $("#DeliveryTime").val();
+            var strId = "";
+            var i = 0;
+            var PostUrl = "@Url.Action("CRM_HT_DeliveryMore", "CRM_HT")";
+            $("input[name='listcheck']:checkbox").each(function () {
+                if ($(this).attr("checked")) {
+                    strId += $(this).val() + "$";
+                    i++;
+                }
+            });
+            if (strId != "" && strId != undefined && DeliveryTime != "" && DeliveryTime != undefined) {
+                
+                $.post(PostUrl, { ListId: strId, DeliveryTime: DeliveryTime }, function (d) {
+                    if (d == "True") {
+                        alert("操作成功！");
+                        window.location.reload();
+                    }
+                    else { alert("操作失败！"); }
+                });
+            }
+            else { alert("请先去选中或选择送货时间！"); }
+        });
+
+        
+    });
+</script>

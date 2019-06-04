@@ -42,7 +42,7 @@
         $(".inputsubbtn").click(function () {
             var ProSN = $("#ProSN").val();
             var SaleName = $("#SaleName").val();;
-            var PostUrl = "@Url.Action("DPageList","CRM_HT")";
+            var PostUrl = "@Url.Action("WOPageList","CRM_HT")";
             
             if (ProSN != "" || SaleName != "") {
                 $.post(PostUrl, { ProSN: ProSN, SaleName: SaleName, status: 1 }, function (d) {

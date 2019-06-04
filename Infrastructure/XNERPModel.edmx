@@ -91,6 +91,39 @@
           <Property Name="delete_flag" Type="bit" Nullable="false" />
           <Property Name="ListUserId" Type="nvarchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="CRM_delivery_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="header_id" Type="int" Nullable="false" />
+          <Property Name="contract_detail_id" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="remark" Type="nvarchar" MaxLength="200" />
+          <Property Name="attach_label_id" Type="int" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="delete_flag" Type="bit" Nullable="false" />
+          <Property Name="DeliverTime" Type="datetime" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CRM_delivery_header">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="dYear" Type="int" Nullable="false" />
+          <Property Name="dSN" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="200" />
+          <Property Name="contract_header_id" Type="int" Nullable="false" />
+          <Property Name="delivery_date" Type="smalldatetime" Nullable="false" />
+          <Property Name="delivery_user_id" Type="int" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="remark" Type="text" />
+          <Property Name="created_time" Type="datetime" Nullable="false" />
+          <Property Name="delete_flag" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="CRM_delivery_tmp_header">
           <Key>
             <PropertyRef Name="id" />
@@ -786,6 +819,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CRM_delivery_detail_CRM_contract_detail">
+          <End Role="CRM_contract_detail" Type="Self.CRM_contract_detail" Multiplicity="1" />
+          <End Role="CRM_delivery_detail" Type="Self.CRM_delivery_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRM_contract_detail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRM_delivery_detail">
+              <PropertyRef Name="contract_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRM_delivery_detail_CRM_contract_header">
+          <End Role="CRM_contract_header" Type="Self.CRM_contract_header" Multiplicity="1" />
+          <End Role="CRM_delivery_detail" Type="Self.CRM_delivery_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRM_contract_header">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRM_delivery_detail">
+              <PropertyRef Name="header_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CRM_delivery_tmp_header_CRM_contract_detail">
           <End Role="CRM_contract_detail" Type="Self.CRM_contract_detail" Multiplicity="1" />
           <End Role="CRM_delivery_tmp_header" Type="Self.CRM_delivery_tmp_header" Multiplicity="*" />
@@ -1030,6 +1087,8 @@
           <EntitySet Name="CRM_contract_detail" EntityType="Self.CRM_contract_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CRM_contract_header" EntityType="Self.CRM_contract_header" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CRM_customers" EntityType="Self.CRM_customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CRM_delivery_detail" EntityType="Self.CRM_delivery_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CRM_delivery_header" EntityType="Self.CRM_delivery_header" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CRM_delivery_tmp_header" EntityType="Self.CRM_delivery_tmp_header" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CRM_suppliers" EntityType="Self.CRM_suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HR_jobs" EntityType="Self.HR_jobs" Schema="dbo" store:Type="Tables" />
@@ -1098,6 +1157,14 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <AssociationSet Name="FK_CRM_contract_header_CRM_customers" Association="Self.FK_CRM_contract_header_CRM_customers">
             <End Role="CRM_customers" EntitySet="CRM_customers" />
             <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_delivery_detail_CRM_contract_detail" Association="Self.FK_CRM_delivery_detail_CRM_contract_detail">
+            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+            <End Role="CRM_delivery_detail" EntitySet="CRM_delivery_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_delivery_detail_CRM_contract_header" Association="Self.FK_CRM_delivery_detail_CRM_contract_header">
+            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
+            <End Role="CRM_delivery_detail" EntitySet="CRM_delivery_detail" />
           </AssociationSet>
           <AssociationSet Name="FK_CRM_delivery_tmp_header_CRM_contract_detail" Association="Self.FK_CRM_delivery_tmp_header_CRM_contract_detail">
             <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
@@ -1385,6 +1452,16 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
             <End Role="WIP_contract" EntitySet="WIP_contract" />
             <End Role="WIP_contract1" EntitySet="WIP_contract" />
           </AssociationSet>
+          <EntitySet Name="CRM_delivery_header" EntityType="XNERPModel.CRM_delivery_header" />
+          <EntitySet Name="CRM_delivery_detail" EntityType="XNERPModel.CRM_delivery_detail" />
+          <AssociationSet Name="FK_CRM_delivery_detail_CRM_contract_detail" Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail">
+            <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+            <End Role="CRM_delivery_detail" EntitySet="CRM_delivery_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRM_delivery_detail_CRM_contract_header" Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header">
+            <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
+            <End Role="CRM_delivery_detail" EntitySet="CRM_delivery_detail" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CRM_contract_detail">
           <Key>
@@ -1420,6 +1497,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <NavigationProperty Name="INV_labels" Relationship="XNERPModel.CRM_contract_detailINV_labels" FromRole="CRM_contract_detail" ToRole="INV_labels" />
           <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_tmp_header" />
           <NavigationProperty Name="WIP_work_CW" Relationship="XNERPModel.WIP_work_CWCRM_contract_detail" FromRole="CRM_contract_detail" ToRole="WIP_work_CW" />
+          <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_detail" />
         </EntityType>
         <EntityType Name="CRM_customers">
           <Key>
@@ -2092,6 +2170,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_tmp_header" />
           <Property Name="Linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Linktel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_detail" />
         </EntityType>
         <Association Name="FK_CRM_contract_detail_CRM_contract_header">
           <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
@@ -2662,6 +2741,65 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
             </Principal>
             <Dependent Role="WIP_contract1">
               <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CRM_delivery_header">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dYear" Type="Int32" Nullable="false" />
+          <Property Name="dSN" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="contract_header_id" Type="Int32" Nullable="false" />
+          <Property Name="delivery_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="delivery_user_id" Type="Int32" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="delete_flag" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CRM_delivery_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="header_id" Type="Int32" Nullable="false" />
+          <Property Name="contract_detail_id" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="attach_label_id" Type="Int32" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="delete_flag" Type="Boolean" Nullable="false" />
+          <Property Name="DeliverTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" FromRole="CRM_delivery_detail" ToRole="CRM_contract_detail" />
+          <NavigationProperty Name="CRM_contract_header" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" FromRole="CRM_delivery_detail" ToRole="CRM_contract_header" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_CRM_delivery_detail_CRM_contract_detail">
+          <End Type="XNERPModel.CRM_contract_detail" Role="CRM_contract_detail" Multiplicity="1" />
+          <End Type="XNERPModel.CRM_delivery_detail" Role="CRM_delivery_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRM_contract_detail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRM_delivery_detail">
+              <PropertyRef Name="contract_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRM_delivery_detail_CRM_contract_header">
+          <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
+          <End Type="XNERPModel.CRM_delivery_detail" Role="CRM_delivery_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRM_contract_header">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRM_delivery_detail">
+              <PropertyRef Name="header_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3425,6 +3563,41 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
                 <ScalarProperty Name="CRM_contract_detail_id" ColumnName="CRM_contract_detail_id" />
                 <ScalarProperty Name="workorder" ColumnName="workorder" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CRM_delivery_header">
+            <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_header">
+              <MappingFragment StoreEntitySet="CRM_delivery_header">
+                <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+                <ScalarProperty Name="created_time" ColumnName="created_time" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="delivery_user_id" ColumnName="delivery_user_id" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="contract_header_id" ColumnName="contract_header_id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="dSN" ColumnName="dSN" />
+                <ScalarProperty Name="dYear" ColumnName="dYear" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CRM_delivery_detail">
+            <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_detail">
+              <MappingFragment StoreEntitySet="CRM_delivery_detail">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="DeliverTime" ColumnName="DeliverTime" />
+                <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="attach_label_id" ColumnName="attach_label_id" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="contract_detail_id" ColumnName="contract_detail_id" />
+                <ScalarProperty Name="header_id" ColumnName="header_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

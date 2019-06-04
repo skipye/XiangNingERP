@@ -1,6 +1,6 @@
-﻿@model ModelProject.SLabelsModel
+﻿@model ModelProject.SCRM_HTZModel
 @{
-    ViewBag.Title = "送货单管理";
+    ViewBag.Title = "送货管理";
     Layout = null;
 }
 
@@ -11,13 +11,13 @@
             <div class="form_item">
                 <label class="label">合同编号：</label>
                 <div class="form-field">
-                   @Html.TextBoxFor(k => k.ProSN,  new { @class="inputtext"})
+                   @Html.TextBoxFor(k => k.SN,  new { @class="inputtext"})
                 </div>
             </div>
             <div class="form_item">
                 <label class="label">订货人：</label>
                 <div class="form-field">
-                   @Html.TextBoxFor(k => k.SaleName,  new { @class="inputtext"})
+                   @Html.TextBoxFor(k => k.UserName,  new { @class="inputtext",id="CRMUserName"})
                 </div>
             </div>
             
@@ -40,12 +40,11 @@
 <script type="text/javascript">
     $(function () {
         $(".inputsubbtn").click(function () {
-            var ProSN = $("#ProSN").val();
-            var SaleName = $("#SaleName").val();;
-            var PostUrl = "@Url.Action("DPageList","CRM_HT")";
-            
-            if (ProSN != "" || SaleName != "") {
-                $.post(PostUrl, { ProSN: ProSN, SaleName: SaleName, status: 1 }, function (d) {
+            var SN = $("#SN").val();
+            var UserName = $("#CRMUserName").val();;
+            var PostUrl = "@Url.Action("WOPageList","CRM_HT")";
+            if (SN != "" || UserName != "") {
+                $.post(PostUrl, { SN: SN, UserName: UserName, status: 1 }, function (d) {
                     $("#ResultList1").html(d);
                 });
             }

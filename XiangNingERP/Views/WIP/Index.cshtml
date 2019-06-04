@@ -45,7 +45,18 @@
             </div>
         </a>
     </div>
-}@if (SonLeve.Contains("Purchase") || SonLeve == "All")
+}<div class="card fl ml20 mt20">
+    <a href="@Url.Action("CRM_HT_Delivery","CRM_HT")">
+        <div class="card_text">
+            <h4 class="card_title">销售--送货申请</h4>
+            <p class="card_subtitle">销售根据客户要求，提出送货申请，请及时安排好生产任务。</p>
+        </div>
+        <div class="card_pic">
+            <img src="~/bg/wip_ap.png" alt="送货申请" />
+        </div>
+    </a>
+</div>
+@if (SonLeve.Contains("Purchase") || SonLeve == "All")
 {
     <div class="clear"></div>
     <div class="card fl mt20">

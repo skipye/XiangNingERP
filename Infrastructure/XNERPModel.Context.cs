@@ -65,5 +65,7 @@ namespace Infrastructure
         public DbSet<INV_labels> INV_labels { get; set; }
         public DbSet<CRM_delivery_tmp_header> CRM_delivery_tmp_header { get; set; }
         public DbSet<WIP_work_CW> WIP_work_CW { get; set; }
+        public DbSet<CRM_delivery_header> CRM_delivery_header { get; set; }
+        public DbSet<CRM_delivery_detail> CRM_delivery_detail { get; set; }
     }
 }

@@ -479,6 +479,9 @@
     <Content Include="Views\CRM_HT\UpdateDelivery.cshtml" />
     <Content Include="Views\CRM_HTPro\UpdatePrice.cshtml" />
     <Content Include="Views\WIP\WorkOrderMore.cshtml" />
+    <Content Include="Views\CRM_HT\WOPageList.cshtml" />
+    <Content Include="Views\CRM_HT\CRM_HT_Delivery.cshtml" />
+    <Content Include="Views\CRM_HT\CRM_HTDeliveryList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

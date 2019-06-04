@@ -27,12 +27,12 @@
     
 	</script>
 <div id="printtext" class="shprint clearfix">
-    <h2>上海香凝工艺家具有限公司</h2>
+    <h2>上海香凝工艺品有限公司</h2>
     <h3 class="mt5">送货单</h3>
     <div class="topht clearfix mt10">
         <p class="clearfix f-12"><span class="fl">客户名称：@Model.customer</span><span class="fr">合同编号：@Model.SN</span></p>
         <p class="clearfix f-12"><span class="fl">联系电话：@Model.TelPhone</span><span class="fr">送货单号：@Model.OrderMun</span></p>
-        <p class="clearfix f-12"><span class="fl">送货地址：@Model.delivery_address</span><span class="fr">送货日期：@DateTime.Now.ToString("yyyy-MM-dd")</span></p>
+        <p class="clearfix f-12"><span class="fl">送货地址：@Model.delivery_address</span><span class="fr">送货日期：@Convert.ToDateTime(Model.delivery_date).ToString("yyyy-MM-dd")</span></p>
     </div>
     
 @if (Model != null && Model.DePro.Any())

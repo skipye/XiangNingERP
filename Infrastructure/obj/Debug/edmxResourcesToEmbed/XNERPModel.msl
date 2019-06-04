@@ -758,5 +758,40 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CRM_delivery_header">
+      <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_header">
+        <MappingFragment StoreEntitySet="CRM_delivery_header">
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="created_time" ColumnName="created_time" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="delivery_user_id" ColumnName="delivery_user_id" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="contract_header_id" ColumnName="contract_header_id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="dSN" ColumnName="dSN" />
+          <ScalarProperty Name="dYear" ColumnName="dYear" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CRM_delivery_detail">
+      <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_detail">
+        <MappingFragment StoreEntitySet="CRM_delivery_detail">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="DeliverTime" ColumnName="DeliverTime" />
+          <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="attach_label_id" ColumnName="attach_label_id" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="contract_detail_id" ColumnName="contract_detail_id" />
+          <ScalarProperty Name="header_id" ColumnName="header_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

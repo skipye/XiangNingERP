@@ -930,6 +930,7 @@ namespace DalProject
                         Models.TelPhone = tables.CRM_contract_header.Linktel;
                         Models.OrderMun = tables.OrderNum;
                         Models.signed_user_id=tables.contract_detail_id;
+                        Models.delivery_date = tables.DeliverTime;
                         if (OSN != Models.signed_user_id)
                         {
                             OSN = Models.signed_user_id.Value;

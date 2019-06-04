@@ -55,6 +55,12 @@
     <Compile Include="CRM_customers.cs">
       <DependentUpon>XNERPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CRM_delivery_detail.cs">
+      <DependentUpon>XNERPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRM_delivery_header.cs">
+      <DependentUpon>XNERPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CRM_delivery_tmp_header.cs">
       <DependentUpon>XNERPModel.tt</DependentUpon>
     </Compile>
