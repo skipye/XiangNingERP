@@ -201,6 +201,16 @@
       <End Role="WIP_contract" EntitySet="WIP_contract" />
       <End Role="WIP_contract1" EntitySet="WIP_contract" />
     </AssociationSet>
+    <EntitySet Name="CRM_delivery_header" EntityType="XNERPModel.CRM_delivery_header" />
+    <EntitySet Name="CRM_delivery_detail" EntityType="XNERPModel.CRM_delivery_detail" />
+    <AssociationSet Name="FK_CRM_delivery_detail_CRM_contract_detail" Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail">
+      <End Role="CRM_contract_detail" EntitySet="CRM_contract_detail" />
+      <End Role="CRM_delivery_detail" EntitySet="CRM_delivery_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CRM_delivery_detail_CRM_contract_header" Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header">
+      <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
+      <End Role="CRM_delivery_detail" EntitySet="CRM_delivery_detail" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CRM_contract_detail">
     <Key>
@@ -236,6 +246,7 @@
     <NavigationProperty Name="INV_labels" Relationship="XNERPModel.CRM_contract_detailINV_labels" FromRole="CRM_contract_detail" ToRole="INV_labels" />
     <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_tmp_header" />
     <NavigationProperty Name="WIP_work_CW" Relationship="XNERPModel.WIP_work_CWCRM_contract_detail" FromRole="CRM_contract_detail" ToRole="WIP_work_CW" />
+    <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_detail" />
   </EntityType>
   <EntityType Name="CRM_customers">
     <Key>
@@ -908,6 +919,7 @@
     <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_tmp_header" />
     <Property Name="Linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Linktel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_detail" />
   </EntityType>
   <Association Name="FK_CRM_contract_detail_CRM_contract_header">
     <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
@@ -1478,6 +1490,65 @@
       </Principal>
       <Dependent Role="WIP_contract1">
         <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CRM_delivery_header">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="dYear" Type="Int32" Nullable="false" />
+    <Property Name="dSN" Type="Int32" Nullable="false" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="contract_header_id" Type="Int32" Nullable="false" />
+    <Property Name="delivery_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="delivery_user_id" Type="Int32" />
+    <Property Name="status" Type="Byte" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="created_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="delete_flag" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CRM_delivery_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="header_id" Type="Int32" Nullable="false" />
+    <Property Name="contract_detail_id" Type="Int32" Nullable="false" />
+    <Property Name="qty" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="attach_label_id" Type="Int32" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="delete_flag" Type="Boolean" Nullable="false" />
+    <Property Name="DeliverTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" FromRole="CRM_delivery_detail" ToRole="CRM_contract_detail" />
+    <NavigationProperty Name="CRM_contract_header" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" FromRole="CRM_delivery_detail" ToRole="CRM_contract_header" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_CRM_delivery_detail_CRM_contract_detail">
+    <End Type="XNERPModel.CRM_contract_detail" Role="CRM_contract_detail" Multiplicity="1" />
+    <End Type="XNERPModel.CRM_delivery_detail" Role="CRM_delivery_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CRM_contract_detail">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CRM_delivery_detail">
+        <PropertyRef Name="contract_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CRM_delivery_detail_CRM_contract_header">
+    <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
+    <End Type="XNERPModel.CRM_delivery_detail" Role="CRM_delivery_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CRM_contract_header">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CRM_delivery_detail">
+        <PropertyRef Name="header_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

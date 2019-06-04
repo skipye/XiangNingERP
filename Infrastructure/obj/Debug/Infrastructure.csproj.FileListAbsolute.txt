@@ -33,3 +33,4 @@ D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.dll
 D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.pdb
 D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
 D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+D:\XiangNingERP\Infrastructure\obj\Debug\Infrastructure.csprojAssemblyReference.cache
