@@ -21,8 +21,6 @@
             <th>色号</th>
             <th>尺寸</th>
             <th>所在仓库</th>
-            <th>厂长是否审核</th>
-            <th>财务是否审核</th>
             <th>是否已送</th>
             <th>送货日期</th>
             <th>操作</th>
@@ -39,8 +37,6 @@
             <td><div class="tw" title="@item.color">@item.color</div></td>
             <td><div class="tw" title="@item.style">@item.style</div></td>
             <td><div class="tw" title="@item.invname">@item.invname</div></td>
-            <td>@(item.CZ_checked==true?"是":"否")</td>
-            <td>@(item.CW_checked == true ? "是" : "否")</td>
             <td>
                 @(item.delete_flag!=null&& item.delete_flag==true?"已送":"未送")
                 

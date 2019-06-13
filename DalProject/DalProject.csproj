@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SaleSerDal.cs" />
     <Compile Include="CWDal.cs" />
     <Compile Include="INVDal.cs" />
     <Compile Include="INV_MCDal.cs" />

@@ -228,6 +228,66 @@ namespace DalProject
                 return ListCHModel.ToPagedList(PageIndex, PageSize);
             }
         }
+        public PagedList<CRM_HTProModel> GetDeHTPageList(SCRM_HTZModel SModel, int PageIndex, int PageSize)
+        {
+            DateTime StartTime = Convert.ToDateTime("1999-12-31");
+            DateTime EndTime = Convert.ToDateTime("2999-12-31");
+            DateTime SStartTime = Convert.ToDateTime("1999-12-31");
+            DateTime SEndTime = Convert.ToDateTime("2999-12-31");
+            if (!string.IsNullOrEmpty(SModel.StartTime))
+            {
+                StartTime = Convert.ToDateTime(SModel.StartTime).AddDays(-1);
+            }
+            if (!string.IsNullOrEmpty(SModel.EndTime))
+            {
+                EndTime = Convert.ToDateTime(SModel.EndTime).AddDays(1);
+            }
+            if (!string.IsNullOrEmpty(SModel.SStartTime))
+            {
+                SStartTime = Convert.ToDateTime(SModel.SStartTime).AddDays(-1);
+            }
+            if (!string.IsNullOrEmpty(SModel.SEndTime))
+            {
+                SEndTime = Convert.ToDateTime(SModel.SEndTime).AddDays(1);
+            }
+            using (var db = new XNERPEntities())
+            {
+                var List = (from p in db.CRM_contract_detail.Where(k => k.delete_flag == false && k.CRM_contract_header.FR_flag > 0 && k.CRM_contract_header.status == 1 && k.CRM_contract_header.delete_flag == false)
+                            where !string.IsNullOrEmpty(SModel.SN) ? p.CRM_contract_header.SN.Contains(SModel.SN) : true
+                            where !string.IsNullOrEmpty(SModel.UserName) ? p.CRM_contract_header.CRM_customers.name.Contains(SModel.UserName) : true
+                            orderby p.created_time descending
+                            select new CRM_HTProModel
+                            {
+                                id = p.id,
+                                header_id = p.CRM_contract_header.id,
+                                SN = p.CRM_contract_header.SN,
+                                customer = p.CRM_contract_header.CRM_customers.name,
+                                delivery_date = p.CRM_contract_header.delivery_date,
+                                checked_date = p.CRM_contract_header.checked_date,
+                                productName = p.SYS_product.name,
+                                productXL = p.SYS_product.SYS_product_SN.name,
+                                length = p.length,
+                                width = p.width,
+                                height = p.height,
+                                wood_type_id = p.wood_type_id,
+                                product_id = p.product_id,
+                                woodName = p.INV_wood_type.name,
+                                colorName = p.SYS_colors.name,
+                                status = p.status,
+                                qty = p.qty,
+                                hardware_part = p.hardware_part,
+                                amount = p.CRM_contract_header.amount,
+                                prepay = p.CRM_contract_header.prepay,
+                                decoration_part = p.decoration_part,
+                                req_others = p.req_others,
+                                created_time = p.created_time,
+                                WorkCount = p.LabelsCount,
+                                Remark = p.CRM_contract_header.reserved3,
+                            }).ToList();
+               
+                return List.ToPagedList(PageIndex, PageSize);
+            }
+        }
         public void AddOrUpdate(CRM_HTZModel Models)
         {
             using (var db = new XNERPEntities())
@@ -627,6 +687,7 @@ namespace DalProject
                 var List = (from p in db.CRM_delivery_detail.Where(k => k.delete_flag == false)
                             where !string.IsNullOrEmpty(SModel.UserName) ? p.CRM_contract_header.CRM_customers.name.Contains(SModel.UserName) : true
                             where !string.IsNullOrEmpty(SModel.SN) ? p.CRM_contract_header.SN.Contains(SModel.SN) : true
+                            where SModel.status>0?p.status==0:true
                             where p.DeliverTime > StartTime
                             where p.DeliverTime < EndTime
                             orderby p.DeliverTime descending
@@ -645,6 +706,10 @@ namespace DalProject
                                 customer = p.CRM_contract_header.CRM_customers.name,
                                 delivery_date = p.DeliverTime,
                                 created_time = p.CreateTime,
+                                CW_checked = p.CW_checked,
+                                CZ_checked = p.CZ_checked,
+                                status = p.status,
+                                delete_flag=p.delete_flag,
                             }).ToList();
                 return List.ToPagedList(SModel.PageIndex ?? 1, SModel.PageSize ?? 10);
             }

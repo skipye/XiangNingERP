@@ -1,0 +1,69 @@
+﻿@using Common;
+@model ModelProject.SaleSerProModel
+@{
+    Layout = null;
+    
+    List<SelectListItem> ArrWJ = new List<SelectListItem>();
+    ArrWJ.Add(new SelectListItem { Text = "常规", Value = "常规" });
+    ArrWJ.Add(new SelectListItem { Text = "定制", Value = "定制" });
+    ArrWJ.Add(new SelectListItem { Text = "木拉手", Value = "木拉手" });
+    ArrWJ.Add(new SelectListItem { Text = "挖拉手", Value = "挖拉手" });
+    ArrWJ.Add(new SelectListItem { Text = "其他", Value = "其他" });
+    List<SelectListItem> ArrProName = new List<SelectListItem>();
+    ArrProName.Add(new SelectListItem { Text = "请选择产品名称", Value = "" });
+    
+}
+
+<div class="addmain">
+ @using (Html.BeginForm("AddPro", "CRM_SaleService", FormMethod.Post, new { @class = "form mt20" }))
+    { 
+     @Html.HiddenFor(k=>k.SaleServiceId)
+    <div class="mod normal">
+
+        <div class="item mt10">
+            <label class="label"><em>*</em>产品名称：</label>
+            <div class="form-field" style="position:relative ;">
+                @Html.TextBoxFor(k => k.ProductName, new { @class = "sputtxt", @style = "width:300px;" })
+            </div>
+        </div>
+        <div class="item">
+            <label class="label">材质：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.WoodName, new { @class = "sputtxt", @style = "width:100px;" })
+            </div>
+        </div>
+        <div class="item">
+            <label class="label">规格：</label>
+            <div class="form-field">
+                @Html.TextBoxFor(k => k.ProductStyle, new { @class = "sputtxt", @style = "width:300px;" }) <span>单位：MM</span>
+            </div>
+        </div>
+        <div class="item" style="height:100px;">
+            <label class="label">问题描述：</label>
+            <div class="form-field">
+                @Html.TextAreaFor(k => k.QusState, new { style = "width:430px;height:100px;", @class = "inputtext" })
+            </div>
+        </div>
+        <div class="item" style="height:100px;">
+            <label class="label">处理方案：</label>
+            <div class="form-field">
+                @Html.TextAreaFor(k => k.AnState, new { style = "width:430px;height:100px;", @class = "inputtext" })
+            </div>
+        </div>
+        <div class="item">
+            <label class="label">备注：</label>
+            <div class="form-field">
+                @Html.TextAreaFor(k => k.Remark, new { style = "width:430px;height:100px;", @class = "inputtext" })
+            </div>
+        </div>
+        <div class="item">
+            <label class="label">&nbsp;</label>
+            <div class="form-field">
+                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+ }
+</div>
+

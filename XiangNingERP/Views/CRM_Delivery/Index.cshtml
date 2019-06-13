@@ -1,4 +1,4 @@
-﻿@model ModelProject.SLabelsModel
+﻿@model ModelProject.SCRM_HTZModel
 @{
     ViewBag.Title = "送货管理";
     List<SelectListItem> PSize = new List<SelectListItem>();
@@ -19,22 +19,22 @@
     <ul class="searchtab"><li class="current">条件搜索</li></ul>
     <div style="clear:both"></div>
     <div class="searchbox clearfix">
-        @using (Html.BeginForm("Index", "CRM_Delivery", FormMethod.Post, new { @class = "form" }))
+        @using (Html.BeginForm("Index", "WIP_CK", FormMethod.Post, new { @class = "form" }))
         {
             <div class="form_item">
                 <label class="label">合同编号：</label>
                 <div class="form-field">
-                    @Html.TextBoxFor(k => k.ProSN, new { @class = "inputtext" })
+                    @Html.TextBoxFor(k => k.SN, new { @class = "inputtext" })
                 </div>
             </div>
             <div class="form_item">
                 <label class="label">订货人：</label>
                 <div class="form-field">
-                    @Html.TextBoxFor(k => k.SaleName, new { @class = "inputtext" })
+                    @Html.TextBoxFor(k => k.UserName, new { @class = "inputtext" })
                 </div>
             </div>
             <div class="form_item">
-                <label class="label">出库时间：</label>
+                <label class="label">送货时间：</label>
                 <div class="form-field">
                     @Html.TextBoxFor(k => k.StartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
                     @Html.TextBoxFor(k => k.EndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
@@ -43,7 +43,7 @@
             <div class="form_item">
                 <label class="label">每页显示：</label>
                 <div class="form-field">
-                    @Html.DropDownListFor(k => k.PagePSize, PSize, new { @class = "drotext" })
+                    @Html.DropDownListFor(k => k.PageSize, PSize, new { @class = "drotext" })
                 </div>
             </div>
 
@@ -66,6 +66,6 @@
 </div>
 
 <div id="ResultList" class="xTable">
-    @Html.Action("PageList", "CRM_Delivery", new { SRmodels = Model })
+    @Html.Action("PageList", "CRM_Delivery", new { SModels = Model })
 </div>
 

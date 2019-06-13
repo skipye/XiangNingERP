@@ -19,6 +19,8 @@
             <th>色号</th>
             <th>送货时间</th>
             <th>申请时间</th>
+            <th>财务是否审核</th>
+            <th>厂长是否审核</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -32,6 +34,8 @@
         <td><div class="tw">@item.colorName</div></td>
         <td><div class="tw">@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</div></td>
         <td><div class="tw">@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd HH:mm")</div></td>
+        <td>@(item.CZ_checked == true ? "是" : "否")</td>
+        <td>@(item.CW_checked == true ? "是" : "否")</td>
     </tr>
         }
     </table>

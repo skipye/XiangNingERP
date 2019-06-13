@@ -67,5 +67,7 @@ namespace Infrastructure
         public DbSet<WIP_work_CW> WIP_work_CW { get; set; }
         public DbSet<CRM_delivery_header> CRM_delivery_header { get; set; }
         public DbSet<CRM_delivery_detail> CRM_delivery_detail { get; set; }
+        public DbSet<SaleService_Products> SaleService_Products { get; set; }
+        public DbSet<SaleServiceInfo> SaleServiceInfo { get; set; }
     }
 }

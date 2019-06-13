@@ -89,6 +89,9 @@
         <EntityTypeShape EntityType="XNERPModel.CRM_delivery_detail" Width="1.5" PointX="8.375" PointY="7.75" />
         <AssociationConnector Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" />
         <AssociationConnector Association="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" />
+        <EntityTypeShape EntityType="XNERPModel.SaleService_Products" Width="1.5" PointX="16.625" PointY="19.5" />
+        <EntityTypeShape EntityType="XNERPModel.SaleServiceInfo" Width="1.5" PointX="14.375" PointY="19" />
+        <AssociationConnector Association="XNERPModel.FK_SaleService_Products_SaleServiceInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

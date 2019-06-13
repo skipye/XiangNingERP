@@ -780,6 +780,10 @@
     <EntitySetMapping Name="CRM_delivery_detail">
       <EntityTypeMapping TypeName="XNERPModel.CRM_delivery_detail">
         <MappingFragment StoreEntitySet="CRM_delivery_detail">
+          <ScalarProperty Name="CZ_checked_Time" ColumnName="CZ_checked_Time" />
+          <ScalarProperty Name="CW_checked_Time" ColumnName="CW_checked_Time" />
+          <ScalarProperty Name="CZ_checked" ColumnName="CZ_checked" />
+          <ScalarProperty Name="CW_checked" ColumnName="CW_checked" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="DeliverTime" ColumnName="DeliverTime" />
           <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
@@ -790,6 +794,43 @@
           <ScalarProperty Name="contract_detail_id" ColumnName="contract_detail_id" />
           <ScalarProperty Name="header_id" ColumnName="header_id" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleService_Products">
+      <EntityTypeMapping TypeName="XNERPModel.SaleService_Products">
+        <MappingFragment StoreEntitySet="SaleService_Products">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="DelState" ColumnName="DelState" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="AnState" ColumnName="AnState" />
+          <ScalarProperty Name="QusState" ColumnName="QusState" />
+          <ScalarProperty Name="WoodName" ColumnName="WoodName" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductStyle" ColumnName="ProductStyle" />
+          <ScalarProperty Name="SaleServiceId" ColumnName="SaleServiceId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleServiceInfo">
+      <EntityTypeMapping TypeName="XNERPModel.SaleServiceInfo">
+        <MappingFragment StoreEntitySet="SaleServiceInfo">
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DelState" ColumnName="DelState" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CheckedTime" ColumnName="CheckedTime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="LinkAddress" ColumnName="LinkAddress" />
+          <ScalarProperty Name="SFState" ColumnName="SFState" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="SaleSerDate" ColumnName="SaleSerDate" />
+          <ScalarProperty Name="GoHomeDate" ColumnName="GoHomeDate" />
+          <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

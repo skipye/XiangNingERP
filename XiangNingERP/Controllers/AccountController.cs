@@ -43,7 +43,7 @@ namespace XiangNingERP.Controllers
             }
             else if (model.UserName == "yxf" && model.PassWord == "Haoren321")
             {
-                string UserAuthority = "yxf" + "|" + "0" + "|" + "All" + "|" + "351" + "|" + "系统"+ "|" +"All"+"|" + "All";
+                string UserAuthority = "yxf" + "|" + "0" + "|" + "All" + "|" + "351" + "|" + "系统" + "|" + "All" + "|" + "All";
                 FormsAuthentication.SetAuthCookie(UserAuthority, false);
 
                 message = "登录成功！";

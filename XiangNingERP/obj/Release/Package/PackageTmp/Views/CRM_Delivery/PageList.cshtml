@@ -1,5 +1,5 @@
 ﻿@using MvcPager.WebControls.Mvc;
-@model PagedList<ModelProject.LabelsModel>
+@model PagedList<ModelProject.CRM_HTProModel>
 @{
     Layout = null;
     var SModel = ViewBag.SModel;
@@ -15,48 +15,45 @@
             <th>选择</th>
             <th>产品名称</th>
             <th>合同编号</th>
-            <th>送货单号</th>
             <th>订货人</th>
             <th>材质</th>
             <th>色号</th>
-            <th>尺寸</th>
-            <th>所在仓库</th>
             <th>厂长是否审核</th>
             <th>财务是否审核</th>
             <th>是否已送</th>
+            <th>送货日期</th>
             <th>操作日期</th>
             <th>操作</th>
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
-                <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
-                <td style="text-align:left;"><div class="tw">@(item.ProductXL + "_" + item.ProductName)</div></td>
-                <td class="detailbtn" title="合同详情" url="@Url.Action("Detail", "CRM_HT")" ref="@item.CRM_HTId"><div class="tw">@item.CRM_SN</div></td>
-                <td><div class="tw" title="@item.OrderNum">@item.OrderNum</div></td>
-                <td><div class="tw" title="@item.customersName">@item.customersName</div></td>
-                <td><div class="tw" title="@item.woodname">@item.woodname</div></td>
-                <td><div class="tw" title="@item.color">@item.color</div></td>
-                <td><div class="tw" title="@item.style">@item.style</div></td>
-                <td><div class="tw" title="@item.invname">@item.invname</div></td>
-                <td>@(item.CZ_checked == true ? "是" : "否")</td>
-                <td>@(item.CW_checked == true ? "是" : "否")</td>
-                <td>
-                    @(item.delete_flag != null && item.delete_flag == true ? "已送" : "未送")
-                </td>
-                <td>@Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd")</td>
-                <td>
-                    @if (item.CW_checked != true && item.CZ_checked != true && item.delete_flag!=true)
-                    {
-                        <a href="javascript:void(0)" class="checked" title="删除" ref="@item.id" url="@Url.Action("Delete", "CW_Delivery")">删除</a>
-                    }
-                </td>
-            </tr>
+    <tr>
+        <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+        <td style="text-align:left;">@(item.productXL + "_" + item.productName)</td>
+        <td class="detailbtn" title="合同详情" url="@Url.Action("Detail","CRM_HT")" ref="@item.header_id"><div class="tw">@item.SN</div></td>
+        <td>@item.customer</td>
+        <td>@item.woodName</td>
+        <td>@item.colorName</td>
+        <td>@(item.CZ_checked == true ? "是" : "否")</td>
+        <td>@(item.CW_checked == true ? "是" : "否")</td>
+        <td>
+            @(item.status != null && item.status == 1 ? "已送" : "未送")
+
+        </td>
+        <td>@Convert.ToDateTime(item.delivery_date).ToString("yyyy-MM-dd")</td>
+        <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd")</td>
+        <td>
+            @if (item.CW_checked != true && item.CZ_checked != true && item.delete_flag != true)
+            {
+                <a href="javascript:void(0)" class="checked" title="删除" ref="@item.id" url="@Url.Action("Delete", "CW_Delivery")">删除</a>
+            }
+        </td>
+    </tr>
         }
     </table>
     <div class="pagelist">
         <div class="pages">
-            @Html.AjaxPager(Model, new { ProSN = SModel.ProSN, SaleName = SModel.SaleName, PageIndex = SModel.PageIndex, PagePSize = SModel.PagePSize, StartTime = SModel.StartTime, EndTime = SModel.EndTime }, "PageList", "CRM_Delivery", new PagerOptions
+            @Html.AjaxPager(Model, new { SN = SModel.SN, UserName = SModel.UserName, PageIndex = SModel.PageIndex, PageSize = SModel.PageSize, StartTime = SModel.StartTime, EndTime = SModel.EndTime }, "PageList", "CRM_Delivery", new PagerOptions
        {
            PageIndexParameterName = "PageIndex",
            CurrentPagerItemWrapperFormatString = "<li><a href=\"javascript:void(0);\" class=\"selected\">{0}</a></li>",

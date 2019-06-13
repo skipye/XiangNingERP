@@ -24,6 +24,10 @@ namespace Infrastructure
         public bool delete_flag { get; set; }
         public Nullable<System.DateTime> DeliverTime { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
+        public Nullable<bool> CW_checked { get; set; }
+        public Nullable<bool> CZ_checked { get; set; }
+        public Nullable<System.DateTime> CW_checked_Time { get; set; }
+        public Nullable<System.DateTime> CZ_checked_Time { get; set; }
     
         public virtual CRM_contract_detail CRM_contract_detail { get; set; }
         public virtual CRM_contract_header CRM_contract_header { get; set; }

@@ -1,0 +1,116 @@
+﻿@model ModelProject.SaleSerModel
+@{
+    Layout = null;
+    int i = 1;
+ }
+<link type="text/css" href="~/css/print.css?v=4" rel="stylesheet" />
+<script type="text/javascript" src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="~/js/jQuery.print.js"></script>
+<script type="text/javascript">
+    function print() {
+        $("#printtext").print({
+            globalStyles: false,//是否包含父文档的样式，默认为true
+            stylesheet: "/css/print.css?v=4",
+            mediaPrint: false,//是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+
+            noPrintSelector: ".no-print",//不想打印的元素的jQuery选择器，默认为".no-print"
+
+            iframe: false,//是否使用一个iframe来替代打印表单的弹出窗口，true为在本页面进行打印，false就是说新开一个页面打印，默认为true
+
+            append: null,//将内容添加到打印内容的后面
+
+            prepend: null,//将内容添加到打印内容的前面，可以用来作为要打印内容
+
+            deferred: $.Deferred(),//回调函数
+        });
+    };
+    
+	</script>
+<div id="printtext" class="shprint clearfix">
+    <h2>上海香凝工艺品有限公司</h2>
+    <h3 class="mt5">售后服务单</h3>
+    <div class="topht clearfix mt10">
+        <p class="clearfix f-12"><span class="fl">客户名称：@Model.Customer</span><span class="fr">服务单号： @Model.SN</span></p>
+        <p class="clearfix f-12"><span class="fl">收费情况：@Model.SFState @(Model.Amount > 0 ? "(" + Model.Amount + "元)" : "")</span><span class="fr">联系电话：@Model.TelPhone</span></p>
+        <p class="clearfix f-12"><span class="fl">联系地址：@Model.LinkAddress</span><span class="fr">维修日期：&nbsp;&nbsp;&nbsp;@Convert.ToDateTime(Model.GoHomeDate).ToString("yyyy-MM-dd")</span></p>
+    </div>
+
+    @if (Model != null && Model.SaleSerPro.Any())
+    {
+<table class="ptable">
+    <col width="50px" />
+    <col width="84px" />
+    <col width="80px" />
+    <col width="120px" />
+    <col />
+    <col />
+    <col width="120px" />
+    <tr class="fb">
+        <th>序号</th>
+        <th>产品名称</th>
+        <th>材质</th>
+        <th>规格</th>
+        <th>问题描述</th>
+        <th>处理方案</th>
+        <th>备注</th>
+    </tr>
+    @foreach (var item in Model.SaleSerPro)
+    {
+
+        <tr style="height:30px;font-size:12px">
+            <td>@(i)</td>
+            <td>@item.ProductName</td>
+            <td>@item.WoodName</td>
+            <td>@item.ProductStyle</td>
+            <td>@item.QusState</td>
+            <td>@item.AnState</td>
+            <td><div class="tw" title="Remark">@item.Remark</div></td>
+        </tr>
+        i++;
+    }
+    <tr style="height:30px;">
+        <td colspan="7"></td>
+    </tr>
+    <tr style="height:30px;">
+        <td colspan="7">以下空白</td>
+    </tr>
+    <tr style="height:30px;">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="4">工厂出发前与客户联系确认</td>
+    </tr>
+</table>
+
+    }
+    <h4 class="mt20" style="text-align:left;font-size:18px;">客户满意度调查</h4>
+    <table class="ptable">
+        <col width="30%" />
+        <col width="70%" />
+        <tr style="height:30px;font-size:12px">
+            <td>维修人员&nbsp;&nbsp;态度</td>
+            <td><span><input type="checkbox" />非常满意</span><span><input type="checkbox" />满意</span><span><input type="checkbox" />不满意</span><span><input type="checkbox" />非常不满意</span></td>
+        </tr>
+        <tr style="height:30px;font-size:12px">
+            <td>维修人员&nbsp;&nbsp;技术</td>
+            <td><span><input type="checkbox" />非常满意</span><span><input type="checkbox" />满意</span><span><input type="checkbox" />不满意</span><span><input type="checkbox" />非常不满意</span></td>
+        </tr>
+        <tr style="height:30px;font-size:12px">
+            <td>维修人员&nbsp;&nbsp;到达时间</td>
+            <td><span><input type="checkbox" />非常满意</span><span><input type="checkbox" />满意</span><span><input type="checkbox" />不满意</span><span><input type="checkbox" />非常不满意</span></td>
+        </tr>
+        <tr style="height:30px;font-size:12px">
+            <td>维修人员&nbsp;&nbsp;答应事项</td>
+            <td><span><input type="checkbox" />非常满意</span><span><input type="checkbox" />满意</span><span><input type="checkbox" />不满意</span><span><input type="checkbox" />非常不满意</span></td>
+        </tr>
+    </table>
+    <p class="mt10 sh"><span>经办人：</span><span>生产：</span><span>维修：</span><span class="fr">客户：</span></p>
+
+    <p class="rtit">①存根︵白︶②生产︵红︶③财务︵蓝︶④客户︵绿︶</p>
+</div>
+
+@*①②③④⑤⑥⑦⑧⑨⑩*@
+
+<div class="no-print">
+  <input type="button" value="预览并打印" class="inputsubbtn mt10 mb20" style="width:120px;" onclick="print()"/>
+</div>

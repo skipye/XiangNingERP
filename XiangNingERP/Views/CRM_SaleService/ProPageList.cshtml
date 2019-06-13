@@ -1,0 +1,54 @@
+﻿
+@model List<ModelProject.SaleSerProModel>
+@{ 
+    Layout = null;
+    int i = 1;
+  }
+<div class="xTable">
+
+@if(Model!=null && Model.Any())
+{
+    <table>
+        <col width="70px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
+        <col width="80px" />
+        <tr class="fb">
+            <th>序号</th>
+            <th>产品名称</th>
+            <th>材质</th>
+            <th>规格</th>
+            <th>问题描述</th>
+            <th>处理方案</th>
+            <th>备注</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="height:35px;">
+                <td>@(i)</td>
+                <td>@item.ProductName</td>
+                <td>@item.WoodName </td>
+                <td>@item.ProductStyle</td>
+                <td><div class="tw" title="@item.QusState">@item.QusState</div></td>
+                <td><div class="tw" title="@item.AnState">@item.AnState</div></td>
+                <td><div class="tw" title="@item.Remark">@item.Remark</div></td>
+                <td>
+                    @if (item.status == 0)
+                    {
+                        <a href="javascript:void(0)" class="delone" ref="@item.Id" url="@Url.Action("DeleteOne", "CRM_HTPro")">删除</a>
+                    }
+                </td>
+            </tr>
+            i++;
+        }
+    </table>
+   
+}
+else{<p>暂无内容！</p>}
+
+</div>

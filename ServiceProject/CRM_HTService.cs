@@ -30,6 +30,14 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public PagedList<CRM_HTProModel> GetDeHTPageList(SCRM_HTZModel SModel, int PageIndex, int PageSize)
+        {
+            try { return IDal.GetDeHTPageList(SModel, PageIndex, PageSize); }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public PagedList<CRM_HTProModel> GetWOTPPageList(SCRM_HTZModel SModel, int PageIndex, int PageSize)
         {
             try { return IDal.GetWOTPPageList(SModel, PageIndex, PageSize); }

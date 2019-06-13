@@ -11,7 +11,8 @@ namespace XiangNingERP.Controllers
     public class CRM_DeliveryController : Controller
     {
         private static readonly LabelsService SSer = new LabelsService();
-        public ActionResult Index(SLabelsModel SModel)
+        private static readonly CRM_HTService ISer = new CRM_HTService();
+        public ActionResult Index(SCRM_HTZModel SModel)
         {
             DateTime datetime = DateTime.Now;
             if (string.IsNullOrEmpty(SModel.StartTime))
@@ -24,10 +25,10 @@ namespace XiangNingERP.Controllers
             }
             return View(SModel);
         }
-        public ActionResult PageList(SLabelsModel SRmodels)
+        public ActionResult PageList(SCRM_HTZModel SModel)
         {
-            var PageList = SSer.GetDeliveryList(SRmodels);
-            ViewBag.SModel = SRmodels;
+            var PageList = ISer.GetCRM_HTDeliveryList(SModel);
+            ViewBag.SModel = SModel;
             return View(PageList);
         }
         public ActionResult Delete(int Id)

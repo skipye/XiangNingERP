@@ -137,6 +137,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CRMController.cs" />
+    <Compile Include="Controllers\CRM_SaleServiceController.cs" />
     <Compile Include="Controllers\CRM_DeliveryController.cs" />
     <Compile Include="Controllers\CRM_HTController.cs" />
     <Compile Include="Controllers\CRM_HTProController.cs" />
@@ -482,6 +483,12 @@
     <Content Include="Views\CRM_HT\WOPageList.cshtml" />
     <Content Include="Views\CRM_HT\CRM_HT_Delivery.cshtml" />
     <Content Include="Views\CRM_HT\CRM_HTDeliveryList.cshtml" />
+    <Content Include="Views\CRM_SaleService\Index.cshtml" />
+    <Content Include="Views\CRM_SaleService\PageList.cshtml" />
+    <Content Include="Views\CRM_SaleService\Add.cshtml" />
+    <Content Include="Views\CRM_SaleService\AddPro.cshtml" />
+    <Content Include="Views\CRM_SaleService\ProPageList.cshtml" />
+    <Content Include="Views\CRM_SaleService\Print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

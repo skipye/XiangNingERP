@@ -318,10 +318,10 @@ namespace DalProject
                     if (!string.IsNullOrEmpty(item))
                     {
                         int Id = Convert.ToInt32(item);
-                        var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
+                        var tables = db.CRM_delivery_detail.Where(k => k.id == Id).SingleOrDefault();
                         if (IsCW == true)
-                        { tables.CW_checked = true; } else
-                        { tables.CZ_checked = true; }
+                        { tables.CW_checked = true;tables.CW_checked_Time = DateTime.Now; } else
+                        { tables.CZ_checked = true;tables.CZ_checked_Time = DateTime.Now; }
                     }
                 }
                 db.SaveChanges();
@@ -338,16 +338,27 @@ namespace DalProject
                     {
                         int Id = Convert.ToInt32(item);
                         var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
+                        int HT_Head_id = tables.contract_header_id;
+                        int HT_Detail_Id = tables.contract_detail_id;
+                        int labelId = tables.label_id??0;
                         if (!string.IsNullOrEmpty(OrderNum))
                         { tables.OrderNum = OrderNum; }
                         if (!string.IsNullOrEmpty(DeliverTime))
                         { tables.DeliverTime = Convert.ToDateTime(DeliverTime); }
                         tables.delete_flag = true;
                         tables.created_time = DateTime.Now;
-                        
+
+                        //下面去把送货申请的送货状态更新掉
+                        var DeliveryTable = db.CRM_delivery_detail.Where(k => k.delete_flag == false && k.status == 0 && k.header_id == HT_Head_id && k.contract_detail_id == HT_Detail_Id).FirstOrDefault();
+                        if (DeliveryTable != null)
+                        {
+                            DeliveryTable.status = 1;
+                            DeliveryTable.attach_label_id = labelId;
+                        }
                     }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+                
             }
         }
         public void DeleteDelivery(string ListId)
@@ -360,13 +371,13 @@ namespace DalProject
                     if (!string.IsNullOrEmpty(item))
                     {
                         int Id = Convert.ToInt32(item);
-                        var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
-                        tables.status = true;
+                        var tables = db.CRM_delivery_detail.Where(k => k.id == Id).SingleOrDefault();
+                        tables.delete_flag = true;
                         //下面还原库存产品
-                        var LabelsId=tables.label_id;
-                        var LabelsTable = db.INV_labels.Where(k => k.id == LabelsId).FirstOrDefault();
-                        LabelsTable.status = 8;
-                        LabelsTable.delete_flag = false;
+                        //var LabelsId=tables.label_id;
+                        //var LabelsTable = db.INV_labels.Where(k => k.id == LabelsId).FirstOrDefault();
+                        //LabelsTable.status = 8;
+                        //LabelsTable.delete_flag = false;
 
                     }
                 }

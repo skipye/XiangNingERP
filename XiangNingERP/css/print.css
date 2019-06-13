@@ -25,8 +25,9 @@
 .htprint {width:810px;position:relative;}
 .htprint h2{text-align:center;font-size:26px;letter-spacing:20px;}
 .ptable{width:100%;border:1px solid #000;margin-top:10px;border-collapse:collapse;}
-.ptable  th{border:1px solid #000;text-align:center;line-height:30px;}
+.ptable th{border:1px solid #000;text-align:center;line-height:30px;}
 .ptable td{border:1px solid #000;text-align:center;}
+.ptable td span{width:25%;display:inline-block;}
 .htprint p{line-height:22px;}
 .htprint u{padding:0px 10px;}
 
@@ -43,4 +44,4 @@
 .shprint p{line-height:20px;}
 .shprint u{padding:0px 10px;}
 .qm span{width:20%;display:inline-block;}
-
+.sh span{width:25%;display:inline-block;}

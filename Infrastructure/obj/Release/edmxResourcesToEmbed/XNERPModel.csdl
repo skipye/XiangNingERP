@@ -211,6 +211,12 @@
       <End Role="CRM_contract_header" EntitySet="CRM_contract_header" />
       <End Role="CRM_delivery_detail" EntitySet="CRM_delivery_detail" />
     </AssociationSet>
+    <EntitySet Name="SaleService_Products" EntityType="XNERPModel.SaleService_Products" />
+    <EntitySet Name="SaleServiceInfo" EntityType="XNERPModel.SaleServiceInfo" />
+    <AssociationSet Name="FK_SaleService_Products_SaleServiceInfo" Association="XNERPModel.FK_SaleService_Products_SaleServiceInfo">
+      <End Role="SaleServiceInfo" EntitySet="SaleServiceInfo" />
+      <End Role="SaleService_Products" EntitySet="SaleService_Products" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CRM_contract_detail">
     <Key>
@@ -1527,6 +1533,10 @@
     <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" FromRole="CRM_delivery_detail" ToRole="CRM_contract_detail" />
     <NavigationProperty Name="CRM_contract_header" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" FromRole="CRM_delivery_detail" ToRole="CRM_contract_header" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CW_checked" Type="Boolean" />
+    <Property Name="CZ_checked" Type="Boolean" />
+    <Property Name="CW_checked_Time" Type="DateTime" Precision="3" />
+    <Property Name="CZ_checked_Time" Type="DateTime" Precision="3" />
   </EntityType>
   <Association Name="FK_CRM_delivery_detail_CRM_contract_detail">
     <End Type="XNERPModel.CRM_contract_detail" Role="CRM_contract_detail" Multiplicity="1" />
@@ -1549,6 +1559,55 @@
       </Principal>
       <Dependent Role="CRM_delivery_detail">
         <PropertyRef Name="header_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SaleService_Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="SaleServiceId" Type="Int32" />
+    <Property Name="ProductStyle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QusState" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AnState" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DelState" Type="Boolean" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SaleServiceInfo" Relationship="XNERPModel.FK_SaleService_Products_SaleServiceInfo" FromRole="SaleService_Products" ToRole="SaleServiceInfo" />
+  </EntityType>
+  <EntityType Name="SaleServiceInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TelPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GoHomeDate" Type="DateTime" Precision="3" />
+    <Property Name="SaleSerDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SFState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LinkAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="CheckedTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="DelState" Type="Boolean" />
+    <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleService_Products" Relationship="XNERPModel.FK_SaleService_Products_SaleServiceInfo" FromRole="SaleServiceInfo" ToRole="SaleService_Products" />
+  </EntityType>
+  <Association Name="FK_SaleService_Products_SaleServiceInfo">
+    <End Type="XNERPModel.SaleServiceInfo" Role="SaleServiceInfo" Multiplicity="0..1" />
+    <End Type="XNERPModel.SaleService_Products" Role="SaleService_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleServiceInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleService_Products">
+        <PropertyRef Name="SaleServiceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

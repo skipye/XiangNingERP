@@ -1,0 +1,73 @@
+﻿@model ModelProject.SSaleSerModel
+@{
+    ViewBag.Title = "售后服务";
+
+    List<SelectListItem> PSize = new List<SelectListItem>();
+    PSize.Add(new SelectListItem { Text = "每页10", Value = "10" });
+    PSize.Add(new SelectListItem { Text = "每页20", Value = "20" });
+    PSize.Add(new SelectListItem { Text = "每页30", Value = "30" });
+    PSize.Add(new SelectListItem { Text = "每页40", Value = "40" });
+    PSize.Add(new SelectListItem { Text = "每页80", Value = "80" });
+}
+
+<p class="currpoint">
+    <a href="@Url.Action("Index","Home")">首页</a>  ->
+    <a href="@Url.Action("Index","CRM")">销售管理</a>  ->
+    <a href="Javascript:void(0)" class="crrtab">售后服务</a>
+</p>
+
+<div class="search">
+    <ul class="searchtab"><li class="current">条件搜索</li></ul>
+    <div style="clear:both"></div>
+    <div class="searchbox clearfix">
+        @using (Html.BeginForm("Index", "CRM_SaleService", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="form_item">
+                <label class="label">售后单号：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.SN, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">订货人：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.Customer, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">操作时间：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.StartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
+                    @Html.TextBoxFor(k => k.EndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">每页显示：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.PageSize, PSize, new { @class = "drotext" })
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-item-submit">
+                <input type="submit" value="提交" class="inputsubbtn fr mb20 mr20" style="width:100px;" />
+            </div>
+        }
+    </div>
+</div><!--search end -->
+
+<div class="mod">
+    <div class="hd">
+        <h2>搜索结果</h2>
+        <ul class="filter">
+            <li class="adddialog" url="@Url.Action("Add","CRM_SaleService")" title="新增售后服务" ref="0"><a class="btn bg-green" href="javascript:void(0)"><span class="wh">新增售后服务</span></a></li>
+            <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
+            <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
+            @*<li><a class="delSelect btn bg-orange" href="javascript:void(0)" url="@Url.Action("DeleteMore","CRM_HT")" ><span class="wh">删除选中</span></a></li>*@
+        </ul>
+    </div>
+</div>
+
+<div id="ResultList" class="xTable">
+    @Html.Action("PageList", "CRM_SaleService", new { SRmodels = Model })
+</div>
+

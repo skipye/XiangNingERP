@@ -145,6 +145,9 @@ namespace ModelProject
         public int status { get; set; }
         public string productNameNew { get; set; }
         public string OrderNum { get; set; }
+        public bool? CZ_checked { get; set; }
+        public bool? CW_checked { get; set; }
+        public bool? delete_flag { get; set; }
     }
     public class FR_contract
     {

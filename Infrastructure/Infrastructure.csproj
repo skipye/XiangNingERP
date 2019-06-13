@@ -161,6 +161,12 @@
       <DependentUpon>XNERPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaleServiceInfo.cs">
+      <DependentUpon>XNERPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleService_Products.cs">
+      <DependentUpon>XNERPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SYS_colors.cs">
       <DependentUpon>XNERPModel.tt</DependentUpon>
     </Compile>

@@ -1,0 +1,105 @@
+﻿@using Common;
+@model ModelProject.SaleSerModel
+@{
+    Layout = null;
+    
+    List<SelectListItem> ArrBY = new List<SelectListItem>();
+    ArrBY.Add(new SelectListItem { Text = "收费情况", Value = "" });
+    ArrBY.Add(new SelectListItem { Text = "不收费", Value = "不收费" });
+    ArrBY.Add(new SelectListItem { Text = "收费", Value = "收费" });
+    List<SelectListItem> ArrYF = new List<SelectListItem>();
+    ArrYF.Add(new SelectListItem { Text = "请选择运费承担方", Value = "" });
+    ArrYF.Add(new SelectListItem { Text = "甲方", Value = "甲方" });
+    ArrYF.Add(new SelectListItem { Text = "乙方", Value = "乙方" });
+    
+    
+}
+
+    <div class="addmain">
+        @using (Html.BeginForm("Add", "CRM_SaleService", FormMethod.Post, new { @class = "form" }))
+        {
+            @Html.HiddenFor(k => k.Id)
+            @Html.HiddenFor(k => k.userName)
+            <div class="mod normal">
+                @*<div class="hd">
+                    <h2>合同基本信息</h2>
+                </div>*@
+                <div class="item">
+                    <label class="label"><em>*</em>客户姓名：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.Customer, new { @class = "sputtxt", @style = "width:100px;" })
+
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label"><em>*</em>服务单号：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.SN, new { @class = "sputtxt", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label"><em>*</em>维修日期：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.GoHomeDate, new { @class = "sputtxt", @style = "width:120px;", @ref = "datepicker" })
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label">联系电话：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.TelPhone, new { @class = "inputtext", @style = "width:400px;" })
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label">联系地址：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.LinkAddress, new { @class = "inputtext", @style = "width:400px;" })
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <label class="label"><em>*</em>收费情况：</label>
+                    <div class="form-field">
+                        @Html.DropDownListFor(k => k.SFState, ArrBY, new { @class = "drotext" })
+
+                        @Html.TextBoxFor(k => k.Amount, new { @class = "sputtxt number", @style = "width:120px;" }) <span class="red">元(如不收费不需填写)</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label"><em>*</em>报修日期：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.SaleSerDate, new { @class = "sputtxt", @style = "width:120px;", @ref = "datepicker" })
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label">备注：</label>
+                    <div class="form-field">
+                        @Html.TextAreaFor(k => k.Remark, new { style = "width:430px;height:100px;", @class = "inputtext" })
+                    </div>
+                </div>
+
+                <div class="item">
+                    <label class="label">&nbsp;</label>
+                    <div class="form-field">
+                        <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        }
+    </div>
+
+<script type="text/javascript">
+
+    
+    $(":text[ref='datepicker']").datepicker({
+        changeYear: true,
+        changeMonth: true,
+        showButtonPanel: true
+    });
+    //限制只能输入数字
+    $(".number").keyup(function () {  //keyup事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).bind("paste", function () {  //CTR+V事件处理 
+        $(this).val($(this).val().replace(/\D|^0/g, ''));
+    }).css("number", "disabled");  //CSS设置输入法不可用
+</script>

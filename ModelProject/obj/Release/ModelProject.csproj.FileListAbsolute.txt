@@ -70,3 +70,4 @@ D:\XiangNingERP\ModelProject\bin\Release\zh-Hans\System.Web.WebPages.resources.d
 D:\XiangNingERP\ModelProject\bin\Release\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\XiangNingERP\ModelProject\obj\Release\ModelProject.csproj.CoreCompileInputs.cache
 D:\XiangNingERP\ModelProject\obj\Release\ModelProject.csproj.CopyComplete
+D:\XiangNingERP\ModelProject\obj\Release\ModelProject.csprojAssemblyReference.cache

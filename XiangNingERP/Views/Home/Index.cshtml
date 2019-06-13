@@ -49,7 +49,7 @@
                      <th width="10%">晚上下班</th>
                  </tr>
              <tbody>
-                 @*@foreach (var item in UserList)
+                 @foreach (var item in UserList)
                  { 
                      <tr>  
                         <td>@item.Name</td> 
@@ -62,7 +62,7 @@
                         <td>@Html.Raw(item.time5!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time5).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td> 
                         <td>@Html.Raw(item.time6!=null?"<span style='color:#2dbd0c;'>"+Convert.ToDateTime(item.time6).ToString("HH:mm")+"</span>":"<span style='color:red;'>未打卡")</td>  
                      </tr>
-                 }*@
+                 }
                </tbody>
              </table>
 

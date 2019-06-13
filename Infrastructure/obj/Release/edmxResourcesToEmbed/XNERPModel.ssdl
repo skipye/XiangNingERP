@@ -100,6 +100,10 @@
     <Property Name="delete_flag" Type="bit" Nullable="false" />
     <Property Name="DeliverTime" Type="datetime" />
     <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CW_checked" Type="bit" />
+    <Property Name="CZ_checked" Type="bit" />
+    <Property Name="CW_checked_Time" Type="datetime" />
+    <Property Name="CZ_checked_Time" Type="datetime" />
   </EntityType>
   <EntityType Name="CRM_delivery_header">
     <Key>
@@ -490,6 +494,41 @@
     <Property Name="cc_prcie" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Sort" Type="int" />
     <Property Name="PersonPrice" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="SaleService_Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SaleServiceId" Type="int" />
+    <Property Name="ProductStyle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+    <Property Name="WoodName" Type="nvarchar" MaxLength="50" />
+    <Property Name="QusState" Type="nvarchar" MaxLength="500" />
+    <Property Name="AnState" Type="nvarchar" MaxLength="500" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="DelState" Type="bit" />
+    <Property Name="CreateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SaleServiceInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SN" Type="nvarchar" MaxLength="50" />
+    <Property Name="Customer" Type="nvarchar" MaxLength="50" />
+    <Property Name="TelPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="GoHomeDate" Type="datetime" />
+    <Property Name="SaleSerDate" Type="datetime" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SFState" Type="nvarchar" MaxLength="50" />
+    <Property Name="LinkAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="CheckedTime" Type="datetime" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="DelState" Type="bit" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="SYS_colors">
     <Key>
@@ -1006,6 +1045,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SaleService_Products_SaleServiceInfo">
+    <End Role="SaleServiceInfo" Type="Self.SaleServiceInfo" Multiplicity="0..1" />
+    <End Role="SaleService_Products" Type="Self.SaleService_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleServiceInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleService_Products">
+        <PropertyRef Name="SaleServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SYS_product_SN_SYS_product_SN">
     <End Role="SYS_product_SN" Type="Self.SYS_product_SN" Multiplicity="1" />
     <End Role="SYS_product_SN1" Type="Self.SYS_product_SN" Multiplicity="0..1" />
@@ -1106,6 +1157,8 @@
     <EntitySet Name="INV_semi" EntityType="Self.INV_semi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="INV_single_board" EntityType="Self.INV_single_board" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="INV_wood_type" EntityType="Self.INV_wood_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleService_Products" EntityType="Self.SaleService_Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleServiceInfo" EntityType="Self.SaleServiceInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SYS_colors" EntityType="Self.SYS_colors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SYS_notices" EntityType="Self.SYS_notices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SYS_product" EntityType="Self.SYS_product" Schema="dbo" store:Type="Tables" />
@@ -1216,6 +1269,10 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
     <AssociationSet Name="FK_INV_single_board_INV_wood_type" Association="Self.FK_INV_single_board_INV_wood_type">
       <End Role="INV_wood_type" EntitySet="INV_wood_type" />
       <End Role="INV_single_board" EntitySet="INV_single_board" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleService_Products_SaleServiceInfo" Association="Self.FK_SaleService_Products_SaleServiceInfo">
+      <End Role="SaleServiceInfo" EntitySet="SaleServiceInfo" />
+      <End Role="SaleService_Products" EntitySet="SaleService_Products" />
     </AssociationSet>
     <AssociationSet Name="FK_SYS_product_SN_SYS_product_SN" Association="Self.FK_SYS_product_SN_SYS_product_SN">
       <End Role="SYS_product_SN" EntitySet="SYS_product_SN" />

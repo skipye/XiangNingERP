@@ -162,7 +162,7 @@ namespace XiangNingERP.Controllers
         }
         public ActionResult WOPageList(SCRM_HTZModel SRmodels)
         {
-            var PageList = ISer.GetWOPageList(SRmodels, SRmodels.PageIndex ?? 1, SRmodels.PageSize ?? 100);
+            var PageList = ISer.GetDeHTPageList(SRmodels, SRmodels.PageIndex ?? 1, SRmodels.PageSize ?? 100);
             ViewBag.SModel = SRmodels;
             return View(PageList);
         }
@@ -189,6 +189,7 @@ namespace XiangNingERP.Controllers
         }
         public ActionResult CRM_HTDeliveryList(SCRM_HTZModel SModel)
         {
+            SModel.status = 1;
             ViewBag.SModel = SModel;
             var PageList = ISer.GetCRM_HTDeliveryList(SModel);
             return View(PageList);
