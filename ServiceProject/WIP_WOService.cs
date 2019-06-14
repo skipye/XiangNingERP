@@ -76,9 +76,9 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
-        public bool Checked(int Id, int status)
+        public bool Checked(string ListId,int status)
         {
-            try { WWDal.Checked(Id, status); return true; }
+            try { WWDal.Checked(ListId, status); return true; }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);

@@ -234,7 +234,7 @@ namespace DalProject
                                 Color = WTable.WIP_contract.color;
                                 TabName = "预投产品";
                             Navtab = 0;
-                        }if (string.IsNullOrEmpty(WTable.reserved3))
+                        }if (!string.IsNullOrEmpty(WTable.reserved3))
                         {
                             TabName = WTable.reserved3;
                         }
@@ -338,185 +338,193 @@ namespace DalProject
             }
         }
         //提交任务审核
-        public void Checked(int Id, int status)
+        public void Checked(string ListId, int status)
         {
             using (var db = new XNERPEntities())
             {
-                var tables = db.WIP_workflow.Where(k => k.id == Id).SingleOrDefault();
-                tables.status = status;
-                int ProductId = tables.Product_Id ?? 0;
-                int WoodId = tables.Wood_Id ?? 0;
-                if (status == 1)//提交任务，更改实际完成时间
+                string[] ArrId = ListId.Split('$');
+                foreach (var item in ArrId)
                 {
-                    tables.act_end_date = DateTime.Now;
-                }
-                if (status == 2)//审核通过
-                {
-                    tables.checked_date = DateTime.Now;
-                    tables.checked_user_id = UDal.GetCurrentUserName().UserId;
-                    tables.checked_user_name = UDal.GetCurrentUserName().UserName;
-
-                    int wId = tables.wo_id;
-                    var WTable = db.WIP_workorder.Where(m => m.id == wId).SingleOrDefault();
-                    int? CRM_Id = WTable.CRM_contract_detail_id ?? 0;
-                    int? WIP_Id = WTable.WIP_contract_id ?? 0;
-                    int CustomersId = 0;
-                    int length = 0;
-                    int width = 0;
-                    int height = 0;
-                    int flag = 0;
-                    string ProductSN = tables.SYS_product.SYS_product_SN.SN;
-                    string ProductNum = "";
-                    
-                    if (CRM_Id > 0)
+                    if (!string.IsNullOrEmpty(item))
                     {
-                        length = Convert.ToInt32(WTable.CRM_contract_detail.length);
-                        width = Convert.ToInt32(WTable.CRM_contract_detail.width);
-                        height = Convert.ToInt32(WTable.CRM_contract_detail.height);
-                        CustomersId=WTable.CRM_contract_detail.CRM_contract_header.CRM_customers.id;
-                    }
-                    else
-                    {
-                        length = Convert.ToInt32(WTable.WIP_contract.length);
-                        width = Convert.ToInt32(WTable.WIP_contract.width);
-                        height = Convert.ToInt32(WTable.WIP_contract.height);
-                        height = Convert.ToInt32(WTable.WIP_contract.height);
-                        flag = 1;
-                    }
-
-                    //添加生产成本
-                    if (tables.cost > 0)
-                    {
-                        WIP_WO_salary WSTable = new WIP_WO_salary();
-                        WSTable.user_id = tables.user_id;
-                        WSTable.user_name = tables.user_name;
-                        WSTable.price = tables.cost;
-                        WSTable.qty = WTable.qty;
-                        WSTable.amount = tables.cost * WTable.qty;
-                        WSTable.SN = tables.name;
-                        WSTable.check_user_id = tables.checked_user_id;
-                        WSTable.check_user_name = tables.checked_user_name;
-                        WSTable.status = 0;
-                        WSTable.created_time = DateTime.Now;
-                        WSTable.delete_flag = false;
-                        db.WIP_WO_salary.Add(WSTable);
-                    }
-                    if (tables.name.Contains("开料"))
-                    { WTable.status=3;}
-                    if (tables.name.Contains("雕花"))
-                    { WTable.status = 4; }
-                    if (tables.name.Contains("木工后段"))//半成品入库
-                    {
-                        WTable.status = 5;
-                        int? SW_id = db.INV_semi.Where(k => k.Work_id == WTable.id).Count();//判断是否已经入库，防止多次入库
-                        if (SW_id <= 0)
+                        int Id = Convert.ToInt32(item);
+                        var tables = db.WIP_workflow.Where(k => k.id == Id).SingleOrDefault();
+                        tables.status = status;
+                        int ProductId = tables.Product_Id ?? 0;
+                        int WoodId = tables.Wood_Id ?? 0;
+                        if (status == 1)//提交任务，更改实际完成时间
                         {
-                            int WCount = WTable.qty;
-                            if (WCount > 1)
-                            {
-                                for (int i = 0; i < WCount; i++)
-                                {
-                                    INV_semi INTable = new INV_semi();
-                                    INTable.product_id = ProductId;
-                                    INTable.wood_id = WoodId;
-                                    INTable.color = tables.reserved3;
-                                    INTable.status = 0;
-                                    INTable.created_time = DateTime.Now;
-                                    INTable.delete_flag = false;
-                                    INTable.CRM_id = CRM_Id;
-                                    INTable.Work_id = WTable.id;
-                                    INTable.WIP_id = WIP_Id;
-                                    INTable.length = length;
-                                    INTable.width = width;
-                                    INTable.height = height;
-                                    db.INV_semi.Add(INTable);
-                                }
-                            }
-                            else
-                            {
-                                INV_semi INTable = new INV_semi();
-                                INTable.product_id = ProductId;
-                                INTable.wood_id = WoodId;
-                                INTable.color = tables.reserved3;
-                                INTable.status = 0;
-                                INTable.created_time = DateTime.Now;
-                                INTable.delete_flag = false;
-                                INTable.CRM_id = CRM_Id;
-                                INTable.WIP_id = WIP_Id;
-                                INTable.Work_id = WTable.id;
-                                INTable.length = length;
-                                INTable.width = width;
-                                INTable.height = height;
-                                db.INV_semi.Add(INTable);
-                            }
+                            tables.act_end_date = DateTime.Now;
                         }
-                    }
-                    if (tables.name.Contains("刮磨"))
-                    { WTable.status = 6; }
-                    if (tables.name.Contains("油漆"))
-                    { WTable.status = 7; }
-                    if (tables.name.Contains("配件安装"))//到这里，成品入库
-                    { 
-                        WTable.status = 8;
-                        int? SW_id = db.INV_semi.Where(k => k.Work_id == WTable.id).Count();//判断是否已经入库，防止多次入库
-                        if (SW_id <= 0)
+                        if (status == 2)//审核通过
                         {
-                            Random r = new Random();
-                            int WCount = WTable.qty;
-                            if (WCount > 1)
+                            tables.checked_date = DateTime.Now;
+                            tables.checked_user_id = UDal.GetCurrentUserName().UserId;
+                            tables.checked_user_name = UDal.GetCurrentUserName().UserName;
+
+                            int wId = tables.wo_id;
+                            var WTable = db.WIP_workorder.Where(m => m.id == wId).SingleOrDefault();
+                            int? CRM_Id = WTable.CRM_contract_detail_id ?? 0;
+                            int? WIP_Id = WTable.WIP_contract_id ?? 0;
+                            int CustomersId = 0;
+                            int length = 0;
+                            int width = 0;
+                            int height = 0;
+                            int flag = 0;
+                            string ProductSN = tables.SYS_product.SYS_product_SN.SN;
+                            string ProductNum = "";
+
+                            if (CRM_Id > 0)
                             {
-                                for (int i = 0; i < WCount; i++)
-                                {
-                                    if (!string.IsNullOrEmpty(ProductSN))
-                                    {
-                                        ProductNum = "XN" + ProductSN.Substring(0, 2) + DateTime.Now.ToString("MMdd") + r.Next(10000, 100000);
-                                    }
-                                    INV_labels INTable = new INV_labels();
-                                    INTable.SN = "LA" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100000, 1000000);
-                                    INTable.product_SN = ProductNum;
-                                    INTable.product_id = ProductId;
-                                    INTable.style = length + "×" + width + "×" + height;
-                                    INTable.wood_id = WoodId;
-                                    INTable.color = tables.reserved3;
-                                    INTable.customer_id = CustomersId;
-                                    INTable.company = "上海香凝工艺品有限公司";
-                                    INTable.address = "上海市青浦区朱家角朱枫公路1355号";
-                                    INTable.website = "www.xiangninghm.com";
-                                    INTable.status = 0;
-                                    INTable.CRM_contract_detail_id = CRM_Id;
-                                    INTable.flag = flag;
-                                    INTable.created_time = DateTime.Now;
-                                    INTable.delete_flag = false;
-                                    INTable.WorkId = WTable.id;
-                                    INTable.WIP_contract_id = WIP_Id;
-                                    db.INV_labels.Add(INTable);
-                                }
+                                length = Convert.ToInt32(WTable.CRM_contract_detail.length);
+                                width = Convert.ToInt32(WTable.CRM_contract_detail.width);
+                                height = Convert.ToInt32(WTable.CRM_contract_detail.height);
+                                CustomersId = WTable.CRM_contract_detail.CRM_contract_header.CRM_customers.id;
                             }
                             else
                             {
-                                if (!string.IsNullOrEmpty(ProductSN))
+                                length = Convert.ToInt32(WTable.WIP_contract.length);
+                                width = Convert.ToInt32(WTable.WIP_contract.width);
+                                height = Convert.ToInt32(WTable.WIP_contract.height);
+                                height = Convert.ToInt32(WTable.WIP_contract.height);
+                                flag = 1;
+                            }
+
+                            //添加生产成本
+                            if (tables.cost > 0)
+                            {
+                                WIP_WO_salary WSTable = new WIP_WO_salary();
+                                WSTable.user_id = tables.user_id;
+                                WSTable.user_name = tables.user_name;
+                                WSTable.price = tables.cost;
+                                WSTable.qty = WTable.qty;
+                                WSTable.amount = tables.cost * WTable.qty;
+                                WSTable.SN = tables.name;
+                                WSTable.check_user_id = tables.checked_user_id;
+                                WSTable.check_user_name = tables.checked_user_name;
+                                WSTable.status = 0;
+                                WSTable.created_time = DateTime.Now;
+                                WSTable.delete_flag = false;
+                                db.WIP_WO_salary.Add(WSTable);
+                            }
+                            if (tables.name.Contains("开料"))
+                            { WTable.status = 3; }
+                            if (tables.name.Contains("雕花"))
+                            { WTable.status = 4; }
+                            if (tables.name.Contains("木工后段"))//半成品入库
+                            {
+                                WTable.status = 5;
+                                int? SW_id = db.INV_semi.Where(k => k.Work_id == WTable.id).Count();//判断是否已经入库，防止多次入库
+                                if (SW_id <= 0)
                                 {
-                                    ProductNum = "XN" + DateTime.Now.ToString("MMdd") + r.Next(10000, 100000);
+                                    int WCount = WTable.qty;
+                                    if (WCount > 1)
+                                    {
+                                        for (int i = 0; i < WCount; i++)
+                                        {
+                                            INV_semi INTable = new INV_semi();
+                                            INTable.product_id = ProductId;
+                                            INTable.wood_id = WoodId;
+                                            INTable.color = tables.reserved3;
+                                            INTable.status = 0;
+                                            INTable.created_time = DateTime.Now;
+                                            INTable.delete_flag = false;
+                                            INTable.CRM_id = CRM_Id;
+                                            INTable.Work_id = WTable.id;
+                                            INTable.WIP_id = WIP_Id;
+                                            INTable.length = length;
+                                            INTable.width = width;
+                                            INTable.height = height;
+                                            db.INV_semi.Add(INTable);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        INV_semi INTable = new INV_semi();
+                                        INTable.product_id = ProductId;
+                                        INTable.wood_id = WoodId;
+                                        INTable.color = tables.reserved3;
+                                        INTable.status = 0;
+                                        INTable.created_time = DateTime.Now;
+                                        INTable.delete_flag = false;
+                                        INTable.CRM_id = CRM_Id;
+                                        INTable.WIP_id = WIP_Id;
+                                        INTable.Work_id = WTable.id;
+                                        INTable.length = length;
+                                        INTable.width = width;
+                                        INTable.height = height;
+                                        db.INV_semi.Add(INTable);
+                                    }
                                 }
-                                INV_labels INTable = new INV_labels();
-                                INTable.SN = "LA" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100000, 1000000);
-                                INTable.product_SN = ProductNum;
-                                INTable.product_id = ProductId;
-                                INTable.style = length + "×" + width + "×" + height;
-                                INTable.wood_id = WoodId;
-                                INTable.color = tables.reserved3;
-                                INTable.customer_id = CustomersId;
-                                INTable.company = "上海香凝工艺品有限公司";
-                                INTable.address = "上海市青浦区朱家角朱枫公路1355号";
-                                INTable.website = "www.xiangninghm.com";
-                                INTable.status = 0;
-                                INTable.CRM_contract_detail_id = CRM_Id;
-                                INTable.flag = flag;
-                                INTable.created_time = DateTime.Now;
-                                INTable.delete_flag = false;
-                                INTable.WorkId = WTable.id;
-                                INTable.WIP_contract_id = WIP_Id;
-                                db.INV_labels.Add(INTable);
+                            }
+                            if (tables.name.Contains("刮磨"))
+                            { WTable.status = 6; }
+                            if (tables.name.Contains("油漆"))
+                            { WTable.status = 7; }
+                            if (tables.name.Contains("配件安装"))//到这里，成品入库
+                            {
+                                WTable.status = 8;
+                                int? SW_id = db.INV_semi.Where(k => k.Work_id == WTable.id).Count();//判断是否已经入库，防止多次入库
+                                if (SW_id <= 0)
+                                {
+                                    Random r = new Random();
+                                    int WCount = WTable.qty;
+                                    if (WCount > 1)
+                                    {
+                                        for (int i = 0; i < WCount; i++)
+                                        {
+                                            if (!string.IsNullOrEmpty(ProductSN))
+                                            {
+                                                ProductNum = "XN" + ProductSN.Substring(0, 2) + DateTime.Now.ToString("MMdd") + r.Next(10000, 100000);
+                                            }
+                                            INV_labels INTable = new INV_labels();
+                                            INTable.SN = "LA" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100000, 1000000);
+                                            INTable.product_SN = ProductNum;
+                                            INTable.product_id = ProductId;
+                                            INTable.style = length + "×" + width + "×" + height;
+                                            INTable.wood_id = WoodId;
+                                            INTable.color = tables.reserved3;
+                                            INTable.customer_id = CustomersId;
+                                            INTable.company = "上海香凝工艺品有限公司";
+                                            INTable.address = "上海市青浦区朱家角朱枫公路1355号";
+                                            INTable.website = "www.xiangninghm.com";
+                                            INTable.status = 0;
+                                            INTable.CRM_contract_detail_id = CRM_Id;
+                                            INTable.flag = flag;
+                                            INTable.created_time = DateTime.Now;
+                                            INTable.delete_flag = false;
+                                            INTable.WorkId = WTable.id;
+                                            INTable.WIP_contract_id = WIP_Id;
+                                            db.INV_labels.Add(INTable);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!string.IsNullOrEmpty(ProductSN))
+                                        {
+                                            ProductNum = "XN" + DateTime.Now.ToString("MMdd") + r.Next(10000, 100000);
+                                        }
+                                        INV_labels INTable = new INV_labels();
+                                        INTable.SN = "LA" + DateTime.Now.ToString("yyyyMMdd") + r.Next(100000, 1000000);
+                                        INTable.product_SN = ProductNum;
+                                        INTable.product_id = ProductId;
+                                        INTable.style = length + "×" + width + "×" + height;
+                                        INTable.wood_id = WoodId;
+                                        INTable.color = tables.reserved3;
+                                        INTable.customer_id = CustomersId;
+                                        INTable.company = "上海香凝工艺品有限公司";
+                                        INTable.address = "上海市青浦区朱家角朱枫公路1355号";
+                                        INTable.website = "www.xiangninghm.com";
+                                        INTable.status = 0;
+                                        INTable.CRM_contract_detail_id = CRM_Id;
+                                        INTable.flag = flag;
+                                        INTable.created_time = DateTime.Now;
+                                        INTable.delete_flag = false;
+                                        INTable.WorkId = WTable.id;
+                                        INTable.WIP_contract_id = WIP_Id;
+                                        db.INV_labels.Add(INTable);
+                                    }
+                                }
                             }
                         }
                     }

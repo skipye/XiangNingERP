@@ -56,12 +56,23 @@ namespace XiangNingERP.Controllers
             var List = USer.GetUserDrolistByJob(Job);
             return Content(List.ToString());
         }
-        public ActionResult Checked(int Id, int status, int? PageIndex, int? PageSize)
+        public ActionResult Checked(int Id, int status)
         {
-            if (WWSer.Checked(Id, status) == true)
+            string ListId = Id + "$";
+            if (WWSer.Checked(ListId, status) == true)
             {
                 return Content("True"); 
                 //return RedirectToAction("Index", "WIP_WO", new { PageIndex = PageIndex, PageSize = PageSize });
+            }
+            else { return Content("False"); }
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CheckedMore(string ListId, int status)
+        {
+            if (WWSer.Checked(ListId, status) == true)
+            {
+                return Content("True");
             }
             else { return Content("False"); }
         }
