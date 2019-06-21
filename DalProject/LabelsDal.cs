@@ -927,14 +927,24 @@ namespace DalProject
             using (var db = new XNERPEntities())
             {
                 List<DeliveryModel> ListD = new List<DeliveryModel>();
-                var OSN = 0;
                 string[] ArrId = ListId.Split('$');
-                foreach (var item in ArrId)
+                List<string> list = new List<string>();
+                for (int i = 0; i < ArrId.Length; i++)//遍历数组成员
+                {
+                    if (list.IndexOf(ArrId[i].ToLower()) == -1)//对每个成员做一次新数组查询如果没有相等的则加到新数组
+                        list.Add(ArrId[i]);
+
+                }
+                foreach (var item in list)
                 {
                     if (!string.IsNullOrEmpty(item))
                     {
                         int Id = Convert.ToInt32(item);
                         var tables = db.CRM_delivery_tmp_header.Where(k => k.id == Id).SingleOrDefault();
+
+                        int HeadId = tables.contract_header_id;
+                        int DetailId = tables.contract_detail_id;
+
                         Models.customer = tables.CRM_contract_header.Linkman;
                         Models.delivery_address = tables.CRM_contract_header.delivery_address;
                         Models.SN = tables.CRM_contract_header.SN;
@@ -942,9 +952,12 @@ namespace DalProject
                         Models.OrderMun = tables.OrderNum;
                         Models.signed_user_id=tables.contract_detail_id;
                         Models.delivery_date = tables.DeliverTime;
-                        if (OSN != Models.signed_user_id)
+
+                        var OldCount = ListD.Where(k => k.HeadId == HeadId && k.DetailId == DetailId).SingleOrDefault();
+
+                        if (OldCount==null)
+
                         {
-                            OSN = Models.signed_user_id.Value;
                             DeliveryModel DeModel = new DeliveryModel();
                             DeModel.productName = tables.CRM_contract_detail.SYS_product.name;
                             DeModel.productXL = tables.CRM_contract_detail.SYS_product.SYS_product_SN.name;
@@ -953,6 +966,8 @@ namespace DalProject
                             DeModel.width = tables.CRM_contract_detail.width;
                             DeModel.height = tables.CRM_contract_detail.height;
                             DeModel.qty = tables.CRM_contract_detail.qty;
+                            DeModel.HeadId = HeadId;
+                            DeModel.DetailId = DetailId;
                             ListD.Add(DeModel);
                         }
                     }
