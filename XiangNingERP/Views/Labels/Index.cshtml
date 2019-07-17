@@ -114,7 +114,7 @@
         <ul class="filter">
             <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
             <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
-            <li class="toExcelCWout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">财务成品库存</span></a></li>
+            @*<li class="toExcelCWout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">财务成品库存</span></a></li>*@
             <li class="toExcelout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">导出成品库存</span></a></li>
             <li><a class="delSelect btn bg-qblue" href="javascript:void(0)" url="@Url.Action("DeliveryMore","Labels",new { DeliveryTime=DateTime.Now.ToString("yyyy-MM-dd")})" title="选中送货维修"><span class="wh">选中送货维修</span></a></li>
             <li class="adddialog" url="@Url.Action("Add", "Labels")" title="盘点入库" ref="0"><a class="btn bg-green" href="javascript:void(0)"><span class="wh">盘点入库</span></a></li>
