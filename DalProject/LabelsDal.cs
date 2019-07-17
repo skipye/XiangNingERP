@@ -638,7 +638,8 @@ namespace DalProject
             }
             using (var db = new XNERPEntities())
             {
-                var List = (from p in db.INV_labels.Where(k => k.delete_flag == false)
+                List<LabelsModel> LabelsTab = new List<LabelsModel>(); 
+                var List = (from p in db.INV_labels.Where(k => k.delete_flag==false)
                             where SModel.product_SN_id != null && SModel.product_SN_id > 0 ? SModel.product_SN_id == p.SYS_product.product_SN_id : true
                             where SModel.product_area_id != null && SModel.product_area_id > 0 ? SModel.product_area_id == p.SYS_product.product_area_id : true
                             where SModel.wood_id != null && SModel.wood_id > 0 ? SModel.wood_id == p.wood_id : true
@@ -646,20 +647,15 @@ namespace DalProject
                             where SModel.status != null && SModel.status >= 0 ? p.status == SModel.status : true
                             where !string.IsNullOrEmpty(SModel.productName) ? p.SYS_product.name.Contains(SModel.productName) : true
                             where SModel.ProState != null && SModel.ProState == 1 ? p.flag == 0 : SModel.ProState != null && SModel.ProState == 2 ? p.flag == 1 : SModel.ProState != null && SModel.ProState == 3 ? p.flag == 2 : true
-                            where p.created_time > StartTime
-                            where p.created_time < EndTime
+                           
                             orderby p.created_time descending
                             select new LabelsModel
                             {
-                                id = p.id,
                                 product_id = p.product_id,
                                 ProductName = p.SYS_product.name,
                                 ProductXL = p.SYS_product.SYS_product_SN.name,
-                                product_area_id= p.SYS_product.SYS_product_area.id,
                                 ProductareaName = p.SYS_product.SYS_product_area.name,
-                                wood_id = p.wood_id,
                                 woodname = p.INV_wood_type.name,
-                                inv_id = p.inv_id,
                                 invname = p.INV_inventories.name,
                                 status = p.status,
                                 input_date = p.created_time,
@@ -677,7 +673,42 @@ namespace DalProject
                                 g_ccl = p.INV_wood_type.g_ccl??0,
                                 cc_prcie = p.INV_wood_type.cc_prcie ?? 0,
                             }).ToList();
-                if (List != null && List.Any())
+                LabelsTab = List;
+                var List1 = (from p in db.CRM_delivery_tmp_header
+                             where !string.IsNullOrEmpty(SModel.SaleName) ? p.INV_labels.CRM_customers.name.Contains(SModel.SaleName) : true
+                             where !string.IsNullOrEmpty(SModel.ProSN) ? p.CRM_contract_header.SN.Contains(SModel.ProSN) : true
+                             where p.DeliverTime > StartTime
+                             where p.DeliverTime < EndTime
+                             orderby p.created_time descending
+                             select new LabelsModel
+                             {
+                                 CRM_SN = p.CRM_contract_header.SN,
+                                 SN = p.INV_labels.SN,
+                                 CRM_HTId = p.contract_header_id,
+                                 ProductName = p.INV_labels.SYS_product.name,
+                                 ProductXL = p.INV_labels.SYS_product.SYS_product_SN.name,
+                                 ProductareaName=p.INV_labels.SYS_product.SYS_product_area.name,
+                                 woodname = p.INV_labels.INV_wood_type.name,
+                                 invname = p.INV_labels.INV_inventories.name,
+                                 status=p.INV_labels.status,
+                                 input_date = p.created_time,
+                                 color = p.INV_labels.color,
+                                 style = p.INV_labels.style,
+                                 flag=p.INV_labels.flag,
+                                 customersName = p.CRM_contract_header.CRM_customers.name,
+                                 qty = p.CRM_contract_detail.qty,
+                                 price = p.CRM_contract_detail.price,
+                                 OrderNum = p.OrderNum,
+                                 volume = p.CRM_contract_detail.SYS_product.volume,
+                                 W_BZ = p.CRM_contract_detail.INV_wood_type.g_bz,
+                                 W_price = p.CRM_contract_detail.INV_wood_type.prcie,
+                                 PersonPrice = p.CRM_contract_detail.SYS_product.reserved1,
+                                 q_ccl = p.INV_labels.INV_wood_type.q_ccl ?? 0,
+                                 g_ccl = p.INV_labels.INV_wood_type.g_ccl ?? 0,
+                                 cc_prcie = p.INV_labels.INV_wood_type.cc_prcie ?? 0,
+                             }).ToList();
+                LabelsTab = List.Concat(List1).ToList();
+                if (LabelsTab != null && LabelsTab.Any())
                 {
                     Exceltable.Columns.Add("标签编码", typeof(string));
                     Exceltable.Columns.Add("产品编号", typeof(string));
@@ -696,9 +727,13 @@ namespace DalProject
                     Exceltable.Columns.Add("木材单价", typeof(string));
                     Exceltable.Columns.Add("材料成本", typeof(string));
                     Exceltable.Columns.Add("人工成本", typeof(string));
+                    Exceltable.Columns.Add("辅料成本", typeof(string));
                     Exceltable.Columns.Add("出厂价", typeof(string));
                     Exceltable.Columns.Add("标签价", typeof(string));
-                    foreach (var item in List)
+                    Exceltable.Columns.Add("入库数量", typeof(string));
+                    Exceltable.Columns.Add("出库数量", typeof(string));
+                    Exceltable.Columns.Add("剩余数量", typeof(string));
+                    foreach (var item in LabelsTab)
                     {
                         var vv = Math.Pow(10, 2);
 
@@ -734,7 +769,15 @@ namespace DalProject
                         { CCL = 0.45; }
                         Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
                         WoodCB = Woodunit * Convert.ToDouble(item.W_price);
+                        FLCB = WoodCB * 0.15;
+                        CB = WoodCB + FLCB + Convert.ToDouble(item.PersonPrice ?? 0);
                         DataRow row = Exceltable.NewRow();
+                        int RKCount = 1;
+                        int CKCount = 0;
+                        if (item.status != null && item.status == 9)
+                        {
+                            CKCount = 1;
+                        }
                         row["标签编码"] = item.SN;
                         row["产品编号"] = item.product_SN_Name;
                         row["产品名称"] = item.ProductName;
@@ -745,15 +788,19 @@ namespace DalProject
                         row["尺寸"] = item.style;
                         row["所入仓库"] = item.invname;
                         row["进库日期"] = Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd"); ;
-                        row["状态"] = item.status != null && item.status == 2 ? "已出库" : item.status == 1 ? "已入库" : "未确认";
+                        row["状态"] = item.status != null && item.status == 9 ? "已出库" : item.status == 1 ? "已入库" : "未确认";
                         row["所属方式"] = item.flag != null && item.flag == 0 ? "销售产品" : item.flag != null && item.flag == 1 ? "预投产品" : "盘点产品";
                         row["材积"] = item.volume;
                         row["比重"] = item.W_BZ;
                         row["木材单价"] = item.W_price;
                         row["材料成本"] = WoodCB.ToString("0.00");
                         row["人工成本"] = item.PersonPrice;
+                        row["辅料成本"] = FLCB;
                         row["出厂价"] = ccprice;
                         row["标签价"] = BQPrice;
+                        row["入库数量"] = RKCount;
+                        row["出库数量"] = CKCount;
+                        row["剩余数量"] = RKCount- CKCount;
                         Exceltable.Rows.Add(row);
                     }
                 }

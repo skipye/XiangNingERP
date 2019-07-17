@@ -18,6 +18,8 @@
         <col width="100px" />
         <col width="100px" />
         <col width="100px" />
+        <col width="100px" />
+        <col width="100px" />
         <col />
         <col width="120px" class="workcol" />
         <tr class="fb">
@@ -30,31 +32,37 @@
             <th>高（mm）</th>
             <th>材积</th>
             <th>人工成本</th>
+            <th>料单</th>
+            <th>图纸</th>
             <th>上传时间</th>
             <th>备注</th>
             <th class="workth">操作</th>
         </tr>
-    @foreach(var item in Model)
-    {
-        string picPath = "/bg/nopic.png";
-        if (!string.IsNullOrEmpty(item.ConvertImg))
-        { picPath = "http://erp.xiangninghm.com/"+item.ConvertImg; }
-        <tr>
-            <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
-            <td>@item.product_SN_name </td>
-            <td>@item.product_area_name </td>
-            <td><a href="@picPath" target="_blank"><img src="@picPath" style="height:30px;width:60px;display:inline-block;" alt="@item.Pname" />@item.Pname </a></td>
-            <td>@item.length</td>
-            <td>@item.width</td>
-            <td>@item.height</td>
-            <td>@item.volume</td>
-            <td>@item.PersonPrice</td>
-            <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd")</td>
-            <td style="text-align:left" title="@item.remark"><div class="tw">@item.remark</div></td>
-            <td class="worktd"><a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "SYS_CPMC", new { name=SModel.name,product_SN_id=SModel.product_SN_id,product_area_id=SModel.product_area_id,PageIndex=SModel.PageIndex})" ref="@item.id">编辑</a>
-                @*<a href="">审核</a>*@<a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "SYS_CPMC")">删除</a></td>
-        </tr>
-    } 
+        @foreach (var item in Model)
+        {
+            string picPath = "/bg/nopic.png";
+            if (!string.IsNullOrEmpty(item.ConvertImg))
+            { picPath = "http://erp.xiangninghm.com/" + item.ConvertImg; }
+    <tr>
+        <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
+        <td>@item.product_SN_name </td>
+        <td>@item.product_area_name </td>
+        <td><a href="@picPath" target="_blank"><img src="@picPath" style="height:30px;width:60px;display:inline-block;" alt="@item.Pname" />@item.Pname </a></td>
+        <td>@item.length</td>
+        <td>@item.width</td>
+        <td>@item.height</td>
+        <td>@item.volume</td>
+        <td>@item.PersonPrice</td>
+        <td><a href="@item.BOM_path" target="_blank">料单下载</a></td>
+        <td><a href="@item.paper_path" target="_blank">图纸下载</a></td>
+        <td>@Convert.ToDateTime(item.created_time).ToString("yyyy-MM-dd")</td>
+        <td style="text-align:left" title="@item.remark"><div class="tw">@item.remark</div></td>
+        <td class="worktd">
+            <a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "SYS_CPMC", new { name=SModel.name,product_SN_id=SModel.product_SN_id,product_area_id=SModel.product_area_id,PageIndex=SModel.PageIndex})" ref="@item.id">编辑</a>
+            @*<a href="">审核</a>*@<a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "SYS_CPMC")">删除</a>
+        </td>
+    </tr>
+        }
     </table>
     <div class="pagelist">
         <div class="pages">

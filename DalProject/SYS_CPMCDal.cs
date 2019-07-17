@@ -36,6 +36,8 @@ namespace DalProject
                                 product_area_name = p.SYS_product_area.name,
                                 volume = p.volume,
                                 PersonPrice = p.reserved1,
+                                paper_path = p.paper_path,
+                                BOM_path = p.BOM_path
                             }).ToList();
                 return List.OrderByDescending(k=>k.created_time).ToPagedList(PageIndex, PageSize);
             }
