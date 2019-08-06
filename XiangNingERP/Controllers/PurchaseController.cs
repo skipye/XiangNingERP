@@ -56,5 +56,29 @@ namespace XiangNingERP.Controllers
                 else return Content("False");
             }
         }
+        public ActionResult CheckedCK(int Id)
+        {
+            string ListId = Id + "$";
+            if (ISer.CheckedCKMore(ListId) == true)
+            {
+                return Content("True");
+            }
+            else return Content("False");
+        }
+        public ActionResult CheckedCKMore(string ListId)
+        {
+            if (string.IsNullOrEmpty(ListId) == true)
+            {
+                return Content("False");
+            }
+            else
+            {
+                if (ISer.CheckedCKMore(ListId) == true)
+                {
+                    return Content("True");
+                }
+                else return Content("False");
+            }
+        }
     }
 }

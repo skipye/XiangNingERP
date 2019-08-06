@@ -202,6 +202,17 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public DataTable ToRKExcel(SLabelsModel SModel)
+        {
+            try
+            {
+                return SDal.ToRKExcel(SModel);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public DataTable ToDeliveryExcelOut(SLabelsModel SModel)
         {
             try

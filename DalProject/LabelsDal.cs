@@ -771,6 +771,7 @@ namespace DalProject
                         WoodCB = Woodunit * Convert.ToDouble(item.W_price);
                         FLCB = WoodCB * 0.15;
                         CB = WoodCB + FLCB + Convert.ToDouble(item.PersonPrice ?? 0);
+                        ML = Convert.ToDouble(item.price) - CB;
                         DataRow row = Exceltable.NewRow();
                         int RKCount = 1;
                         int CKCount = 0;
@@ -795,12 +796,97 @@ namespace DalProject
                         row["木材单价"] = item.W_price;
                         row["材料成本"] = WoodCB.ToString("0.00");
                         row["人工成本"] = item.PersonPrice;
-                        row["辅料成本"] = FLCB;
+                        row["辅料成本"] = FLCB.ToString("0.00");
                         row["出厂价"] = ccprice;
                         row["标签价"] = BQPrice;
                         row["入库数量"] = RKCount;
                         row["出库数量"] = CKCount;
                         row["剩余数量"] = RKCount- CKCount;
+                        Exceltable.Rows.Add(row);
+                    }
+                }
+            }
+            return Exceltable;
+        }
+        public DataTable ToRKExcel(SLabelsModel SModel)
+        {
+            DataTable Exceltable = new DataTable();
+            DateTime StartTime = Convert.ToDateTime("1999-12-31");
+            DateTime EndTime = Convert.ToDateTime("2999-12-31");
+            if (!string.IsNullOrEmpty(SModel.StartTime))
+            {
+                StartTime = Convert.ToDateTime(SModel.StartTime).AddDays(-1);
+            }
+            if (!string.IsNullOrEmpty(SModel.EndTime))
+            {
+                EndTime = Convert.ToDateTime(SModel.EndTime).AddDays(1);
+            }
+            using (var db = new XNERPEntities())
+            {
+                List<LabelsModel> LabelsTab = new List<LabelsModel>();
+                var List = (from p in db.INV_labels.Where(k => k.delete_flag == false)
+                            where !string.IsNullOrEmpty(SModel.productName) ? p.SYS_product.name.Contains(SModel.productName) : true
+                            where p.created_time > StartTime
+                            where p.created_time < EndTime
+                            orderby p.created_time descending
+                            select new LabelsModel
+                            {
+                                product_id = p.product_id,
+                                ProductName = p.SYS_product.name,
+                                ProductXL = p.SYS_product.SYS_product_SN.name,
+                                ProductareaName = p.SYS_product.SYS_product_area.name,
+                                woodname = p.INV_wood_type.name,
+                                invname = p.INV_inventories.name,
+                                status = p.status,
+                                input_date = p.created_time,
+                                SN = p.SN,
+                                product_SN_Name = p.product_SN,
+                                color = p.color,
+                                flag = p.flag,
+                                style = p.style,
+                                volume = p.SYS_product.volume ?? 0,
+                                W_BZ = p.INV_wood_type.g_bz ?? 0,
+                                W_price = p.INV_wood_type.prcie ?? 0,
+                                customersName = p.CRM_customers.name,
+                                PersonPrice = p.SYS_product.reserved1 ?? 0,
+                                q_ccl = p.INV_wood_type.q_ccl ?? 0,
+                                g_ccl = p.INV_wood_type.g_ccl ?? 0,
+                                cc_prcie = p.INV_wood_type.cc_prcie ?? 0,
+                            }).ToList();
+                LabelsTab = List;
+               
+                if (LabelsTab != null && LabelsTab.Any())
+                {
+                    Exceltable.Columns.Add("标签编码", typeof(string));
+                    Exceltable.Columns.Add("产品编号", typeof(string));
+                    Exceltable.Columns.Add("产品名称", typeof(string));
+                    Exceltable.Columns.Add("产品系列", typeof(string));
+                    Exceltable.Columns.Add("产品区域", typeof(string));
+                    Exceltable.Columns.Add("材质", typeof(string));
+                    Exceltable.Columns.Add("色号", typeof(string));
+                    Exceltable.Columns.Add("尺寸", typeof(string));
+                    Exceltable.Columns.Add("所入仓库", typeof(string));
+                    Exceltable.Columns.Add("进库日期", typeof(string));
+                    Exceltable.Columns.Add("状态", typeof(string));
+                    Exceltable.Columns.Add("所属方式", typeof(string));
+                    foreach (var item in LabelsTab)
+                    {
+                        
+                        DataRow row = Exceltable.NewRow();
+                        
+                        row["标签编码"] = item.SN;
+                        row["产品编号"] = item.product_SN_Name;
+                        row["产品名称"] = item.ProductName;
+                        row["产品系列"] = item.ProductXL;
+                        row["产品区域"] = item.ProductareaName;
+                        row["材质"] = item.woodname;
+                        row["色号"] = item.color;
+                        row["尺寸"] = item.style;
+                        row["所入仓库"] = item.invname;
+                        row["进库日期"] = Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd"); ;
+                        row["状态"] = item.status != null && item.status == 9 ? "已出库" : item.status == 1 ? "已入库" : "未确认";
+                        row["所属方式"] = item.flag != null && item.flag == 0 ? "销售产品" : item.flag != null && item.flag == 1 ? "预投产品" : "盘点产品";
+                        
                         Exceltable.Rows.Add(row);
                     }
                 }

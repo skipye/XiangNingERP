@@ -226,13 +226,46 @@ namespace DalProject
                         tables.check_user_name=check_user_name;
                         tables.checked_date = DateTime.Now;
 
+                        //decimal? C_count = tables.qty;
+                        //var StTable = db.INV_accessory_stock.Where(k => k.accessory_type_id == tables.accessory_id).FirstOrDefault();
+                        //if (StTable != null)
+                        //{
+                        //    StTable.C_count = tables.qty + StTable.C_count;
+                        //}
+                        //else {
+                        //    StTable = new INV_accessory_stock();
+                        //    StTable.Id = Guid.NewGuid();
+                        //    StTable.accessory_type_id = tables.accessory_id;
+                        //    StTable.inventory_id = 20;
+                        //    StTable.C_count = C_count;
+                        //    StTable.W_count = 0;
+                        //    db.INV_accessory_stock.Add(StTable);
+                        //}
+                    }
+                }
+                db.SaveChanges();
+            }
+        }
+        public void CheckedCKMore(string ListId, int check_user_id, string check_user_name)
+        {
+            using (var db = new XNERPEntities())
+            {
+                string[] ArrId = ListId.Split('$');
+                foreach (var item in ArrId)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        int Id = Convert.ToInt32(item);
+                        var tables = db.INV_accessory_purchase_order.Where(k => k.id == Id).SingleOrDefault();
+
                         decimal? C_count = tables.qty;
                         var StTable = db.INV_accessory_stock.Where(k => k.accessory_type_id == tables.accessory_id).FirstOrDefault();
                         if (StTable != null)
                         {
                             StTable.C_count = tables.qty + StTable.C_count;
                         }
-                        else {
+                        else
+                        {
                             StTable = new INV_accessory_stock();
                             StTable.Id = Guid.NewGuid();
                             StTable.accessory_type_id = tables.accessory_id;

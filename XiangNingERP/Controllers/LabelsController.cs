@@ -192,6 +192,11 @@ namespace XiangNingERP.Controllers
             var models = SSer.ToCWExcel(SModel);
             ESer.CreateExcel(models, "财务成品库表" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
         }
+        public void ToExcelRKOut(SLabelsModel SModel)
+        {
+            var models = SSer.ToRKExcel(SModel);
+            ESer.CreateExcel(models, "当月入库表" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
+        }
         public void ToDeliveryExcelOut(SLabelsModel SModel)
         {
             var models = SSer.ToDeliveryExcelOut(SModel);

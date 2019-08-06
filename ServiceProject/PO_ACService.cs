@@ -55,6 +55,19 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public bool CheckedCKMore(string ListId)
+        {
+            try
+            {
+                int input_user_id = UDal.GetCurrentUserName().UserId;
+                string input_user_name = UDal.GetCurrentUserName().UserName;
+                IDal.CheckedCKMore(ListId, input_user_id, input_user_name); return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public PO_ACModel GetDetailById(int Id)
         {
             try { return IDal.GetDetailById(Id); }

@@ -62,8 +62,11 @@
             <td>@Convert.ToDateTime(item.checked_date).ToString("yyyy-MM-dd")</td>
             <td>@Html.Raw(item.FR_flag!=null && item.FR_flag==1?"<span style='color:#2dbd0c;'>已付款</span>":"<span style='color:red;'>未付款")</td>
             <td style="text-align:left" title="@item.remark"><div class="tw">@item.remark</div></td>
-            <td>@*<a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "PO_AC", new { SN=SModel.SN,StartTime=SModel.StartTime,EndTime=SModel.EndTime,PageIndex=SModel.PageIndex})" ref="@item.id">编辑</a>*@
-                @*<a href="">审核</a>*@<a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "PO_AC")">删除</a></td>
+            <td>
+                @*<a href="javascript:void(0)" class="editbtn" title="编辑" url="@Url.Action("Add", "PO_AC", new { SN=SModel.SN,StartTime=SModel.StartTime,EndTime=SModel.EndTime,PageIndex=SModel.PageIndex})" ref="@item.id">编辑</a>*@
+                        @*<a href="">审核</a>*@<a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("DeleteOne", "PO_AC")">删除</a>
+                        <a href="javascript:void(0)" class="delone" ref="@item.id" url="@Url.Action("CheckedCK", "Purchase")">审核</a>
+                    </td>
         </tr>
     } 
     </table>
