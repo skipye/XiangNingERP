@@ -655,6 +655,7 @@ namespace DalProject
                                 ProductName = p.SYS_product.name,
                                 ProductXL = p.SYS_product.SYS_product_SN.name,
                                 ProductareaName = p.SYS_product.SYS_product_area.name,
+                                product_area_id=p.SYS_product.SYS_product_area.id,
                                 woodname = p.INV_wood_type.name,
                                 invname = p.INV_inventories.name,
                                 status = p.status,
@@ -687,7 +688,7 @@ namespace DalProject
                                  CRM_HTId = p.contract_header_id,
                                  ProductName = p.INV_labels.SYS_product.name,
                                  ProductXL = p.INV_labels.SYS_product.SYS_product_SN.name,
-                                 ProductareaName=p.INV_labels.SYS_product.SYS_product_area.name,
+                                 product_area_id = p.CRM_contract_detail.SYS_product.product_area_id,
                                  woodname = p.INV_labels.INV_wood_type.name,
                                  invname = p.INV_labels.INV_inventories.name,
                                  status=p.INV_labels.status,
@@ -723,11 +724,14 @@ namespace DalProject
                     Exceltable.Columns.Add("状态", typeof(string));
                     Exceltable.Columns.Add("所属方式", typeof(string));
                     Exceltable.Columns.Add("材积", typeof(string));
+                    Exceltable.Columns.Add("出材率", typeof(string));
                     Exceltable.Columns.Add("比重", typeof(string));
-                    Exceltable.Columns.Add("木材单价", typeof(string));
-                    Exceltable.Columns.Add("材料成本", typeof(string));
+                    Exceltable.Columns.Add("吨", typeof(string));
+                    Exceltable.Columns.Add("材料单价", typeof(string));
                     Exceltable.Columns.Add("人工成本", typeof(string));
+                    Exceltable.Columns.Add("材料成本", typeof(string));
                     Exceltable.Columns.Add("辅料成本", typeof(string));
+                    Exceltable.Columns.Add("总成本", typeof(string));
                     Exceltable.Columns.Add("出厂价", typeof(string));
                     Exceltable.Columns.Add("标签价", typeof(string));
                     Exceltable.Columns.Add("入库数量", typeof(string));
@@ -755,18 +759,18 @@ namespace DalProject
 
                         var ccprice = G_CCPrice;
                         var BQPrice = G_BQPrice;
+                        double CCL = 0.42;
                         if (item.product_area_id == 6)
                         {
                             ccprice = Q_CCPrice; BQPrice = Q_BQPrice;
+                            CCL = 0.45;
                         }
-                        double CCL = 0.42;
+                        
                         double Woodunit = 0;//吨，材积/出材率*比重*数量
                         double WoodCB = 0;//材料单价*吨数
                         double FLCB = 0;//辅料成本，辅料成本=材料成本*0.15
                         double CB = 0;//成本=材料成本+辅料成本+人工费
                         double ML = 0;//毛利=销售总额-成本
-                        if (item.product_area_id == 6)
-                        { CCL = 0.45; }
                         Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
                         WoodCB = Woodunit * Convert.ToDouble(item.W_price);
                         FLCB = WoodCB * 0.15;
@@ -792,11 +796,14 @@ namespace DalProject
                         row["状态"] = item.status != null && item.status == 9 ? "已出库" : item.status == 1 ? "已入库" : "未确认";
                         row["所属方式"] = item.flag != null && item.flag == 0 ? "销售产品" : item.flag != null && item.flag == 1 ? "预投产品" : "盘点产品";
                         row["材积"] = item.volume;
+                        row["出材率"] = CCL;
                         row["比重"] = item.W_BZ;
-                        row["木材单价"] = item.W_price;
-                        row["材料成本"] = WoodCB.ToString("0.00");
+                        row["吨"] = Woodunit.ToString("0.0000");
+                        row["材料单价"] = item.W_price;
                         row["人工成本"] = item.PersonPrice;
+                        row["材料成本"] = WoodCB.ToString("0.00");
                         row["辅料成本"] = FLCB.ToString("0.00");
+                        row["总成本"] = CB.ToString("0.00");
                         row["出厂价"] = ccprice;
                         row["标签价"] = BQPrice;
                         row["入库数量"] = RKCount;
@@ -834,7 +841,7 @@ namespace DalProject
                                 product_id = p.product_id,
                                 ProductName = p.SYS_product.name,
                                 ProductXL = p.SYS_product.SYS_product_SN.name,
-                                ProductareaName = p.SYS_product.SYS_product_area.name,
+                                product_area_id = p.SYS_product.SYS_product_area.id,
                                 woodname = p.INV_wood_type.name,
                                 invname = p.INV_inventories.name,
                                 status = p.status,
@@ -868,16 +875,17 @@ namespace DalProject
                     Exceltable.Columns.Add("进库日期", typeof(string));
                     Exceltable.Columns.Add("状态", typeof(string));
                     Exceltable.Columns.Add("所属方式", typeof(string));
+                    Exceltable.Columns.Add("单位", typeof(string));
                     Exceltable.Columns.Add("数量", typeof(string));
                     Exceltable.Columns.Add("材积", typeof(string));
                     Exceltable.Columns.Add("出材率", typeof(string));
                     Exceltable.Columns.Add("比重", typeof(string));
+                    Exceltable.Columns.Add("吨", typeof(string));
                     Exceltable.Columns.Add("材料单价", typeof(string));
                     Exceltable.Columns.Add("人工成本", typeof(string));
                     Exceltable.Columns.Add("材料成本", typeof(string));
                     Exceltable.Columns.Add("辅料成本", typeof(string));
                     Exceltable.Columns.Add("成本", typeof(string));
-                    Exceltable.Columns.Add("毛利", typeof(string));
                     foreach (var item in LabelsTab)
                     {
                         double CCL = 0.42;
@@ -885,14 +893,12 @@ namespace DalProject
                         double WoodCB = 0;//材料单价*吨数
                         double FLCB = 0;//辅料成本，辅料成本=材料成本*0.15
                         double CB = 0;//成本=材料成本+辅料成本+人工费
-                        double ML = 0;//毛利=销售总额-成本
                         if (item.product_area_id == 6)
                         { CCL = 0.45; }
                         Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
                         WoodCB = Woodunit * Convert.ToDouble(item.W_price);
                         FLCB = WoodCB * 0.15;
                         CB = WoodCB + FLCB + Convert.ToDouble(item.PersonPrice ?? 0);
-                        ML = Convert.ToDouble(item.price) - CB;
                         DataRow row = Exceltable.NewRow();
                         
                         row["标签编码"] = item.SN;
@@ -912,12 +918,12 @@ namespace DalProject
                         row["材积"] = item.volume;
                         row["出材率"] = CCL;
                         row["比重"] = item.W_BZ;
+                        row["吨"] = Woodunit.ToString("0.0000");
                         row["材料单价"] = item.W_price;
                         row["人工成本"] = item.PersonPrice;
                         row["材料成本"] = WoodCB.ToString("0.00");
                         row["辅料成本"] = FLCB.ToString("0.00");
                         row["成本"] = CB.ToString("0.00");
-                        row["毛利"] = ML.ToString("0.00");
                         Exceltable.Rows.Add(row);
                     }
                 }
@@ -992,7 +998,7 @@ namespace DalProject
                     Exceltable.Columns.Add("人工成本", typeof(string));
                     Exceltable.Columns.Add("材料成本", typeof(string));
                     Exceltable.Columns.Add("辅料成本", typeof(string));
-                    Exceltable.Columns.Add("成本", typeof(string));
+                    Exceltable.Columns.Add("总成本", typeof(string));
                     Exceltable.Columns.Add("毛利", typeof(string));
                     foreach (var item in List)
                     {
@@ -1030,7 +1036,7 @@ namespace DalProject
                         row["人工成本"] = item.PersonPrice;
                         row["材料成本"] = WoodCB.ToString("0.00");
                         row["辅料成本"] = FLCB.ToString("0.00");
-                        row["成本"] = CB.ToString("0.00");
+                        row["总成本"] = CB.ToString("0.00");
                         row["毛利"] = ML.ToString("0.00");
                         Exceltable.Rows.Add(row);
                     }
