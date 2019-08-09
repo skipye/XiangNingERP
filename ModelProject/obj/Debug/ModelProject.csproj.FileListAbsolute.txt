@@ -54,3 +54,4 @@ D:\XiangNingERP\ModelProject\bin\Debug\zh-Hans\System.Web.WebPages.resources.dll
 D:\XiangNingERP\ModelProject\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\XiangNingERP\ModelProject\obj\Debug\ModelProject.csproj.CoreCompileInputs.cache
 D:\XiangNingERP\ModelProject\obj\Debug\ModelProject.csproj.CopyComplete
+D:\XiangNingERP\ModelProject\obj\Debug\ModelProject.csprojAssemblyReference.cache

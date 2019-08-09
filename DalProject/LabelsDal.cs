@@ -647,7 +647,7 @@ namespace DalProject
                             where SModel.status != null && SModel.status >= 0 ? p.status == SModel.status : true
                             where !string.IsNullOrEmpty(SModel.productName) ? p.SYS_product.name.Contains(SModel.productName) : true
                             where SModel.ProState != null && SModel.ProState == 1 ? p.flag == 0 : SModel.ProState != null && SModel.ProState == 2 ? p.flag == 1 : SModel.ProState != null && SModel.ProState == 3 ? p.flag == 2 : true
-                           
+                            where p.created_time<=EndTime
                             orderby p.created_time descending
                             select new LabelsModel
                             {
