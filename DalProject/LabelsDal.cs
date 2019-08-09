@@ -847,7 +847,6 @@ namespace DalProject
                                 volume = p.SYS_product.volume ?? 0,
                                 W_BZ = p.INV_wood_type.g_bz ?? 0,
                                 W_price = p.INV_wood_type.prcie ?? 0,
-                                customersName = p.CRM_customers.name,
                                 PersonPrice = p.SYS_product.reserved1 ?? 0,
                                 q_ccl = p.INV_wood_type.q_ccl ?? 0,
                                 g_ccl = p.INV_wood_type.g_ccl ?? 0,
@@ -869,10 +868,31 @@ namespace DalProject
                     Exceltable.Columns.Add("进库日期", typeof(string));
                     Exceltable.Columns.Add("状态", typeof(string));
                     Exceltable.Columns.Add("所属方式", typeof(string));
-                    Exceltable.Columns.Add("件数", typeof(string));
+                    Exceltable.Columns.Add("数量", typeof(string));
+                    Exceltable.Columns.Add("材积", typeof(string));
+                    Exceltable.Columns.Add("出材率", typeof(string));
+                    Exceltable.Columns.Add("比重", typeof(string));
+                    Exceltable.Columns.Add("材料单价", typeof(string));
+                    Exceltable.Columns.Add("人工成本", typeof(string));
+                    Exceltable.Columns.Add("材料成本", typeof(string));
+                    Exceltable.Columns.Add("辅料成本", typeof(string));
+                    Exceltable.Columns.Add("成本", typeof(string));
+                    Exceltable.Columns.Add("毛利", typeof(string));
                     foreach (var item in LabelsTab)
                     {
-                        
+                        double CCL = 0.42;
+                        double Woodunit = 0;//吨，材积/出材率*比重*数量
+                        double WoodCB = 0;//材料单价*吨数
+                        double FLCB = 0;//辅料成本，辅料成本=材料成本*0.15
+                        double CB = 0;//成本=材料成本+辅料成本+人工费
+                        double ML = 0;//毛利=销售总额-成本
+                        if (item.product_area_id == 6)
+                        { CCL = 0.45; }
+                        Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
+                        WoodCB = Woodunit * Convert.ToDouble(item.W_price);
+                        FLCB = WoodCB * 0.15;
+                        CB = WoodCB + FLCB + Convert.ToDouble(item.PersonPrice ?? 0);
+                        ML = Convert.ToDouble(item.price) - CB;
                         DataRow row = Exceltable.NewRow();
                         
                         row["标签编码"] = item.SN;
@@ -887,7 +907,17 @@ namespace DalProject
                         row["进库日期"] = Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd"); ;
                         row["状态"] = item.status != null && item.status == 9 ? "已出库" : item.status == 1 ? "已入库" : "未确认";
                         row["所属方式"] = item.flag != null && item.flag == 0 ? "销售产品" : item.flag != null && item.flag == 1 ? "预投产品" : "盘点产品";
-                        row["件数"] = "1";
+                        row["单位"] = "件";
+                        row["数量"] = "1";
+                        row["材积"] = item.volume;
+                        row["出材率"] = CCL;
+                        row["比重"] = item.W_BZ;
+                        row["材料单价"] = item.W_price;
+                        row["人工成本"] = item.PersonPrice;
+                        row["材料成本"] = WoodCB.ToString("0.00");
+                        row["辅料成本"] = FLCB.ToString("0.00");
+                        row["成本"] = CB.ToString("0.00");
+                        row["毛利"] = ML.ToString("0.00");
                         Exceltable.Rows.Add(row);
                     }
                 }
