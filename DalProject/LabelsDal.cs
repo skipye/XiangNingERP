@@ -260,7 +260,7 @@ namespace DalProject
                         int Id = Convert.ToInt32(item);
                         var tables = db.INV_labels.Where(k => k.id == Id).SingleOrDefault();
                         tables.inv_id = inv_id;
-                        tables.created_time = DateTime.Now;
+                        //tables.created_time = DateTime.Now;
                     }
                 }
                 db.SaveChanges();
@@ -869,6 +869,7 @@ namespace DalProject
                     Exceltable.Columns.Add("进库日期", typeof(string));
                     Exceltable.Columns.Add("状态", typeof(string));
                     Exceltable.Columns.Add("所属方式", typeof(string));
+                    Exceltable.Columns.Add("件数", typeof(string));
                     foreach (var item in LabelsTab)
                     {
                         
@@ -886,7 +887,7 @@ namespace DalProject
                         row["进库日期"] = Convert.ToDateTime(item.input_date).ToString("yyyy-MM-dd"); ;
                         row["状态"] = item.status != null && item.status == 9 ? "已出库" : item.status == 1 ? "已入库" : "未确认";
                         row["所属方式"] = item.flag != null && item.flag == 0 ? "销售产品" : item.flag != null && item.flag == 1 ? "预投产品" : "盘点产品";
-                        
+                        row["件数"] = "1";
                         Exceltable.Rows.Add(row);
                     }
                 }
