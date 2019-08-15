@@ -491,9 +491,6 @@ namespace DalProject
                     Exceltable.Columns.Add("长", typeof(string));
                     Exceltable.Columns.Add("宽", typeof(string));
                     Exceltable.Columns.Add("高", typeof(string));
-                    Exceltable.Columns.Add("所入仓库", typeof(string));
-                    Exceltable.Columns.Add("进库日期", typeof(string));
-                    Exceltable.Columns.Add("状态", typeof(string));
                     Exceltable.Columns.Add("所属方式", typeof(string));
                     Exceltable.Columns.Add("材积", typeof(string));
                     Exceltable.Columns.Add("比重", typeof(string));
@@ -514,6 +511,7 @@ namespace DalProject
                             item.height = tab.SYS_product.height;
                             item.volume = tab.SYS_product.volume;
                             item.W_BZ = tab.INV_wood_type.g_bz;
+                            item.W_price = tab.INV_wood_type.prcie;
                         }
                         else {
                             var tab = db.WIP_contract.Where(k => k.id == item.WIP_id).FirstOrDefault();
@@ -527,6 +525,7 @@ namespace DalProject
                             item.height = tab.SYS_product.height;
                             item.volume = tab.SYS_product.volume;
                             item.W_BZ = tab.INV_wood_type.g_bz;
+                            item.W_price = tab.INV_wood_type.prcie;
                         }
                         double CCL = 0.42;
                         double Woodunit = 0;//吨，材积/出材率*比重*数量

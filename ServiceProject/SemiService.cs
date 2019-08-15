@@ -139,7 +139,7 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
-        public DataTable ToSCExcelOut(SSemiModel SModel)
+        public DataTable ToSCExcel(SSemiModel SModel)
         {
             try
             {

@@ -105,10 +105,10 @@
       <publishTime>05/27/2019 10:55:39</publishTime>
     </File>
     <File Include="bin/DalProject.dll">
-      <publishTime>08/15/2019 16:17:43</publishTime>
+      <publishTime>08/15/2019 16:48:25</publishTime>
     </File>
     <File Include="bin/DalProject.pdb">
-      <publishTime>08/15/2019 16:17:43</publishTime>
+      <publishTime>08/15/2019 16:48:25</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/08/2017 14:21:06</publishTime>
@@ -135,10 +135,10 @@
       <publishTime>06/08/2017 14:21:14</publishTime>
     </File>
     <File Include="bin/ServiceProject.dll">
-      <publishTime>08/15/2019 16:17:43</publishTime>
+      <publishTime>08/15/2019 16:48:25</publishTime>
     </File>
     <File Include="bin/ServiceProject.pdb">
-      <publishTime>08/15/2019 16:17:43</publishTime>
+      <publishTime>08/15/2019 16:48:25</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
       <publishTime>06/08/2017 14:21:14</publishTime>
@@ -183,10 +183,10 @@
       <publishTime>06/08/2017 14:21:16</publishTime>
     </File>
     <File Include="bin/XiangNingERP.dll">
-      <publishTime>08/15/2019 16:17:43</publishTime>
+      <publishTime>08/15/2019 16:48:25</publishTime>
     </File>
     <File Include="bin/XiangNingERP.pdb">
-      <publishTime>08/15/2019 16:17:43</publishTime>
+      <publishTime>08/15/2019 16:48:25</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>06/08/2017 14:21:18</publishTime>
@@ -645,7 +645,7 @@
       <publishTime>01/09/2019 17:39:22</publishTime>
     </File>
     <File Include="Views/CW_Delivery/Index.cshtml">
-      <publishTime>08/06/2019 09:32:03</publishTime>
+      <publishTime>08/15/2019 16:46:58</publishTime>
     </File>
     <File Include="Views/CW_Delivery/PageList.cshtml">
       <publishTime>06/12/2019 17:06:52</publishTime>

@@ -218,7 +218,7 @@ namespace XiangNingERP.Controllers
         }
         public void ToSCExcelOut(SSemiModel SModel)
         {
-            var models = SSer.ToSCExcelOut(SModel);
+            var models = SSer.ToSCExcel(SModel);
             ESer.CreateExcel(models, "生产情况" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
         }
     }
