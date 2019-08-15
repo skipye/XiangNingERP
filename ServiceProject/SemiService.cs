@@ -139,5 +139,16 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public DataTable ToSCExcelOut(SSemiModel SModel)
+        {
+            try
+            {
+                return SDal.ToSCExcel(SModel);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

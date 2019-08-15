@@ -357,6 +357,7 @@
           <Property Name="delete_flag" Type="bit" Nullable="false" />
           <Property Name="WorkId" Type="int" />
           <Property Name="WIP_contract_id" Type="int" />
+          <Property Name="InputDateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="INV_material_stock">
           <Key>
@@ -2587,6 +2588,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <NavigationProperty Name="CRM_customers" Relationship="XNERPModel.CRM_customersINV_labels" FromRole="INV_labels" ToRole="CRM_customers" />
           <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.CRM_contract_detailINV_labels" FromRole="INV_labels" ToRole="CRM_contract_detail" />
           <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.INV_labelsCRM_delivery_tmp_header" FromRole="INV_labels" ToRole="CRM_delivery_tmp_header" />
+          <Property Name="InputDateTime" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="SYS_productINV_labels">
           <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="1" />
@@ -3623,6 +3625,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <EntitySetMapping Name="INV_labels">
             <EntityTypeMapping TypeName="XNERPModel.INV_labels">
               <MappingFragment StoreEntitySet="INV_labels">
+                <ScalarProperty Name="InputDateTime" ColumnName="InputDateTime" />
                 <ScalarProperty Name="WIP_contract_id" ColumnName="WIP_contract_id" />
                 <ScalarProperty Name="WorkId" ColumnName="WorkId" />
                 <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />

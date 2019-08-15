@@ -389,6 +389,7 @@ namespace DalProject
                                 productName = p.SYS_product.name,
                                 ProductXL = p.SYS_product.SYS_product_SN.name,
                                 areaName = p.SYS_product.SYS_product_area.name,
+                                product_area_id=p.SYS_product.product_area_id,
                                 wood_id = p.wood_id,
                                 woodname = p.INV_wood_type.name,
                                 inv_id=p.inv_id,
@@ -420,10 +421,19 @@ namespace DalProject
                     Exceltable.Columns.Add("所属方式", typeof(string));
                     Exceltable.Columns.Add("材积", typeof(string));
                     Exceltable.Columns.Add("比重", typeof(string));
-                    Exceltable.Columns.Add("单价", typeof(string));
+                    Exceltable.Columns.Add("材料成本", typeof(string));
 
                     foreach (var item in List)
                     {
+                        double CCL = 0.42;
+                        double Woodunit = 0;//吨，材积/出材率*比重*数量
+                        double WoodCB = 0;//材料单价*吨数
+                        double FLCB = 0;//辅料成本，辅料成本=材料成本*0.15
+                        if (item.product_area_id == 6)
+                        { CCL = 0.45; }
+                        Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
+                        WoodCB = Woodunit * Convert.ToDouble(item.W_price);
+
                         DataRow row = Exceltable.NewRow();
                         row["产品名称"] = item.productName;
                         row["产品系列"] = item.ProductXL;
@@ -438,7 +448,107 @@ namespace DalProject
                         row["所属方式"] = item.CRM_id != null && item.CRM_id > 0 ? "销售产品" : item.WIP_id != null && item.WIP_id > 0 ? "预投产品" : "盘点产品";
                         row["材积"] = item.volume;
                         row["比重"] = item.W_BZ;
-                        row["单价"] = item.W_price;
+                        row["材料成本"] = WoodCB;
+                        Exceltable.Rows.Add(row);
+                    }
+                }
+            }
+            return Exceltable;
+
+        }
+        public DataTable ToSCExcel(SSemiModel SModel)
+        {
+            DataTable Exceltable = new DataTable();
+            DateTime StartTime = Convert.ToDateTime("1999-12-31");
+            DateTime EndTime = Convert.ToDateTime("2999-12-31");
+            if (!string.IsNullOrEmpty(SModel.StartTime))
+            {
+                StartTime = Convert.ToDateTime(SModel.StartTime).AddDays(-1);
+            }
+            if (!string.IsNullOrEmpty(SModel.EndTime))
+            {
+                EndTime = Convert.ToDateTime(SModel.EndTime).AddDays(1);
+            }
+            using (var db = new XNERPEntities())
+            {
+                var List = (from p in db.WIP_workorder.Where(k => k.delete_flag == false && k.closed_flag==false)
+                            where p.created_time > StartTime
+                            where p.created_time < EndTime
+                            orderby p.created_time descending
+                            select new SemiModel
+                            {
+                                id = p.id,
+                                CRM_id = p.CRM_contract_detail_id,
+                                WIP_id = p.WIP_contract_id,
+                            }).ToList();
+                
+                if (List != null && List.Any())
+                {
+                    Exceltable.Columns.Add("产品名称", typeof(string));
+                    Exceltable.Columns.Add("产品系列", typeof(string));
+                    Exceltable.Columns.Add("产品区域", typeof(string));
+                    Exceltable.Columns.Add("材质", typeof(string));
+                    Exceltable.Columns.Add("长", typeof(string));
+                    Exceltable.Columns.Add("宽", typeof(string));
+                    Exceltable.Columns.Add("高", typeof(string));
+                    Exceltable.Columns.Add("所入仓库", typeof(string));
+                    Exceltable.Columns.Add("进库日期", typeof(string));
+                    Exceltable.Columns.Add("状态", typeof(string));
+                    Exceltable.Columns.Add("所属方式", typeof(string));
+                    Exceltable.Columns.Add("材积", typeof(string));
+                    Exceltable.Columns.Add("比重", typeof(string));
+                    Exceltable.Columns.Add("材料成本", typeof(string));
+
+                    foreach (var item in List)
+                    {
+                        if (item.CRM_id > 0)
+                        {
+                            var tab = db.CRM_contract_detail.Where(k => k.id == item.CRM_id).FirstOrDefault();
+                            item.productName = tab.SYS_product.name;
+                            item.ProductXL = tab.SYS_product.SYS_product_SN.name;
+                            item.areaName = tab.SYS_product.SYS_product_area.name;
+                            item.product_area_id = tab.SYS_product.product_area_id;
+                            item.woodname = tab.INV_wood_type.name;
+                            item.length = tab.SYS_product.length;
+                            item.width = tab.SYS_product.width;
+                            item.height = tab.SYS_product.height;
+                            item.volume = tab.SYS_product.volume;
+                            item.W_BZ = tab.INV_wood_type.g_bz;
+                        }
+                        else {
+                            var tab = db.WIP_contract.Where(k => k.id == item.WIP_id).FirstOrDefault();
+                            item.productName = tab.SYS_product.name;
+                            item.ProductXL = tab.SYS_product.SYS_product_SN.name;
+                            item.areaName = tab.SYS_product.SYS_product_area.name;
+                            item.product_area_id = tab.SYS_product.product_area_id;
+                            item.woodname = tab.INV_wood_type.name;
+                            item.length = tab.SYS_product.length;
+                            item.width = tab.SYS_product.width;
+                            item.height = tab.SYS_product.height;
+                            item.volume = tab.SYS_product.volume;
+                            item.W_BZ = tab.INV_wood_type.g_bz;
+                        }
+                        double CCL = 0.42;
+                        double Woodunit = 0;//吨，材积/出材率*比重*数量
+                        double WoodCB = 0;//材料单价*吨数
+                        double FLCB = 0;//辅料成本，辅料成本=材料成本*0.15
+                        if (item.product_area_id == 6)
+                        { CCL = 0.45; }
+                        Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
+                        WoodCB = Woodunit * Convert.ToDouble(item.W_price);
+
+                        DataRow row = Exceltable.NewRow();
+                        row["产品名称"] = item.productName;
+                        row["产品系列"] = item.ProductXL;
+                        row["产品区域"] = item.areaName;
+                        row["材质"] = item.woodname;
+                        row["长"] = item.length;
+                        row["宽"] = item.width;
+                        row["高"] = item.height;
+                        row["所属方式"] = item.CRM_id != null && item.CRM_id > 0 ? "销售产品" : item.WIP_id != null && item.WIP_id > 0 ? "预投产品" : "盘点产品";
+                        row["材积"] = item.volume;
+                        row["比重"] = item.W_BZ;
+                        row["材料成本"] = WoodCB;
                         Exceltable.Rows.Add(row);
                     }
                 }

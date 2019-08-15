@@ -352,6 +352,7 @@
     <Property Name="delete_flag" Type="bit" Nullable="false" />
     <Property Name="WorkId" Type="int" />
     <Property Name="WIP_contract_id" Type="int" />
+    <Property Name="InputDateTime" Type="datetime" />
   </EntityType>
   <EntityType Name="INV_material_stock">
     <Key>

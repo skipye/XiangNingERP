@@ -1279,6 +1279,7 @@
     <NavigationProperty Name="CRM_customers" Relationship="XNERPModel.CRM_customersINV_labels" FromRole="INV_labels" ToRole="CRM_customers" />
     <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.CRM_contract_detailINV_labels" FromRole="INV_labels" ToRole="CRM_contract_detail" />
     <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.INV_labelsCRM_delivery_tmp_header" FromRole="INV_labels" ToRole="CRM_delivery_tmp_header" />
+    <Property Name="InputDateTime" Type="DateTime" Precision="3" />
   </EntityType>
   <Association Name="SYS_productINV_labels">
     <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="1" />

@@ -39,6 +39,7 @@ namespace Infrastructure
         public bool delete_flag { get; set; }
         public Nullable<int> WorkId { get; set; }
         public Nullable<int> WIP_contract_id { get; set; }
+        public Nullable<System.DateTime> InputDateTime { get; set; }
     
         public virtual SYS_product SYS_product { get; set; }
         public virtual INV_wood_type INV_wood_type { get; set; }

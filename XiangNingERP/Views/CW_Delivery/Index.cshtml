@@ -61,6 +61,7 @@
         <ul class="filter">
             <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
             <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
+            <li class="toSCExcelout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">导出生产列表</span></a></li>
             <li class="toRKExcelout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">导出当月入库列表</span></a></li>
             <li class="toCPExcelout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">导出成品库存列表</span></a></li>
             <li class="toExcelout"><a class="btn bg-red" href="javascript:void(0)"><span class="wh">导出出库列表</span></a></li>
@@ -97,6 +98,12 @@
             var EndTime = $("#EndTime").val();
             var ExcelUrl = '@Url.Action("ToDeliveryExcelOut", "Labels")';
             window.location.href = "/Labels/ToExcelRKOut?StartTime=" + StartTime + '&EndTime=' + EndTime;
+            //$.post(ExcelUrl, {}, function (d) { });
+       });
+        $(".toSCExcelout").click(function () {
+            var StartTime = $("#StartTime").val();
+            var EndTime = $("#EndTime").val();
+            window.location.href = "/Semi/ToSCExcelOut?StartTime=" + StartTime + '&EndTime=' + EndTime;
             //$.post(ExcelUrl, {}, function (d) { });
         });
     });

@@ -355,6 +355,11 @@ namespace DalProject
                             DeliveryTable.status = 1;
                             DeliveryTable.attach_label_id = labelId;
                         }
+                        if (labelId > 0)
+                        {
+                            var LaTab = db.INV_labels.Where(k => k.id == labelId).FirstOrDefault();
+                            LaTab.InputDateTime = tables.DeliverTime;
+                        }
                     }
                     db.SaveChanges();
                 }
@@ -399,6 +404,7 @@ namespace DalProject
                         tables.inv_id = inv_id;
                         tables.status = 1;
                         tables.check_date = DateTime.Now;
+                        tables.InputDateTime= DateTime.Now;
                         int WId = tables.WorkId??0;
                         int CRM_Id = tables.CRM_contract_detail_id??0;
                         if (WId > 0)
@@ -639,7 +645,7 @@ namespace DalProject
             using (var db = new XNERPEntities())
             {
                 List<LabelsModel> LabelsTab = new List<LabelsModel>(); 
-                var List = (from p in db.INV_labels.Where(k => k.delete_flag==false)
+                var List = (from p in db.INV_labels.Where(k => k.delete_flag==false || k.delete_flag==true && k.status==9)
                             where SModel.product_SN_id != null && SModel.product_SN_id > 0 ? SModel.product_SN_id == p.SYS_product.product_SN_id : true
                             where SModel.product_area_id != null && SModel.product_area_id > 0 ? SModel.product_area_id == p.SYS_product.product_area_id : true
                             where SModel.wood_id != null && SModel.wood_id > 0 ? SModel.wood_id == p.wood_id : true
@@ -648,6 +654,8 @@ namespace DalProject
                             where !string.IsNullOrEmpty(SModel.productName) ? p.SYS_product.name.Contains(SModel.productName) : true
                             where SModel.ProState != null && SModel.ProState == 1 ? p.flag == 0 : SModel.ProState != null && SModel.ProState == 2 ? p.flag == 1 : SModel.ProState != null && SModel.ProState == 3 ? p.flag == 2 : true
                             where p.created_time<=EndTime
+                            where p.InputDateTime>=StartTime
+                            where p.InputDateTime<=EndTime
                             orderby p.created_time descending
                             select new LabelsModel
                             {
@@ -675,40 +683,7 @@ namespace DalProject
                                 cc_prcie = p.INV_wood_type.cc_prcie ?? 0,
                             }).ToList();
                 LabelsTab = List;
-                var List1 = (from p in db.CRM_delivery_tmp_header
-                             where !string.IsNullOrEmpty(SModel.SaleName) ? p.INV_labels.CRM_customers.name.Contains(SModel.SaleName) : true
-                             where !string.IsNullOrEmpty(SModel.ProSN) ? p.CRM_contract_header.SN.Contains(SModel.ProSN) : true
-                             where p.DeliverTime > StartTime
-                             where p.DeliverTime < EndTime
-                             orderby p.created_time descending
-                             select new LabelsModel
-                             {
-                                 CRM_SN = p.CRM_contract_header.SN,
-                                 SN = p.INV_labels.SN,
-                                 CRM_HTId = p.contract_header_id,
-                                 ProductName = p.INV_labels.SYS_product.name,
-                                 ProductXL = p.INV_labels.SYS_product.SYS_product_SN.name,
-                                 product_area_id = p.CRM_contract_detail.SYS_product.product_area_id,
-                                 woodname = p.INV_labels.INV_wood_type.name,
-                                 invname = p.INV_labels.INV_inventories.name,
-                                 status=p.INV_labels.status,
-                                 input_date = p.created_time,
-                                 color = p.INV_labels.color,
-                                 style = p.INV_labels.style,
-                                 flag=p.INV_labels.flag,
-                                 customersName = p.CRM_contract_header.CRM_customers.name,
-                                 qty = p.CRM_contract_detail.qty,
-                                 price = p.CRM_contract_detail.price,
-                                 OrderNum = p.OrderNum,
-                                 volume = p.CRM_contract_detail.SYS_product.volume,
-                                 W_BZ = p.CRM_contract_detail.INV_wood_type.g_bz,
-                                 W_price = p.CRM_contract_detail.INV_wood_type.prcie,
-                                 PersonPrice = p.CRM_contract_detail.SYS_product.reserved1,
-                                 q_ccl = p.INV_labels.INV_wood_type.q_ccl ?? 0,
-                                 g_ccl = p.INV_labels.INV_wood_type.g_ccl ?? 0,
-                                 cc_prcie = p.INV_labels.INV_wood_type.cc_prcie ?? 0,
-                             }).ToList();
-                LabelsTab = List.Concat(List1).ToList();
+                
                 if (LabelsTab != null && LabelsTab.Any())
                 {
                     Exceltable.Columns.Add("标签编码", typeof(string));

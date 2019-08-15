@@ -699,6 +699,7 @@
     <EntitySetMapping Name="INV_labels">
       <EntityTypeMapping TypeName="XNERPModel.INV_labels">
         <MappingFragment StoreEntitySet="INV_labels">
+          <ScalarProperty Name="InputDateTime" ColumnName="InputDateTime" />
           <ScalarProperty Name="WIP_contract_id" ColumnName="WIP_contract_id" />
           <ScalarProperty Name="WorkId" ColumnName="WorkId" />
           <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
