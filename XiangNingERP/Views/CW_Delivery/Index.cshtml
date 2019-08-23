@@ -90,7 +90,7 @@
          $(".toCPExcelout").click(function () {
             var StartTime = $("#StartTime").val();
             var EndTime = $("#EndTime").val();
-            var ExcelUrl = '@Url.Action("ToDeliveryExcelOut", "Labels")';
+            //var ExcelUrl = '@Url.Action("ToDeliveryExcelOut", "Labels")';
             window.location.href = "/Labels/ToExcelCWOut?StartTime=" + StartTime + '&EndTime=' + EndTime;
             //$.post(ExcelUrl, {}, function (d) { });
         });

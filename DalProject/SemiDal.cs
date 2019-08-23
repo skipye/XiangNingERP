@@ -472,21 +472,21 @@ namespace DalProject
             using (var db = new XNERPEntities())
             {
                 var List = (from p in db.WIP_workorder.Where(k => k.delete_flag == false && k.closed_flag==false)
-                            where p.created_time > StartTime
-                            where p.created_time < EndTime
+                            //where p.created_time > StartTime
+                            //where p.created_time < EndTime
                             orderby p.created_time descending
                             select new SemiModel
                             {
                                 id = p.id,
                                 CRM_id = p.CRM_contract_detail_id,
                                 WIP_id = p.WIP_contract_id,
+                                qty=p.qty,
                             }).ToList();
                 
                 if (List != null && List.Any())
                 {
                     Exceltable.Columns.Add("产品名称", typeof(string));
                     Exceltable.Columns.Add("产品系列", typeof(string));
-                    Exceltable.Columns.Add("产品区域", typeof(string));
                     Exceltable.Columns.Add("材质", typeof(string));
                     Exceltable.Columns.Add("长", typeof(string));
                     Exceltable.Columns.Add("宽", typeof(string));
@@ -495,7 +495,7 @@ namespace DalProject
                     Exceltable.Columns.Add("材积", typeof(string));
                     Exceltable.Columns.Add("比重", typeof(string));
                     Exceltable.Columns.Add("材料成本", typeof(string));
-
+                    Exceltable.Columns.Add("生产数量", typeof(string));
                     foreach (var item in List)
                     {
                         if (item.CRM_id > 0)
@@ -503,7 +503,6 @@ namespace DalProject
                             var tab = db.CRM_contract_detail.Where(k => k.id == item.CRM_id).FirstOrDefault();
                             item.productName = tab.SYS_product.name;
                             item.ProductXL = tab.SYS_product.SYS_product_SN.name;
-                            item.areaName = tab.SYS_product.SYS_product_area.name;
                             item.product_area_id = tab.SYS_product.product_area_id;
                             item.woodname = tab.INV_wood_type.name;
                             item.length = tab.SYS_product.length;
@@ -517,7 +516,6 @@ namespace DalProject
                             var tab = db.WIP_contract.Where(k => k.id == item.WIP_id).FirstOrDefault();
                             item.productName = tab.SYS_product.name;
                             item.ProductXL = tab.SYS_product.SYS_product_SN.name;
-                            item.areaName = tab.SYS_product.SYS_product_area.name;
                             item.product_area_id = tab.SYS_product.product_area_id;
                             item.woodname = tab.INV_wood_type.name;
                             item.length = tab.SYS_product.length;
@@ -539,7 +537,6 @@ namespace DalProject
                         DataRow row = Exceltable.NewRow();
                         row["产品名称"] = item.productName;
                         row["产品系列"] = item.ProductXL;
-                        row["产品区域"] = item.areaName;
                         row["材质"] = item.woodname;
                         row["长"] = item.length;
                         row["宽"] = item.width;
@@ -548,6 +545,7 @@ namespace DalProject
                         row["材积"] = item.volume;
                         row["比重"] = item.W_BZ;
                         row["材料成本"] = WoodCB;
+                        row["生产数量"] = item.qty;
                         Exceltable.Rows.Add(row);
                     }
                 }

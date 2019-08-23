@@ -645,17 +645,10 @@ namespace DalProject
             using (var db = new XNERPEntities())
             {
                 List<LabelsModel> LabelsTab = new List<LabelsModel>(); 
-                var List = (from p in db.INV_labels.Where(k => k.delete_flag==false || k.delete_flag==true && k.status==9)
-                            where SModel.product_SN_id != null && SModel.product_SN_id > 0 ? SModel.product_SN_id == p.SYS_product.product_SN_id : true
-                            where SModel.product_area_id != null && SModel.product_area_id > 0 ? SModel.product_area_id == p.SYS_product.product_area_id : true
-                            where SModel.wood_id != null && SModel.wood_id > 0 ? SModel.wood_id == p.wood_id : true
-                            where SModel.inv_id != null && SModel.inv_id > 0 ? SModel.inv_id == p.inv_id : true
-                            where SModel.status != null && SModel.status >= 0 ? p.status == SModel.status : true
-                            where !string.IsNullOrEmpty(SModel.productName) ? p.SYS_product.name.Contains(SModel.productName) : true
-                            where SModel.ProState != null && SModel.ProState == 1 ? p.flag == 0 : SModel.ProState != null && SModel.ProState == 2 ? p.flag == 1 : SModel.ProState != null && SModel.ProState == 3 ? p.flag == 2 : true
-                            where p.created_time<=EndTime
-                            where p.InputDateTime>=StartTime
-                            where p.InputDateTime<=EndTime
+                var List = (from p in db.INV_labels.Where(k => k.delete_flag==false)
+                            //where p.created_time<=EndTime
+                            //where p.InputDateTime>=StartTime
+                            //where p.InputDateTime<=EndTime
                             orderby p.created_time descending
                             select new LabelsModel
                             {
@@ -732,12 +725,13 @@ namespace DalProject
                         var Q_CCPrice = Math.Round(Q_cost / 100) * 100;
                         var Q_BQPrice = Q_CCPrice * 2.5; ;
 
-                        var ccprice = G_CCPrice;
-                        var BQPrice = G_BQPrice;
+                        //var ccprice = G_CCPrice;
+                        //var BQPrice = G_BQPrice;
+                        double ccprice = 0;
+                        double BQPrice = 0;
                         double CCL = 0.42;
                         if (item.product_area_id == 6)
                         {
-                            ccprice = Q_CCPrice; BQPrice = Q_BQPrice;
                             CCL = 0.45;
                         }
                         
@@ -751,6 +745,8 @@ namespace DalProject
                         FLCB = WoodCB * 0.15;
                         CB = WoodCB + FLCB + Convert.ToDouble(item.PersonPrice ?? 0);
                         ML = Convert.ToDouble(item.price) - CB;
+                        ccprice = CB * 1.8;
+                        BQPrice = ccprice * 2.5;
                         DataRow row = Exceltable.NewRow();
                         int RKCount = 1;
                         int CKCount = 0;
