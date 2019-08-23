@@ -104,13 +104,13 @@
         $(".toSCExcelout").click(function () {
             var StartTime = $("#StartTime").val();
             var EndTime = $("#EndTime").val();
-            window.location.href = "/Semi/ToSCExcelOut?StartTime=" + StartTime + '&EndTime=' + EndTime;
+            window.location.href = "/Semi/ToSCExcelOut";
             //$.post(ExcelUrl, {}, function (d) { });
         });
          $(".toBCExcelout").click(function () {
             var StartTime = $("#StartTime").val();
             var EndTime = $("#EndTime").val();
-            window.location.href = "/Semi/ToExcelOut?StartTime=" + StartTime + '&EndTime=' + EndTime;
+            window.location.href = "/Semi/ToExcelOut";
         });
     });
 </script>

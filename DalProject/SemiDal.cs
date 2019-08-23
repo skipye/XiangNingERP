@@ -422,7 +422,7 @@ namespace DalProject
                     Exceltable.Columns.Add("材积", typeof(string));
                     Exceltable.Columns.Add("比重", typeof(string));
                     Exceltable.Columns.Add("材料成本", typeof(string));
-
+                    Exceltable.Columns.Add("数量", typeof(string));
                     foreach (var item in List)
                     {
                         double CCL = 0.42;
@@ -449,6 +449,7 @@ namespace DalProject
                         row["材积"] = item.volume;
                         row["比重"] = item.W_BZ;
                         row["材料成本"] = WoodCB;
+                        row["数量"] = "1";
                         Exceltable.Rows.Add(row);
                     }
                 }
@@ -481,6 +482,7 @@ namespace DalProject
                                 CRM_id = p.CRM_contract_detail_id,
                                 WIP_id = p.WIP_contract_id,
                                 qty=p.qty,
+                                status=p.status,
                             }).ToList();
                 
                 if (List != null && List.Any())
@@ -496,6 +498,7 @@ namespace DalProject
                     Exceltable.Columns.Add("比重", typeof(string));
                     Exceltable.Columns.Add("材料成本", typeof(string));
                     Exceltable.Columns.Add("生产数量", typeof(string));
+                    Exceltable.Columns.Add("生产阶段", typeof(string));
                     foreach (var item in List)
                     {
                         if (item.CRM_id > 0)
@@ -533,7 +536,7 @@ namespace DalProject
                         { CCL = 0.45; }
                         Woodunit = Convert.ToDouble(item.volume) / CCL * Convert.ToDouble(item.W_BZ);
                         WoodCB = Woodunit * Convert.ToDouble(item.W_price);
-
+                        string[] ArrWO = { "已开工单", "图纸料单就绪", "图纸料单确认", "开料完成", "雕花完成", "木工完成", "刮磨完成", "油漆完成", "配件安装完成", "标签完成", "成品入库" };
                         DataRow row = Exceltable.NewRow();
                         row["产品名称"] = item.productName;
                         row["产品系列"] = item.ProductXL;
@@ -546,6 +549,7 @@ namespace DalProject
                         row["比重"] = item.W_BZ;
                         row["材料成本"] = WoodCB;
                         row["生产数量"] = item.qty;
+                        row["生产阶段"] = ArrWO[item.status];
                         Exceltable.Rows.Add(row);
                     }
                 }
