@@ -124,3 +124,4 @@ D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.pdb
 D:\XiangNingERP\XN_Phone\bin\XN_Phone.dll.config
 D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csproj.CoreCompileInputs.cache
 D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csproj.CopyComplete
+D:\XiangNingERP\XN_Phone\obj\Debug\XN_Phone.csprojAssemblyReference.cache

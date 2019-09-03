@@ -118,6 +118,7 @@ namespace DalProject
             {
                 var List = (from p in db.WIP_workflow.Where(k => k.delete_flag == false)
                             where !string.IsNullOrEmpty(SModel.NavName) ? p.name == SModel.NavName : true
+                            where !string.IsNullOrEmpty(SModel.ProName) ? p.SYS_product.name.Contains(SModel.ProName) : true
                             where !string.IsNullOrEmpty(SModel.HTSN) ? p.WIP_workorder.CRM_contract_detail.CRM_contract_header.SN == SModel.HTSN : true
                             where SModel.status != null ? p.status == SModel.status : true
                             where p.act_end_date > StartTime
@@ -666,6 +667,7 @@ namespace DalProject
             {
                 var List = (from p in db.WIP_workflow.Where(k => k.delete_flag == false)
                             where !string.IsNullOrEmpty(SModel.NavName) ? p.name == SModel.NavName : true
+                            where !string.IsNullOrEmpty(SModel.ProName) ? p.SYS_product.name.Contains(SModel.ProName) : true
                             where !string.IsNullOrEmpty(SModel.HTSN) ? p.WIP_workorder.CRM_contract_detail.CRM_contract_header.SN == SModel.HTSN : true
                             where SModel.status != null ? p.status == SModel.status : true
                             where p.act_end_date > StartTime
@@ -686,36 +688,56 @@ namespace DalProject
                                 status = p.status,
                                 checked_user_name = p.checked_user_name,
                                 cost = p.cost,
+                                HTSN=p.WIP_workorder.CRM_contract_detail.CRM_contract_header.SN,
+                                customer=p.WIP_workorder.CRM_contract_detail.CRM_contract_header.CRM_customers.name,
+                                length=p.SYS_product.length,
+                                width=p.SYS_product.width,
+                                height=p.SYS_product.height,
                                 remark = p.checked_reason,
                                 WoodName=p.INV_wood_type.name,
                                 source = p.reserved2
                             }).ToList();
                 if (List != null && List.Any())
                 {
+                    int i = 1;
+                    Exceltable.Columns.Add("序号", typeof(string));
+                    Exceltable.Columns.Add("施工员", typeof(string));
+                    Exceltable.Columns.Add("完工日期", typeof(string));
+                    Exceltable.Columns.Add("跟踪单号", typeof(string));
+                    Exceltable.Columns.Add("合同号", typeof(string));
+                    Exceltable.Columns.Add("客户", typeof(string));
                     Exceltable.Columns.Add("产品名称", typeof(string));
+                    Exceltable.Columns.Add("规格", typeof(string));
                     Exceltable.Columns.Add("材质", typeof(string));
-                    Exceltable.Columns.Add("生产价格", typeof(string));
-                    Exceltable.Columns.Add("生产状态", typeof(string));
-                    Exceltable.Columns.Add("生产开始时间", typeof(string));
-                    Exceltable.Columns.Add("生产完成时间", typeof(string));
-                    Exceltable.Columns.Add("接单人", typeof(string));
-                    Exceltable.Columns.Add("审核人", typeof(string));
+                    Exceltable.Columns.Add("单位", typeof(string));
+                    Exceltable.Columns.Add("数量", typeof(string));
+                    Exceltable.Columns.Add("单价", typeof(string));
+                    Exceltable.Columns.Add("合计", typeof(string));
                     Exceltable.Columns.Add("来源", typeof(string));
-
+                    Exceltable.Columns.Add("工序", typeof(string));
                     foreach (var item in List)
                     {
-                        DataRow row = Exceltable.NewRow();
-                        row["产品名称"] = item.ProductXL + "_" + item.ProductName;
-                        row["材质"] = item.WoodName;
-                        row["生产价格"] = item.cost;
-                        row["生产状态"] = item.status!=null && item.status==0?"生产中":item.status==1?"生产完成，待审核":item.status==2?"审核通过":"被驳回";
-                        row["生产开始时间"] = Convert.ToDateTime(item.act_begin_date).ToString("yyyy-MM-dd");
-                        row["生产完成时间"] = Convert.ToDateTime(item.act_end_date).ToString("yyyy-MM-dd");
-                        row["接单人"] = item.user_name;
-                        row["审核人"] = item.checked_user_name;
-                        row["来源"] = item.source;
-                        
-                        Exceltable.Rows.Add(row);
+                        if (item.cost > 0)
+                        { 
+                            DataRow row = Exceltable.NewRow();
+                            row["序号"] = i;
+                            row["施工员"] = item.user_name;
+                            row["完工日期"] = Convert.ToDateTime(item.act_end_date).ToString("yyyy-MM-dd");
+                            row["跟踪单号"] = item.workorder;
+                            row["合同号"] = item.HTSN;
+                            row["客户"] = item.customer;
+                            row["产品名称"] = item.ProductXL + "_" + item.ProductName;
+                            row["规格"] = item.length + "X" + item.width + "X" + item.height;
+                            row["材质"] = item.WoodName;
+                            row["单位"] = "件";
+                            row["数量"] = "1";
+                            row["单价"] = item.cost;
+                            row["合计"] = item.cost;
+                            row["来源"] = item.source;
+                            row["工序"] = item.Name;
+                            i++;
+                            Exceltable.Rows.Add(row);
+                        }
                     }
                 }
             }

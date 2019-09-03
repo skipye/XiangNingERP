@@ -73,6 +73,9 @@ namespace ModelProject
         public int? PageIndex { get; set; }
         public string ListId { get; set; }
         public string WoodName { get; set; }
+        public long? length { get; set; }
+        public long? width { get; set; }
+        public long? height { get; set; }
     }
     public class SWIP_WOXQModel
     {
@@ -84,6 +87,7 @@ namespace ModelProject
         public string GXName { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+        public string ProName { get; set; }
     }
     //操作表
     public class WIP_Even

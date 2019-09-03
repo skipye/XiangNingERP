@@ -38,30 +38,36 @@
         @using (Html.BeginForm("Workflow", "HR", FormMethod.Post, new { @class = "form" }))
         {
             <div class="form_item">
+                <label class="label">产品名称：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.ProName, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
                 <label class="label">工序：</label>
                 <div class="form-field">
-                   @Html.DropDownListFor(k => k.NavName,GYItem,  new { @class="inputtext"})
+                    @Html.DropDownListFor(k => k.NavName, GYItem, new { @class = "inputtext" })
                 </div>
             </div>
             <div class="form_item">
                 <label class="label">生产状态：</label>
                 <div class="form-field">
-                  @Html.DropDownListFor(k => k.status, LItem, new { @class="inputtext"})
+                    @Html.DropDownListFor(k => k.status, LItem, new { @class = "inputtext" })
                 </div>
             </div>
             <div class="form_item">
-			    <label class="label">安排时间：</label>
-			    <div class="form-field">
-                   @Html.TextBoxFor(k => k.StartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
-                   @Html.TextBoxFor(k => k.EndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
-			    </div>
-		    </div>
+                <label class="label">安排时间：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.StartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
+                    @Html.TextBoxFor(k => k.EndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
+                </div>
+            </div>
             <div class="form_item">
-			    <label class="label">每页显示：</label>
-			    <div class="form-field">
-                   @Html.DropDownListFor(k => k.PageSize, PSize, new { @class="drotext"})
-			    </div>
-		    </div>
+                <label class="label">每页显示：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.PageSize, PSize, new { @class = "drotext" })
+                </div>
+            </div>
             <div class="clear"></div>
             <div class="form-item-submit">
                 <input type="submit" value="提交" class="inputsubbtn fr mb20 mr20" style="width:100px;" />
@@ -87,11 +93,12 @@
     $(function () {
         $(".toExcelout").click(function () {
             var GXName = $("#GXName").val();
+            var ProName = $("#ProName").val();
             var status = $("#status").val();
             var StartTime = $("#StartTime").val();
             var EndTime = $("#EndTime").val();
             var ExcelUrl = '@Url.Action("ToExcelOut","HR")';
-            window.location.href = "/HR/ToExcelOut?GXName=" + GXName + '&status=' + status + '&StartTime=' + StartTime + '&EndTime=' + EndTime;
+            window.location.href = "/HR/ToExcelOut?GXName=" + GXName + '&status=' + status + '&ProName=' + ProName+'&StartTime=' + StartTime + '&EndTime=' + EndTime;
             //$.post(ExcelUrl, {}, function (d) { });
         });
     });
