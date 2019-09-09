@@ -802,7 +802,7 @@ namespace DalProject
             using (var db = new XNERPEntities())
             {
                 List<LabelsModel> LabelsTab = new List<LabelsModel>();
-                var List = (from p in db.INV_labels.Where(k => k.delete_flag == false)
+                var List = (from p in db.INV_labels
                             where !string.IsNullOrEmpty(SModel.productName) ? p.SYS_product.name.Contains(SModel.productName) : true
                             where p.created_time > StartTime
                             where p.created_time < EndTime
@@ -816,7 +816,7 @@ namespace DalProject
                                 woodname = p.INV_wood_type.name,
                                 invname = p.INV_inventories.name,
                                 status = p.status,
-                                input_date = p.created_time,
+                                input_date = p.InputDateTime,
                                 SN = p.SN,
                                 product_SN_Name = p.product_SN,
                                 color = p.color,
