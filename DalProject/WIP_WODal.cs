@@ -121,8 +121,8 @@ namespace DalProject
                             where !string.IsNullOrEmpty(SModel.ProName) ? p.SYS_product.name.Contains(SModel.ProName) : true
                             where !string.IsNullOrEmpty(SModel.HTSN) ? p.WIP_workorder.CRM_contract_detail.CRM_contract_header.SN == SModel.HTSN : true
                             where SModel.status != null ? p.status == SModel.status : true
-                            where p.act_end_date > StartTime
-                            where p.act_end_date < EndTime
+                            where p.created_time > StartTime
+                            where p.created_time < EndTime
                             orderby p.created_time descending
                             select new WIP_WOXQModel
                             {
@@ -670,8 +670,8 @@ namespace DalProject
                             where !string.IsNullOrEmpty(SModel.ProName) ? p.SYS_product.name.Contains(SModel.ProName) : true
                             where !string.IsNullOrEmpty(SModel.HTSN) ? p.WIP_workorder.CRM_contract_detail.CRM_contract_header.SN == SModel.HTSN : true
                             where SModel.status != null ? p.status == SModel.status : true
-                            where p.act_end_date > StartTime
-                            where p.act_end_date < EndTime
+                            where p.created_time > StartTime
+                            where p.created_time < EndTime
                             orderby p.created_time descending
                             select new WIP_WOXQModel
                             {
