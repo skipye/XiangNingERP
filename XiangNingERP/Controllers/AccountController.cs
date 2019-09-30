@@ -22,7 +22,7 @@ namespace XiangNingERP.Controllers
             return View(LModel);
         }
         [HttpPost]
-        public ActionResult Login(LoginModel model)
+        public ActionResult PostLogin(LoginModel model)
         {
             string returnUrl = "/Home/Index";
             
@@ -50,7 +50,7 @@ namespace XiangNingERP.Controllers
             }
             else { message = "账号或密码错误！"; }
                 
-            return Content(message + "&" + returnUrl);
+            return Content(message + "tt" + returnUrl);
 
         }
         public ActionResult LogOff()

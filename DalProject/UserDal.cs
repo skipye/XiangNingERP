@@ -46,7 +46,7 @@ namespace DalProject
         public UserCurrentModel GetCurrentUserName()
         {
             UserCurrentModel models = new UserCurrentModel();
-            var List = FormsAuthentication.GetAuthCookie("MyCookie", false);
+            var List = FormsAuthentication.GetAuthCookie("XNCookie", false);
             if (System.Web.HttpContext.Current.User.Identity.Name.Contains("|") == false)
             {
                 return new UserCurrentModel();
