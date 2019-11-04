@@ -250,9 +250,34 @@ namespace XiangNingERP.Controllers
             var List = SSer.GetWorkLabelsList(SRmodels);
             return View(List);
         }
+        public ActionResult CancelLabels(SLabelsModel Smodels)
+        {
+            Smodels.XLDroList = XLSer.GetXLDrolist(Smodels.product_SN_id);
+            Smodels.AreaDroList = XLSer.GetAreaDrolist(Smodels.product_area_id);
+            Smodels.CKDroList = INVSer.GetCKDrolist(Smodels.inv_id, 4);
+            Smodels.MCDroList = MCSer.GetWoodDrolist(Smodels.wood_id);
+            return View(Smodels);
+        }
+        public ActionResult CancelLabelsList(SLabelsModel SRmodels)
+        {
+            SRmodels.ProState = 1;
+            SRmodels.status = 1;
+            var PageList = SSer.GetPageList(SRmodels, SRmodels.PageIndex ?? 1, SRmodels.PagePSize ?? 10);
+            ViewBag.SModel = SRmodels;
+            return View(PageList);
+        }
         public ActionResult CheckLabels(string ListId, int CRM_Id)
         {
             if (SSer.CheckLabels(ListId, CRM_Id) == true)
+            {
+                return Content("True");
+            }
+            else return Content("False");
+        }
+        public ActionResult CancelOrder(int Id)
+        {
+            string ListId = Id + "$";
+            if (SSer.CancelOrder(ListId) == true)
             {
                 return Content("True");
             }

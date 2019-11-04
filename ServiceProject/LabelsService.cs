@@ -28,6 +28,14 @@ namespace ServiceProject
                 throw new Exception(ex.Message);
             }
         }
+        public List<LabelsModel> GetCancelLabelsList(SLabelsModel SModel)
+        {
+            try { return SDal.GetCancelLabelsList(SModel); }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public PagedList<LabelsModel> GetDeliveryList(SLabelsModel SModel)
         {
             try { return SDal.GetDeliveryList(SModel); }
@@ -84,6 +92,17 @@ namespace ServiceProject
             try
             {
                 SDal.CheckLabels(ListId, CRM_Id); return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool CancelOrder(string ListId)
+        {
+            try
+            {
+                SDal.CancelOrder(ListId); return true;
             }
             catch (Exception ex)
             {

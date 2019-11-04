@@ -247,6 +247,7 @@
     <EntitySetMapping Name="INV_wood_type">
       <EntityTypeMapping TypeName="XNERPModel.INV_wood_type">
         <MappingFragment StoreEntitySet="INV_wood_type">
+          <ScalarProperty Name="SN" ColumnName="SN" />
           <ScalarProperty Name="PersonPrice" ColumnName="PersonPrice" />
           <ScalarProperty Name="Sort" ColumnName="Sort" />
           <ScalarProperty Name="cc_prcie" ColumnName="cc_prcie" />
@@ -831,6 +832,26 @@
           <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
           <ScalarProperty Name="Customer" ColumnName="Customer" />
           <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_product_Cost">
+      <EntityTypeMapping TypeName="XNERPModel.SYS_product_Cost">
+        <MappingFragment StoreEntitySet="SYS_product_Cost">
+          <ScalarProperty Name="DeleteFlag" ColumnName="DeleteFlag" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="FLPrice" ColumnName="FLPrice" />
+          <ScalarProperty Name="YQPrice" ColumnName="YQPrice" />
+          <ScalarProperty Name="GMPrice" ColumnName="GMPrice" />
+          <ScalarProperty Name="MGHPrice" ColumnName="MGHPrice" />
+          <ScalarProperty Name="MGQPrice" ColumnName="MGQPrice" />
+          <ScalarProperty Name="DHPrice" ColumnName="DHPrice" />
+          <ScalarProperty Name="KLPrice" ColumnName="KLPrice" />
+          <ScalarProperty Name="MCPrice" ColumnName="MCPrice" />
+          <ScalarProperty Name="WoodName" ColumnName="WoodName" />
+          <ScalarProperty Name="WoodId" ColumnName="WoodId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

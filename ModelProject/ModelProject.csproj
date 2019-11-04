@@ -58,6 +58,7 @@
     <Compile Include="UserLogs.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="WIP.cs" />
+    <Compile Include="CostModel.cs" />
     <Compile Include="XTModel.cs" />
     <Compile Include="LabelsModel.cs" />
   </ItemGroup>

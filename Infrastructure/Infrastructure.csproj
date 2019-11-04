@@ -182,6 +182,9 @@
     <Compile Include="SYS_product_area.cs">
       <DependentUpon>XNERPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SYS_product_Cost.cs">
+      <DependentUpon>XNERPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SYS_product_SN.cs">
       <DependentUpon>XNERPModel.tt</DependentUpon>
     </Compile>

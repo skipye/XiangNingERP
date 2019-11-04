@@ -92,6 +92,9 @@
         <EntityTypeShape EntityType="XNERPModel.SaleService_Products" Width="1.5" PointX="16.625" PointY="19.5" />
         <EntityTypeShape EntityType="XNERPModel.SaleServiceInfo" Width="1.5" PointX="14.375" PointY="19" />
         <AssociationConnector Association="XNERPModel.FK_SaleService_Products_SaleServiceInfo" />
+        <EntityTypeShape EntityType="XNERPModel.SYS_product_Cost" Width="1.5" PointX="7.875" PointY="37.125" />
+        <AssociationConnector Association="XNERPModel.FK_SYS_product_Cost_SYS_product" />
+        <AssociationConnector Association="XNERPModel.FK_SYS_product_Cost_INV_wood_type" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

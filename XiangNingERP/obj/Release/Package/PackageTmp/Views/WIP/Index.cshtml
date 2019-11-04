@@ -5,211 +5,226 @@
     var SonLeve = USer.GetCurrentUserName().SonLeve;
 }
 
-<div class="box clearfix">
-@if (SonLeve.Contains("WO") || SonLeve == "All")
-{
-    <div class="card fl mt20">
-        <a href="@Url.Action("WO","WIP")">
-            <div class="card_text">
-                <h4 class="card_title">开工单</h4>
-                <p class="card_subtitle">开工单生产任务等。</p>
+    <div class="box clearfix">
+        @if (SonLeve.Contains("WO") || SonLeve == "All")
+        {
+            <div class="card fl mt20">
+                <a href="@Url.Action("WO","WIP")">
+                    <div class="card_text">
+                        <h4 class="card_title">开工单</h4>
+                        <p class="card_subtitle">开工单生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/wip_ap.png" alt="开工单" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/wip_ap.png" alt="开工单" />
+        }
+        @if (SonLeve.Contains("WIP_WorkOrder") || SonLeve == "All")
+        {
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("WIP_WorkOrder","WIP")">
+                    <div class="card_text">
+                        <h4 class="card_title">销售--任务安排</h4>
+                        <p class="card_subtitle">安排家具生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/wip_ap.png" alt="任务安排" />
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-}@if (SonLeve.Contains("WIP_WorkOrder") || SonLeve == "All")
-{
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("WIP_WorkOrder","WIP")">
-            <div class="card_text">
-                <h4 class="card_title">销售--任务安排</h4>
-                <p class="card_subtitle">安排家具生产任务等。</p>
+        }@if (SonLeve.Contains("Precast") || SonLeve == "All")
+        {
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Precast","WIP")">
+                    <div class="card_text">
+                        <h4 class="card_title">预投--任务安排</h4>
+                        <p class="card_subtitle">安排家具生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/wip_ap.png" alt="任务安排" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/wip_ap.png" alt="任务安排" />
-            </div>
-        </a>
-    </div>
-}@if (SonLeve.Contains("Precast") || SonLeve == "All")
-{
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Precast","WIP")">
-            <div class="card_text">
-                <h4 class="card_title">预投--任务安排</h4>
-                <p class="card_subtitle">安排家具生产任务等。</p>
-            </div>
-            <div class="card_pic">
-                <img src="~/bg/wip_ap.png" alt="任务安排" />
-            </div>
-        </a>
-    </div>
-}<div class="card fl ml20 mt20">
-    <a href="@Url.Action("CRM_HT_Delivery","CRM_HT")">
-        <div class="card_text">
-            <h4 class="card_title">销售--送货申请</h4>
-            <p class="card_subtitle">销售根据客户要求，提出送货申请，请及时安排好生产任务。</p>
+        }<div class="card fl ml20 mt20">
+            <a href="@Url.Action("CRM_HT_Delivery","CRM_HT")">
+                <div class="card_text">
+                    <h4 class="card_title">销售--送货申请</h4>
+                    <p class="card_subtitle">销售根据客户要求，提出送货申请，请及时安排好生产任务。</p>
+                </div>
+                <div class="card_pic">
+                    <img src="~/bg/wip_ap.png" alt="送货申请" />
+                </div>
+            </a>
         </div>
-        <div class="card_pic">
-            <img src="~/bg/wip_ap.png" alt="送货申请" />
-        </div>
-    </a>
-</div>
-@if (SonLeve.Contains("Purchase") || SonLeve == "All")
-{
-    <div class="clear"></div>
-    <div class="card fl mt20">
-        <a href="@Url.Action("Index","Purchase")">
-            <div class="card_text">
-                <h4 class="card_title">采购审核</h4>
-                <p class="card_subtitle">对采购进行审核操作等。</p>
+        @if (SonLeve.Contains("Purchase") || SonLeve == "All")
+        {
+            <div class="clear"></div>
+            <div class="card fl mt20">
+                <a href="@Url.Action("Index","Purchase")">
+                    <div class="card_text">
+                        <h4 class="card_title">采购审核</h4>
+                        <p class="card_subtitle">对采购进行审核操作等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/wip_ap.png" alt="采购审核" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/wip_ap.png" alt="采购审核" />
+        }
+        @if (SonLeve.Contains("Purchase") || SonLeve == "All")
+        {
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Index","WIP_CK")">
+                    <div class="card_text">
+                        <h4 class="card_title">出库审核</h4>
+                        <p class="card_subtitle">对出库进行审核操作等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/wip_ap.png" alt="出库审核" />
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-}
-@if (SonLeve.Contains("Purchase") || SonLeve == "All")
-{
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Index","WIP_CK")">
-            <div class="card_text">
-                <h4 class="card_title">出库审核</h4>
-                <p class="card_subtitle">对出库进行审核操作等。</p>
+        }
+        @if (SonLeve.Contains("CancelLabels") || SonLeve == "All")
+        {
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("CancelLabels","Labels")">
+                    <div class="card_text">
+                        <h4 class="card_title">取消绑定销售-成品库</h4>
+                        <p class="card_subtitle">取消绑定销售订单产品。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/wip_ap.png" alt="取消绑定销售" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/wip_ap.png" alt="出库审核" />
+        }
+        @if (SonLeve.Contains("Semi") || SonLeve == "All")
+        {
+            <div class="clear"></div>
+            <div class="card fl mt20">
+                <a href="@Url.Action("Index","Semi")">
+                    <div class="card_text">
+                        <h4 class="card_title">半成品库</h4>
+                        <p class="card_subtitle">查看半成品库存等信息。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/Semi.jpg" alt="半成品库" />
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-}
-@if (SonLeve.Contains("Semi") || SonLeve == "All")
-{
-    <div class="clear"></div>
-    <div class="card fl mt20">
-        <a href="@Url.Action("Index","Semi")">
-            <div class="card_text">
-                <h4 class="card_title">半成品库</h4>
-                <p class="card_subtitle">查看半成品库存等信息。</p>
+        }@if (SonLeve.Contains("Labels") || SonLeve == "All")
+        {
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Index","Labels")">
+                    <div class="card_text">
+                        <h4 class="card_title">成品库</h4>
+                        <p class="card_subtitle">查看成品库存等信息。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/labels.jpg" alt="成品库" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/Semi.jpg" alt="半成品库" />
+        }@if (SonLeve.Contains("WIP_WO") || SonLeve == "All")
+        {
+            <div class="clear"></div>
+            <div class="card fl mt20">
+                <a href="@Url.Action("Index","WIP_WO")">
+                    <div class="card_text">
+                        <h4 class="card_title">开料管理</h4>
+                        <p class="card_subtitle">安排家具开料的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/kailiao.jpg" alt="开料管理" />
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-}@if (SonLeve.Contains("Labels") || SonLeve == "All")
-{
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Index","Labels")">
-            <div class="card_text">
-                <h4 class="card_title">成品库</h4>
-                <p class="card_subtitle">查看成品库存等信息。</p>
-            </div>
-            <div class="card_pic">
-                <img src="~/bg/labels.jpg" alt="成品库" />
-            </div>
-        </a>
-    </div>
-}@if (SonLeve.Contains("WIP_WO") || SonLeve == "All")
-{
-    <div class="clear"></div>
-    <div class="card fl mt20">
-        <a href="@Url.Action("Index","WIP_WO")">
-            <div class="card_text">
-                <h4 class="card_title">开料管理</h4>
-                <p class="card_subtitle">安排家具开料的生产任务等。</p>
-            </div>
-            <div class="card_pic">
-                <img src="~/bg/kailiao.jpg" alt="开料管理" />
-            </div>
-        </a>
-    </div>
 
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Index","WIP_WO", new { NavName="木工前段" })">
-            <div class="card_text">
-                <h4 class="card_title">木工前段</h4>
-                <p class="card_subtitle">安排家具开料的生产任务等。</p>
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Index","WIP_WO", new { NavName="木工前段" })">
+                    <div class="card_text">
+                        <h4 class="card_title">木工前段</h4>
+                        <p class="card_subtitle">安排家具开料的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/mgqd.jpg" alt="木工前段" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/mgqd.jpg" alt="木工前段" />
-            </div>
-        </a>
-    </div>
-    
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Index", "WIP_WO", new { NavName="雕花" })">
-            <div class="card_text">
-                <h4 class="card_title">雕花管理</h4>
-                <p class="card_subtitle">安排家具雕花的生产任务等。</p>
-            </div>
-            <div class="card_pic">
-                <img src="~/bg/WIP_DK.png" alt="雕花管理" />
-            </div>
-        </a>
-    </div>
 
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Index", "WIP_WO", new { NavName="木工后段" })">
-            <div class="card_text">
-                <h4 class="card_title">木工后段</h4>
-                <p class="card_subtitle">安排家具木工的生产任务等。</p>
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Index", "WIP_WO", new { NavName="雕花" })">
+                    <div class="card_text">
+                        <h4 class="card_title">雕花管理</h4>
+                        <p class="card_subtitle">安排家具雕花的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/WIP_DK.png" alt="雕花管理" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/WIP_MG.png" alt="木工后段" />
+
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Index", "WIP_WO", new { NavName="木工后段" })">
+                    <div class="card_text">
+                        <h4 class="card_title">木工后段</h4>
+                        <p class="card_subtitle">安排家具木工的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/WIP_MG.png" alt="木工后段" />
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
 
 
-    <div class="card fl mt20">
-        <a href="@Url.Action("Index", "WIP_WO", new { NavName="刮磨" })">
-            <div class="card_text">
-                <h4 class="card_title">刮磨管理</h4>
-                <p class="card_subtitle">安排家具刮磨的生产任务等。</p>
+            <div class="card fl mt20">
+                <a href="@Url.Action("Index", "WIP_WO", new { NavName="刮磨" })">
+                    <div class="card_text">
+                        <h4 class="card_title">刮磨管理</h4>
+                        <p class="card_subtitle">安排家具刮磨的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/WIP_GM.png" alt="刮磨管理" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/WIP_GM.png" alt="刮磨管理" />
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Index", "WIP_WO", new { NavName="油漆" })">
+                    <div class="card_text">
+                        <h4 class="card_title">油漆管理</h4>
+                        <p class="card_subtitle">安排家具油漆的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/WIP_YQ.png" alt="油漆管理" />
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-        <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Index", "WIP_WO", new { NavName="油漆" })">
-            <div class="card_text">
-                <h4 class="card_title">油漆管理</h4>
-                <p class="card_subtitle">安排家具油漆的生产任务等。</p>
-            </div>
-            <div class="card_pic">
-                <img src="~/bg/WIP_YQ.png" alt="油漆管理" />
-            </div>
-        </a>
-    </div>
 
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Index", "WIP_WO", new { NavName="配件安装" })">
-            <div class="card_text">
-                <h4 class="card_title">配件安装</h4>
-                <p class="card_subtitle">安排家具组装的生产任务等。</p>
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Index", "WIP_WO", new { NavName="配件安装" })">
+                    <div class="card_text">
+                        <h4 class="card_title">配件安装</h4>
+                        <p class="card_subtitle">安排家具组装的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/WIP_ZZ.png" alt="配件安装" />
+                    </div>
+                </a>
             </div>
-            <div class="card_pic">
-                <img src="~/bg/WIP_ZZ.png" alt="配件安装" />
+        }@if (SonLeve.Contains("Delivery") || SonLeve == "All")
+        {
+            <div class="card fl ml20 mt20">
+                <a href="@Url.Action("Delivery", "Labels")">
+                    <div class="card_text">
+                        <h4 class="card_title">维修送货</h4>
+                        <p class="card_subtitle">安排家具送货维护的生产任务等。</p>
+                    </div>
+                    <div class="card_pic">
+                        <img src="~/bg/shwx.jpg" alt="维修送货" />
+                    </div>
+                </a>
             </div>
-        </a>
+        }
     </div>
-}@if (SonLeve.Contains("Delivery") || SonLeve == "All")
-{
-    <div class="card fl ml20 mt20">
-        <a href="@Url.Action("Delivery", "Labels")">
-            <div class="card_text">
-                <h4 class="card_title">维修送货</h4>
-                <p class="card_subtitle">安排家具送货维护的生产任务等。</p>
-            </div>
-            <div class="card_pic">
-                <img src="~/bg/shwx.jpg" alt="维修送货" />
-            </div>
-        </a>
-    </div>
-}
-</div>

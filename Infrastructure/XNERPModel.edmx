@@ -500,6 +500,7 @@
           <Property Name="cc_prcie" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Sort" Type="int" />
           <Property Name="PersonPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SN" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SaleService_Products">
           <Key>
@@ -626,6 +627,25 @@
           <Property Name="remark" Type="text" />
           <Property Name="created_time" Type="datetime" Nullable="false" />
           <Property Name="delete_flag" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_product_Cost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="WoodId" Type="int" />
+          <Property Name="WoodName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MCPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DHPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MGQPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MGHPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GMPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="YQPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FLPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="DeleteFlag" Type="bit" />
         </EntityType>
         <EntityType Name="SYS_product_SN">
           <Key>
@@ -1063,6 +1083,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SYS_product_Cost_INV_wood_type">
+          <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="0..1" />
+          <End Role="SYS_product_Cost" Type="Self.SYS_product_Cost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_wood_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SYS_product_Cost">
+              <PropertyRef Name="WoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_product_Cost_SYS_product">
+          <End Role="SYS_product" Type="Self.SYS_product" Multiplicity="0..1" />
+          <End Role="SYS_product_Cost" Type="Self.SYS_product_Cost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SYS_product_Cost">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SYS_product_SN_SYS_product_SN">
           <End Role="SYS_product_SN" Type="Self.SYS_product_SN" Multiplicity="1" />
           <End Role="SYS_product_SN1" Type="Self.SYS_product_SN" Multiplicity="0..1" />
@@ -1169,6 +1213,7 @@
           <EntitySet Name="SYS_notices" EntityType="Self.SYS_notices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_product" EntityType="Self.SYS_product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_product_area" EntityType="Self.SYS_product_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_product_Cost" EntityType="Self.SYS_product_Cost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_product_SN" EntityType="Self.SYS_product_SN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLogs" EntityType="Self.UserLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WIP_contract" EntityType="Self.WIP_contract" Schema="dbo" store:Type="Tables" />
@@ -1279,6 +1324,14 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <AssociationSet Name="FK_SaleService_Products_SaleServiceInfo" Association="Self.FK_SaleService_Products_SaleServiceInfo">
             <End Role="SaleServiceInfo" EntitySet="SaleServiceInfo" />
             <End Role="SaleService_Products" EntitySet="SaleService_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_product_Cost_INV_wood_type" Association="Self.FK_SYS_product_Cost_INV_wood_type">
+            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+            <End Role="SYS_product_Cost" EntitySet="SYS_product_Cost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_product_Cost_SYS_product" Association="Self.FK_SYS_product_Cost_SYS_product">
+            <End Role="SYS_product" EntitySet="SYS_product" />
+            <End Role="SYS_product_Cost" EntitySet="SYS_product_Cost" />
           </AssociationSet>
           <AssociationSet Name="FK_SYS_product_SN_SYS_product_SN" Association="Self.FK_SYS_product_SN_SYS_product_SN">
             <End Role="SYS_product_SN" EntitySet="SYS_product_SN" />
@@ -1525,6 +1578,15 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <AssociationSet Name="FK_SaleService_Products_SaleServiceInfo" Association="XNERPModel.FK_SaleService_Products_SaleServiceInfo">
             <End Role="SaleServiceInfo" EntitySet="SaleServiceInfo" />
             <End Role="SaleService_Products" EntitySet="SaleService_Products" />
+          </AssociationSet>
+          <EntitySet Name="SYS_product_Cost" EntityType="XNERPModel.SYS_product_Cost" />
+          <AssociationSet Name="FK_SYS_product_Cost_SYS_product" Association="XNERPModel.FK_SYS_product_Cost_SYS_product">
+            <End Role="SYS_product" EntitySet="SYS_product" />
+            <End Role="SYS_product_Cost" EntitySet="SYS_product_Cost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_product_Cost_INV_wood_type" Association="XNERPModel.FK_SYS_product_Cost_INV_wood_type">
+            <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+            <End Role="SYS_product_Cost" EntitySet="SYS_product_Cost" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CRM_contract_detail">
@@ -1813,6 +1875,8 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <NavigationProperty Name="INV_single_board" Relationship="XNERPModel.FK_INV_single_board_INV_wood_type" FromRole="INV_wood_type" ToRole="INV_single_board" />
           <Property Name="PersonPrice" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="WIP_workflow" Relationship="XNERPModel.FK_WIP_workflow_INV_wood_type" FromRole="INV_wood_type" ToRole="WIP_workflow" />
+          <Property Name="SN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_product_Cost" Relationship="XNERPModel.FK_SYS_product_Cost_INV_wood_type" FromRole="INV_wood_type" ToRole="SYS_product_Cost" />
         </EntityType>
         <EntityType Name="SYS_colors">
           <Key>
@@ -2186,6 +2250,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <NavigationProperty Name="WIP_workflow" Relationship="XNERPModel.SYS_productWIP_workflow" FromRole="SYS_product" ToRole="WIP_workflow" />
           <NavigationProperty Name="INV_labels" Relationship="XNERPModel.SYS_productINV_labels" FromRole="SYS_product" ToRole="INV_labels" />
           <NavigationProperty Name="WIP_work_CW" Relationship="XNERPModel.FK_WIP_work_CW_SYS_product" FromRole="SYS_product" ToRole="WIP_work_CW" />
+          <NavigationProperty Name="SYS_product_Cost" Relationship="XNERPModel.FK_SYS_product_Cost_SYS_product" FromRole="SYS_product" ToRole="SYS_product_Cost" />
         </EntityType>
         <Association Name="FK_CRM_contract_detail_SYS_product">
           <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="1" />
@@ -2921,6 +2986,51 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SYS_product_Cost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="WoodId" Type="Int32" />
+          <Property Name="WoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MCPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DHPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MGQPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MGHPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GMPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="YQPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FLPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlag" Type="Boolean" />
+          <NavigationProperty Name="SYS_product" Relationship="XNERPModel.FK_SYS_product_Cost_SYS_product" FromRole="SYS_product_Cost" ToRole="SYS_product" />
+          <NavigationProperty Name="INV_wood_type" Relationship="XNERPModel.FK_SYS_product_Cost_INV_wood_type" FromRole="SYS_product_Cost" ToRole="INV_wood_type" />
+        </EntityType>
+        <Association Name="FK_SYS_product_Cost_SYS_product">
+          <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="0..1" />
+          <End Type="XNERPModel.SYS_product_Cost" Role="SYS_product_Cost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SYS_product_Cost">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_product_Cost_INV_wood_type">
+          <End Type="XNERPModel.INV_wood_type" Role="INV_wood_type" Multiplicity="0..1" />
+          <End Type="XNERPModel.SYS_product_Cost" Role="SYS_product_Cost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INV_wood_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SYS_product_Cost">
+              <PropertyRef Name="WoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3173,6 +3283,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <EntitySetMapping Name="INV_wood_type">
             <EntityTypeMapping TypeName="XNERPModel.INV_wood_type">
               <MappingFragment StoreEntitySet="INV_wood_type">
+                <ScalarProperty Name="SN" ColumnName="SN" />
                 <ScalarProperty Name="PersonPrice" ColumnName="PersonPrice" />
                 <ScalarProperty Name="Sort" ColumnName="Sort" />
                 <ScalarProperty Name="cc_prcie" ColumnName="cc_prcie" />
@@ -3757,6 +3868,26 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
                 <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
                 <ScalarProperty Name="Customer" ColumnName="Customer" />
                 <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_product_Cost">
+            <EntityTypeMapping TypeName="XNERPModel.SYS_product_Cost">
+              <MappingFragment StoreEntitySet="SYS_product_Cost">
+                <ScalarProperty Name="DeleteFlag" ColumnName="DeleteFlag" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="FLPrice" ColumnName="FLPrice" />
+                <ScalarProperty Name="YQPrice" ColumnName="YQPrice" />
+                <ScalarProperty Name="GMPrice" ColumnName="GMPrice" />
+                <ScalarProperty Name="MGHPrice" ColumnName="MGHPrice" />
+                <ScalarProperty Name="MGQPrice" ColumnName="MGQPrice" />
+                <ScalarProperty Name="DHPrice" ColumnName="DHPrice" />
+                <ScalarProperty Name="KLPrice" ColumnName="KLPrice" />
+                <ScalarProperty Name="MCPrice" ColumnName="MCPrice" />
+                <ScalarProperty Name="WoodName" ColumnName="WoodName" />
+                <ScalarProperty Name="WoodId" ColumnName="WoodId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

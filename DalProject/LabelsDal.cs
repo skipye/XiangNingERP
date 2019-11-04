@@ -95,6 +95,34 @@ namespace DalProject
                 return List;
             }
         }
+        public List<LabelsModel> GetCancelLabelsList(SLabelsModel SModel)
+        {
+            using (var db = new XNERPEntities())
+            {
+                var List = (from p in db.INV_labels.Where(k => k.delete_flag == false && k.CRM_contract_detail_id==SModel.Id)
+                            orderby p.created_time descending
+                            select new LabelsModel
+                            {
+                                id = p.id,
+                                product_id = p.product_id,
+                                ProductName = p.SYS_product.name,
+                                ProductXL = p.SYS_product.SYS_product_SN.name,
+                                wood_id = p.wood_id,
+                                woodname = p.INV_wood_type.name,
+                                inv_id = p.inv_id,
+                                invname = p.INV_inventories.name,
+                                status = p.status,
+                                input_date = p.created_time,
+                                SN = p.SN,
+                                product_SN_Name = p.product_SN,
+                                color = p.color,
+                                flag = p.flag,
+                                style = p.style,
+                                customersName = p.CRM_customers.name,
+                            }).ToList();
+                return List;
+            }
+        }
         public PagedList<LabelsModel> GetDeliveryList(SLabelsModel SModel)
         {
             DateTime StartTime = Convert.ToDateTime("1999-12-31");
@@ -244,6 +272,38 @@ namespace DalProject
                 {
                     CRMTables.status = 2;
                 }
+                db.SaveChanges();
+            }
+        }
+        //取消绑定合同操作
+        public void CancelOrder(string ListId)
+        {
+            using (var db = new XNERPEntities())
+            {
+                string[] ArrId = ListId.Split('$');
+                int UpdateCount = ArrId.Count() - 1;
+                foreach (var item in ArrId)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        int Id = Convert.ToInt32(item);
+                        var tables = db.INV_labels.Where(k => k.id == Id).SingleOrDefault();
+                        tables.CRM_contract_detail_id = 0;
+                        tables.flag = 1;
+                        tables.WIP_contract_id = 0;
+                        tables.check_date = DateTime.Now;
+
+                        var CRMTables = db.CRM_contract_detail.Where(k => k.id == tables.CRM_contract_detail_id).SingleOrDefault();
+                        if (CRMTables != null)
+                        {
+                            CRMTables.status = 0;
+                            if(CRMTables.LabelsCount!=null && CRMTables.LabelsCount>=1)
+                            { CRMTables.LabelsCount = CRMTables.LabelsCount - 1; }
+                        }
+                        
+                    }
+                }
+                
                 db.SaveChanges();
             }
         }

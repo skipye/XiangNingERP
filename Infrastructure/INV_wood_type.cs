@@ -24,6 +24,7 @@ namespace Infrastructure
             this.INV_labels = new HashSet<INV_labels>();
             this.INV_single_board = new HashSet<INV_single_board>();
             this.WIP_workflow = new HashSet<WIP_workflow>();
+            this.SYS_product_Cost = new HashSet<SYS_product_Cost>();
         }
     
         public int id { get; set; }
@@ -43,6 +44,7 @@ namespace Infrastructure
         public Nullable<decimal> cc_prcie { get; set; }
         public Nullable<int> Sort { get; set; }
         public Nullable<decimal> PersonPrice { get; set; }
+        public string SN { get; set; }
     
         public virtual ICollection<CRM_contract_detail> CRM_contract_detail { get; set; }
         public virtual ICollection<INV_material_stock> INV_material_stock { get; set; }
@@ -52,5 +54,6 @@ namespace Infrastructure
         public virtual ICollection<INV_labels> INV_labels { get; set; }
         public virtual ICollection<INV_single_board> INV_single_board { get; set; }
         public virtual ICollection<WIP_workflow> WIP_workflow { get; set; }
+        public virtual ICollection<SYS_product_Cost> SYS_product_Cost { get; set; }
     }
 }

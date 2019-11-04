@@ -69,5 +69,6 @@ namespace Infrastructure
         public DbSet<CRM_delivery_detail> CRM_delivery_detail { get; set; }
         public DbSet<SaleService_Products> SaleService_Products { get; set; }
         public DbSet<SaleServiceInfo> SaleServiceInfo { get; set; }
+        public DbSet<SYS_product_Cost> SYS_product_Cost { get; set; }
     }
 }

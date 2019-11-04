@@ -495,6 +495,7 @@
     <Property Name="cc_prcie" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Sort" Type="int" />
     <Property Name="PersonPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SN" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="SaleService_Products">
     <Key>
@@ -621,6 +622,25 @@
     <Property Name="remark" Type="text" />
     <Property Name="created_time" Type="datetime" Nullable="false" />
     <Property Name="delete_flag" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_product_Cost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="WoodId" Type="int" />
+    <Property Name="WoodName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MCPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="KLPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DHPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MGQPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MGHPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="GMPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="YQPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FLPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="DeleteFlag" Type="bit" />
   </EntityType>
   <EntityType Name="SYS_product_SN">
     <Key>
@@ -1058,6 +1078,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SYS_product_Cost_INV_wood_type">
+    <End Role="INV_wood_type" Type="Self.INV_wood_type" Multiplicity="0..1" />
+    <End Role="SYS_product_Cost" Type="Self.SYS_product_Cost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INV_wood_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SYS_product_Cost">
+        <PropertyRef Name="WoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SYS_product_Cost_SYS_product">
+    <End Role="SYS_product" Type="Self.SYS_product" Multiplicity="0..1" />
+    <End Role="SYS_product_Cost" Type="Self.SYS_product_Cost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SYS_product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SYS_product_Cost">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SYS_product_SN_SYS_product_SN">
     <End Role="SYS_product_SN" Type="Self.SYS_product_SN" Multiplicity="1" />
     <End Role="SYS_product_SN1" Type="Self.SYS_product_SN" Multiplicity="0..1" />
@@ -1164,6 +1208,7 @@
     <EntitySet Name="SYS_notices" EntityType="Self.SYS_notices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SYS_product" EntityType="Self.SYS_product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SYS_product_area" EntityType="Self.SYS_product_area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_product_Cost" EntityType="Self.SYS_product_Cost" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SYS_product_SN" EntityType="Self.SYS_product_SN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserLogs" EntityType="Self.UserLogs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WIP_contract" EntityType="Self.WIP_contract" Schema="dbo" store:Type="Tables" />
@@ -1274,6 +1319,14 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
     <AssociationSet Name="FK_SaleService_Products_SaleServiceInfo" Association="Self.FK_SaleService_Products_SaleServiceInfo">
       <End Role="SaleServiceInfo" EntitySet="SaleServiceInfo" />
       <End Role="SaleService_Products" EntitySet="SaleService_Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SYS_product_Cost_INV_wood_type" Association="Self.FK_SYS_product_Cost_INV_wood_type">
+      <End Role="INV_wood_type" EntitySet="INV_wood_type" />
+      <End Role="SYS_product_Cost" EntitySet="SYS_product_Cost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SYS_product_Cost_SYS_product" Association="Self.FK_SYS_product_Cost_SYS_product">
+      <End Role="SYS_product" EntitySet="SYS_product" />
+      <End Role="SYS_product_Cost" EntitySet="SYS_product_Cost" />
     </AssociationSet>
     <AssociationSet Name="FK_SYS_product_SN_SYS_product_SN" Association="Self.FK_SYS_product_SN_SYS_product_SN">
       <End Role="SYS_product_SN" EntitySet="SYS_product_SN" />

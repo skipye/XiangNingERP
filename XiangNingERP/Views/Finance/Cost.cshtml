@@ -1,0 +1,55 @@
+﻿@model ModelProject.SCostModel
+@{
+    ViewBag.Title = "成本控制";
+}
+<p class="currpoint">
+    <a href="@Url.Action("Index","Home")">首页</a>  -> 
+    <a href="@Url.Action("Index","Finance")">财务管理</a>  -> 
+    <a href="Javascript:void(0)" class="crrtab">成本控制</a>
+</p>
+
+<div class="search">
+    <ul class="searchtab"><li class="current">条件搜索</li></ul>
+    <div style="clear:both"></div>
+    <div class="searchbox clearfix">
+        @using (Html.BeginForm("Cost", "Finance", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="form_item">
+                <label class="label">所属系列：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.ProductSNId, Model.XLDroList, new { @class = "drotext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">所属材质：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.WoodId, Model.MCDroList, new { @class = "drotext" })
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-item-submit">
+                <input type="submit" value="提交" class="inputsubbtn fr mb20 mr20" style="width:100px;" />
+            </div>
+        }
+    </div>
+</div><!--search end -->
+
+<div class="mod">
+    <div class="hd">
+        <h2>搜索结果</h2>
+        <ul class="filter">
+            <li class="adddialog" url="@Url.Action("Add","Finance")" title="新增" ref="0"><a class="btn bg-green" href="javascript:void(0)"><span class="wh">增加</span></a></li>
+            <li><a class="selectAll btn bg-orange" href="javascript:void(0)"><span class="wh">全选</span></a></li>
+            <li><a class="unSelect btn bg-orange" href="javascript:void(0)"><span class="wh">全不选</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="ResultList" class="xTable">
+   @Html.Action("PageList", "Finance", new { SRmodels=Model})
+</div>
+
+
+<script type="text/javascript">
+    
+</script>

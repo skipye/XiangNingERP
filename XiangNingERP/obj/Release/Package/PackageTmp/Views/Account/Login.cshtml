@@ -50,7 +50,7 @@
             var Telephone = "";
             var PassWord = $("#PassWord").val();
             var valiCode = $("#valiCode").val();
-            var PostUrl = '@Url.Action("Login","Account")';
+            var PostUrl = '@Url.Action("PostLogin","Account")';
         if (UserName == null || UserName == '') {
             $(".errmsg").html("请输入用户名/手机号！");
             return;
@@ -69,8 +69,8 @@
         }
         $.post(PostUrl, { UserName: UserName, PassWord: PassWord, valiCode: valiCode, Telephone: Telephone },
             function (d) {
-                if (d.indexOf("&") != -1) {
-                    var ArrTerm = d.split("&");
+                if (d.indexOf("tt") != -1) {
+                    var ArrTerm = d.split("tt");
                     var MSG = ArrTerm[0];
                     var returnUrl = ArrTerm[1];
                     if (MSG == "登录成功！")

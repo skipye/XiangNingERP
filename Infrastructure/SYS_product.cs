@@ -22,6 +22,7 @@ namespace Infrastructure
             this.WIP_workflow = new HashSet<WIP_workflow>();
             this.INV_labels = new HashSet<INV_labels>();
             this.WIP_work_CW = new HashSet<WIP_work_CW>();
+            this.SYS_product_Cost = new HashSet<SYS_product_Cost>();
         }
     
         public int id { get; set; }
@@ -53,5 +54,6 @@ namespace Infrastructure
         public virtual ICollection<WIP_workflow> WIP_workflow { get; set; }
         public virtual ICollection<INV_labels> INV_labels { get; set; }
         public virtual ICollection<WIP_work_CW> WIP_work_CW { get; set; }
+        public virtual ICollection<SYS_product_Cost> SYS_product_Cost { get; set; }
     }
 }

@@ -489,10 +489,16 @@
     <Content Include="Views\CRM_SaleService\AddPro.cshtml" />
     <Content Include="Views\CRM_SaleService\ProPageList.cshtml" />
     <Content Include="Views\CRM_SaleService\Print.cshtml" />
+    <Content Include="Views\Labels\CancelLabels.cshtml" />
+    <Content Include="Views\Labels\CancelLabelsList.cshtml" />
+    <Content Include="Views\Finance\Add.cshtml" />
+    <Content Include="Views\Finance\Cost.cshtml" />
+    <Content Include="Views\Finance\PageList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Cost\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
