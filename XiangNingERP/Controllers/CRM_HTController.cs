@@ -162,7 +162,7 @@ namespace XiangNingERP.Controllers
         }
         public ActionResult WOPageList(SCRM_HTZModel SRmodels)
         {
-            var PageList = ISer.GetDeHTPageList(SRmodels, SRmodels.PageIndex ?? 1, SRmodels.PageSize ?? 100);
+            var PageList = ISer.GetDeHTPageList(SRmodels, SRmodels.PageIndex ?? 1, SRmodels.PageSize ?? 1000);
             ViewBag.SModel = SRmodels;
             return View(PageList);
         }

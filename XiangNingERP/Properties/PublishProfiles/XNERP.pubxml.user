@@ -105,10 +105,10 @@
       <publishTime>11/04/2019 16:46:58</publishTime>
     </File>
     <File Include="bin/DalProject.dll">
-      <publishTime>11/04/2019 16:46:59</publishTime>
+      <publishTime>12/02/2019 16:00:08</publishTime>
     </File>
     <File Include="bin/DalProject.pdb">
-      <publishTime>11/04/2019 16:46:59</publishTime>
+      <publishTime>12/02/2019 16:00:08</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/08/2017 14:21:06</publishTime>
@@ -135,10 +135,10 @@
       <publishTime>06/08/2017 14:21:14</publishTime>
     </File>
     <File Include="bin/ServiceProject.dll">
-      <publishTime>11/04/2019 16:46:59</publishTime>
+      <publishTime>12/02/2019 16:00:08</publishTime>
     </File>
     <File Include="bin/ServiceProject.pdb">
-      <publishTime>11/04/2019 16:46:59</publishTime>
+      <publishTime>12/02/2019 16:00:08</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
       <publishTime>06/08/2017 14:21:14</publishTime>
@@ -183,10 +183,10 @@
       <publishTime>06/08/2017 14:21:16</publishTime>
     </File>
     <File Include="bin/XiangNingERP.dll">
-      <publishTime>11/04/2019 16:46:59</publishTime>
+      <publishTime>12/02/2019 16:00:09</publishTime>
     </File>
     <File Include="bin/XiangNingERP.pdb">
-      <publishTime>11/04/2019 16:46:59</publishTime>
+      <publishTime>12/02/2019 16:00:09</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>06/08/2017 14:21:18</publishTime>
@@ -660,7 +660,7 @@
       <publishTime>08/07/2017 19:25:56</publishTime>
     </File>
     <File Include="Views/Finance/Add.cshtml">
-      <publishTime>11/04/2019 16:46:18</publishTime>
+      <publishTime>11/15/2019 14:47:42</publishTime>
     </File>
     <File Include="Views/Finance/Cost.cshtml">
       <publishTime>11/04/2019 16:20:40</publishTime>
@@ -1044,7 +1044,7 @@
       <publishTime>06/08/2017 14:20:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/04/2019 16:46:59</publishTime>
+      <publishTime>12/02/2019 16:00:09</publishTime>
     </File>
   </ItemGroup>
 </Project>

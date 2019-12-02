@@ -255,7 +255,7 @@ namespace DalProject
                 var List = (from p in db.CRM_contract_detail.Where(k => k.delete_flag == false && k.CRM_contract_header.FR_flag > 0 && k.CRM_contract_header.status == 1 && k.CRM_contract_header.delete_flag == false)
                             where !string.IsNullOrEmpty(SModel.SN) ? p.CRM_contract_header.SN.Contains(SModel.SN) : true
                             where !string.IsNullOrEmpty(SModel.UserName) ? p.CRM_contract_header.CRM_customers.name.Contains(SModel.UserName) : true
-                            orderby p.created_time descending
+                            orderby p.CRM_contract_header.SN descending
                             select new CRM_HTProModel
                             {
                                 id = p.id,

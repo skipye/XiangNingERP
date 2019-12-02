@@ -7,91 +7,92 @@
 }
 
 <div class="addmain">
- @using (Html.BeginForm("Add", "Finance", FormMethod.Post, new { @class = "form" }))
-    { 
-     @Html.HiddenFor(k=>k.PageIndex)
-     @Html.HiddenFor(k=>k.Id)
-    <div class="mod normal">
-        @if(Model.Id==null || Model.Id <=0) { 
-        <div class="item">
-            <label class="label"><em>*</em>选择系列：</label>
-            <div class="form-field">
-                @Html.DropDownListFor(k => k.ProductSNId, Model.XLDroList, new { @class = "drotext", @style = "width:80px;" })
-                @Html.DropDownListFor(k => k.product_areaId, Model.AreaDroList, new { @class = "drotext", @style = "width:80px;" })
-                
+    @using (Html.BeginForm("Add", "Finance", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.HiddenFor(k => k.PageIndex)
+        @Html.HiddenFor(k => k.Id)
+        <div class="mod normal">
+            @if (Model.Id == null || Model.Id <= 0)
+            {
+                <div class="item">
+                    <label class="label"><em>*</em>选择系列：</label>
+                    <div class="form-field">
+                        @Html.DropDownListFor(k => k.ProductSNId, Model.XLDroList, new { @class = "drotext", @style = "width:80px;" })
+                        @Html.DropDownListFor(k => k.product_areaId, Model.AreaDroList, new { @class = "drotext", @style = "width:80px;" })
+
+                    </div>
+                </div>
+                <div class="item">
+                    <label class="label"><em>*</em>选择产品：</label>
+                    <div class="form-field">
+                        @Html.DropDownListFor(k => k.ProductId, ArrPro, new { @class = "drotext drobtn" })
+                    </div>
+                </div>
+            }
+            <div class="item">
+                <label class="label"><em>*</em>所属木材：</label>
+                <div class="form-field">
+                    @Html.DropDownListFor(k => k.WoodId, Model.MCDroList, new { @class = "drotext", @style = "width:100px;" })
+                    @Html.HiddenFor(k => k.WoodName)
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>选择产品：</label>
-            <div class="form-field">
-                @Html.DropDownListFor(k => k.ProductId, ArrPro, new { @class = "drotext drobtn" })
+            <div class="item">
+                <label class="label"><em>*</em>木材成本：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.MCPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        }
-        <div class="item">
-            <label class="label"><em>*</em>所属木材：</label>
-            <div class="form-field">
-                @Html.DropDownListFor(k => k.WoodId, Model.MCDroList, new { @class = "drotext", @style = "width:100px;" })
-                @Html.HiddenFor(k => k.WoodName)
+            <div class="item">
+                <label class="label"><em>*</em>开料成本：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.KLPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>木材成本：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.MCPrice, new { @class = "sputtxt", @style = "width:120px;" })
+            <div class="item">
+                <label class="label"><em>*</em>木工前段：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.MGQPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>开料成本：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.KLPrice, new { @class = "sputtxt", @style = "width:120px;" })
+            <div class="item">
+                <label class="label"><em>*</em>雕花成本：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.DHPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>木工前段：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.MGQPrice, new { @class = "sputtxt", @style = "width:120px;" })
+            <div class="item">
+                <label class="label"><em>*</em>木工后段：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.MGHPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>雕花成本：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.DHPrice, new { @class = "sputtxt", @style = "width:120px;" })
+            <div class="item">
+                <label class="label"><em>*</em>刮磨成本：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.GMPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>木工后段：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.MGHPrice, new { @class = "sputtxt", @style = "width:120px;" })
+            <div class="item">
+                <label class="label"><em>*</em>油漆成本：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.YQPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>刮磨成本：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.GMPrice, new { @class = "sputtxt", @style = "width:120px;" })
+            <div class="item">
+                <label class="label"><em>*</em>辅料成本：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.FLPrice, new { @class = "sputtxt", @style = "width:120px;" })
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <label class="label"><em>*</em>油漆成本：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.YQPrice, new { @class = "sputtxt", @style = "width:120px;" })
+            <div class="item">
+                <label class="label">&nbsp;</label>
+                <div class="form-field">
+                    <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
+                </div>
             </div>
+            <div class="clear"></div>
         </div>
-        <div class="item">
-            <label class="label"><em>*</em>辅料成本：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.FLPrice, new { @class = "sputtxt", @style = "width:120px;" })
-            </div>
-        </div>
-        <div class="item">
-            <label class="label">&nbsp;</label>
-            <div class="form-field">
-                <a href="javascript:void(0)" class="submitbtn mt10" style="width:140px;">提交</a>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
- }
+    }
 </div>
 
 
@@ -125,7 +126,98 @@
                     $('#ProductId').append(data);
                 });
             });
-     
+
     });
-    
+
 </script>
+
+
+
+
+@model ModelProject.ReportResultModel
+@{
+    ViewBag.Title = "诚信企业第三质量跟踪活动";
+    string filepath = String.Empty;
+    string StrHtml = string.Empty;
+    for (int i = 1; i <= 4; i++)
+    {
+        filepath = @"D:\shanghuikehu\ShanghuiMedia\ThirdParty\Report\Img\" + Model.ReportID + "-" + i + ".jpg";
+
+        if (File.Exists(filepath))
+        {
+            StrHtml += "<div ><img src=\"http://admin.shanghuimedia.com/ThirdParty/Report/Img/" + Model.ReportID + "-" + i + ".jpg\" /></div>";
+        }
+    }
+}
+
+<link href="~/Content/Thirdparty.css" rel="stylesheet" />
+<center style="margin-top:30px;">
+    <h1>
+        诚信企业第三质量跟踪活动
+        <br />木材检验报告
+    </h1>
+</center>
+
+
+<div class="jianyanreport">
+    <div style="height:40px;"></div>
+    @Html.Raw(StrHtml)
+</div>
+<div class="both"></div>
+<div class="jigou">
+    <div class="t">
+        <div class="jycenter fl">
+            <h2>国家家具质量监督检验中心</h2>
+            <p>国家家具质量监督检验中心隶属于上海市质量监督检验技术研究院。1989年经国家技术监督局批准成立国家家具质量监督检验中心，1999年通过中国实验室国家认可委员会认可，是中国质量认证中心签约的检测实验室。</p>
+            <p>中心是集检验、标准制修订、检验设备研发及科研为一体的全国最早开展各类家具检验的专业机构之一，是国内专业能力最完善、设备最齐全的家具检测试验室。</p>
+            <p>
+                中心承担了国家各级政府部门的监督抽查、司法鉴定和质量仲裁，社会各界的委托检验等，经授权的检验产品范围有：木家具、金属家具、软体家具、实验室家具、图书设备用家具、木制品、木地板、人造板、家具用纺织品、家具用皮革等原辅材料等，能力覆盖了外观、理化、力学和有害物质
+
+                性能。
+            </p>
+            <p>中心还是全国家具标准化中心，是全国家具标准化技术委员会联合秘书处的秘书长单位，是ISO/TC136家具技术委员会的P成员国。承担家具行业的国家标准和行业标准的制修订和归口管理工作，在国内率先引进了ISO等组织发布的家具力学和理化测试的标准和方法。</p>
+            <p>中心自成立以来，负责制定和参与制定的家具国家标准19项，行业标准5项；负责修订的家具国家标准2项，行业标准6项。代表我国向ISO/TC136家具技术委员会提出意见和提案 27项，参与国际标准制修订9项。中心还可为家具木材企业提供制修订产品企业标准咨询指导和技术培训服务。</p>
+            <p>中心拥有国内最优秀的技术与服务团队，致力于提供最优良的检验设备研发服务。中心自主研制开发的检测设备，填补了国内空白，在全国家具检验机构、科研院所、大专院校及大型生产企业中得到了推广和应用，已获专利十几项。</p>
+            <p>中心拥有一支优秀的科研团队，完成和开展国家质检总局科研项目2项，完成上海市质监局科研项目、公益性项目、TBT项目11项，曾获得中国轻工业联合会科技技术进步奖二等奖1项，上海市标准化优秀学术成果、技术成果二等奖5项。</p>
+            <p>中心还致力于家具木材使用安全及有害物质风险监测和评估，为消除安全隐患提供预警性建议。</p>
+        </div>
+        <div class="mucaicenter fr">
+            <h2>国家林业局华东木材及木制品质量监督检测中心</h2>
+            <p>
+                上海市木材产品质量监督检验站暨国家林业局华东木材及木制品质量监督检验中心是国内最具权威、专业从事木材及木制品检测的实验室之一，是上海地区唯一一家国家林业局的质检机构。本实验室配备了先进、齐全的检测设备，和一支专业检验队伍，现有博士1名，硕士2名，高级工程师6名等
+
+                ，具有较高的专业技术水平，熟悉木材加工工艺、设备及现场生产情况，可以根据委托方的要求，按照不同标准进行木材、胶合板、刨花板、实木地板、实木复合地板、木门、竹地板等木材及木制品的各项理化性能检测，出具中英文检验报告。
+            </p>
+            <p>
+                本中心是国家授权进行木材树种鉴定的检验机构之一，配有一流的木材科学专业检验人员，有4名国家木材高级检验员，同时拥有高性能的进口设备，拥有树种鉴定科学的系统，从木材切片、计算机检索到计算机图象处理设备等一应俱全，可以全面进行木材宏观、微观构造的检验，可以完成国产
+
+                材、进口材、红木等各种木材的树种鉴定。
+            </p>
+            <p>本中心服务对象已遍及国内外各类木制品企业和公司。同时也为各出入境检验检疫局、海关、工商局、技术监督局、法院等政府部门出具了权威科学的报告。目前已收集世界各地的木材标样1500余种。</p>
+            <p>EN标准检测：</p>
+            <p>目前，本中心成为国内唯一一家取得国家认证认可的EN标准人造板物理力学性能检验机构，检测报告也已取得欧盟CE认证机构的认可，为出口企业按照CE认证的要求进行检测，为出口产品打破技术壁垒创造了条件。</p>
+
+        </div>
+        <div class="both"></div>
+    </div>
+    <div class="both"></div>
+</div>
+<div class="mucai">
+    <div class="changjia fl" style="float:left">
+        <div class="t">
+            <h2>@Model.CompanyName</h2>
+            @Html.Raw(Model.CompanyIntro)
+        </div>
+    </div>
+    <!--木材信息-->
+    <div class="mucai fr">
+        <div class="t">
+            <h2>@Model.WoodName</h2>
+            @Html.Raw(Model.WoodText.Replace("src=\"pic\\", "src=\"http://www.sh1800.net/pic/"))
+        </div>
+
+    </div>
+
+    <div class="both"></div>
+</div>
+
