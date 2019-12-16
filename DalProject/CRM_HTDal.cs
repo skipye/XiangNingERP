@@ -30,6 +30,7 @@ namespace DalProject
                             where !string.IsNullOrEmpty(SModel.SN) ? p.SN.Contains(SModel.SN) : true
                             where SModel.CheckState != null && SModel.CheckState == 1 ? p.status == SModel.CheckState : true
                             where !string.IsNullOrEmpty(SModel.UserName) ? p.CRM_customers.name.Contains(SModel.UserName) : true
+                            where !string.IsNullOrEmpty(SModel.ProductName) ? p.CRM_contract_detail.Where(k=>k.delete_flag==false).Select(k=>k.SYS_product.name).Contains(SModel.ProductName) : true
                             where SModel.FR_flag >= 0 ? p.FR_flag == SModel.FR_flag : true
                             where p.created_time > StartTime
                             where p.created_time < EndTime
@@ -283,6 +284,7 @@ namespace DalProject
                                 created_time = p.created_time,
                                 WorkCount = p.LabelsCount,
                                 Remark = p.CRM_contract_header.reserved3,
+                                SendCount=p.CRM_delivery_tmp_header.Count(),
                             }).ToList();
                
                 return List.ToPagedList(PageIndex, PageSize);

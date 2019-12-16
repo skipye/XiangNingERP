@@ -26,6 +26,7 @@
     <Property Name="delete_flag" Type="bit" Nullable="false" />
     <Property Name="LabelsCount" Type="int" />
     <Property Name="SemiCount" Type="int" />
+    <Property Name="SendCount" Type="int" />
   </EntityType>
   <EntityType Name="CRM_contract_header">
     <Key>
@@ -59,6 +60,8 @@
     <Property Name="reserved3" Type="nvarchar" MaxLength="200" />
     <Property Name="Linkman" Type="nvarchar" MaxLength="50" />
     <Property Name="Linktel" Type="nvarchar" MaxLength="50" />
+    <Property Name="CWStatus" Type="int" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="CRM_customers">
     <Key>
@@ -353,6 +356,8 @@
     <Property Name="WorkId" Type="int" />
     <Property Name="WIP_contract_id" Type="int" />
     <Property Name="InputDateTime" Type="datetime" />
+    <Property Name="CCprice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BQPrice" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="INV_material_stock">
     <Key>
@@ -641,6 +646,12 @@
     <Property Name="FLPrice" Type="decimal" Precision="18" Scale="2" />
     <Property Name="CreateTime" Type="datetime" />
     <Property Name="DeleteFlag" Type="bit" />
+    <Property Name="CCprice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CostCprice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PersonPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Volume" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MCFY" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RGFY" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="SYS_product_SN">
     <Key>

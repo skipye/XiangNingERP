@@ -100,6 +100,7 @@ namespace ModelProject
         public int? PageSize { get; set; }
         public int status { get; set; }
         public int FRstatus { get; set; }
+        public string ProductName { get; set; }
     }
     public class CRM_HTProModel
     {
@@ -148,6 +149,7 @@ namespace ModelProject
         public bool? CZ_checked { get; set; }
         public bool? CW_checked { get; set; }
         public bool? delete_flag { get; set; }
+        public int? SendCount { get; set; }
     }
     public class FR_contract
     {

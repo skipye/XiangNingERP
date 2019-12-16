@@ -31,6 +31,7 @@
           <Property Name="delete_flag" Type="bit" Nullable="false" />
           <Property Name="LabelsCount" Type="int" />
           <Property Name="SemiCount" Type="int" />
+          <Property Name="SendCount" Type="int" />
         </EntityType>
         <EntityType Name="CRM_contract_header">
           <Key>
@@ -64,6 +65,8 @@
           <Property Name="reserved3" Type="nvarchar" MaxLength="200" />
           <Property Name="Linkman" Type="nvarchar" MaxLength="50" />
           <Property Name="Linktel" Type="nvarchar" MaxLength="50" />
+          <Property Name="CWStatus" Type="int" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="CRM_customers">
           <Key>
@@ -358,6 +361,8 @@
           <Property Name="WorkId" Type="int" />
           <Property Name="WIP_contract_id" Type="int" />
           <Property Name="InputDateTime" Type="datetime" />
+          <Property Name="CCprice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BQPrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="INV_material_stock">
           <Key>
@@ -646,6 +651,12 @@
           <Property Name="FLPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="DeleteFlag" Type="bit" />
+          <Property Name="CCprice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CostCprice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PersonPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Volume" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MCFY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RGFY" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="SYS_product_SN">
           <Key>
@@ -1624,6 +1635,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_tmp_header" />
           <NavigationProperty Name="WIP_work_CW" Relationship="XNERPModel.WIP_work_CWCRM_contract_detail" FromRole="CRM_contract_detail" ToRole="WIP_work_CW" />
           <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_detail" />
+          <Property Name="SendCount" Type="Int32" />
         </EntityType>
         <EntityType Name="CRM_customers">
           <Key>
@@ -2300,6 +2312,8 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <Property Name="Linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Linktel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_detail" />
+          <Property Name="CWStatus" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_CRM_contract_detail_CRM_contract_header">
           <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
@@ -2654,6 +2668,8 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.CRM_contract_detailINV_labels" FromRole="INV_labels" ToRole="CRM_contract_detail" />
           <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.INV_labelsCRM_delivery_tmp_header" FromRole="INV_labels" ToRole="CRM_delivery_tmp_header" />
           <Property Name="InputDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CCprice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BQPrice" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="SYS_productINV_labels">
           <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="1" />
@@ -3006,6 +3022,12 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <Property Name="DeleteFlag" Type="Boolean" />
           <NavigationProperty Name="SYS_product" Relationship="XNERPModel.FK_SYS_product_Cost_SYS_product" FromRole="SYS_product_Cost" ToRole="SYS_product" />
           <NavigationProperty Name="INV_wood_type" Relationship="XNERPModel.FK_SYS_product_Cost_INV_wood_type" FromRole="SYS_product_Cost" ToRole="INV_wood_type" />
+          <Property Name="CCprice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CostCprice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PersonPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Volume" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MCFY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RGFY" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_SYS_product_Cost_SYS_product">
           <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="0..1" />
@@ -3040,6 +3062,7 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <EntitySetMapping Name="CRM_contract_detail">
             <EntityTypeMapping TypeName="XNERPModel.CRM_contract_detail">
               <MappingFragment StoreEntitySet="CRM_contract_detail">
+                <ScalarProperty Name="SendCount" ColumnName="SendCount" />
                 <ScalarProperty Name="SemiCount" ColumnName="SemiCount" />
                 <ScalarProperty Name="LabelsCount" ColumnName="LabelsCount" />
                 <ScalarProperty Name="price_recommend" ColumnName="price_recommend" />
@@ -3556,6 +3579,8 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <EntitySetMapping Name="CRM_contract_header">
             <EntityTypeMapping TypeName="XNERPModel.CRM_contract_header">
               <MappingFragment StoreEntitySet="CRM_contract_header">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CWStatus" ColumnName="CWStatus" />
                 <ScalarProperty Name="Linktel" ColumnName="Linktel" />
                 <ScalarProperty Name="Linkman" ColumnName="Linkman" />
                 <ScalarProperty Name="reserved3" ColumnName="reserved3" />
@@ -3736,6 +3761,8 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <EntitySetMapping Name="INV_labels">
             <EntityTypeMapping TypeName="XNERPModel.INV_labels">
               <MappingFragment StoreEntitySet="INV_labels">
+                <ScalarProperty Name="BQPrice" ColumnName="BQPrice" />
+                <ScalarProperty Name="CCprice" ColumnName="CCprice" />
                 <ScalarProperty Name="InputDateTime" ColumnName="InputDateTime" />
                 <ScalarProperty Name="WIP_contract_id" ColumnName="WIP_contract_id" />
                 <ScalarProperty Name="WorkId" ColumnName="WorkId" />
@@ -3875,6 +3902,12 @@ FROM [dbo].[SYS_company] AS [SYS_company]</DefiningQuery>
           <EntitySetMapping Name="SYS_product_Cost">
             <EntityTypeMapping TypeName="XNERPModel.SYS_product_Cost">
               <MappingFragment StoreEntitySet="SYS_product_Cost">
+                <ScalarProperty Name="RGFY" ColumnName="RGFY" />
+                <ScalarProperty Name="MCFY" ColumnName="MCFY" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PersonPrice" ColumnName="PersonPrice" />
+                <ScalarProperty Name="CostCprice" ColumnName="CostCprice" />
+                <ScalarProperty Name="CCprice" ColumnName="CCprice" />
                 <ScalarProperty Name="DeleteFlag" ColumnName="DeleteFlag" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="FLPrice" ColumnName="FLPrice" />

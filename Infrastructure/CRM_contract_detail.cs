@@ -45,6 +45,7 @@ namespace Infrastructure
         public Nullable<decimal> price_recommend { get; set; }
         public Nullable<int> LabelsCount { get; set; }
         public Nullable<int> SemiCount { get; set; }
+        public Nullable<int> SendCount { get; set; }
     
         public virtual INV_wood_type INV_wood_type { get; set; }
         public virtual SYS_colors SYS_colors { get; set; }

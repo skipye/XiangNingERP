@@ -18,13 +18,19 @@
             <div class="form_item">
                 <label class="label">订货人：</label>
                 <div class="form-field">
-                   @Html.TextBoxFor(k => k.UserName,  new { @class="inputtext"})
+                    @Html.TextBoxFor(k => k.UserName, new { @class = "inputtext" })
+                </div>
+            </div>
+            <div class="form_item">
+                <label class="label">产品名称：</label>
+                <div class="form-field">
+                    @Html.TextBoxFor(k => k.ProductName, new { @class = "inputtext" ,@placeholder="产品名称"})
                 </div>
             </div>
             <div class="clear"></div>
             <div class="form-item-submit">
                 <input type="submit" class="inputsubbtn fr mb20 mr20" style="width:100px;" value="提交" />
-               @* <a href="Javscript:void(0)" class="submitbtn fr mb20 mr20" style="width:100px;">提交</a>*@
+                @* <a href="Javscript:void(0)" class="submitbtn fr mb20 mr20" style="width:100px;">提交</a>*@
             </div>
         }
     </div>

@@ -49,6 +49,8 @@ namespace Infrastructure
         public string reserved3 { get; set; }
         public string Linkman { get; set; }
         public string Linktel { get; set; }
+        public Nullable<int> CWStatus { get; set; }
+        public string Remark { get; set; }
     
         public virtual ICollection<CRM_contract_detail> CRM_contract_detail { get; set; }
         public virtual CRM_customers CRM_customers { get; set; }

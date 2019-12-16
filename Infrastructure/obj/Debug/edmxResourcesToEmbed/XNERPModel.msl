@@ -4,6 +4,7 @@
     <EntitySetMapping Name="CRM_contract_detail">
       <EntityTypeMapping TypeName="XNERPModel.CRM_contract_detail">
         <MappingFragment StoreEntitySet="CRM_contract_detail">
+          <ScalarProperty Name="SendCount" ColumnName="SendCount" />
           <ScalarProperty Name="SemiCount" ColumnName="SemiCount" />
           <ScalarProperty Name="LabelsCount" ColumnName="LabelsCount" />
           <ScalarProperty Name="price_recommend" ColumnName="price_recommend" />
@@ -520,6 +521,8 @@
     <EntitySetMapping Name="CRM_contract_header">
       <EntityTypeMapping TypeName="XNERPModel.CRM_contract_header">
         <MappingFragment StoreEntitySet="CRM_contract_header">
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="CWStatus" ColumnName="CWStatus" />
           <ScalarProperty Name="Linktel" ColumnName="Linktel" />
           <ScalarProperty Name="Linkman" ColumnName="Linkman" />
           <ScalarProperty Name="reserved3" ColumnName="reserved3" />
@@ -700,6 +703,8 @@
     <EntitySetMapping Name="INV_labels">
       <EntityTypeMapping TypeName="XNERPModel.INV_labels">
         <MappingFragment StoreEntitySet="INV_labels">
+          <ScalarProperty Name="BQPrice" ColumnName="BQPrice" />
+          <ScalarProperty Name="CCprice" ColumnName="CCprice" />
           <ScalarProperty Name="InputDateTime" ColumnName="InputDateTime" />
           <ScalarProperty Name="WIP_contract_id" ColumnName="WIP_contract_id" />
           <ScalarProperty Name="WorkId" ColumnName="WorkId" />
@@ -839,6 +844,12 @@
     <EntitySetMapping Name="SYS_product_Cost">
       <EntityTypeMapping TypeName="XNERPModel.SYS_product_Cost">
         <MappingFragment StoreEntitySet="SYS_product_Cost">
+          <ScalarProperty Name="RGFY" ColumnName="RGFY" />
+          <ScalarProperty Name="MCFY" ColumnName="MCFY" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="PersonPrice" ColumnName="PersonPrice" />
+          <ScalarProperty Name="CostCprice" ColumnName="CostCprice" />
+          <ScalarProperty Name="CCprice" ColumnName="CCprice" />
           <ScalarProperty Name="DeleteFlag" ColumnName="DeleteFlag" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="FLPrice" ColumnName="FLPrice" />

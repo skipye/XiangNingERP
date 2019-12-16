@@ -262,6 +262,7 @@
     <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.FK_CRM_delivery_tmp_header_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_tmp_header" />
     <NavigationProperty Name="WIP_work_CW" Relationship="XNERPModel.WIP_work_CWCRM_contract_detail" FromRole="CRM_contract_detail" ToRole="WIP_work_CW" />
     <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_detail" FromRole="CRM_contract_detail" ToRole="CRM_delivery_detail" />
+    <Property Name="SendCount" Type="Int32" />
   </EntityType>
   <EntityType Name="CRM_customers">
     <Key>
@@ -938,6 +939,8 @@
     <Property Name="Linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Linktel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CRM_delivery_detail" Relationship="XNERPModel.FK_CRM_delivery_detail_CRM_contract_header" FromRole="CRM_contract_header" ToRole="CRM_delivery_detail" />
+    <Property Name="CWStatus" Type="Int32" />
+    <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_CRM_contract_detail_CRM_contract_header">
     <End Type="XNERPModel.CRM_contract_header" Role="CRM_contract_header" Multiplicity="1" />
@@ -1292,6 +1295,8 @@
     <NavigationProperty Name="CRM_contract_detail" Relationship="XNERPModel.CRM_contract_detailINV_labels" FromRole="INV_labels" ToRole="CRM_contract_detail" />
     <NavigationProperty Name="CRM_delivery_tmp_header" Relationship="XNERPModel.INV_labelsCRM_delivery_tmp_header" FromRole="INV_labels" ToRole="CRM_delivery_tmp_header" />
     <Property Name="InputDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CCprice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BQPrice" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <Association Name="SYS_productINV_labels">
     <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="1" />
@@ -1644,6 +1649,12 @@
     <Property Name="DeleteFlag" Type="Boolean" />
     <NavigationProperty Name="SYS_product" Relationship="XNERPModel.FK_SYS_product_Cost_SYS_product" FromRole="SYS_product_Cost" ToRole="SYS_product" />
     <NavigationProperty Name="INV_wood_type" Relationship="XNERPModel.FK_SYS_product_Cost_INV_wood_type" FromRole="SYS_product_Cost" ToRole="INV_wood_type" />
+    <Property Name="CCprice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CostCprice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PersonPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Volume" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MCFY" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RGFY" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <Association Name="FK_SYS_product_Cost_SYS_product">
     <End Type="XNERPModel.SYS_product" Role="SYS_product" Multiplicity="0..1" />

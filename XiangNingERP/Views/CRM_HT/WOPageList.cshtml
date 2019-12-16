@@ -21,9 +21,9 @@
         </tr>
         @foreach (var item in Model)
         {
-            if (item.qty > 1)
+            if ((item.qty-item.SendCount) > 0)
             {
-                for (int i = 0; i < item.qty; i++)
+                for (int i = 0; i < (item.qty-item.SendCount); i++)
                 {
                     <tr>
                         <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
@@ -35,7 +35,7 @@
                     </tr>
                 }
             }
-            else { 
+            @*else { 
                 <tr>
                     <td><input type="checkbox" name="listcheck" class="listcheck" value="@item.id" /></td>
                     <td style="text-align:left;"><div class="tw">@(item.productXL + "_" + item.productName)</div></td>
@@ -44,7 +44,7 @@
                     <td><div class="tw">@item.woodName</div></td>
                     <td><div class="tw">@item.colorName</div></td>
                 </tr>
-            }
+            }*@
         }
     </table>
     <div class="form_item">

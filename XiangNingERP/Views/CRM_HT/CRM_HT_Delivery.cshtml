@@ -9,41 +9,45 @@
     PSize.Add(new SelectListItem { Text = "每页80", Value = "80" });
 }
 
-<div class="search">
-    <ul class="searchtab"><li class="current">条件搜索</li></ul>
-    <div style="clear:both"></div>
-    <div class="searchbox clearfix form">
-        <div class="form_item">
-            <label class="label">合同编号：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.SN, new { @class = "inputtext" })
+    <div class="search">
+        <ul class="searchtab"><li class="current">条件搜索</li></ul>
+        <div style="clear:both"></div>
+        @using (Html.BeginForm("CRM_HT_Delivery", "CRM_HT", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="searchbox clearfix form">
+                <div class="form_item">
+                    <label class="label">合同编号：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.SN, new { @class = "inputtext" })
+                    </div>
+                </div>
+                <div class="form_item">
+                    <label class="label">订货人：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.UserName, new { @class = "inputtext", id = "CRMUserName" })
+                    </div>
+                </div>
+                <div class="form_item">
+                    <label class="label">申请时间：</label>
+                    <div class="form-field">
+                        @Html.TextBoxFor(k => k.StartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
+                        @Html.TextBoxFor(k => k.EndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
+                    </div>
+                </div>
+                <div class="form_item">
+                    <label class="label">每页显示：</label>
+                    <div class="form-field">
+                        @Html.DropDownListFor(k => k.PageSize, PSize, new { @class = "drotext" })
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="form-item-submit">
+                    <input type="submit" value="提交" class="inputsubbtn fr mb20 mr20" style="width:100px;" />
+                </div>
             </div>
-        </div>
-        <div class="form_item">
-            <label class="label">订货人：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.UserName, new { @class = "inputtext", id = "CRMUserName" })
-            </div>
-        </div>
-        <div class="form_item">
-            <label class="label">申请时间：</label>
-            <div class="form-field">
-                @Html.TextBoxFor(k => k.StartTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "开始时间" }) -
-                @Html.TextBoxFor(k => k.EndTime, new { @class = "sputtxt", @style = "width:86px;", @ref = "datepicker", @placeholder = "结束时间" })
-            </div>
-        </div>
-        <div class="form_item">
-            <label class="label">每页显示：</label>
-            <div class="form-field">
-                @Html.DropDownListFor(k => k.PageSize, PSize, new { @class = "drotext" })
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="form-item-submit">
-            <input type="button" value="提交" class="inputsubbtn fr mb20 mr20" style="width:100px;" />
-        </div>
+        }
     </div>
-</div><!--search end -->
+       
 @*<div class="mod">
     <div class="hd">
         <h2>搜索结果</h2>

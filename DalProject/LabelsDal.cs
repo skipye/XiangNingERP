@@ -408,6 +408,9 @@ namespace DalProject
                         tables.delete_flag = true;
                         tables.created_time = DateTime.Now;
 
+                        //var HTDetailTable = db.CRM_contract_detail.Where(k => Id == HT_Detail_Id).FirstOrDefault();
+                        //HTDetailTable.SendCount = HTDetailTable.SendCount ?? 0 + 1;
+
                         //下面去把送货申请的送货状态更新掉
                         var DeliveryTable = db.CRM_delivery_detail.Where(k => k.delete_flag == false && k.status == 0 && k.header_id == HT_Head_id && k.contract_detail_id == HT_Detail_Id).FirstOrDefault();
                         if (DeliveryTable != null)
