@@ -101,6 +101,7 @@ namespace ModelProject
         public int status { get; set; }
         public int FRstatus { get; set; }
         public string ProductName { get; set; }
+        public int UserId { get; set; }
     }
     public class CRM_HTProModel
     {

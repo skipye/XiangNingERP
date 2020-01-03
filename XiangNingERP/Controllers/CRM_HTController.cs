@@ -37,6 +37,7 @@ namespace XiangNingERP.Controllers
         {
             decimal TotalHT = 0;
             decimal? TotalYF = 0;
+            SRmodels.UserId= USer.GetCurrentUserName().UserId;
             var PageList = ISer.GetPageList(SRmodels, SRmodels.PageIndex ?? 1, SRmodels.PageSize ?? 10, out TotalHT, out TotalYF);
             ViewBag.SModel = SRmodels;
             ViewBag.TotalHT = TotalHT;
